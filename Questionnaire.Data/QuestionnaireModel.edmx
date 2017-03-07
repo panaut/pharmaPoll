@@ -1,0 +1,794 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="QuestionnaireModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2012" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityContainer Name="QuestionnaireModelStoreContainer">
+    <EntitySet Name="QuestionTemplates" EntityType="QuestionnaireModel.Store.QuestionTemplates" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="AnswerTemplates" EntityType="QuestionnaireModel.Store.AnswerTemplates" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Polls" EntityType="QuestionnaireModel.Store.Polls" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="VotingSessions" EntityType="QuestionnaireModel.Store.VotingSessions" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="SessionResults" EntityType="QuestionnaireModel.Store.SessionResults" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Localizations" EntityType="QuestionnaireModel.Store.Localizations" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="SurveySections" EntityType="QuestionnaireModel.Store.SurveySections" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="AnswerTemplates_PredefinedAnswer" EntityType="QuestionnaireModel.Store.AnswerTemplates_PredefinedAnswer" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="AnswerTemplates_WriteInAnswer" EntityType="QuestionnaireModel.Store.AnswerTemplates_WriteInAnswer" store:Type="Tables" Schema="dbo" />
+    <AssociationSet Name="QuestionTemplateAnswerTemplate" Association="QuestionnaireModel.Store.QuestionTemplateAnswerTemplate">
+      <End Role="QuestionTemplate" EntitySet="QuestionTemplates" />
+      <End Role="AnswerTemplate" EntitySet="AnswerTemplates" />
+    </AssociationSet>
+    <AssociationSet Name="ComplexQuestion" Association="QuestionnaireModel.Store.ComplexQuestion">
+      <End Role="QuestionTemplate" EntitySet="QuestionTemplates" />
+      <End Role="QuestionTemplate1" EntitySet="QuestionTemplates" />
+    </AssociationSet>
+    <AssociationSet Name="ConditionalQuestion" Association="QuestionnaireModel.Store.ConditionalQuestion">
+      <End Role="AnswerTemplate" EntitySet="AnswerTemplates" />
+      <End Role="QuestionTemplate" EntitySet="QuestionTemplates" />
+    </AssociationSet>
+    <AssociationSet Name="PollQuestionTemplate" Association="QuestionnaireModel.Store.PollQuestionTemplate">
+      <End Role="Poll" EntitySet="Polls" />
+      <End Role="QuestionTemplate" EntitySet="QuestionTemplates" />
+    </AssociationSet>
+    <AssociationSet Name="PollVotingSession" Association="QuestionnaireModel.Store.PollVotingSession">
+      <End Role="Poll" EntitySet="Polls" />
+      <End Role="VotingSession" EntitySet="VotingSessions" />
+    </AssociationSet>
+    <AssociationSet Name="VotingSessionSessionResult" Association="QuestionnaireModel.Store.VotingSessionSessionResult">
+      <End Role="VotingSession" EntitySet="VotingSessions" />
+      <End Role="SessionResult" EntitySet="SessionResults" />
+    </AssociationSet>
+    <AssociationSet Name="SessionResultAnswerTemplate" Association="QuestionnaireModel.Store.SessionResultAnswerTemplate">
+      <End Role="SessionResult" EntitySet="SessionResults" />
+      <End Role="AnswerTemplate" EntitySet="AnswerTemplates" />
+    </AssociationSet>
+    <AssociationSet Name="SessionResultQuestionTemplate" Association="QuestionnaireModel.Store.SessionResultQuestionTemplate">
+      <End Role="SessionResult" EntitySet="SessionResults" />
+      <End Role="QuestionTemplate" EntitySet="QuestionTemplates" />
+    </AssociationSet>
+    <AssociationSet Name="QuestionTemplateLocalization" Association="QuestionnaireModel.Store.QuestionTemplateLocalization">
+      <End Role="QuestionTemplate" EntitySet="QuestionTemplates" />
+      <End Role="Localization" EntitySet="Localizations" />
+    </AssociationSet>
+    <AssociationSet Name="LocalizationAnswerTemplate" Association="QuestionnaireModel.Store.LocalizationAnswerTemplate">
+      <End Role="Localization" EntitySet="Localizations" />
+      <End Role="AnswerTemplate" EntitySet="AnswerTemplates" />
+    </AssociationSet>
+    <AssociationSet Name="PollSurveySection" Association="QuestionnaireModel.Store.PollSurveySection">
+      <End Role="Poll" EntitySet="Polls" />
+      <End Role="SurveySection" EntitySet="SurveySections" />
+    </AssociationSet>
+    <AssociationSet Name="SurveySectionQuestionTemplate" Association="QuestionnaireModel.Store.SurveySectionQuestionTemplate">
+      <End Role="SurveySection" EntitySet="SurveySections" />
+      <End Role="QuestionTemplate" EntitySet="QuestionTemplates" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PredefinedAnswer_inherits_AnswerTemplate" Association="QuestionnaireModel.Store.FK_PredefinedAnswer_inherits_AnswerTemplate">
+      <End Role="AnswerTemplate" EntitySet="AnswerTemplates" />
+      <End Role="PredefinedAnswer" EntitySet="AnswerTemplates_PredefinedAnswer" />
+    </AssociationSet>
+    <AssociationSet Name="FK_WriteInAnswer_inherits_AnswerTemplate" Association="QuestionnaireModel.Store.FK_WriteInAnswer_inherits_AnswerTemplate">
+      <End Role="AnswerTemplate" EntitySet="AnswerTemplates" />
+      <End Role="WriteInAnswer" EntitySet="AnswerTemplates_WriteInAnswer" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="QuestionTemplates">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="DisplayOrder" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="NativeText" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Type" Type="int" Nullable="false" />
+    <Property Name="QuestionTemplateId" Type="int" Nullable="false" />
+    <Property Name="Appearance" Type="int" Nullable="false" />
+    <Property Name="AnswerTemplateId" Type="int" Nullable="true" />
+    <Property Name="PollId" Type="int" Nullable="false" />
+    <Property Name="SurveySectionId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="AnswerTemplates">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Type" Type="int" Nullable="false" />
+    <Property Name="DisplayOrder" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Text" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="QuestionTemplateId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Polls">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Description" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="IsActive" Type="bit" Nullable="false" />
+    <Property Name="Start" Type="datetime" Nullable="false" />
+    <Property Name="Duration" Type="datetimeoffset" Nullable="false" />
+    <Property Name="Header" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Footer" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="VotingSessions">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Code" Type="nchar" Nullable="false" MaxLength="6" />
+    <Property Name="State" Type="int" Nullable="false" />
+    <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Email" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Date" Type="datetime" Nullable="false" />
+    <Property Name="PollId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="SessionResults">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="VotingSessionId" Type="int" Nullable="false" />
+    <Property Name="AnswerTemplateId" Type="int" Nullable="false" />
+    <Property Name="QuestionTemplateId" Type="int" Nullable="false" />
+    <Property Name="Value" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Localizations">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Culture" Type="nvarchar" Nullable="false" MaxLength="10" />
+    <Property Name="LocalizedText" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="QuestionTemplateId" Type="int" Nullable="true" />
+    <Property Name="AnswerTemplateId" Type="int" Nullable="true" />
+  </EntityType>
+  <EntityType Name="SurveySections">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="DisplayOrder" Type="int" Nullable="false" />
+    <Property Name="Description" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="PollId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="AnswerTemplates_PredefinedAnswer">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="AnswerTemplates_WriteInAnswer">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="RegEx" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Id" Type="int" Nullable="false" />
+  </EntityType>
+  <Association Name="QuestionTemplateAnswerTemplate">
+    <End Role="QuestionTemplate" Type="QuestionnaireModel.Store.QuestionTemplates" Multiplicity="1" />
+    <End Role="AnswerTemplate" Type="QuestionnaireModel.Store.AnswerTemplates" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="QuestionTemplate">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="AnswerTemplate">
+        <PropertyRef Name="QuestionTemplateId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="ComplexQuestion">
+    <End Role="QuestionTemplate" Type="QuestionnaireModel.Store.QuestionTemplates" Multiplicity="1" />
+    <End Role="QuestionTemplate1" Type="QuestionnaireModel.Store.QuestionTemplates" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="QuestionTemplate">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="QuestionTemplate1">
+        <PropertyRef Name="QuestionTemplateId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="ConditionalQuestion">
+    <End Role="AnswerTemplate" Type="QuestionnaireModel.Store.AnswerTemplates" Multiplicity="0..1" />
+    <End Role="QuestionTemplate" Type="QuestionnaireModel.Store.QuestionTemplates" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AnswerTemplate">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="QuestionTemplate">
+        <PropertyRef Name="AnswerTemplateId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="PollQuestionTemplate">
+    <End Role="Poll" Type="QuestionnaireModel.Store.Polls" Multiplicity="1" />
+    <End Role="QuestionTemplate" Type="QuestionnaireModel.Store.QuestionTemplates" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Poll">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="QuestionTemplate">
+        <PropertyRef Name="PollId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="PollVotingSession">
+    <End Role="Poll" Type="QuestionnaireModel.Store.Polls" Multiplicity="1" />
+    <End Role="VotingSession" Type="QuestionnaireModel.Store.VotingSessions" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Poll">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="VotingSession">
+        <PropertyRef Name="PollId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="VotingSessionSessionResult">
+    <End Role="VotingSession" Type="QuestionnaireModel.Store.VotingSessions" Multiplicity="1" />
+    <End Role="SessionResult" Type="QuestionnaireModel.Store.SessionResults" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="VotingSession">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="SessionResult">
+        <PropertyRef Name="VotingSessionId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="SessionResultAnswerTemplate">
+    <End Role="SessionResult" Type="QuestionnaireModel.Store.SessionResults" Multiplicity="*" />
+    <End Role="AnswerTemplate" Type="QuestionnaireModel.Store.AnswerTemplates" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="AnswerTemplate">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="SessionResult">
+        <PropertyRef Name="AnswerTemplateId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="SessionResultQuestionTemplate">
+    <End Role="SessionResult" Type="QuestionnaireModel.Store.SessionResults" Multiplicity="*" />
+    <End Role="QuestionTemplate" Type="QuestionnaireModel.Store.QuestionTemplates" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="QuestionTemplate">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="SessionResult">
+        <PropertyRef Name="QuestionTemplateId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="QuestionTemplateLocalization">
+    <End Role="QuestionTemplate" Type="QuestionnaireModel.Store.QuestionTemplates" Multiplicity="0..1" />
+    <End Role="Localization" Type="QuestionnaireModel.Store.Localizations" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="QuestionTemplate">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Localization">
+        <PropertyRef Name="QuestionTemplateId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="LocalizationAnswerTemplate">
+    <End Role="Localization" Type="QuestionnaireModel.Store.Localizations" Multiplicity="*" />
+    <End Role="AnswerTemplate" Type="QuestionnaireModel.Store.AnswerTemplates" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="AnswerTemplate">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Localization">
+        <PropertyRef Name="AnswerTemplateId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="PollSurveySection">
+    <End Role="Poll" Type="QuestionnaireModel.Store.Polls" Multiplicity="1" />
+    <End Role="SurveySection" Type="QuestionnaireModel.Store.SurveySections" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Poll">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="SurveySection">
+        <PropertyRef Name="PollId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="SurveySectionQuestionTemplate">
+    <End Role="SurveySection" Type="QuestionnaireModel.Store.SurveySections" Multiplicity="1" />
+    <End Role="QuestionTemplate" Type="QuestionnaireModel.Store.QuestionTemplates" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SurveySection">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="QuestionTemplate">
+        <PropertyRef Name="SurveySectionId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PredefinedAnswer_inherits_AnswerTemplate">
+    <End Role="AnswerTemplate" Type="QuestionnaireModel.Store.AnswerTemplates" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="PredefinedAnswer" Type="QuestionnaireModel.Store.AnswerTemplates_PredefinedAnswer" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="AnswerTemplate">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="PredefinedAnswer">
+        <PropertyRef Name="Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_WriteInAnswer_inherits_AnswerTemplate">
+    <End Role="AnswerTemplate" Type="QuestionnaireModel.Store.AnswerTemplates" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="WriteInAnswer" Type="QuestionnaireModel.Store.AnswerTemplates_WriteInAnswer" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="AnswerTemplate">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="WriteInAnswer">
+        <PropertyRef Name="Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema xmlns="http://schemas.microsoft.com/ado/2009/11/edm" xmlns:cg="http://schemas.microsoft.com/ado/2006/04/codegeneration" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" Namespace="QuestionnaireModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" annotation:UseStrongSpatialTypes="false">
+        <EntityContainer Name="QuestionnaireModelContainer" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="QuestionTemplates" EntityType="QuestionnaireModel.QuestionTemplate" />
+          <EntitySet Name="AnswerTemplates" EntityType="QuestionnaireModel.AnswerTemplate" />
+          <AssociationSet Name="QuestionTemplateAnswerTemplate" Association="QuestionnaireModel.QuestionTemplateAnswerTemplate">
+            <End Role="QuestionTemplate" EntitySet="QuestionTemplates" />
+            <End Role="AnswerTemplate" EntitySet="AnswerTemplates" />
+          </AssociationSet>
+          <AssociationSet Name="ComplexQuestion" Association="QuestionnaireModel.ComplexQuestion">
+            <End Role="QuestionTemplate" EntitySet="QuestionTemplates" />
+            <End Role="QuestionTemplate1" EntitySet="QuestionTemplates" />
+          </AssociationSet>
+          <AssociationSet Name="ConditionalQuestion" Association="QuestionnaireModel.ConditionalQuestion">
+            <End Role="AnswerTemplate" EntitySet="AnswerTemplates" />
+            <End Role="QuestionTemplate" EntitySet="QuestionTemplates" />
+          </AssociationSet>
+          <EntitySet Name="Polls" EntityType="QuestionnaireModel.Poll" />
+          <AssociationSet Name="PollQuestionTemplate" Association="QuestionnaireModel.PollQuestionTemplate">
+            <End Role="Poll" EntitySet="Polls" />
+            <End Role="QuestionTemplate" EntitySet="QuestionTemplates" />
+          </AssociationSet>
+          <EntitySet Name="VotingSessions" EntityType="QuestionnaireModel.VotingSession" />
+          <AssociationSet Name="PollVotingSession" Association="QuestionnaireModel.PollVotingSession">
+            <End Role="Poll" EntitySet="Polls" />
+            <End Role="VotingSession" EntitySet="VotingSessions" />
+          </AssociationSet>
+          <EntitySet Name="SessionResults" EntityType="QuestionnaireModel.SessionResult" />
+          <AssociationSet Name="VotingSessionSessionResult" Association="QuestionnaireModel.VotingSessionSessionResult">
+            <End Role="VotingSession" EntitySet="VotingSessions" />
+            <End Role="SessionResult" EntitySet="SessionResults" />
+          </AssociationSet>
+          <AssociationSet Name="SessionResultAnswerTemplate" Association="QuestionnaireModel.SessionResultAnswerTemplate">
+            <End Role="SessionResult" EntitySet="SessionResults" />
+            <End Role="AnswerTemplate" EntitySet="AnswerTemplates" />
+          </AssociationSet>
+          <AssociationSet Name="SessionResultQuestionTemplate" Association="QuestionnaireModel.SessionResultQuestionTemplate">
+            <End Role="SessionResult" EntitySet="SessionResults" />
+            <End Role="QuestionTemplate" EntitySet="QuestionTemplates" />
+          </AssociationSet>
+          <EntitySet Name="Localizations" EntityType="QuestionnaireModel.Localization" />
+          <AssociationSet Name="QuestionTemplateLocalization" Association="QuestionnaireModel.QuestionTemplateLocalization">
+            <End Role="QuestionTemplate" EntitySet="QuestionTemplates" />
+            <End Role="Localization" EntitySet="Localizations" />
+          </AssociationSet>
+          <AssociationSet Name="LocalizationAnswerTemplate" Association="QuestionnaireModel.LocalizationAnswerTemplate">
+            <End Role="Localization" EntitySet="Localizations" />
+            <End Role="AnswerTemplate" EntitySet="AnswerTemplates" />
+          </AssociationSet>
+          <EntitySet Name="SurveySections" EntityType="QuestionnaireModel.SurveySection" />
+          <AssociationSet Name="PollSurveySection" Association="QuestionnaireModel.PollSurveySection">
+            <End Role="Poll" EntitySet="Polls" />
+            <End Role="SurveySection" EntitySet="SurveySections" />
+          </AssociationSet>
+          <AssociationSet Name="SurveySectionQuestionTemplate" Association="QuestionnaireModel.SurveySectionQuestionTemplate">
+            <End Role="SurveySection" EntitySet="SurveySections" />
+            <End Role="QuestionTemplate" EntitySet="QuestionTemplates" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="QuestionTemplate">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DisplayOrder" Type="String" Nullable="false" />
+          <Property Name="NativeText" Type="String" Nullable="false" />
+          <Property Name="Type" Type="QuestionnaireModel.EQuestionType" Nullable="false" />
+          <NavigationProperty Name="AnswerTemplates" Relationship="QuestionnaireModel.QuestionTemplateAnswerTemplate" FromRole="QuestionTemplate" ToRole="AnswerTemplate" />
+          <NavigationProperty Name="SubQuestions" Relationship="QuestionnaireModel.ComplexQuestion" FromRole="QuestionTemplate" ToRole="QuestionTemplate1" />
+          <NavigationProperty Name="MasterQuestion" Relationship="QuestionnaireModel.ComplexQuestion" FromRole="QuestionTemplate1" ToRole="QuestionTemplate" />
+          <Property Name="QuestionTemplateId" Type="Int32" Nullable="false" />
+          <Property Name="Appearance" Type="QuestionnaireModel.EAppearanceType" Nullable="false" />
+          <NavigationProperty Name="MagicAnswer" Relationship="QuestionnaireModel.ConditionalQuestion" FromRole="QuestionTemplate" ToRole="AnswerTemplate" />
+          <Property Name="AnswerTemplateId" Type="Int32" Nullable="true" />
+          <NavigationProperty Name="Poll" Relationship="QuestionnaireModel.PollQuestionTemplate" FromRole="QuestionTemplate" ToRole="Poll" />
+          <Property Name="PollId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Localizations" Relationship="QuestionnaireModel.QuestionTemplateLocalization" FromRole="QuestionTemplate" ToRole="Localization" />
+          <NavigationProperty Name="SurveySection" Relationship="QuestionnaireModel.SurveySectionQuestionTemplate" FromRole="QuestionTemplate" ToRole="SurveySection" />
+          <Property Name="SurveySectionId" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AnswerTemplate" Abstract="true">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Type" Type="QuestionnaireModel.EAnswerType" Nullable="false" />
+          <NavigationProperty Name="QuestionTemplate" Relationship="QuestionnaireModel.QuestionTemplateAnswerTemplate" FromRole="AnswerTemplate" ToRole="QuestionTemplate" />
+          <Property Name="DisplayOrder" Type="String" Nullable="false" />
+          <Property Name="Text" Type="String" Nullable="false" />
+          <Property Name="QuestionTemplateId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="ConditionalQuestions" Relationship="QuestionnaireModel.ConditionalQuestion" FromRole="AnswerTemplate" ToRole="QuestionTemplate" />
+          <NavigationProperty Name="Localizations" Relationship="QuestionnaireModel.LocalizationAnswerTemplate" FromRole="AnswerTemplate" ToRole="Localization" />
+        </EntityType>
+        <EnumType Name="EQuestionType">
+          <Member Name="None" Value="0" />
+          <Member Name="SingleAnswer" Value="1" />
+          <Member Name="MultipleAnswers" Value="2" />
+        </EnumType>
+        <EnumType Name="EAnswerType">
+          <Member Name="Textual" Value="0" />
+          <Member Name="Numeric" Value="1" />
+          <Member Name="NumericRange" Value="2" />
+          <Member Name="Boolean" Value="3" />
+        </EnumType>
+        <EntityType Name="PredefinedAnswer" BaseType="QuestionnaireModel.AnswerTemplate">
+        </EntityType>
+        <EntityType Name="WriteInAnswer" BaseType="QuestionnaireModel.AnswerTemplate">
+          <Property Name="RegEx" Type="String" Nullable="false" />
+        </EntityType>
+        <Association Name="QuestionTemplateAnswerTemplate">
+          <End Type="QuestionnaireModel.QuestionTemplate" Role="QuestionTemplate" Multiplicity="1" />
+          <End Type="QuestionnaireModel.AnswerTemplate" Role="AnswerTemplate" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="QuestionTemplate">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AnswerTemplate">
+              <PropertyRef Name="QuestionTemplateId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="ComplexQuestion">
+          <End Type="QuestionnaireModel.QuestionTemplate" Role="QuestionTemplate" Multiplicity="1" />
+          <End Type="QuestionnaireModel.QuestionTemplate" Role="QuestionTemplate1" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="QuestionTemplate">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="QuestionTemplate1">
+              <PropertyRef Name="QuestionTemplateId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EnumType Name="EAppearanceType">
+          <Member Name="VerticalList" Value="0" />
+          <Member Name="HorizontalList" Value="1" />
+          <Member Name="HorizontalListInline" Value="2" />
+          <Member Name="DropDown" Value="3" />
+        </EnumType>
+        <Association Name="ConditionalQuestion">
+          <End Type="QuestionnaireModel.AnswerTemplate" Role="AnswerTemplate" Multiplicity="0..1" />
+          <End Type="QuestionnaireModel.QuestionTemplate" Role="QuestionTemplate" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AnswerTemplate">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="QuestionTemplate">
+              <PropertyRef Name="AnswerTemplateId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Poll">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" />
+          <Property Name="Description" Type="String" Nullable="false" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <Property Name="Start" Type="DateTime" Nullable="false" />
+          <Property Name="Duration" Type="DateTimeOffset" Nullable="false" />
+          <NavigationProperty Name="QuestionTemplates" Relationship="QuestionnaireModel.PollQuestionTemplate" FromRole="Poll" ToRole="QuestionTemplate" />
+          <NavigationProperty Name="VotingSessions" Relationship="QuestionnaireModel.PollVotingSession" FromRole="Poll" ToRole="VotingSession" />
+          <NavigationProperty Name="SurveySections" Relationship="QuestionnaireModel.PollSurveySection" FromRole="Poll" ToRole="SurveySection" />
+          <Property Name="Header" Type="String" Nullable="false" />
+          <Property Name="Footer" Type="String" Nullable="false" />
+        </EntityType>
+        <Association Name="PollQuestionTemplate">
+          <End Type="QuestionnaireModel.Poll" Role="Poll" Multiplicity="1" />
+          <End Type="QuestionnaireModel.QuestionTemplate" Role="QuestionTemplate" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Poll">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="QuestionTemplate">
+              <PropertyRef Name="PollId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="VotingSession">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Code" Type="String" Nullable="false" FixedLength="true" MaxLength="6" />
+          <Property Name="State" Type="QuestionnaireModel.VotingSessionState" Nullable="false" />
+          <Property Name="Name" Type="String" Nullable="false" />
+          <Property Name="Email" Type="String" Nullable="false" />
+          <Property Name="Date" Type="DateTime" Nullable="false" />
+          <NavigationProperty Name="Poll" Relationship="QuestionnaireModel.PollVotingSession" FromRole="VotingSession" ToRole="Poll" />
+          <Property Name="PollId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="SessionResults" Relationship="QuestionnaireModel.VotingSessionSessionResult" FromRole="VotingSession" ToRole="SessionResult" />
+        </EntityType>
+        <Association Name="PollVotingSession">
+          <End Type="QuestionnaireModel.Poll" Role="Poll" Multiplicity="1" />
+          <End Type="QuestionnaireModel.VotingSession" Role="VotingSession" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Poll">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="VotingSession">
+              <PropertyRef Name="PollId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="SessionResult">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="VotingSession" Relationship="QuestionnaireModel.VotingSessionSessionResult" FromRole="SessionResult" ToRole="VotingSession" />
+          <Property Name="VotingSessionId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="AnswerTemplate" Relationship="QuestionnaireModel.SessionResultAnswerTemplate" FromRole="SessionResult" ToRole="AnswerTemplate" />
+          <Property Name="AnswerTemplateId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="QuestionTemplate" Relationship="QuestionnaireModel.SessionResultQuestionTemplate" FromRole="SessionResult" ToRole="QuestionTemplate" />
+          <Property Name="QuestionTemplateId" Type="Int32" Nullable="false" />
+          <Property Name="Value" Type="String" Nullable="false" />
+        </EntityType>
+        <Association Name="VotingSessionSessionResult">
+          <End Type="QuestionnaireModel.VotingSession" Role="VotingSession" Multiplicity="1" />
+          <End Type="QuestionnaireModel.SessionResult" Role="SessionResult" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="VotingSession">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="SessionResult">
+              <PropertyRef Name="VotingSessionId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="SessionResultAnswerTemplate">
+          <End Type="QuestionnaireModel.SessionResult" Role="SessionResult" Multiplicity="*" />
+          <End Type="QuestionnaireModel.AnswerTemplate" Role="AnswerTemplate" Multiplicity="1" />
+          <ReferentialConstraint>
+            <Principal Role="AnswerTemplate">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="SessionResult">
+              <PropertyRef Name="AnswerTemplateId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="SessionResultQuestionTemplate">
+          <End Type="QuestionnaireModel.SessionResult" Role="SessionResult" Multiplicity="*" />
+          <End Type="QuestionnaireModel.QuestionTemplate" Role="QuestionTemplate" Multiplicity="1" />
+          <ReferentialConstraint>
+            <Principal Role="QuestionTemplate">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="SessionResult">
+              <PropertyRef Name="QuestionTemplateId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Localization">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" annotation:StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Culture" Type="String" Nullable="false" MaxLength="10" />
+          <Property Name="LocalizedText" Type="String" Nullable="false" />
+          <NavigationProperty Name="QuestionTemplate" Relationship="QuestionnaireModel.QuestionTemplateLocalization" FromRole="Localization" ToRole="QuestionTemplate" />
+          <Property Name="QuestionTemplateId" Type="Int32" Nullable="true" />
+          <NavigationProperty Name="AnswerTemplate" Relationship="QuestionnaireModel.LocalizationAnswerTemplate" FromRole="Localization" ToRole="AnswerTemplate" />
+          <Property Name="AnswerTemplateId" Type="Int32" Nullable="true" />
+        </EntityType>
+        <Association Name="QuestionTemplateLocalization">
+          <End Type="QuestionnaireModel.QuestionTemplate" Role="QuestionTemplate" Multiplicity="0..1" />
+          <End Type="QuestionnaireModel.Localization" Role="Localization" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="QuestionTemplate">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Localization">
+              <PropertyRef Name="QuestionTemplateId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="LocalizationAnswerTemplate">
+          <End Type="QuestionnaireModel.Localization" Role="Localization" Multiplicity="*" />
+          <End Type="QuestionnaireModel.AnswerTemplate" Role="AnswerTemplate" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="AnswerTemplate">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Localization">
+              <PropertyRef Name="AnswerTemplateId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="SurveySection">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DisplayOrder" Type="Int32" Nullable="false" />
+          <Property Name="Description" Type="String" Nullable="false" />
+          <NavigationProperty Name="Poll" Relationship="QuestionnaireModel.PollSurveySection" FromRole="SurveySection" ToRole="Poll" />
+          <Property Name="PollId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="QuestionTemplates" Relationship="QuestionnaireModel.SurveySectionQuestionTemplate" FromRole="SurveySection" ToRole="QuestionTemplate" />
+        </EntityType>
+        <Association Name="PollSurveySection">
+          <End Type="QuestionnaireModel.Poll" Role="Poll" Multiplicity="1" />
+          <End Type="QuestionnaireModel.SurveySection" Role="SurveySection" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Poll">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="SurveySection">
+              <PropertyRef Name="PollId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="SurveySectionQuestionTemplate">
+          <End Type="QuestionnaireModel.SurveySection" Role="SurveySection" Multiplicity="1" />
+          <End Type="QuestionnaireModel.QuestionTemplate" Role="QuestionTemplate" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SurveySection">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="QuestionTemplate">
+              <PropertyRef Name="SurveySectionId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EnumType Name="VotingSessionState">
+          <Member Name="Inactive" Value="0" />
+          <Member Name="Active" Value="1" />
+          <Member Name="Complete" Value="2" />
+        </EnumType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+    <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="QuestionnaireModelStoreContainer" CdmEntityContainer="QuestionnaireModelContainer">
+    <EntitySetMapping Name="QuestionTemplates">
+      <EntityTypeMapping TypeName="IsTypeOf(QuestionnaireModel.QuestionTemplate)">
+        <MappingFragment StoreEntitySet="QuestionTemplates">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="DisplayOrder" ColumnName="DisplayOrder" />
+          <ScalarProperty Name="NativeText" ColumnName="NativeText" />
+          <ScalarProperty Name="Type" ColumnName="Type" />
+          <ScalarProperty Name="QuestionTemplateId" ColumnName="QuestionTemplateId" />
+          <ScalarProperty Name="Appearance" ColumnName="Appearance" />
+          <ScalarProperty Name="AnswerTemplateId" ColumnName="AnswerTemplateId" />
+          <ScalarProperty Name="PollId" ColumnName="PollId" />
+          <ScalarProperty Name="SurveySectionId" ColumnName="SurveySectionId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="AnswerTemplates">
+      <EntityTypeMapping TypeName="IsTypeOf(QuestionnaireModel.AnswerTemplate)">
+        <MappingFragment StoreEntitySet="AnswerTemplates">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Type" ColumnName="Type" />
+          <ScalarProperty Name="DisplayOrder" ColumnName="DisplayOrder" />
+          <ScalarProperty Name="Text" ColumnName="Text" />
+          <ScalarProperty Name="QuestionTemplateId" ColumnName="QuestionTemplateId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+      <EntityTypeMapping TypeName="IsTypeOf(QuestionnaireModel.PredefinedAnswer)">
+        <MappingFragment StoreEntitySet="AnswerTemplates_PredefinedAnswer">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+      <EntityTypeMapping TypeName="IsTypeOf(QuestionnaireModel.WriteInAnswer)">
+        <MappingFragment StoreEntitySet="AnswerTemplates_WriteInAnswer">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="RegEx" ColumnName="RegEx" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Polls">
+      <EntityTypeMapping TypeName="IsTypeOf(QuestionnaireModel.Poll)">
+        <MappingFragment StoreEntitySet="Polls">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+          <ScalarProperty Name="Start" ColumnName="Start" />
+          <ScalarProperty Name="Duration" ColumnName="Duration" />
+          <ScalarProperty Name="Header" ColumnName="Header" />
+          <ScalarProperty Name="Footer" ColumnName="Footer" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="VotingSessions">
+      <EntityTypeMapping TypeName="IsTypeOf(QuestionnaireModel.VotingSession)">
+        <MappingFragment StoreEntitySet="VotingSessions">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Code" ColumnName="Code" />
+          <ScalarProperty Name="State" ColumnName="State" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Date" ColumnName="Date" />
+          <ScalarProperty Name="PollId" ColumnName="PollId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SessionResults">
+      <EntityTypeMapping TypeName="IsTypeOf(QuestionnaireModel.SessionResult)">
+        <MappingFragment StoreEntitySet="SessionResults">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="VotingSessionId" ColumnName="VotingSessionId" />
+          <ScalarProperty Name="AnswerTemplateId" ColumnName="AnswerTemplateId" />
+          <ScalarProperty Name="QuestionTemplateId" ColumnName="QuestionTemplateId" />
+          <ScalarProperty Name="Value" ColumnName="Value" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Localizations">
+      <EntityTypeMapping TypeName="IsTypeOf(QuestionnaireModel.Localization)">
+        <MappingFragment StoreEntitySet="Localizations">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Culture" ColumnName="Culture" />
+          <ScalarProperty Name="LocalizedText" ColumnName="LocalizedText" />
+          <ScalarProperty Name="QuestionTemplateId" ColumnName="QuestionTemplateId" />
+          <ScalarProperty Name="AnswerTemplateId" ColumnName="AnswerTemplateId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SurveySections">
+      <EntityTypeMapping TypeName="IsTypeOf(QuestionnaireModel.SurveySection)">
+        <MappingFragment StoreEntitySet="SurveySections">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="DisplayOrder" ColumnName="DisplayOrder" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="PollId" ColumnName="PollId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping></edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <edmx:Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </edmx:Connection>
+    <edmx:Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="True" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+        <DesignerProperty Name="UseLegacyProvider" Value="False" />
+      </DesignerInfoPropertySet>
+    </edmx:Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

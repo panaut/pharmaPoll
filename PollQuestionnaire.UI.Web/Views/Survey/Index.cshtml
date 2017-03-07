@@ -1,0 +1,50 @@
+﻿@{
+    ViewBag.Title = "Survey";
+}
+
+@*<link href="http://getbootstrap.com/dist/css/bootstrap.css" type="text/css" rel="stylesheet" />*@
+@Styles.Render("~/Content/survey/css")
+
+<div id="surveyElement"></div>
+
+@section Scripts {
+    @Scripts.Render("~/Scripts/dxSurvey/dxBroker.js")
+    @Scripts.Render("~/bundles/survey")
+
+    <script>
+        var loadSurveyById = function (surveyId) {
+            var survey = new Survey.Model({ surveyId: surveyId })
+            $("#surveyElement").Survey({ model: survey });
+        }
+
+        Survey.defaultBootstrapCss.navigationButton = "btn btn-primary";
+        Survey.Survey.cssType = "bootstrap";
+
+        // Load first active survey
+        var storageManager = new dxBroker();
+
+        // Do we have survey Id in this session?
+        var surveyId = sessionStorage.getItem("activeSurveyId");
+
+        if (surveyId == undefined) {
+            storageManager.getActiveSurveys(function (data) {
+                if (data != undefined && Array.isArray(data) && data.length > 0) {
+                    for (var i = 0; i < data.length; i++) {
+                        if (data[i].IsPublished) {
+                            surveyId = data[i].Id;
+                            break;
+                        }
+                    }
+                }
+
+                if (surveyId != undefined) {
+                    loadSurveyById(surveyId);
+                } else {
+                    alert('There are no active surveys published.');
+                }
+            })
+        } else {
+            loadSurveyById(surveyId);
+        }
+    </script>
+}

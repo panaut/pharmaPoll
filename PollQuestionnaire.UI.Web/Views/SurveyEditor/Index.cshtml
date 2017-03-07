@@ -1,0 +1,61 @@
+﻿@{
+    ViewBag.Title = "Editor";
+}
+
+@*<link href="http://getbootstrap.com/dist/css/bootstrap.css" type="text/css" rel="stylesheet" />*@
+@Styles.Render("~/Content/surveyEditor/css")
+
+<div id="surveyEditorContainer"></div>
+
+@section Scripts {
+    @Scripts.Render("~/Scripts/dxSurvey/dxBroker.js")
+    @Scripts.Render("~/bundles/surveyEditor")
+
+    <script>
+        var editorOptions = { showEmbededSurveyTab: true };
+        var survey = new SurveyEditor.SurveyEditor("surveyEditorContainer", editorOptions);
+
+        // Do we have survey Id in this session?
+        var surveyId = sessionStorage.getItem("activeSurveyId");
+
+        if (surveyId != undefined) {
+            // Load this survey
+            survey.loadSurvey(surveyId);
+        }
+
+        var storageManager = new dxBroker();
+
+        //set function on save callback
+        survey.saveSurveyFunc = function () {
+
+            // Do we have survey Id in this session?
+            var surveyId = sessionStorage.getItem("activeSurveyId");
+
+            if (surveyId == undefined) {
+                var surveyName = 'pqSurvey-' + new Date().getTime().toString();
+
+                storageManager.createNewSurvey(surveyName, function (newSurvey) {
+                    sessionStorage.setItem("activeSurveyId", newSurvey.Id);
+                    setSurveyJson(newSurvey.Id)
+                })
+            }
+            else {
+                setSurveyJson(surveyId)
+            }
+        }
+
+        var setSurveyJson = function (surveyId) {
+            storageManager.changeSurvey(
+                    surveyId ,
+                    survey.text,
+                    function (surveyId) {
+                        storageManager.publishSurvey(
+                            surveyId,
+                            function (id, data) {
+                                alert('Survey has been saved, and published!');
+                            });
+                    });
+        }
+
+    </script>
+}

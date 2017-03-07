@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="b7d86c3d19974f46a19f27fa98014969" Name="QuestionTemplate" >
+        <EntityTypeShape EntityType="QuestionnaireModel.QuestionTemplate" Width="1.5" PointX="0.5" PointY="0.5" />
+        <EntityTypeShape EntityType="QuestionnaireModel.AnswerTemplate" Width="1.5" PointX="3.25" PointY="0.625" />
+        <EntityTypeShape EntityType="QuestionnaireModel.PredefinedAnswer" Width="1.5" PointX="6" PointY="0.625" />
+        <EntityTypeShape EntityType="QuestionnaireModel.WriteInAnswer" Width="1.5" PointX="6" PointY="2.375" />
+        <InheritanceConnector EntityType="QuestionnaireModel.PredefinedAnswer" />
+        <InheritanceConnector EntityType="QuestionnaireModel.WriteInAnswer" />
+        <AssociationConnector Association="QuestionnaireModel.QuestionTemplateAnswerTemplate" />
+        <AssociationConnector Association="QuestionnaireModel.ComplexQuestion" />
+        <AssociationConnector Association="QuestionnaireModel.ConditionalQuestion" />
+        <EntityTypeShape EntityType="QuestionnaireModel.Localization" Width="1.5" PointX="3.25" PointY="3.875" />
+        <AssociationConnector Association="QuestionnaireModel.QuestionTemplateLocalization" />
+        <AssociationConnector Association="QuestionnaireModel.LocalizationAnswerTemplate" />
+      </Diagram>
+      <Diagram DiagramId="7ef1dc62421945858c35be074ac60aa3" Name="Poll" >
+        <EntityTypeShape EntityType="QuestionnaireModel.Poll" Width="1.5" PointX="1.25" PointY="0.5" />
+        <EntityTypeShape EntityType="QuestionnaireModel.QuestionTemplate" Width="1.5" PointX="6.5" PointY="0.75" />
+        <AssociationConnector Association="QuestionnaireModel.ComplexQuestion" />
+        <AssociationConnector Association="QuestionnaireModel.PollQuestionTemplate" />
+        <EntityTypeShape EntityType="QuestionnaireModel.SurveySection" Width="1.5" PointX="4.25" PointY="2.375" />
+        <AssociationConnector Association="QuestionnaireModel.PollSurveySection" />
+        <AssociationConnector Association="QuestionnaireModel.SurveySectionQuestionTemplate" />
+      </Diagram>
+      <Diagram DiagramId="09779126b0444c598e081bacb01020c2" Name="VotingSession" >
+        <EntityTypeShape EntityType="QuestionnaireModel.VotingSession" Width="1.5" PointX="0.75" PointY="0.75" />
+        <EntityTypeShape EntityType="QuestionnaireModel.SessionResult" Width="1.5" PointX="3.5" PointY="0.75" />
+        <EntityTypeShape EntityType="QuestionnaireModel.QuestionTemplate" Width="1.5" PointX="5.875" PointY="1.25" />
+        <AssociationConnector Association="QuestionnaireModel.ComplexQuestion" />
+        <EntityTypeShape EntityType="QuestionnaireModel.AnswerTemplate" Width="1.5" PointX="8.125" PointY="1.25" />
+        <AssociationConnector Association="QuestionnaireModel.QuestionTemplateAnswerTemplate" />
+        <AssociationConnector Association="QuestionnaireModel.ConditionalQuestion" />
+        <AssociationConnector Association="QuestionnaireModel.VotingSessionSessionResult" />
+        <AssociationConnector Association="QuestionnaireModel.SessionResultAnswerTemplate" />
+        <AssociationConnector Association="QuestionnaireModel.SessionResultQuestionTemplate" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
