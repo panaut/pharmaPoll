@@ -9,11 +9,11 @@ html body {
 
 @media (max-width: 816px) {
   .svd_container .nav-tabs.svd_menu > li.active > a {
-    color: #1ab394;
+    color: #428bca;
     background-color: transparent;
     border: none; }
     .svd_container .nav-tabs.svd_menu > li.active > a:hover, .svd_container .nav-tabs.svd_menu > li.active > a:focus {
-      color: #1ab394;
+      color: #428bca;
       background-color: transparent; } }
 
 .svd_container {
@@ -39,12 +39,12 @@ html body {
         background-color: #f3f3f4;
         border-bottom: 1px solid #f3f3f4; }
     .svd_container .svd_menu > li.active > a {
-      color: #1ab394;
+      color: #428bca;
       background-color: #f3f3f4;
       border: 1px solid #e7eaec;
       border-bottom-color: #f3f3f4; }
       .svd_container .svd_menu > li.active > a:hover, .svd_container .svd_menu > li.active > a:focus {
-        color: #1ab394;
+        color: #428bca;
         background-color: #f3f3f4; }
   .svd_container .svd_actions {
     padding: 0 0 5px 0; }
@@ -52,10 +52,10 @@ html body {
       margin-right: 10px;
       font-size: 11px; }
     .svd_container .svd_actions .btn-group.open .dropdown-toggle {
-      background-color: #1ab394;
-      border-color: #1ab394; }
+      background-color: #428bca;
+      border-color: #428bca; }
     .svd_container .svd_actions .dropdown-menu > .active > a {
-      background-color: #1ab394; }
+      background-color: #428bca; }
   .svd_container .svd_content {
     background-color: #f3f3f4;
     padding: 10px 30px 30px 30px;
@@ -80,7 +80,7 @@ html body {
           position: absolute;
           color: #676a6c; }
         .svd_container .svd_content .svd_survey_designer .svd_toolbox .btn-group-vertical .btn .icon-default {
-          color: #1ab394; }
+          color: #428bca; }
         .svd_container .svd_content .svd_survey_designer .svd_toolbox .btn-group-vertical .btn .svd_toolbox_item_text {
           margin-left: 35px;
           color: #676a6c;
@@ -94,7 +94,7 @@ html body {
         border: none; }
         .svd_container .svd_content .svd_survey_designer .svd_editors .svd_pages_editor .nav-tabs li.active .svd_page_nav {
           border: 1px solid #ddd;
-          color: #1ab394; }
+          color: #428bca; }
         .svd_container .svd_content .svd_survey_designer .svd_editors .svd_pages_editor .nav-tabs li .svd_page_nav {
           border: 1px solid #e7eaec;
           border-radius: 3px;
@@ -128,7 +128,7 @@ html body {
             border: none;
             box-shadow: none; }
             .svd_container .svd_content .svd_survey_designer .svd_editors .svd_questions_editor .panel-body .svd_question .svd_question_menu .dropdown-toggle .glyphicon-option-horizontal {
-              color: #1ab394;
+              color: #428bca;
               font-size: 20px; }
           .svd_container .svd_content .svd_survey_designer .svd_editors .svd_questions_editor .panel-body .svd_question .svd_question_menu .dropdown-menu {
             top: 25px;
@@ -143,7 +143,7 @@ html body {
         border-top: 1px solid #ddd;
         border-bottom: 1px solid #ddd; }
         .svd_container .svd_content .svd_survey_designer .svd_editors .svd_questions_editor .panel-body .svd_question_container .svd_question.svd_q_selected {
-          border: 1px solid #1ab394; }
+          border: 1px solid #428bca; }
     .svd_container .svd_content .svd_survey_designer .svd_properties {
       border: none;
       border-top: 2px solid #e7eaec;

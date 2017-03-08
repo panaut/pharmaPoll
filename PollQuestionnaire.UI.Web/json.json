@@ -1,0 +1,104 @@
+﻿{
+ completeText: "aaa",
+ completedHtml: "bbb",
+ cookieName: "ccc",
+ pageNextText: "sled",
+ pagePrevText: "pret",
+ pages: [
+  {
+   name: "page1",
+   questions: [
+    {
+     type: "radiogroup",
+     choices: [
+      {
+       value: "1",
+       text: "first item"
+      },
+      {
+       value: "2",
+       text: "second item"
+      },
+      {
+       value: "3",
+       text: "third item"
+      }
+     ],
+     commentText: "dvgzxdbvdv",
+     hasComment: true,
+     isRequired: true,
+     name: "question3",
+     otherErrorText: "xvzxv"
+    },
+    {
+     type: "checkbox",
+     choices: [
+      {
+       value: "1",
+       text: "first item"
+      },
+      {
+       value: "2",
+       text: "second item"
+      },
+      {
+       value: "3",
+       text: "third item"
+      }
+     ],
+     name: "question2"
+    },
+    {
+     type: "text",
+     name: "question1"
+    }
+   ]
+  },
+  {
+   name: "page2",
+   questions: [
+    {
+     type: "dropdown",
+     choices: [
+      {
+       value: "1",
+       text: "first item"
+      },
+      {
+       value: "2",
+       text: "second item"
+      },
+      {
+       value: "3",
+       text: "third item"
+      }
+     ],
+     name: "question4"
+    },
+    {
+     type: "rating",
+     name: "question5"
+    },
+    {
+     type: "matrix",
+     columns: [
+      "Column 1",
+      "Column 2",
+      "Column 3"
+     ],
+     name: "question6",
+     rows: [
+      "Row 1",
+      "Row 2"
+     ]
+    }
+   ]
+  }
+ ],
+ sendResultOnPageNext: true,
+ showPageNumbers: true,
+ showProgressBar: "top",
+ surveyId: "ttt1232",
+ surveyPostId: "ppp1232",
+ title: "testtitle"
+}

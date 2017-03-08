@@ -227,6 +227,7 @@
     <Content Include="Content\surveyjs\fonts\icomoon.eot" />
     <Content Include="Content\surveyjs\fonts\icomoon.ttf" />
     <Content Include="Content\surveyjs\fonts\icomoon.woff" />
+    <Content Include="json.json" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\dxSurvey\dxBroker.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
