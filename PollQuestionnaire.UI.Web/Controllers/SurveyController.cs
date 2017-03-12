@@ -9,6 +9,7 @@ namespace PollQuestionnaire.UI.Web.Controllers
     public class SurveyController : Controller
     {
         // GET: SurveyDemo
+        [HttpGet()]
         public ActionResult Index()
         {
             return View();

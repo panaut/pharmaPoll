@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using Questionnaire.DataBroker.Model;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -12,6 +14,12 @@ namespace PollQuestionnaire.UI.Web.Controllers
         public ActionResult Index()
         {
             return View();
+        }
+
+        [HttpPost()]
+        public void SaveSurvey(string surveyJson)
+        {
+            var survey = JsonConvert.DeserializeObject<Survey>(surveyJson);
         }
     }
 }

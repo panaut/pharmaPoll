@@ -1,4 +1,7 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using PollQuestionnaire.UI.Web.Serialization;
+using Questionnaire.DataBroker.Model;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -16,6 +19,32 @@ namespace PollQuestionnaire.UI.Web
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
+
+
+            JsonConvert.DefaultSettings = () =>
+            {
+                KnownTypesBinder knownTypesBinder = new KnownTypesBinder
+                {
+                    KnownTypes = new List<Type> {
+                        typeof(Survey),
+                        typeof(Page),
+                        typeof(NumericValidator),
+                        typeof(TextValidator),
+                        typeof(AnswerCountValidator),
+                        typeof(EmailValidator),
+                        typeof(RegexValidator),
+                        typeof(QuestionCheckBox)
+                    }
+                };
+
+                return new JsonSerializerSettings
+                {
+                    TypeNameHandling = TypeNameHandling.Objects,
+                    Binder = knownTypesBinder,
+
+                };
+            };
         }
     }
 }
+
