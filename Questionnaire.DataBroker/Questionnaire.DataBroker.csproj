@@ -38,6 +38,10 @@
       <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.6.0.4\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
@@ -49,11 +53,24 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Attributes\SurveyType.cs" />
     <Compile Include="IAnswerManagement.cs" />
     <Compile Include="IPollManagement.cs" />
     <Compile Include="IQuestionManagement.cs" />
     <Compile Include="ISessionCodeGenerator.cs" />
     <Compile Include="ISessionManagement.cs" />
+    <Compile Include="Model\Choice.cs" />
+    <Compile Include="Model\ChoicesRestfull.cs" />
+    <Compile Include="Model\Page.cs" />
+    <Compile Include="Model\QuestionBase.cs" />
+    <Compile Include="Model\QuestionBaseSelect.cs" />
+    <Compile Include="Model\QuestionCheckBox.cs" />
+    <Compile Include="Model\QuestionCheckboxBase.cs" />
+    <Compile Include="Model\QuestionCustomWidget.cs" />
+    <Compile Include="Model\Survey.cs" />
+    <Compile Include="Model\SurveyTrigger.cs" />
+    <Compile Include="Model\SurveyValidator.cs" />
+    <Compile Include="Model\TextPreProcessor.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ISectionManagement.cs" />
     <Compile Include="SesionManagement.cs" />

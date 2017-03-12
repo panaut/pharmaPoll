@@ -34,10 +34,18 @@
             if (surveyId == undefined) {
                 var surveyName = 'pqSurvey-' + new Date().getTime().toString();
 
-                storageManager.createNewSurvey(surveyName, function (newSurvey) {
-                    sessionStorage.setItem("activeSurveyId", newSurvey.Id);
-                    setSurveyJson(newSurvey.Id)
-                })
+                //storageManager.createNewSurvey(surveyName, function (newSurvey) {
+                //    sessionStorage.setItem("activeSurveyId", newSurvey.Id);
+                //    setSurveyJson(newSurvey.Id);
+                //});
+
+                $.ajax(
+                    '@Url.Action("SaveSurvey", "SurveyEditor", new { area="" })',
+                    {
+                        method: "POST",
+                        async: true,
+                        data: { surveyJson: survey.text }
+                    })
             }
             else {
                 setSurveyJson(surveyId)
@@ -46,7 +54,7 @@
 
         var setSurveyJson = function (surveyId) {
             storageManager.changeSurvey(
-                    surveyId ,
+                    surveyId,
                     survey.text,
                     function (surveyId) {
                         storageManager.publishSurvey(
