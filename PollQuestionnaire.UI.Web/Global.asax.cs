@@ -33,7 +33,16 @@ namespace PollQuestionnaire.UI.Web
                         typeof(AnswerCountValidator),
                         typeof(EmailValidator),
                         typeof(RegexValidator),
-                        typeof(QuestionCheckBox)
+                        typeof(QuestionCheckBox),
+                        typeof(QuestionRadiogroup),
+                        typeof(QuestionDropdown),
+                        typeof(QuestionText),
+                        typeof(QuestionComment),
+                        typeof(QuestionRating),
+                        typeof(QuestionHtml),
+                        typeof(QuestionFile),
+                        typeof(QuestionMatrix),
+                        typeof(QuestionMatrixDropdown)
                     }
                 };
 
