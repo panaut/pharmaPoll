@@ -1339,7 +1339,7 @@ var JsonObject = (function () {
     return JsonObject;
 }());
 
-JsonObject.typePropertyName = "type";
+JsonObject.typePropertyName = "$type";
 JsonObject.positionPropertyName = "pos";
 JsonObject.metaDataValue = new JsonMetadata();
 

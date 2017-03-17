@@ -10,9 +10,6 @@ namespace Questionnaire.DataBroker.Model
     [SurveyType("matrixdropdown")]
     public class QuestionMatrixDropdown : QuestionMatrixDropdownBase
     {
-        public QuestionMatrixDropdown()
-        {
 
-        }
     }
 }

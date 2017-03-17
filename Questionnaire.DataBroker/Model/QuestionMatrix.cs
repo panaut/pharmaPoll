@@ -10,9 +10,6 @@ namespace Questionnaire.DataBroker.Model
     [SurveyType("matrix")]
     public class QuestionMatrix : QuestionMatrixBase
     {
-        public QuestionMatrix()
-        {
-
-        }
+    
     }
 }

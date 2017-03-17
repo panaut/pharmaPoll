@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -9,7 +10,10 @@ namespace Questionnaire.DataBroker.Model
     public class QuestionMatrixBase : QuestionBaseSelect
     {
         public bool isAllRowRequired { get; set; } = false;
-        public IEnumerable<ValueText> columns { get; set; }
-        public IEnumerable<ValueText> rows { get; set; }
+
+        public IEnumerable<ValueTextPair> columns { get; set; }
+
+        [JsonConverter(typeof(ValueTextPairConverter))]
+        public IEnumerable<ValueTextPair> rows { get; set; }
     }
 }

@@ -11,6 +11,6 @@ namespace Questionnaire.DataBroker.Model
     {
         public string mininumRateDescription { get; set; } = null;
         public string maximumRateDescription { get; set; } = null;
-        public IEnumerable<ValueText> RateValues { get; set; }
+        public IEnumerable<ValueTextPair> RateValues { get; set; }
     }
 }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Questionnaire.DataBroker.Attributes;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -11,47 +12,37 @@ namespace Questionnaire.DataBroker.Model
         public string Text { get; set; }
     }
 
+    [SurveyType("numeric")]
     public class NumericValidator : SurveyValidator
     {
         public int minValue { get; set; }
 
         public int maxValue { get; set; }
-
-        public NumericValidator()
-        {
-
-        }
     }
 
+    [SurveyType("text")]
     public class TextValidator : SurveyValidator
     {
-        public int minLenght { get; set; }
+        public int minLength { get; set; }
 
-        public int maxLenght { get; set; }
-
-        public TextValidator()
-        {
-
-        }
+        public int maxLength { get; set; }
     }
 
+    [SurveyType("answercount")]
     public class AnswerCountValidator : SurveyValidator
     {
         public int minCount { get; set; }
 
         public int maxCount { get; set; }
-
-        public AnswerCountValidator()
-        {
-
-        }
     }
 
+    [SurveyType("regex")]
     public class RegexValidator : SurveyValidator
     {
         public string regex { get; set; }
     }
 
+    [SurveyType("email")]
     public class EmailValidator : SurveyValidator
     {
 

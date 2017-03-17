@@ -20,6 +20,8 @@ namespace PollQuestionnaire.UI.Web.Controllers
         public void SaveSurvey(string surveyJson)
         {
             var survey = JsonConvert.DeserializeObject<Survey>(surveyJson);
+
+            var json = JsonConvert.SerializeObject(survey);
         }
     }
 }

@@ -87,7 +87,7 @@
     <Compile Include="Model\QuestionRatingBase.cs" />
     <Compile Include="Model\QuestionText.cs" />
     <Compile Include="Model\QuestionTextBase.cs" />
-    <Compile Include="Model\ValueText.cs" />
+    <Compile Include="Model\ValueTextPair.cs" />
     <Compile Include="Model\Survey.cs" />
     <Compile Include="Model\SurveyTrigger.cs" />
     <Compile Include="Model\SurveyValidator.cs" />
@@ -96,6 +96,10 @@
     <Compile Include="ISectionManagement.cs" />
     <Compile Include="Model\QuestionComment.cs" />
     <Compile Include="Model\QuestionCommentBase.cs" />
+    <Compile Include="Serialization\KnownTypesBinder.cs" />
+    <Compile Include="Serialization\SurveyConverter.cs" />
+    <Compile Include="Serialization\ValidatorsConverter.cs" />
+    <Compile Include="Serialization\ValueTextPairConverter.cs" />
     <Compile Include="SesionManagement.cs" />
   </ItemGroup>
   <ItemGroup>

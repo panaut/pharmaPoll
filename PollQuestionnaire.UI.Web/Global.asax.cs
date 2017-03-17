@@ -28,11 +28,6 @@ namespace PollQuestionnaire.UI.Web
                     KnownTypes = new List<Type> {
                         typeof(Survey),
                         typeof(Page),
-                        typeof(NumericValidator),
-                        typeof(TextValidator),
-                        typeof(AnswerCountValidator),
-                        typeof(EmailValidator),
-                        typeof(RegexValidator),
                         typeof(QuestionCheckBox),
                         typeof(QuestionRadiogroup),
                         typeof(QuestionDropdown),
@@ -48,9 +43,7 @@ namespace PollQuestionnaire.UI.Web
 
                 return new JsonSerializerSettings
                 {
-                    TypeNameHandling = TypeNameHandling.Objects,
-                    Binder = knownTypesBinder,
-
+                    Binder = knownTypesBinder
                 };
             };
         }
