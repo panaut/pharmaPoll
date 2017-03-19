@@ -10,6 +10,10 @@ namespace Questionnaire.DataBroker.Model
     [SurveyType("radiogroup")]
     public class QuestionRadiogroup : QuestionBaseSelect
     {
-        public int colCount { get; set; }
+        public int? colCount { get; set; }
+        public bool ShouldSerializecolCount()
+        {
+            return this.colCount.HasValue;
+        }
     }
 }

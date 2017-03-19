@@ -1,6 +1,7 @@
 ﻿using Newtonsoft.Json;
 using Questionnaire.DataBroker.Attributes;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Questionnaire.DataBroker.Model
 {
@@ -8,7 +9,6 @@ namespace Questionnaire.DataBroker.Model
     public class QuestionMatrixDropdown : QuestionBaseSelect
     {
         public string columnMinWidth { get; set; }
-
         public bool ShouldSerializecolumnMinWidth()
         {
             return !string.IsNullOrEmpty(this.columnMinWidth);
@@ -28,6 +28,9 @@ namespace Questionnaire.DataBroker.Model
         // This property item type might just be 'MatrixDropDownRow'
         [JsonConverter(typeof(ValueTextPairConverter))]
         public IEnumerable<MatrixDropdownRow> rows { get; set; }
-
+        public bool ShouldSerializerows()
+        {
+            return this.rows != null && this.rows.Any();
+        }
     }
 }

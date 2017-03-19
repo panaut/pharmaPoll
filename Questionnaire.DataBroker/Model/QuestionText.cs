@@ -11,7 +11,19 @@ namespace Questionnaire.DataBroker.Model
     public class QuestionText : QuestionBaseSelect
     {
         public int size { get; set; } = 25;
+        public bool ShouldSerializesize()
+        {
+            return this.size != 25;
+        }
         public string inputType { get; set; } = "text";
-        public string placeHolder { get; set; }        
+        public bool ShouldSerializeinputType()
+        {
+            return this.inputType != "text";
+        }
+        public string placeHolder { get; set; }
+        public bool ShouldSerializeplaceHolder()
+        {
+            return !string.IsNullOrEmpty(this.placeHolder);
+        }
     }
 }

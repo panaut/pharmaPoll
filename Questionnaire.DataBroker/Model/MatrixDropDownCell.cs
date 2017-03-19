@@ -9,5 +9,11 @@ namespace Questionnaire.DataBroker.Model
     public class MatrixDropDownCell
     {
         public Question questionValue { get; set; }
+        
+        
+        public bool ShouldSerializequestionValue()
+        {
+            return this.questionValue != null;
+        }
     }
 }
