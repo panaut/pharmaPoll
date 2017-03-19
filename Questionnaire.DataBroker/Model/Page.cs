@@ -14,7 +14,7 @@ namespace Questionnaire.DataBroker.Model
         public string title { get; set; }
 
         [JsonProperty(ItemTypeNameHandling = TypeNameHandling.All)]
-        public IEnumerable<QuestionBase> questions { get; set; } = new List<QuestionBase>();
+        public IEnumerable<Question> questions { get; set; } = new List<Question>();
 
         public int visibleIndex { get; set; } = -1;
 

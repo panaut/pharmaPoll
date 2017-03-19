@@ -1,18 +1,16 @@
 ﻿using Questionnaire.DataBroker.Attributes;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Questionnaire.DataBroker.Model
 {
     [SurveyType("file")]
-    public class QuestionFile : QuestionFileBase
+    public class QuestionFile : QuestionBaseSelect
     {
-        public QuestionFile()
-        {
+        public string imageHeight { get; set; }
 
-        }
+        public string imageWidth { get; set; }
+
+        public bool storeDataAsText { get; set; }
+
+        public int maxSize { get; set; }
     }
 }

@@ -2,6 +2,7 @@
 using Newtonsoft.Json.Linq;
 using Questionnaire.DataBroker.Model;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 
@@ -16,9 +17,14 @@ public class ValueTextPairConverter : JsonConverter
     {
         var retVal = new object();
 
-        if (reader.TokenType == JsonToken.StartArray && typeof(IEnumerable<ValueTextPair>).IsAssignableFrom(objectType))
+        if (reader.TokenType == JsonToken.StartArray && typeof(IEnumerable<IValueTextPair>).IsAssignableFrom(objectType))
         {
-            var retObj = new List<ValueTextPair>();
+            Type innerType = objectType.GetGenericArguments()[0];
+
+            // var retObj = new List<ValueTextPair>();
+
+            Type genericListType = typeof(List<>).MakeGenericType(innerType);
+            var retObj = (IList)Activator.CreateInstance(genericListType);
 
             JArray ja = JArray.Load(reader);
 
@@ -29,13 +35,15 @@ public class ValueTextPairConverter : JsonConverter
                     using (StringReader sr = new StringReader(item.ToString()))
                     using (JsonTextReader jtr = new JsonTextReader(sr))
                     {
-                        var detail = serializer.Deserialize<ValueTextPair>(jtr);
+                        var detail = Convert.ChangeType(serializer.Deserialize(jtr, innerType), innerType);
                         retObj.Add(detail);
                     }
                 }
                 else
                 {
-                    var detail = new ValueTextPair { value = item.ToString() };
+                    //var detail = new ValueTextPair { value = item.ToString() };
+                    var detail = (IValueTextPair)Convert.ChangeType(Activator.CreateInstance(innerType), innerType);
+                    detail.value = item.ToString();
                     retObj.Add(detail);
                 }
             }
@@ -48,7 +56,7 @@ public class ValueTextPairConverter : JsonConverter
 
     public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)
     {
-        IEnumerable<ValueTextPair> details = value as IEnumerable<ValueTextPair>;
+        IEnumerable<IValueTextPair> details = value as IEnumerable<IValueTextPair>;
 
         if (details != null)
         {
@@ -63,9 +71,9 @@ public class ValueTextPairConverter : JsonConverter
         }
         else
         {
-            if (value is ValueTextPair && string.IsNullOrEmpty(((ValueTextPair)value).text))
+            if (value is IValueTextPair && string.IsNullOrEmpty(((IValueTextPair)value).text))
             {
-                writer.WriteValue(((ValueTextPair)value).value);
+                writer.WriteValue(((IValueTextPair)value).value);
             }
             else
             {

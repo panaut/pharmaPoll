@@ -8,11 +8,8 @@ using System.Threading.Tasks;
 namespace Questionnaire.DataBroker.Model
 {
     [SurveyType("radiogroup")]
-    public class QuestionRadiogroup : QuestionRadiogroupBase
-    {        
-        public QuestionRadiogroup()
-        {
-
-        }
+    public class QuestionRadiogroup : QuestionBaseSelect
+    {
+        public int colCount { get; set; }
     }
 }

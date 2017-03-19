@@ -8,11 +8,8 @@ using System.Threading.Tasks;
 namespace Questionnaire.DataBroker.Model
 {
     [SurveyType("html")]
-    public class QuestionHtml : QuestionHtmlBase
+    public class QuestionHtml : QuestionBaseSelect
     {
-        public QuestionHtml()
-        {
-
-        }
+        public string html { get; set; }        
     }
 }

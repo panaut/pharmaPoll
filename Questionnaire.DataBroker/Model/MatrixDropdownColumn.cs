@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Questionnaire.DataBroker.Model
 {
-    public class MatrixDropdownColumn : QuestionDropdownBase
+    public class MatrixDropdownColumn : QuestionDropdown
     {
         public string cellType { get; set; } = "default";
 

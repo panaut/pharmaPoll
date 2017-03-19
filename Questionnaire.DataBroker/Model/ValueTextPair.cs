@@ -1,10 +1,10 @@
 ﻿// used to store any Value - Text set of data
 namespace Questionnaire.DataBroker.Model
 {
-    public class ValueTextPair
+    public interface IValueTextPair
     {
-        public string value { get; set; }
+        string value { get; set; }
 
-        public string text { get; set; }
+        string text { get; set; }
     }
 }

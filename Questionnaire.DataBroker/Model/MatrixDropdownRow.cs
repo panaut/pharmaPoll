@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Questionnaire.DataBroker.Model
 {
-    public class MatrixDropdownRow : QuestionBase
+    public class MatrixDropdownRow : Question, IValueTextPair
     {
         public string value { get; set; }
 

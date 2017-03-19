@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Questionnaire.DataBroker.Model
 {
-    public class QuestionBaseSelect : QuestionBase
+    public class QuestionBaseSelect : Question
     {
 
         public bool hasComment { get; set; } = false;
@@ -61,7 +61,7 @@ namespace Questionnaire.DataBroker.Model
 
 
         [JsonConverter(typeof(ValueTextPairConverter))]
-        public IEnumerable<ValueTextPair> choices { get; set; }
+        public IEnumerable<Choice> choices { get; set; }
 
         public bool ShouldSerializechoices()
         {

@@ -8,11 +8,10 @@ using System.Threading.Tasks;
 namespace Questionnaire.DataBroker.Model
 {
     [SurveyType("text")]
-    public class QuestionText : QuestionTextBase
+    public class QuestionText : QuestionBaseSelect
     {
-        public QuestionText()
-        {
-
-        }
+        public int size { get; set; } = 25;
+        public string inputType { get; set; } = "text";
+        public string placeHolder { get; set; }        
     }
 }
