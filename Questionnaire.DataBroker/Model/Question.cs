@@ -46,7 +46,7 @@ namespace Questionnaire.DataBroker.Model
         public int indent { get; set; }
 
         public bool ShouldSerializeindent()
-        {
+        {            
             return this.indent != 0;
         }
 

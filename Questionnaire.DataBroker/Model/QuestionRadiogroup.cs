@@ -11,5 +11,9 @@ namespace Questionnaire.DataBroker.Model
     public class QuestionRadiogroup : QuestionBaseSelect
     {
         public int colCount { get; set; }
+        public bool ShouldSerializecolCount()
+        {
+            return this.colCount != 0;
+        }
     }
 }

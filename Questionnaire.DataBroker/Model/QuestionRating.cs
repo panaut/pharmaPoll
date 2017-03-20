@@ -12,9 +12,21 @@ namespace Questionnaire.DataBroker.Model
     public class QuestionRating : QuestionBaseSelect
     {
         public string mininumRateDescription { get; set; } = null;
+        public bool ShouldSerializemininumRateDescription()
+        {
+            return !string.IsNullOrEmpty(this.mininumRateDescription);
+        }
 
         public string maximumRateDescription { get; set; } = null;
+        public bool ShouldSerializemaximumRateDescription()
+        {
+            return !string.IsNullOrEmpty(this.maximumRateDescription);
+        }
 
         public IEnumerable<IValueTextPair> RateValues { get; set; }
+        public bool ShouldSerializeRateValues()
+        {
+            return this.RateValues != null && this.RateValues.Any();
+        }
     }
 }

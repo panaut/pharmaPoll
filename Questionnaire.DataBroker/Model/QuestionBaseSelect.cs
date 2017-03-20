@@ -38,11 +38,11 @@ namespace Questionnaire.DataBroker.Model
             return !string.IsNullOrEmpty(this.commentText);
         }
         
-        public bool hasOther { get; set; }
+        public bool  hasOther { get; set; }
 
         public bool ShouldSerializehasOther()
         {
-            return this.hasOther;
+            return this.hasOther != false;
         }
 
         public string otherText { get; set; }
