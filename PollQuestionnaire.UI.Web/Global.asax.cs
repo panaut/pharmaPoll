@@ -37,7 +37,8 @@ namespace PollQuestionnaire.UI.Web
                         typeof(QuestionHtml),
                         typeof(QuestionFile),
                         typeof(QuestionMatrix),
-                        typeof(QuestionMatrixDropdown)
+                        typeof(QuestionMatrixDropdown),
+                        typeof(QuestionMatrixDynamic)
                     }
                 };
 

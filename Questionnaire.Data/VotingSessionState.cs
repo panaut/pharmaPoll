@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Questionnaire.DataBroker
+namespace Questionnaire.Data
 {
     using System;
     

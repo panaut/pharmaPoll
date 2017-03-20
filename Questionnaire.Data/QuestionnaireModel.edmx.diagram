@@ -23,7 +23,7 @@
         <EntityTypeShape EntityType="QuestionnaireModel.QuestionTemplate" Width="1.5" PointX="6.5" PointY="0.75" />
         <AssociationConnector Association="QuestionnaireModel.ComplexQuestion" />
         <AssociationConnector Association="QuestionnaireModel.PollQuestionTemplate" />
-        <EntityTypeShape EntityType="QuestionnaireModel.SurveySection" Width="1.5" PointX="4.25" PointY="2.375" />
+        <EntityTypeShape EntityType="QuestionnaireModel.SurveySection" Width="1.5" PointX="3.75" PointY="2.875" />
         <AssociationConnector Association="QuestionnaireModel.PollSurveySection" />
         <AssociationConnector Association="QuestionnaireModel.SurveySectionQuestionTemplate" />
       </Diagram>

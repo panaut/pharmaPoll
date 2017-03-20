@@ -61,7 +61,7 @@
     <Compile Include="ISessionManagement.cs" />
     <Compile Include="Model\Choice.cs" />
     <Compile Include="Model\ChoicesRestfull.cs" />
-    <Compile Include="Model\MatrixDropDownCell.cs" />
+    <Compile Include="Model\ICellDiversity.cs" />
     <Compile Include="Model\MatrixDropdownRow.cs" />
     <Compile Include="Model\QuestionMatrixDropdown.cs" />
     <Compile Include="Model\MatrixDropdownColumn.cs" />
@@ -74,6 +74,8 @@
     <Compile Include="Model\QuestionFile.cs" />
     <Compile Include="Model\QuestionHtml.cs" />
     <Compile Include="Model\QuestionMatrix.cs" />
+    <Compile Include="Model\QuestionMatrixDropdownBase.cs" />
+    <Compile Include="Model\QuestionMatrixDynamic.cs" />
     <Compile Include="Model\QuestionRadiogroup.cs" />
     <Compile Include="Model\QuestionRating.cs" />
     <Compile Include="Model\QuestionText.cs" />
