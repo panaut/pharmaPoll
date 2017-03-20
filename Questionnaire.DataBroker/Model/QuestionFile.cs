@@ -17,16 +17,16 @@ namespace Questionnaire.DataBroker.Model
             return !string.IsNullOrEmpty(this.imageWidth);
         }
 
-        public bool? storeDataAsText { get; set; }
+        public bool  storeDataAsText { get; set; }
         public bool ShouldSerializestoreDataAsText()
         {
-            return this.storeDataAsText.HasValue;
+            return this.storeDataAsText != false;
         }
 
-        public int? maxSize { get; set; }
+        public int maxSize { get; set; }
         public bool ShouldSerializemaxSize()
         {
-            return this.maxSize.HasValue;
+            return this.maxSize != 0;
         }
     }
 }

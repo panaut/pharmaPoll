@@ -19,48 +19,48 @@ namespace Questionnaire.DataBroker.Model
     [SurveyType("numeric")]
     public class NumericValidator : SurveyValidator
     {
-        public int? minValue { get; set; }
+        public int minValue { get; set; }
         public bool ShouldSerializeminValue()
         {
-            return this.minValue.HasValue;
+            return this.minValue != 0;
         }
                 
-        public int? maxValue { get; set; }
+        public int maxValue { get; set; }
         public bool ShouldSerializemaxValue()
         {
-            return this.maxValue.HasValue;
+            return this.maxValue != 0;
         }
     }
 
     [SurveyType("text")]
     public class TextValidator : SurveyValidator
     {
-        public int? minLength { get; set; }
+        public int minLength { get; set; }
         public bool ShouldSerializeminLength()
         {
-            return this.minLength.HasValue;
+            return this.minLength != 0;
         }
 
-        public int? maxLength { get; set; }
+        public int maxLength { get; set; }
         public bool ShouldSerializemaxLength()
         {
-            return this.maxLength.HasValue;
+            return this.maxLength != 0;
         }
     }
 
     [SurveyType("answercount")]
     public class AnswerCountValidator : SurveyValidator
     {
-        public int? minCount { get; set; }
+        public int minCount { get; set; }
         public bool ShouldSerializeminCount()
-        {
-            return this.minCount.HasValue;
+        {            
+            return this.minCount != 0;
         }
 
-        public int? maxCount { get; set; }
+        public int maxCount { get; set; }
         public bool ShouldSerializemaxCount()
         {
-            return this.maxCount.HasValue;
+            return this.maxCount != 0;
         }
     }
 

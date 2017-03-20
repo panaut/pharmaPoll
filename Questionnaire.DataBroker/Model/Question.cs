@@ -43,11 +43,11 @@ namespace Questionnaire.DataBroker.Model
             return !string.IsNullOrEmpty(this.width);
         }
 
-        public int? indent { get; set; }
+        public int indent { get; set; }
 
         public bool ShouldSerializeindent()
         {            
-            return this.indent.HasValue;
+            return this.indent != 0;
         }
 
         public bool isRequired { get; set; } = false;
