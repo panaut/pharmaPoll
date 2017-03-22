@@ -17,12 +17,8 @@ namespace Questionnaire.DataBroker.Model
             return this.isAllRowRequired;
         }
 
-
-        public IEnumerable<MatrixDropdownColumn> columns { get; set; }
-        public bool ShouldSerializecolumns()
-        {
-            return this.columns != null && this.columns.Any();
-        }
+        [JsonConverter(typeof(ValueTextPairConverter))]
+        public IEnumerable<MatrixDropdownColumn> columns { get; set; }        
 
         [JsonConverter(typeof(ValueTextPairConverter))]
         public IEnumerable<MatrixDropdownRow> rows { get; set; }

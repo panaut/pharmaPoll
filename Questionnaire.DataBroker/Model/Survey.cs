@@ -35,7 +35,7 @@ namespace Questionnaire.DataBroker.Model
         }
 
         public bool sendResultOnPageNext { get; set; } = false;
-        public bool ShouldSerializeisAllRowRequired()
+        public bool ShouldSerializesendResultOnPageNext()
         {
             return this.sendResultOnPageNext;
         }

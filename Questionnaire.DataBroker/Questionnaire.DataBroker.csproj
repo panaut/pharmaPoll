@@ -79,7 +79,7 @@
     <Compile Include="Model\QuestionRadiogroup.cs" />
     <Compile Include="Model\QuestionRating.cs" />
     <Compile Include="Model\QuestionText.cs" />
-    <Compile Include="Model\ValueTextPair.cs" />
+    <Compile Include="Model\IValueTextPair.cs" />
     <Compile Include="Model\Survey.cs" />
     <Compile Include="Model\SurveyTrigger.cs" />
     <Compile Include="Model\SurveyValidator.cs" />

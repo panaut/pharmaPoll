@@ -37,13 +37,13 @@ namespace Questionnaire.DataBroker.Model
         }
 
         public string visibleIf { get; set; }
-        public bool ShouldSerializevisibleIfe()
+        public bool ShouldSerializevisibleIf()
         {
             return !string.IsNullOrEmpty(this.visibleIf);
         }
 
         public string navigationButtonsVisibility { get; set; } = "inherit";
-        public bool ShouldSerializevisiblenavigationButtonsVisibility()
+        public bool ShouldSerializenavigationButtonsVisibility()
         {
             return this.navigationButtonsVisibility != "inherit";
         }

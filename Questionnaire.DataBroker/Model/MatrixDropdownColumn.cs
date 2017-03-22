@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Questionnaire.DataBroker.Model
 {
-    public class MatrixDropdownColumn : QuestionBaseSelect, ICellDiversity
+    public class MatrixDropdownColumn : QuestionBaseSelect, ICellDiversity, IValueTextPair
     {
         public string cellType { get; set; } = "default";
 
@@ -35,5 +35,8 @@ namespace Questionnaire.DataBroker.Model
         {
             return this.colCount != -1;
         }
+        public string value { get; set; }
+
+        public string text { get; set; }
     }
 }
