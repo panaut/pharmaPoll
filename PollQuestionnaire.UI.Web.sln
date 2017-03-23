@@ -9,6 +9,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Questionnaire.Data", "Quest
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Questionnaire.DataBroker", "Questionnaire.DataBroker\Questionnaire.DataBroker.csproj", "{2A3C8FAE-5088-459A-BB8E-FF2B6652951C}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Questionnaire.Service", "Questionnaire.Service\Questionnaire.Service.csproj", "{76A4C661-1FA2-4F2E-A627-6AAC580E64D5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Questionnaire.Serialization", "Questionnaire.Serialization\Questionnaire.Serialization.csproj", "{87394046-9ECE-4C04-BB2A-74B0F988869A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +31,14 @@ Global
 		{2A3C8FAE-5088-459A-BB8E-FF2B6652951C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2A3C8FAE-5088-459A-BB8E-FF2B6652951C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2A3C8FAE-5088-459A-BB8E-FF2B6652951C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{76A4C661-1FA2-4F2E-A627-6AAC580E64D5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{76A4C661-1FA2-4F2E-A627-6AAC580E64D5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{76A4C661-1FA2-4F2E-A627-6AAC580E64D5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{76A4C661-1FA2-4F2E-A627-6AAC580E64D5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{87394046-9ECE-4C04-BB2A-74B0F988869A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{87394046-9ECE-4C04-BB2A-74B0F988869A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{87394046-9ECE-4C04-BB2A-74B0F988869A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{87394046-9ECE-4C04-BB2A-74B0F988869A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

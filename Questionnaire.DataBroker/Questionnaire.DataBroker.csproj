@@ -38,8 +38,8 @@
       <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <HintPath>..\packages\Newtonsoft.Json.6.0.4\lib\net45\Newtonsoft.Json.dll</HintPath>
+    <Reference Include="NLog, Version=4.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c, processorArchitecture=MSIL">
+      <HintPath>..\packages\NLog.4.4.4\lib\net45\NLog.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />
@@ -53,44 +53,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Attributes\SurveyType.cs" />
     <Compile Include="IAnswerManagement.cs" />
-    <Compile Include="IPollManagement.cs" />
     <Compile Include="IQuestionManagement.cs" />
     <Compile Include="ISessionCodeGenerator.cs" />
     <Compile Include="ISessionManagement.cs" />
-    <Compile Include="Model\Choice.cs" />
-    <Compile Include="Model\ChoicesRestfull.cs" />
-    <Compile Include="Model\ICellDiversity.cs" />
-    <Compile Include="Model\MatrixDropdownRow.cs" />
-    <Compile Include="Model\QuestionMatrixDropdown.cs" />
-    <Compile Include="Model\MatrixDropdownColumn.cs" />
-    <Compile Include="Model\Page.cs" />
-    <Compile Include="Model\Question.cs" />
-    <Compile Include="Model\QuestionBaseSelect.cs" />
-    <Compile Include="Model\QuestionCheckBox.cs" />
-    <Compile Include="Model\QuestionCustomWidget.cs" />
-    <Compile Include="Model\QuestionDropdown.cs" />
-    <Compile Include="Model\QuestionFile.cs" />
-    <Compile Include="Model\QuestionHtml.cs" />
-    <Compile Include="Model\QuestionMatrix.cs" />
-    <Compile Include="Model\QuestionMatrixDropdownBase.cs" />
-    <Compile Include="Model\QuestionMatrixDynamic.cs" />
-    <Compile Include="Model\QuestionRadiogroup.cs" />
-    <Compile Include="Model\QuestionRating.cs" />
-    <Compile Include="Model\QuestionText.cs" />
-    <Compile Include="Model\IValueTextPair.cs" />
-    <Compile Include="Model\Survey.cs" />
-    <Compile Include="Model\SurveyTrigger.cs" />
-    <Compile Include="Model\SurveyValidator.cs" />
-    <Compile Include="Model\TextPreProcessor.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ISectionManagement.cs" />
-    <Compile Include="Model\QuestionComment.cs" />
-    <Compile Include="Serialization\KnownTypesBinder.cs" />
-    <Compile Include="Serialization\SurveyConverter.cs" />
-    <Compile Include="Serialization\ValidatorsConverter.cs" />
-    <Compile Include="Serialization\ValueTextPairConverter.cs" />
     <Compile Include="SesionManagement.cs" />
   </ItemGroup>
   <ItemGroup>

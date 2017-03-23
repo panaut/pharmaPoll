@@ -23,7 +23,7 @@
             survey.loadSurvey(surveyId);
         }
 
-        var storageManager = new dxBroker();
+        // var storageManager = new dxBroker();
 
         //set function on save callback
         survey.saveSurveyFunc = function () {
@@ -44,7 +44,10 @@
                     {
                         method: "POST",
                         async: true,
-                        data: { surveyJson: survey.text }
+                        data: { surveyJson: survey.text },
+                        success: function (data, textStatus, jqXHR) {
+                            survey.surveyId = data;
+                        }
                     })
             }
             else {

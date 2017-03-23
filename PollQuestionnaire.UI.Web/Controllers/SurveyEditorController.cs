@@ -1,5 +1,5 @@
 ﻿using Newtonsoft.Json;
-using Questionnaire.DataBroker.Model;
+using Questionnaire.Service;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,6 +10,8 @@ namespace PollQuestionnaire.UI.Web.Controllers
 {
     public class SurveyEditorController : Controller
     {
+        private Lazy<ISurveyService> surveyService = new Lazy<ISurveyService>(() => new SurveyService());
+
         // GET: SurveyEditor
         public ActionResult Index()
         {
@@ -17,11 +19,16 @@ namespace PollQuestionnaire.UI.Web.Controllers
         }
 
         [HttpPost()]
-        public void SaveSurvey(string surveyJson)
+        public int SaveSurvey(string surveyJson)
         {
-            var survey = JsonConvert.DeserializeObject<Survey>(surveyJson);
+            var result = surveyService.Value.CreateOrSaveSurvey(surveyJson);
 
-            var json = JsonConvert.SerializeObject(survey);
+            if(result.Status != OperationStatus.Success)
+            {
+                throw new Exception();
+            }
+
+            return result.OperationResult;
         }
     }
 }

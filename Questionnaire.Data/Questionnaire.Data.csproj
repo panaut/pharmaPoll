@@ -38,6 +38,10 @@
       <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="NLog, Version=4.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c, processorArchitecture=MSIL">
+      <HintPath>..\packages\NLog.4.4.4\lib\net45\NLog.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
@@ -63,6 +67,7 @@
     <Compile Include="EQuestionType.cs">
       <DependentUpon>QuestionnaireModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="IRepo\ISurveyManagement.cs" />
     <Compile Include="Localization.cs">
       <DependentUpon>QuestionnaireModel.tt</DependentUpon>
     </Compile>
@@ -94,6 +99,25 @@
     <Compile Include="SessionResult.cs">
       <DependentUpon>QuestionnaireModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Survey.cs">
+      <DependentUpon>SurveyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Repo\SurveyManager.cs" />
+    <Compile Include="SurveyModel.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SurveyModel.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SurveyModel.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SurveyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SurveyModel.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SurveyModel.edmx</DependentUpon>
+    </Compile>
     <Compile Include="SurveySection.cs">
       <DependentUpon>QuestionnaireModel.tt</DependentUpon>
     </Compile>
@@ -117,6 +141,13 @@
     <None Include="QuestionnaireModel.edmx.diagram">
       <DependentUpon>QuestionnaireModel.edmx</DependentUpon>
     </None>
+    <EntityDeploy Include="SurveyModel.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>SurveyModel.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="SurveyModel.edmx.diagram">
+      <DependentUpon>SurveyModel.edmx</DependentUpon>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Content Include="QuestionnaireModel.Context.tt">
@@ -127,6 +158,17 @@
     <Content Include="QuestionnaireModel.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>QuestionnaireModel.cs</LastGenOutput>
+    </Content>
+    <Content Include="SurveyModel.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>SurveyModel.Context.cs</LastGenOutput>
+      <DependentUpon>SurveyModel.edmx</DependentUpon>
+    </Content>
+    <Content Include="SurveyModel.edmx.sql" />
+    <Content Include="SurveyModel.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>SurveyModel.cs</LastGenOutput>
+      <DependentUpon>SurveyModel.edmx</DependentUpon>
     </Content>
   </ItemGroup>
   <ItemGroup>
