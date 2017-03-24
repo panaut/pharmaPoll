@@ -15,7 +15,7 @@ namespace Questionnaire.Service.Infrastructure
 
         public ServiceResponse Result { get; set; }
 
-        public OperationStatus Status
+        public virtual OperationStatus Status
         {
             get { return this.Result.Status; }
             set { this.Result.Status = value; }

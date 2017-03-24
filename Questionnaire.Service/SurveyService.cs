@@ -50,8 +50,6 @@ namespace Questionnaire.Service
                                     if (survey != null)
                                     {
                                         surveyInDb = this.surveyManager.Value.CreatePoll(survey.title, surveyJson, isActive: true);
-
-
                                     }
                                 }
                                 catch (Exception ex)
@@ -91,7 +89,7 @@ namespace Questionnaire.Service
                         throw exc;
                     }
 
-                    Survey surveyInDb = null;   // Database record representing the survey
+                    int surveyId = 0;   // Id of the Database record representing the survey
 
                     // Try to save deserialized object to database
                     try
@@ -100,18 +98,17 @@ namespace Questionnaire.Service
                         {
                             if (string.IsNullOrEmpty(survey.surveyId))
                             {
-                                surveyInDb = this.surveyManager.Value.CreatePoll(survey.title, surveyJson, isActive: true);
+                                var surveyInDb = this.surveyManager.Value.CreatePoll(survey.title, surveyJson, isActive: false);
+                                surveyId = surveyInDb.Id;
                             }
                             else
                             {
-                                int surveyId = 0;
-
                                 if (!int.TryParse(survey.surveyId, out surveyId))
                                 {
                                     throw new CustomException(new ArgumentException($"Failed to parse SurveyId (value was: {survey.surveyId})", "surveyId"));
                                 }
 
-                                this.surveyManager.Value.UpdateSurvey(surveyId, survey.title, surveyJson, isActive: true);
+                                this.surveyManager.Value.UpdateSurvey(surveyId, survey.title, surveyJson, isActive: false);
                             }
                         }
                     }
@@ -124,7 +121,7 @@ namespace Questionnaire.Service
 
                     cmd.Result.Status = OperationStatus.Success;
 
-                    return surveyInDb.Id;
+                    return surveyId;
                 }
             };
 

@@ -11,6 +11,12 @@ namespace Questionnaire.Service.Infrastructure
     {
         public new ServiceResponse<T> Result { get; set; }
 
+        public override OperationStatus Status
+        {
+            get { return this.Result.Status; }
+            set { this.Result.Status = value; }
+        }
+
         public ServiceCommand()
         {
             this.Result = new ServiceResponse<T>();
