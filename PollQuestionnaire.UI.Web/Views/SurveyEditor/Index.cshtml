@@ -17,10 +17,6 @@
 
         //set function on save callback
         survey.saveSurveyFunc = function () {
-            if (!survey.surveyValue.title) {
-                survey.surveyValue.title = 'pqSurvey-' + new Date().getTime().toString();
-            }
-
             $.ajax(
                 '@Url.Action("SaveSurvey", "SurveyEditor", new { area="" })',
                 {
@@ -28,7 +24,8 @@
                     async: true,
                     data: { surveyJson: survey.text },
                     success: function (data, textStatus, jqXHR) {
-                        survey.surveyValue.surveyId = data;},
+                        survey.surveyValue.surveyId = data;
+                    },
                     error: function (jqXHR, textStatus, errorThrown) {
                         alert('ERROR - ' + errorThrown);
                     }

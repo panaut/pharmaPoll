@@ -85,6 +85,12 @@
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Questionnaire.Data\Questionnaire.Data.csproj">
+      <Project>{71aacca2-88a4-4342-8516-87823a864401}</Project>
+      <Name>Questionnaire.Data</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
