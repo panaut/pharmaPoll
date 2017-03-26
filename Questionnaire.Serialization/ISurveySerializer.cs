@@ -1,4 +1,5 @@
 ﻿using Questionnaire.Serialization.Model;
+using System.Collections.Generic;
 
 namespace Questionnaire.Serialization
 {
@@ -7,5 +8,7 @@ namespace Questionnaire.Serialization
         string Serialize(Survey survey);
 
         Survey Deserialize(string surveyJson);
+
+        string Serialize(IEnumerable<Data.Survey> surveys);
     }
 }

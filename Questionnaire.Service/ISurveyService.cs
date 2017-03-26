@@ -9,5 +9,7 @@ namespace Questionnaire.Service
         ServiceResponse<int> CreateOrSaveSurvey(string surveyJson);
 
         ServiceResponse<string> GetActiveSurvey();
+
+        ServiceResponse<string> GetAllSurveys();
     }
 }

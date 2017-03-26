@@ -50,5 +50,10 @@ namespace Questionnaire.Serialization
         {
             return JsonConvert.SerializeObject(survey);
         }
+
+        public string Serialize(IEnumerable<Data.Survey> surveys)
+        {
+            return JsonConvert.SerializeObject(surveys);
+        }
     }
 }

@@ -53,6 +53,7 @@
     <Compile Include="Infrastructure\ServiceCommandBase.cs" />
     <Compile Include="Infrastructure\ServiceResponse.cs" />
     <Compile Include="ISurveyService.cs" />
+    <Compile Include="QuestionHandler.cs" />
     <Compile Include="SurveyService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
