@@ -12,8 +12,19 @@
     @Scripts.Render("~/bundles/surveyEditor")
 
     <script>
-        var editorOptions = { showEmbededSurveyTab: true };
+        var editorOptions = { showJSONEditorTab: false,  showEmbededSurveyTab: false };
         var survey = new SurveyEditor.SurveyEditor("surveyEditorContainer", editorOptions);
+
+        // Add database id property to survey object
+        Survey.JsonObject.metaData.addProperty("questionbase", { name: "internalId:number" });
+
+        //survey.onCanShowProperty.add(function (sender, options) {
+        //    if (options.obj.getType() == "text") {
+        //        options.canShow = options.property.name != "name";
+        //    }
+        //});
+
+        //survey.render("editorElement");
 
         //set function on save callback
         survey.saveSurveyFunc = function () {

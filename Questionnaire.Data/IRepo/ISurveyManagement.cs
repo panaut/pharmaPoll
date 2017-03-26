@@ -14,12 +14,14 @@ namespace Questionnaire.Data
         Survey Find(int id);
 
         Survey CreatePoll(
+            string surveyIdentifier,
             string title,
             string json,
             bool isActive = false);
 
         void UpdateSurvey(
             int id,
+            string surveyIdentifier,
             string title,
             string json,
             bool isActive = false);

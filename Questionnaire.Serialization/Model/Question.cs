@@ -10,6 +10,13 @@ namespace Questionnaire.Serialization.Model
 
         public string title { get; set; }
 
+        public int internalId { get; set; }
+
+        public bool ShouldSerializeinternalId()
+        {
+            return this.internalId != 0;
+        }
+
         public bool ShouldSerializetitle()
         {
             return !string.IsNullOrEmpty(this.title);
