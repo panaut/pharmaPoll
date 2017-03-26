@@ -48,12 +48,12 @@ namespace Questionnaire.Service
                                 {
                                     if (survey != null)
                                     {
-                                        if (string.IsNullOrEmpty(survey.title))
+                                        if (string.IsNullOrEmpty(survey.surveyId))
                                         {
-                                            survey.title = $"pqSurvey-{DateTime.Now.ToString("yyMMddHHmmss")}";
+                                            survey.surveyId = $"pqSurvey-{DateTime.Now.ToString("yyMMddHHmmss")}";
                                         }
 
-                                        surveyInDb = this.surveyManager.Value.CreatePoll(survey.title, surveyJson, isActive: true);
+                                        surveyInDb = this.surveyManager.Value.CreatePoll(survey.surveyId, survey.title, surveyJson, isActive: true);
                                     }
                                 }
                                 catch (Exception ex)
@@ -102,7 +102,7 @@ namespace Questionnaire.Service
                         {
                             if (string.IsNullOrEmpty(survey.surveyId))
                             {
-                                var surveyInDb = this.surveyManager.Value.CreatePoll(survey.title, surveyJson, isActive: false);
+                                var surveyInDb = this.surveyManager.Value.CreatePoll(survey.surveyId, survey.title, surveyJson, isActive: false);
                                 surveyId = surveyInDb.Id;
                             }
                             else
@@ -112,7 +112,7 @@ namespace Questionnaire.Service
                                     throw new CustomException(new ArgumentException($"Failed to parse SurveyId (value was: {survey.surveyId})", "surveyId"));
                                 }
 
-                                this.surveyManager.Value.UpdateSurvey(surveyId, survey.title, surveyJson, isActive: false);
+                                this.surveyManager.Value.UpdateSurvey(surveyId, survey.surveyId, survey.title, surveyJson, isActive: false);
                             }
                         }
                     }
@@ -196,13 +196,13 @@ namespace Questionnaire.Service
             return command.Result;
         }
 
-        public ServiceResponse<string> GetAllSurveys()
+        public ServiceResponse<IEnumerable<Survey>> GetAllSurveys()
         {
-            var command = new ServiceCommand<string>
+            var command = new ServiceCommand<IEnumerable<Survey>>
             {
                 Execution = (cmd, parameter) =>
                 {
-                    IEnumerable<Data.Survey> surveys = null;
+                    IEnumerable<Survey> surveys = null;
 
                     try
                     {
@@ -217,21 +217,7 @@ namespace Questionnaire.Service
                         throw exc;
                     }
 
-
-                    string retStr = string.Empty;      // Result JSON
-
-                    try
-                    {
-                        retStr = surveySerializer.Value.Serialize(surveys);
-                    }
-                    catch (Exception ex)
-                    {
-                        cmd.Status = OperationStatus.Failure;
-                        var exc = new CustomException("Failed to Serialize collection of survey objects into JSON string", ex, errorCode: 0);
-                        throw exc;
-                    }
-
-                    return retStr;
+                    return surveys;
                 }
             };
 

@@ -1,4 +1,6 @@
-﻿using Questionnaire.Service.Infrastructure;
+﻿using Questionnaire.Data;
+using Questionnaire.Service.Infrastructure;
+using System.Collections.Generic;
 
 namespace Questionnaire.Service
 {
@@ -10,6 +12,6 @@ namespace Questionnaire.Service
 
         ServiceResponse<string> GetActiveSurvey();
 
-        ServiceResponse<string> GetAllSurveys();
+        ServiceResponse<IEnumerable<Survey>> GetAllSurveys();
     }
 }

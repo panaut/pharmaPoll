@@ -1,9 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Questionnaire.Data;
 
 namespace Questionnaire.Data
 {
@@ -27,10 +23,11 @@ namespace Questionnaire.Data
             context.SaveChanges();
         }
 
-        public Survey CreatePoll(string title, string json, bool isActive = false)
+        public Survey CreatePoll(string surveyIdentifier, string title, string json, bool isActive = false)
         {
             var survey = new Survey();
 
+            survey.SurveyIdentifier = surveyIdentifier;
             survey.Title = title;
             survey.SurveyJson = json;
             survey.IsActive = isActive;
@@ -73,13 +70,14 @@ namespace Questionnaire.Data
             throw new NotImplementedException();
         }
 
-        public void UpdateSurvey(int id, string title, string json, bool isActive = false)
+        public void UpdateSurvey(int id, string surveyIdentifier, string title, string json, bool isActive = false)
         {
             var survey = this.Find(id);
 
             if (survey.IsActive)
                 throw new InvalidOperationException($"Survey (SurveyId={id}) is already active");
 
+            survey.SurveyIdentifier = surveyIdentifier;
             survey.Title = title;
             survey.IsActive = isActive;
             survey.SurveyJson = json;
