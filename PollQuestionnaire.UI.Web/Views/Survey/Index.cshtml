@@ -12,39 +12,26 @@
     @Scripts.Render("~/bundles/survey")
 
     <script>
-        var loadSurveyById = function (surveyId) {
-            var survey = new Survey.Model({ surveyId: surveyId })
-            $("#surveyElement").Survey({ model: survey });
-        }
+        var survey = new Survey.Model();
+
+        $.ajax(
+            '@Url.Action("GetActiveSurvey", "Survey", new { area="" })',
+            {
+                method: "GET",
+                async: true,
+                dataType: 'json',
+                success: function (data, textStatus, jqXHR) {
+                    survey.setJsonObject(data);
+
+                    $("#surveyElement").Survey({ model: survey });
+                },
+                error: function (jqXHR, textStatus, errorThrown) {
+                    alert('ERROR - ' + errorThrown);
+                }
+            });
 
         Survey.defaultBootstrapCss.navigationButton = "btn btn-primary";
         Survey.Survey.cssType = "bootstrap";
 
-        // Load first active survey
-        var storageManager = new dxBroker();
-
-        // Do we have survey Id in this session?
-        var surveyId = sessionStorage.getItem("activeSurveyId");
-
-        if (surveyId == undefined) {
-            storageManager.getActiveSurveys(function (data) {
-                if (data != undefined && Array.isArray(data) && data.length > 0) {
-                    for (var i = 0; i < data.length; i++) {
-                        if (data[i].IsPublished) {
-                            surveyId = data[i].Id;
-                            break;
-                        }
-                    }
-                }
-
-                if (surveyId != undefined) {
-                    loadSurveyById(surveyId);
-                } else {
-                    alert('There are no active surveys published.');
-                }
-            })
-        } else {
-            loadSurveyById(surveyId);
-        }
     </script>
 }
