@@ -14,21 +14,26 @@ namespace PollQuestionnaire.UI.Web.Controllers
         // GET: Admin
         public ActionResult Index()
         {
-            var model = GetAllSurveys();
-
-            return View(model);
-        }
-        [HttpGet()]
-        public string GetAllSurveys()
-        {
             var result = surveyService.Value.GetAllSurveys();
 
-            if (result.Status != OperationStatus.Success)
+            if(result.Status == OperationStatus.Success)
             {
-                throw new Exception();
-            }
 
-            return result.OperationResult;
+            }
+            return View(result.OperationResult);
         }
+
+        //[HttpGet()]
+        //public string GetAllSurveys()
+        //{
+        //    var result = surveyService.Value.GetAllSurveys();
+
+        //    if (result.Status != OperationStatus.Success)
+        //    {
+        //        throw new Exception();
+        //    }
+
+        //    return result.OperationResult.ToString();
+        //}
     }
 }
