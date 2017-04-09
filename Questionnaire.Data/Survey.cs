@@ -15,7 +15,6 @@ namespace Questionnaire.Data
     public partial class Survey
     {
         public int Id { get; set; }
-        public string SurveyIdentifier { get; set; }
         public string Title { get; set; }
         public bool IsActive { get; set; }
         public string SurveyJson { get; set; }

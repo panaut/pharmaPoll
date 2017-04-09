@@ -28,14 +28,7 @@ namespace Questionnaire.Serialization.Model
             return this.choicesByUrl != null;
         }
 
-        public string commentText { get; set; }
-
-        public bool ShouldSerializecommentText()
-        {
-            return !string.IsNullOrEmpty(this.commentText);
-        }
-        
-        public bool  hasOther { get; set; }
+        public bool hasOther { get; set; }
 
         public bool ShouldSerializehasOther()
         {

@@ -1,5 +1,6 @@
 ﻿using Questionnaire.Data;
 using Questionnaire.Service.Infrastructure;
+using System;
 using System.Collections.Generic;
 
 namespace Questionnaire.Service
@@ -9,6 +10,8 @@ namespace Questionnaire.Service
         ServiceResponse<int> CreateSurvey(string surveyJson);
 
         ServiceResponse<int> CreateOrSaveSurvey(string surveyJson);
+
+        ServiceResponse<bool?> SetSurveyStatus(int surveyId, bool status);
 
         ServiceResponse<string> GetActiveSurvey();
 

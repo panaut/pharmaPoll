@@ -53,7 +53,7 @@ namespace Questionnaire.Service
                                             survey.surveyId = $"pqSurvey-{DateTime.Now.ToString("yyMMddHHmmss")}";
                                         }
 
-                                        surveyInDb = this.surveyManager.Value.CreatePoll(survey.surveyId, survey.title, surveyJson, isActive: true);
+                                        surveyInDb = this.surveyManager.Value.CreatePoll(survey.title, surveyJson, isActive: true);
                                     }
                                 }
                                 catch (Exception ex)
@@ -102,7 +102,7 @@ namespace Questionnaire.Service
                         {
                             if (string.IsNullOrEmpty(survey.surveyId))
                             {
-                                var surveyInDb = this.surveyManager.Value.CreatePoll(survey.surveyId, survey.title, surveyJson, isActive: false);
+                                var surveyInDb = this.surveyManager.Value.CreatePoll(survey.title, surveyJson, isActive: false);
                                 surveyId = surveyInDb.Id;
                             }
                             else
@@ -112,7 +112,7 @@ namespace Questionnaire.Service
                                     throw new CustomException(new ArgumentException($"Failed to parse SurveyId (value was: {survey.surveyId})", "surveyId"));
                                 }
 
-                                this.surveyManager.Value.UpdateSurvey(surveyId, survey.surveyId, survey.title, surveyJson, isActive: false);
+                                this.surveyManager.Value.UpdateSurvey(surveyId, survey.title, surveyJson, isActive: false);
                             }
                         }
                     }
@@ -130,6 +130,49 @@ namespace Questionnaire.Service
             };
 
             command.Execute(null);
+            return command.Result;
+        }
+
+        public ServiceResponse<bool?> SetSurveyStatus(int surveyId, bool status)
+        {
+            ServiceCommand<bool?> command = new ServiceCommand<bool?>
+            {
+                Execution = (cmd, param) =>
+                {
+                    bool? surveyStatus = null;
+
+                    try
+                    { 
+                        int id = (int)param;
+
+                        if(status)
+                        {
+                            // Activate Survey
+                            this.surveyManager.Value.ActivatePoll(id);
+                            surveyStatus = true;
+                        }
+                        else
+                        {
+                            // Deactivate Survey
+                            this.surveyManager.Value.DeactivatePoll(id);
+                            surveyStatus = false;
+                        }
+
+                    }
+                    catch (Exception ex)
+                    {
+                        cmd.Status = OperationStatus.Failure;
+                        var exc = new CustomException("Failed to update Survey status", ex);
+                        throw exc;
+                    }
+
+                    cmd.Result.Status = OperationStatus.Success;
+
+                    return surveyStatus;
+                }
+            };
+
+            command.Execute(surveyId);
             return command.Result;
         }
 
