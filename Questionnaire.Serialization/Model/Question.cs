@@ -22,6 +22,13 @@ namespace Questionnaire.Serialization.Model
             return !string.IsNullOrEmpty(this.title);
         }
 
+        public string commentText { get; set; }
+
+        public bool ShouldSerializecommentText()
+        {
+            return !string.IsNullOrEmpty(this.commentText);
+        }
+
         public QuestionCustomWidget customWidget { get; set; }
 
         public bool ShouldSerializecustomWidget()

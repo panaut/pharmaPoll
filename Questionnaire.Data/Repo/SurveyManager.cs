@@ -16,6 +16,11 @@ namespace Questionnaire.Data
         {
             var survey = this.Find(surveyId);
 
+            if(survey == null)
+            {
+                throw new InvalidOperationException($"Survey with Id {surveyId} wasn't found");
+            }
+
             if (survey.IsActive)
                 throw new InvalidOperationException($"Survey (SurveyId={surveyId}) is already active");
 
@@ -23,11 +28,31 @@ namespace Questionnaire.Data
             context.SaveChanges();
         }
 
-        public Survey CreatePoll(string surveyIdentifier, string title, string json, bool isActive = false)
+        /// <summary>
+        /// Deactivates survey with given Id.
+        /// </summary>
+        /// <param name="surveyId">Survey Id.</param>
+        /// <exception cref="InvalidOperationException">If survey is already inactive.</exception>
+        public void DeactivatePoll(int surveyId)
+        {
+            var survey = this.Find(surveyId);
+
+            if (survey == null)
+            {
+                throw new InvalidOperationException($"Survey with Id {surveyId} wasn't found");
+            }
+
+            if (!survey.IsActive)
+                throw new InvalidOperationException($"Survey (SurveyId={surveyId}) is already inactive");
+
+            survey.IsActive = false;
+            context.SaveChanges();
+        }
+
+        public Survey CreatePoll(string title, string json, bool isActive = false)
         {
             var survey = new Survey();
 
-            survey.SurveyIdentifier = surveyIdentifier;
             survey.Title = title;
             survey.SurveyJson = json;
             survey.IsActive = isActive;
@@ -70,14 +95,13 @@ namespace Questionnaire.Data
             throw new NotImplementedException();
         }
 
-        public void UpdateSurvey(int id, string surveyIdentifier, string title, string json, bool isActive = false)
+        public void UpdateSurvey(int id, string title, string json, bool isActive = false)
         {
             var survey = this.Find(id);
 
             if (survey.IsActive)
                 throw new InvalidOperationException($"Survey (SurveyId={id}) is already active");
 
-            survey.SurveyIdentifier = surveyIdentifier;
             survey.Title = title;
             survey.IsActive = isActive;
             survey.SurveyJson = json;

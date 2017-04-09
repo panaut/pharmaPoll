@@ -2,7 +2,7 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, 2012 and Azure
 -- --------------------------------------------------
--- Date Created: 03/27/2017 00:28:43
+-- Date Created: 04/09/2017 20:26:52
 -- Generated from EDMX file: E:\GitHub\pharmaPoll\Questionnaire.Data\SurveyModel.edmx
 -- --------------------------------------------------
 
@@ -33,7 +33,6 @@ GO
 -- Creating table 'Surveys'
 CREATE TABLE [dbo].[Surveys] (
     [Id] int IDENTITY(1,1) NOT NULL,
-    [SurveyIdentifier] nvarchar(max)  NOT NULL,
     [Title] nvarchar(256)  NULL,
     [IsActive] bit  NOT NULL,
     [SurveyJson] nvarchar(max)  NOT NULL

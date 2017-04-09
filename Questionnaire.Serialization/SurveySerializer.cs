@@ -29,7 +29,8 @@ namespace Questionnaire.Serialization
                         typeof(QuestionFile),
                         typeof(QuestionMatrix),
                         typeof(QuestionMatrixDropdown),
-                        typeof(QuestionMatrixDynamic)
+                        typeof(QuestionMatrixDynamic),
+                        typeof(QuestionMultipleText)
                         }
                     };
 

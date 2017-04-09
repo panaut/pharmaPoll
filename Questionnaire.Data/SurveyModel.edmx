@@ -13,7 +13,6 @@
       <PropertyRef Name="Id" />
     </Key>
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="SurveyIdentifier" Type="nvarchar(max)" Nullable="false" />
     <Property Name="Title" Type="nvarchar" Nullable="true" MaxLength="256" />
     <Property Name="IsActive" Type="bit" Nullable="false" />
     <Property Name="SurveyJson" Type="nvarchar(max)" Nullable="false" />
@@ -30,7 +29,6 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="SurveyIdentifier" Type="String" Nullable="false" />
           <Property Name="Title" Type="String" Nullable="true" MaxLength="256" />
           <Property Name="IsActive" Type="Boolean" Nullable="false" />
           <Property Name="SurveyJson" Type="String" Nullable="false" />
@@ -45,7 +43,6 @@
       <EntityTypeMapping TypeName="IsTypeOf(SurveyModel.Survey)">
         <MappingFragment StoreEntitySet="Surveys">
           <ScalarProperty Name="Id" ColumnName="Id" />
-          <ScalarProperty Name="SurveyIdentifier" ColumnName="SurveyIdentifier" />
           <ScalarProperty Name="Title" ColumnName="Title" />
           <ScalarProperty Name="IsActive" ColumnName="IsActive" />
           <ScalarProperty Name="SurveyJson" ColumnName="SurveyJson" />
