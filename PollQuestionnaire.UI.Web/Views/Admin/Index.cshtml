@@ -4,48 +4,47 @@
     ViewBag.Title = "Admin";
 }
 
-<ul class="list-group col-md-3">
-    @foreach (var item in Model)
-    {
-        <li class="list-group-item">@item.SurveyIdentifier</li>
-    }
-</ul>
+@*<ul class="list-group col-md-3">
+        @foreach (var item in Model)
+        {
+            <li class="list-group-item">@item.SurveyIdentifier</li>
+        }
+    </ul>*@
 
 @*<link href="http://getbootstrap.com/dist/css/bootstrap.css" type="text/css" rel="stylesheet" />*@
 @*@Styles.Render("~/Content/bootstrap/css")*@
 
 @*<script type="text/javascript">
-    $(function () {
-        $.ajax({
-            type: 'POST',
-            url: '@Url.Action("GetAllSurveys")',
-            dataType: 'json',
-            success: function (data) {
-                var html = '';
-                $.each(data, function (index, item) {
-                    var $tr = $('<tr>').append(
-                         $('<td>').text(item.Id),
-                         $('<td>').text(item.Title),
-                         $('<td>').text(item.IsActive))
-                });
-            },
-            error: function (Result) {
-                alert("Error");
-            },
-            failure: function (Result) {
-                alert(response.responseText);
-            }
+        $(function () {
+            $.ajax({
+                type: 'POST',
+                url: '@Url.Action("GetAllSurveys")',
+                dataType: 'json',
+                success: function (data) {
+                    var html = '';
+                    $.each(data, function (index, item) {
+                        var $tr = $('<tr>').append(
+                             $('<td>').text(item.Id),
+                             $('<td>').text(item.Title),
+                             $('<td>').text(item.IsActive))
+                    });
+                },
+                error: function (Result) {
+                    alert("Error");
+                },
+                failure: function (Result) {
+                    alert(response.responseText);
+                }
+            });
         });
-    });
-</script>*@
+    </script>*@
 
 <br />
 <table class="table table-striped table-hover">
     <thead>
         <tr>
-            <th>#</th>
-            <th>Survey name</th>
-            <th>Title</th>            
+            @*<th width="0"></th>*@
+            <th>Title</th>
             <th width="25"></th>
             <th width="25"></th>
             <th width="25"></th>
@@ -53,26 +52,39 @@
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model)
-{
-        <tr>
-            <th scope="row">@item.Id</th>
-            <td>@item.SurveyIdentifier</td>
-            <td>@item.Title</td>
-            @if (!item.IsActive)
-            {
-                <td><a href="one"> <i id=@string.Concat(item.Id, "-glyphicon-play") class="glyphicon glyphicon-play"></i></a></td>
-            }
-            else
-            {
-                <td><a href="one"> <i id=@string.Concat(item.Id, "-glyphicon-stop") class="glyphicon glyphicon-stop"></i></a></td>
-            }
-            <td><a href="two"> <i id=@string.Concat(item.Id, "-glyphicon-pencil")class="glyphicon glyphicon-pencil"></i></a></td>
-            <td><a href="three"> <i id=@string.Concat(item.Id, "-glyphicon-trash") class="glyphicon glyphicon-trash"></i></a></td>
-            <td><span class="badge">14</span></td>
-        </tr>
+        @foreach (var item in Model)
+        {
+            <tr data-surveyId="@item.Id">
+                @*<th scope="row">@item.Id</th>*@
+                <td>@item.Title</td>
+                @if (!item.IsActive)
+                {
+                    <td>
+                        <a href="#" class="startSurvey">
+                            <i class="glyphicon glyphicon-play"></i>
+                        </a>
+                        <a href="#" class="hidden stopSurvey">
+                            <i class="glyphicon glyphicon-stop"></i>
+                        </a>
+                    </td>
+                }
+                else
+                {
+                    <td>
+                        <a href="#" class="hidden">
+                            <i class="glyphicon glyphicon-play startSurvey"></i>
+                        </a>
+                        <a href="#">
+                            <i class="glyphicon glyphicon-stop stopSurvey"></i>
+                        </a>
+                    </td>
+                }
+                <td><a href="two"> <i id=@string.Concat(item.Id, "-glyphicon-pencil") class="glyphicon glyphicon-pencil"></i></a></td>
+                <td><a href="three"> <i id=@string.Concat(item.Id, "-glyphicon-trash") class="glyphicon glyphicon-trash"></i></a></td>
+                <td><span class="badge">14</span></td>
+            </tr>
 
-}
+        }
     </tbody>
 </table>
 <br />
@@ -80,11 +92,10 @@
     @foreach (var item in Model)
     {
         <li class="list-group-item">
-            <div>@item.SurveyIdentifier</div>
             <div>@item.Title</div>
             @if (item.IsActive)
             {
-            <a href="one"> <i class="glyphicon glyphicon-play"></i></a>
+                <a href="one"> <i class="glyphicon glyphicon-play"></i></a>
             }
             else
             {
@@ -92,9 +103,40 @@
             }
             <a href="two"> <i class="glyphicon glyphicon-pencil"></i></a>
             <a href="three"> <i class="glyphicon glyphicon-trash"></i></a>
-            <span class="badge">14</span>        
+            <span class="badge">14</span>
         </li>
-    }    
+    }
 </ul>
-<br/>
+<br />
+
+@section Scripts
+{
+    <script>
+        $("document").ready(function () {
+            $(".startSurvey").click(function (sender) {
+                var surveyId = $(this).closest('tr').attr("data-surveyId");
+                // alert(surveyId);
+
+                $.ajax(
+                    '@Url.Action("ActivateSurvey", "Admin", new { area="" })',
+                    {
+                        method: "POST",
+                        async: true,
+                        data: { surveyId: surveyId },
+                        dataType: 'text',
+                        success: function (data, textStatus, jqXHR) {
+                            // Change 'Play' into 'Stop'
+                            var tableDivision = $(this).closest('td');
+                            $(this).addClass('hidden');
+                            $(tableDivision).siblings('.stopSurvey').removeClass('hidden');
+                        },
+                        error: function (jqXHR, textStatus, errorThrown) {
+                            alert('ERROR - ' + errorThrown);
+                        }
+                    });
+            });
+        })
+
+    </script>
+}
 

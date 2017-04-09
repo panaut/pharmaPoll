@@ -14,9 +14,35 @@ namespace PollQuestionnaire.UI.Web.Controllers
         // GET: Admin
         public ActionResult Index()
         {
-            var model = surveyService.Value.GetAllSurveys();
+            var model = surveyService.Value.GetAllSurveys().OperationResult;
 
             return View(model);
+        }
+
+        [HttpPost()]
+        public bool ActivateSurvey(int surveyId)
+        {
+            var result = surveyService.Value.SetSurveyStatus(surveyId, true);
+
+            if(result.Status != OperationStatus.Success)
+            {
+                throw new InvalidOperationException("failed to update survey status");
+            }
+
+            return result.OperationResult.Value;
+        }
+
+        [HttpPost()]
+        public bool DeactivateSurvey(int surveyId)
+        {
+            var result = surveyService.Value.SetSurveyStatus(surveyId, false);
+
+            if (result.Status != OperationStatus.Success)
+            {
+                throw new InvalidOperationException("failed to update survey status");
+            }
+
+            return result.OperationResult.Value;
         }
     }
 }
