@@ -7,6 +7,26 @@
     <Schema Namespace="SurveyModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2012" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
   <EntityContainer Name="SurveyModelStoreContainer">
     <EntitySet Name="Surveys" EntityType="SurveyModel.Store.Surveys" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="QuestionTemplateBases" EntityType="SurveyModel.Store.QuestionTemplateBases" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="QuestionTemplateBases_TextQuestionTemplate" EntityType="SurveyModel.Store.QuestionTemplateBases_TextQuestionTemplate" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="QuestionTemplateBases_SelectQuestionTemplateBase" EntityType="SurveyModel.Store.QuestionTemplateBases_SelectQuestionTemplateBase" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="QuestionTemplateBases_CommentQuestionTemplate" EntityType="SurveyModel.Store.QuestionTemplateBases_CommentQuestionTemplate" store:Type="Tables" Schema="dbo" />
+    <AssociationSet Name="SurveyQuestionTemplateBase" Association="SurveyModel.Store.SurveyQuestionTemplateBase">
+      <End Role="Survey" EntitySet="Surveys" />
+      <End Role="QuestionTemplateBase" EntitySet="QuestionTemplateBases" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TextQuestionTemplate_inherits_QuestionTemplateBase" Association="SurveyModel.Store.FK_TextQuestionTemplate_inherits_QuestionTemplateBase">
+      <End Role="QuestionTemplateBase" EntitySet="QuestionTemplateBases" />
+      <End Role="TextQuestionTemplate" EntitySet="QuestionTemplateBases_TextQuestionTemplate" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SelectQuestionTemplateBase_inherits_QuestionTemplateBase" Association="SurveyModel.Store.FK_SelectQuestionTemplateBase_inherits_QuestionTemplateBase">
+      <End Role="QuestionTemplateBase" EntitySet="QuestionTemplateBases" />
+      <End Role="SelectQuestionTemplateBase" EntitySet="QuestionTemplateBases_SelectQuestionTemplateBase" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CommentQuestionTemplate_inherits_QuestionTemplateBase" Association="SurveyModel.Store.FK_CommentQuestionTemplate_inherits_QuestionTemplateBase">
+      <End Role="QuestionTemplateBase" EntitySet="QuestionTemplateBases" />
+      <End Role="CommentQuestionTemplate" EntitySet="QuestionTemplateBases_CommentQuestionTemplate" />
+    </AssociationSet>
   </EntityContainer>
   <EntityType Name="Surveys">
     <Key>
@@ -17,12 +37,102 @@
     <Property Name="IsActive" Type="bit" Nullable="false" />
     <Property Name="SurveyJson" Type="nvarchar(max)" Nullable="false" />
   </EntityType>
+  <EntityType Name="QuestionTemplateBases">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" Nullable="false" MaxLength="512" />
+    <Property Name="Title" Type="nvarchar" Nullable="true" MaxLength="512" />
+    <Property Name="SurveyId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="QuestionTemplateBases_TextQuestionTemplate">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Placeholder" Type="nvarchar" Nullable="true" MaxLength="512" />
+    <Property Name="Id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="QuestionTemplateBases_SelectQuestionTemplateBase">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="CommentText" Type="nvarchar" Nullable="true" MaxLength="1024" />
+    <Property Name="OtherText" Type="nvarchar" Nullable="true" MaxLength="256" />
+    <Property Name="OtherErrorText" Type="nvarchar" Nullable="true" MaxLength="1024" />
+    <Property Name="Id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="QuestionTemplateBases_CommentQuestionTemplate">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" />
+  </EntityType>
+  <Association Name="SurveyQuestionTemplateBase">
+    <End Role="Survey" Type="SurveyModel.Store.Surveys" Multiplicity="1" />
+    <End Role="QuestionTemplateBase" Type="SurveyModel.Store.QuestionTemplateBases" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Survey">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="QuestionTemplateBase">
+        <PropertyRef Name="SurveyId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TextQuestionTemplate_inherits_QuestionTemplateBase">
+    <End Role="QuestionTemplateBase" Type="SurveyModel.Store.QuestionTemplateBases" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="TextQuestionTemplate" Type="SurveyModel.Store.QuestionTemplateBases_TextQuestionTemplate" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="QuestionTemplateBase">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="TextQuestionTemplate">
+        <PropertyRef Name="Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SelectQuestionTemplateBase_inherits_QuestionTemplateBase">
+    <End Role="QuestionTemplateBase" Type="SurveyModel.Store.QuestionTemplateBases" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="SelectQuestionTemplateBase" Type="SurveyModel.Store.QuestionTemplateBases_SelectQuestionTemplateBase" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="QuestionTemplateBase">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="SelectQuestionTemplateBase">
+        <PropertyRef Name="Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CommentQuestionTemplate_inherits_QuestionTemplateBase">
+    <End Role="QuestionTemplateBase" Type="SurveyModel.Store.QuestionTemplateBases" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="CommentQuestionTemplate" Type="SurveyModel.Store.QuestionTemplateBases_CommentQuestionTemplate" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="QuestionTemplateBase">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="CommentQuestionTemplate">
+        <PropertyRef Name="Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
 </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema xmlns="http://schemas.microsoft.com/ado/2009/11/edm" xmlns:cg="http://schemas.microsoft.com/ado/2006/04/codegeneration" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" Namespace="SurveyModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" annotation:UseStrongSpatialTypes="false">
         <EntityContainer Name="SurveyModelContainer" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Surveys" EntityType="SurveyModel.Survey" />
+          <EntitySet Name="QuestionTemplateBases" EntityType="SurveyModel.QuestionTemplateBase" />
+          <AssociationSet Name="SurveyQuestionTemplateBase" Association="SurveyModel.SurveyQuestionTemplateBase">
+            <End Role="Survey" EntitySet="Surveys" />
+            <End Role="QuestionTemplateBase" EntitySet="QuestionTemplateBases" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="Survey">
           <Key>
@@ -32,7 +142,39 @@
           <Property Name="Title" Type="String" Nullable="true" MaxLength="256" />
           <Property Name="IsActive" Type="Boolean" Nullable="false" />
           <Property Name="SurveyJson" Type="String" Nullable="false" />
+          <NavigationProperty Name="QuestionTemplateBases" Relationship="SurveyModel.SurveyQuestionTemplateBase" FromRole="Survey" ToRole="QuestionTemplateBase" />
         </EntityType>
+        <EntityType Name="QuestionTemplateBase" Abstract="true">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="512" />
+          <Property Name="Title" Type="String" MaxLength="512" Nullable="true" />
+          <NavigationProperty Name="Survey" Relationship="SurveyModel.SurveyQuestionTemplateBase" FromRole="QuestionTemplateBase" ToRole="Survey" />
+          <Property Name="SurveyId" Type="Int32" Nullable="false" />
+        </EntityType>
+        <Association Name="SurveyQuestionTemplateBase">
+          <End Type="SurveyModel.Survey" Role="Survey" Multiplicity="1" />
+          <End Type="SurveyModel.QuestionTemplateBase" Role="QuestionTemplateBase" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Survey">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="QuestionTemplateBase">
+              <PropertyRef Name="SurveyId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="TextQuestionTemplate" BaseType="SurveyModel.QuestionTemplateBase" >
+          <Property Name="Placeholder" Type="String" MaxLength="512" Nullable="true" />
+        </EntityType>
+        <EntityType Name="SelectQuestionTemplateBase" BaseType="SurveyModel.QuestionTemplateBase" >
+          <Property Name="CommentText" Type="String" MaxLength="1024" Nullable="true" />
+          <Property Name="OtherText" Type="String" Nullable="true" MaxLength="256" />
+          <Property Name="OtherErrorText" Type="String" MaxLength="1024" Nullable="true" />
+        </EntityType>
+        <EntityType Name="CommentQuestionTemplate" BaseType="SurveyModel.QuestionTemplateBase" />
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -46,6 +188,35 @@
           <ScalarProperty Name="Title" ColumnName="Title" />
           <ScalarProperty Name="IsActive" ColumnName="IsActive" />
           <ScalarProperty Name="SurveyJson" ColumnName="SurveyJson" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="QuestionTemplateBases">
+      <EntityTypeMapping TypeName="IsTypeOf(SurveyModel.QuestionTemplateBase)">
+        <MappingFragment StoreEntitySet="QuestionTemplateBases">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Title" ColumnName="Title" />
+          <ScalarProperty Name="SurveyId" ColumnName="SurveyId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+      <EntityTypeMapping TypeName="IsTypeOf(SurveyModel.TextQuestionTemplate)">
+        <MappingFragment StoreEntitySet="QuestionTemplateBases_TextQuestionTemplate">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Placeholder" ColumnName="Placeholder" />
+        </MappingFragment>
+      </EntityTypeMapping>
+      <EntityTypeMapping TypeName="IsTypeOf(SurveyModel.SelectQuestionTemplateBase)">
+        <MappingFragment StoreEntitySet="QuestionTemplateBases_SelectQuestionTemplateBase">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="CommentText" ColumnName="CommentText" />
+          <ScalarProperty Name="OtherText" ColumnName="OtherText" />
+          <ScalarProperty Name="OtherErrorText" ColumnName="OtherErrorText" />
+        </MappingFragment>
+      </EntityTypeMapping>
+      <EntityTypeMapping TypeName="IsTypeOf(SurveyModel.CommentQuestionTemplate)">
+        <MappingFragment StoreEntitySet="QuestionTemplateBases_CommentQuestionTemplate">
+          <ScalarProperty Name="Id" ColumnName="Id" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

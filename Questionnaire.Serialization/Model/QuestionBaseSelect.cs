@@ -50,9 +50,9 @@ namespace Questionnaire.Serialization.Model
         }
 
         [JsonConverter(typeof(ValueTextPairConverter))]
-        public IEnumerable<Choice> choices { get; set; }
+        public virtual IEnumerable<Choice> choices { get; set; }
 
-        public bool ShouldSerializechoices()
+        public virtual bool ShouldSerializechoices()
         {
             return this.choices != null && this.choices.Any();
         }
