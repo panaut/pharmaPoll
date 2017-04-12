@@ -115,7 +115,8 @@
         $("document").ready(function () {
             $(".startSurvey").click(function (sender) {
                 var surveyId = $(this).closest('tr').attr("data-surveyId");
-                // alert(surveyId);
+                var $startBtn = $(this);
+                var $stopBtn = $(this).siblings('.stopSurvey');
 
                 $.ajax(
                     '@Url.Action("ActivateSurvey", "Admin", new { area="" })',
@@ -126,9 +127,31 @@
                         dataType: 'text',
                         success: function (data, textStatus, jqXHR) {
                             // Change 'Play' into 'Stop'
-                            var tableDivision = $(this).closest('td');
-                            $(this).addClass('hidden');
-                            $(tableDivision).siblings('.stopSurvey').removeClass('hidden');
+                            $stopBtn.removeClass('hidden');
+                            $startBtn.addClass('hidden');
+                        },
+                        error: function (jqXHR, textStatus, errorThrown) {
+                            alert('ERROR - ' + errorThrown);
+                        }
+                    });
+            });
+
+            $(".stopSurvey").click(function (sender) {
+                var surveyId = $(this).closest('tr').attr("data-surveyId");
+                var $stopBtn = $(this);
+                var $startBtn = $(this).siblings('.startSurvey');
+
+                $.ajax(
+                    '@Url.Action("DeactivateSurvey", "Admin", new { area="" })',
+                    {
+                        method: "POST",
+                        async: true,
+                        data: { surveyId: surveyId },
+                        dataType: 'text',
+                        success: function (data, textStatus, jqXHR) {
+                            // Change 'Play' into 'Stop'
+                            $startBtn.removeClass('hidden');
+                            $stopBtn.addClass('hidden');
                         },
                         error: function (jqXHR, textStatus, errorThrown) {
                             alert('ERROR - ' + errorThrown);
