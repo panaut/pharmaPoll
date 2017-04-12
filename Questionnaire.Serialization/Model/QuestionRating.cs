@@ -23,7 +23,7 @@ namespace Questionnaire.Serialization.Model
             return !string.IsNullOrEmpty(this.maximumRateDescription);
         }
 
-        public IEnumerable<IValueTextPair> RateValues { get; set; }
+        public IEnumerable<Choice> RateValues { get; set; }
         public bool ShouldSerializeRateValues()
         {
             return this.RateValues != null && this.RateValues.Any();
