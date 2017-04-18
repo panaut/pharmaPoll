@@ -8,6 +8,7 @@ namespace Questionnaire.Serialization.Model
     [SurveyType("matrixdropdown")]
     public class QuestionMatrixDropdown : QuestionMatrixDropdownBase
     {
-
+        [JsonConverter(typeof(ValueTextPairConverter))]
+        public IEnumerable<MatrixDropdownRow> rows { get; set; }
     }
 }

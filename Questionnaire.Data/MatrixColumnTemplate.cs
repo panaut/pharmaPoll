@@ -12,15 +12,13 @@ namespace Questionnaire.Data
     using System;
     using System.Collections.Generic;
     
-    public partial class QuestionTemplateBase
+    public partial class MatrixColumnTemplate : SelectQuestionTemplateBase
     {
-        public int Id { get; set; }
-        public string Name { get; set; }
-        public string Title { get; set; }
-        public int SurveyId { get; set; }
-        public Nullable<int> MultipleTextQuestionTemplateId { get; set; }
+        public Nullable<int> MatrixDropdownBaseTemplateId { get; set; }
+        public Nullable<int> MatrixQuestionTemplateId { get; set; }
     
-        public virtual Survey Survey { get; set; }
-        public virtual MultipleTextQuestionTemplate MultipleTextQuestion { get; set; }
+        public virtual MatrixDropdownBaseTemplate MatrixDropdownQuestion { get; set; }
+        public virtual MatrixQuestionTemplate MatrixQuestion { get; set; }
+        public virtual ValueTextPair ValueTextPair { get; set; }
     }
 }

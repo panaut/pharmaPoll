@@ -15,6 +15,8 @@ namespace Questionnaire.Service
 
         ServiceResponse<string> GetActiveSurvey();
 
+        ServiceResponse<string> GetSurvey(int surveyId);
+
         ServiceResponse<IEnumerable<Survey>> GetAllSurveys();
     }
 }

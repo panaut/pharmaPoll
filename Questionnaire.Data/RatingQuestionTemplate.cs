@@ -12,15 +12,7 @@ namespace Questionnaire.Data
     using System;
     using System.Collections.Generic;
     
-    public partial class QuestionTemplateBase
+    public partial class RatingQuestionTemplate : SelectQuestionTemplateBase
     {
-        public int Id { get; set; }
-        public string Name { get; set; }
-        public string Title { get; set; }
-        public int SurveyId { get; set; }
-        public Nullable<int> MultipleTextQuestionTemplateId { get; set; }
-    
-        public virtual Survey Survey { get; set; }
-        public virtual MultipleTextQuestionTemplate MultipleTextQuestion { get; set; }
     }
 }

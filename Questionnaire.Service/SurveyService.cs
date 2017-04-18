@@ -142,10 +142,10 @@ namespace Questionnaire.Service
                     bool? surveyStatus = null;
 
                     try
-                    { 
+                    {
                         int id = (int)param;
 
-                        if(status)
+                        if (status)
                         {
                             // Activate Survey
                             this.surveyManager.Value.ActivatePoll(id);
@@ -173,6 +173,69 @@ namespace Questionnaire.Service
             };
 
             command.Execute(surveyId);
+            return command.Result;
+        }
+
+        public ServiceResponse<string> GetSurvey(int surveyId)
+        {
+            var command = new ServiceCommand<string>
+            {
+                Execution = (cmd, param) =>
+                {
+                    Survey surveyInDb = null;      // The survey object to be saved
+
+                    // Try to get survey with provided Id from database
+                    try
+                    {
+                        surveyInDb = this.surveyManager.Value.Find(surveyId);
+                    }
+                    catch (Exception ex)
+                    {
+                        cmd.Status = OperationStatus.Failure;
+                        var originalException = new ArgumentException($"Failed retrieve survey with id {surveyId}", ex);
+                        var exc = new CustomException(originalException, errorCode: 0);
+                        throw exc;
+                    }
+
+                    string retStr = string.Empty;      // Result JSON
+
+                    if (surveyInDb != null)
+                    {
+                        var surveyJson = surveyInDb.SurveyJson;
+                        Serialization.Model.Survey survey = null;
+                        // Try to deserialize JSON string from database
+                        try
+                        {
+                            survey = surveySerializer.Value.Deserialize(surveyJson);
+                            survey.surveyId = surveyInDb.Id.ToString();
+                        }
+                        catch (Exception ex)
+                        {
+                            cmd.Status = OperationStatus.Failure;
+                            var exc = new CustomException("Failed to Deserialize survey object", ex, errorCode: 0);
+                            throw exc;
+                        }
+
+                        // Try to serialize modified object into JSON string
+                        try
+                        {
+                            retStr = surveySerializer.Value.Serialize(survey);
+                        }
+                        catch (Exception ex)
+                        {
+                            cmd.Status = OperationStatus.Failure;
+                            var exc = new CustomException("Failed to Serialize survey object into JSON string", ex, errorCode: 0);
+                            throw exc;
+                        }
+
+                        cmd.Result.Status = OperationStatus.Success;
+                    }
+
+                    return retStr;
+                }
+            };
+
+            command.Execute(null);
             return command.Result;
         }
 

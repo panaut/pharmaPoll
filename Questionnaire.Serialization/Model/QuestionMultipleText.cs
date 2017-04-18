@@ -24,6 +24,6 @@ namespace Questionnaire.Serialization.Model
             return this.itemSize != 25;
         }
 
-        public IEnumerable<Question> items { get; set; } = new List<Question>();
+        public IEnumerable<Question> items { get; set; }
     }
 }

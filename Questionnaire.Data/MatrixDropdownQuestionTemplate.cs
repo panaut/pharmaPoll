@@ -12,19 +12,16 @@ namespace Questionnaire.Data
     using System;
     using System.Collections.Generic;
     
-    public partial class SelectQuestionTemplateBase : QuestionTemplateBase
+    public partial class MatrixDropdownQuestionTemplate : MatrixDropdownBaseTemplate
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public SelectQuestionTemplateBase()
+        public MatrixDropdownQuestionTemplate()
         {
-            this.Choices = new HashSet<ValueTextPair>();
+            this.Rows = new HashSet<MatrixRowTemplate>();
         }
     
-        public string CommentText { get; set; }
-        public string OtherText { get; set; }
-        public string OtherErrorText { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<ValueTextPair> Choices { get; set; }
+        public virtual ICollection<MatrixRowTemplate> Rows { get; set; }
     }
 }

@@ -12,19 +12,16 @@ namespace Questionnaire.Data
     using System;
     using System.Collections.Generic;
     
-    public partial class SelectQuestionTemplateBase : QuestionTemplateBase
+    public partial class MultipleTextQuestionTemplate : QuestionTemplateBase
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public SelectQuestionTemplateBase()
+        public MultipleTextQuestionTemplate()
         {
-            this.Choices = new HashSet<ValueTextPair>();
+            this.Items = new HashSet<QuestionTemplateBase>();
         }
     
-        public string CommentText { get; set; }
-        public string OtherText { get; set; }
-        public string OtherErrorText { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<ValueTextPair> Choices { get; set; }
+        public virtual ICollection<QuestionTemplateBase> Items { get; set; }
     }
 }

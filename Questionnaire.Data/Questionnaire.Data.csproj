@@ -58,7 +58,13 @@
     <Compile Include="AnswerTemplate.cs">
       <DependentUpon>QuestionnaireModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="CheckBoxQuestionTemplate.cs">
+      <DependentUpon>SurveyModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="CommentQuestionTemplate.cs">
+      <DependentUpon>SurveyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DropdownQuestionTemplate.cs">
       <DependentUpon>SurveyModel.tt</DependentUpon>
     </Compile>
     <Compile Include="EAnswerType.cs">
@@ -70,9 +76,36 @@
     <Compile Include="EQuestionType.cs">
       <DependentUpon>QuestionnaireModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="FileQuestionBase.cs">
+      <DependentUpon>SurveyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="HtmlQuestionTemplate.cs">
+      <DependentUpon>SurveyModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="IRepo\ISurveyManagement.cs" />
     <Compile Include="Localization.cs">
       <DependentUpon>QuestionnaireModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="MatrixColumnTemplate.cs">
+      <DependentUpon>SurveyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="MatrixDropdownBaseTemplate.cs">
+      <DependentUpon>SurveyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="MatrixDropdownQuestionTemplate.cs">
+      <DependentUpon>SurveyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="MatrixDynamicQuestionTemplate.cs">
+      <DependentUpon>SurveyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="MatrixQuestionTemplate.cs">
+      <DependentUpon>SurveyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="MatrixRowTemplate.cs">
+      <DependentUpon>SurveyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="MultipleTextQuestionTemplate.cs">
+      <DependentUpon>SurveyModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Poll.cs">
       <DependentUpon>QuestionnaireModel.tt</DependentUpon>
@@ -100,6 +133,12 @@
       <DependentUpon>QuestionnaireModel.tt</DependentUpon>
     </Compile>
     <Compile Include="QuestionTemplateBase.cs">
+      <DependentUpon>SurveyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="RadiogroupQuestionTemplate.cs">
+      <DependentUpon>SurveyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="RatingQuestionTemplate.cs">
       <DependentUpon>SurveyModel.tt</DependentUpon>
     </Compile>
     <Compile Include="SelectQuestionTemplateBase.cs">
@@ -131,6 +170,9 @@
       <DependentUpon>QuestionnaireModel.tt</DependentUpon>
     </Compile>
     <Compile Include="TextQuestionTemplate.cs">
+      <DependentUpon>SurveyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ValueTextPair.cs">
       <DependentUpon>SurveyModel.tt</DependentUpon>
     </Compile>
     <Compile Include="VotingSession.cs">

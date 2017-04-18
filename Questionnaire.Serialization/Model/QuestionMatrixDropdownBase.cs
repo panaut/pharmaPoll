@@ -34,8 +34,5 @@ namespace Questionnaire.Serialization.Model
         }
 
         public IEnumerable<MatrixDropdownColumn> columns { get; set; }
-
-        [JsonConverter(typeof(ValueTextPairConverter))]
-        public IEnumerable<MatrixDropdownRow> rows { get; set; }
     }
 }
