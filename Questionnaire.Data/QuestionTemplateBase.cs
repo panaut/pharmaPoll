@@ -12,20 +12,13 @@ namespace Questionnaire.Data
     using System;
     using System.Collections.Generic;
     
-    public partial class Survey
+    public abstract partial class QuestionTemplateBase
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Survey()
-        {
-            this.QuestionTemplateBases = new HashSet<QuestionTemplateBase>();
-        }
-    
         public int Id { get; set; }
+        public string Name { get; set; }
         public string Title { get; set; }
-        public bool IsActive { get; set; }
-        public string SurveyJson { get; set; }
+        public int SurveyId { get; set; }
     
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<QuestionTemplateBase> QuestionTemplateBases { get; set; }
+        public virtual Survey Survey { get; set; }
     }
 }

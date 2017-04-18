@@ -26,5 +26,6 @@ namespace Questionnaire.Data
         }
     
         public virtual DbSet<Survey> Surveys { get; set; }
+        public virtual DbSet<QuestionTemplateBase> QuestionTemplateBases { get; set; }
     }
 }

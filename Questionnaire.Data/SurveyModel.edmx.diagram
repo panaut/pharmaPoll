@@ -5,7 +5,15 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="20fbfbe0e1204e55968f98471c84838b" Name="Diagram1" >
-        <EntityTypeShape EntityType="SurveyModel.Survey" Width="1.5" PointX="5.625" PointY="1.5" />
+        <EntityTypeShape EntityType="SurveyModel.Survey" Width="1.5" PointX="0.5" PointY="0.5" />
+        <EntityTypeShape EntityType="SurveyModel.QuestionTemplateBase" Width="1.5" PointX="2.875" PointY="0.5" />
+        <AssociationConnector Association="SurveyModel.SurveyQuestionTemplateBase" />
+        <EntityTypeShape EntityType="SurveyModel.TextQuestionTemplate" Width="1.5" PointX="2.875" PointY="3.5" />
+        <InheritanceConnector EntityType="SurveyModel.TextQuestionTemplate" />
+        <EntityTypeShape EntityType="SurveyModel.SelectQuestionTemplateBase" Width="1.5" PointX="5" PointY="2.75" />
+        <InheritanceConnector EntityType="SurveyModel.SelectQuestionTemplateBase" />
+        <EntityTypeShape EntityType="SurveyModel.CommentQuestionTemplate" Width="1.5" PointX="0.625" PointY="3.5" />
+        <InheritanceConnector EntityType="SurveyModel.CommentQuestionTemplate" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

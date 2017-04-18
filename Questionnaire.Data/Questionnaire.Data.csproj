@@ -58,6 +58,9 @@
     <Compile Include="AnswerTemplate.cs">
       <DependentUpon>QuestionnaireModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="CommentQuestionTemplate.cs">
+      <DependentUpon>SurveyModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="EAnswerType.cs">
       <DependentUpon>QuestionnaireModel.tt</DependentUpon>
     </Compile>
@@ -96,6 +99,12 @@
     <Compile Include="QuestionTemplate.cs">
       <DependentUpon>QuestionnaireModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="QuestionTemplateBase.cs">
+      <DependentUpon>SurveyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SelectQuestionTemplateBase.cs">
+      <DependentUpon>SurveyModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="SessionResult.cs">
       <DependentUpon>QuestionnaireModel.tt</DependentUpon>
     </Compile>
@@ -120,6 +129,9 @@
     </Compile>
     <Compile Include="SurveySection.cs">
       <DependentUpon>QuestionnaireModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TextQuestionTemplate.cs">
+      <DependentUpon>SurveyModel.tt</DependentUpon>
     </Compile>
     <Compile Include="VotingSession.cs">
       <DependentUpon>QuestionnaireModel.tt</DependentUpon>

@@ -1,4 +1,5 @@
-﻿using Questionnaire.Serialization.Attributes;
+﻿using Newtonsoft.Json;
+using Questionnaire.Serialization.Attributes;
 using Questionnaire.Serialization.Model;
 using System;
 using System.Collections.Generic;
@@ -23,10 +24,20 @@ namespace Questionnaire.Serialization.Model
             return !string.IsNullOrEmpty(this.maximumRateDescription);
         }
 
-        public IEnumerable<Choice> RateValues { get; set; }
-        public bool ShouldSerializeRateValues()
+        // public IEnumerable<IValueTextPair> RateValues { get; set; }
+
+        //public bool ShouldSerializeRateValues()
+        //{
+        //    return this.RateValues != null && this.RateValues.Any();
+        //}
+
+        [JsonProperty(PropertyName = "rateValues")]
+        [JsonConverter(typeof(ValueTextPairConverter))]
+        public override IEnumerable<Choice> choices { get; set; }
+
+        public override bool ShouldSerializechoices()
         {
-            return this.RateValues != null && this.RateValues.Any();
+            return this.choices != null && this.choices.Any();
         }
     }
 }
