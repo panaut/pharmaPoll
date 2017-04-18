@@ -44,5 +44,17 @@ namespace PollQuestionnaire.UI.Web.Controllers
 
             return result.OperationResult.Value;
         }
+        //[HttpPost()]
+        //public string FindSurvey(int surveyId)
+        //{
+        //    var result = surveyService.Value.GetServey(surveyId);
+
+        //    if (result.Status != OperationStatus.Success)
+        //    {
+        //        throw new InvalidOperationException("failed to update survey status");
+        //    }
+
+        //    return result.Value;
+        //}
     }
 }
