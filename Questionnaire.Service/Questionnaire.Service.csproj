@@ -31,7 +31,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="NLog, Version=4.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c, processorArchitecture=MSIL">
-      <HintPath>..\packages\NLog.4.4.4\lib\net45\NLog.dll</HintPath>
+      <HintPath>..\packages\NLog.4.4.6\lib\net45\NLog.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />
@@ -61,10 +61,6 @@
     <ProjectReference Include="..\Questionnaire.Data\Questionnaire.Data.csproj">
       <Project>{71AACCA2-88A4-4342-8516-87823A864401}</Project>
       <Name>Questionnaire.Data</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Questionnaire.Serialization\Questionnaire.Serialization.csproj">
-      <Project>{87394046-9ECE-4C04-BB2A-74B0F988869A}</Project>
-      <Name>Questionnaire.Serialization</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

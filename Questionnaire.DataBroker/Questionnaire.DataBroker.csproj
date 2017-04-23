@@ -39,7 +39,7 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="NLog, Version=4.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c, processorArchitecture=MSIL">
-      <HintPath>..\packages\NLog.4.4.4\lib\net45\NLog.dll</HintPath>
+      <HintPath>..\packages\NLog.4.4.6\lib\net45\NLog.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />
@@ -53,13 +53,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="IAnswerManagement.cs" />
-    <Compile Include="IQuestionManagement.cs" />
-    <Compile Include="ISessionCodeGenerator.cs" />
-    <Compile Include="ISessionManagement.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ISectionManagement.cs" />
-    <Compile Include="SesionManagement.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

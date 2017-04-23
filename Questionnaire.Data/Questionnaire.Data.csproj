@@ -38,12 +38,17 @@
       <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.10.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="NLog, Version=4.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c, processorArchitecture=MSIL">
-      <HintPath>..\packages\NLog.4.4.4\lib\net45\NLog.dll</HintPath>
+      <HintPath>..\packages\NLog.4.4.6\lib\net45\NLog.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
@@ -55,178 +60,59 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AnswerTemplate.cs">
-      <DependentUpon>QuestionnaireModel.tt</DependentUpon>
+    <Compile Include="Attributes\SurveyType.cs" />
+    <Compile Include="Interfaces\ICellDiversity.cs" />
+    <Compile Include="Migrations\201704231151268_InitalSetup.cs" />
+    <Compile Include="Migrations\201704231151268_InitalSetup.Designer.cs">
+      <DependentUpon>201704231151268_InitalSetup.cs</DependentUpon>
     </Compile>
-    <Compile Include="CheckBoxQuestionTemplate.cs">
-      <DependentUpon>SurveyModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="CommentQuestionTemplate.cs">
-      <DependentUpon>SurveyModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="DropdownQuestionTemplate.cs">
-      <DependentUpon>SurveyModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="EAnswerType.cs">
-      <DependentUpon>QuestionnaireModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="EAppearanceType.cs">
-      <DependentUpon>QuestionnaireModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="EQuestionType.cs">
-      <DependentUpon>QuestionnaireModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="FileQuestionBase.cs">
-      <DependentUpon>SurveyModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="HtmlQuestionTemplate.cs">
-      <DependentUpon>SurveyModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="IRepo\ISurveyManagement.cs" />
-    <Compile Include="Localization.cs">
-      <DependentUpon>QuestionnaireModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="MatrixColumnTemplate.cs">
-      <DependentUpon>SurveyModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="MatrixDropdownBaseTemplate.cs">
-      <DependentUpon>SurveyModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="MatrixDropdownQuestionTemplate.cs">
-      <DependentUpon>SurveyModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="MatrixDynamicQuestionTemplate.cs">
-      <DependentUpon>SurveyModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="MatrixQuestionTemplate.cs">
-      <DependentUpon>SurveyModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="MatrixRowTemplate.cs">
-      <DependentUpon>SurveyModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="MultipleTextQuestionTemplate.cs">
-      <DependentUpon>SurveyModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Poll.cs">
-      <DependentUpon>QuestionnaireModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="PredefinedAnswer.cs">
-      <DependentUpon>QuestionnaireModel.tt</DependentUpon>
-    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Serialization\ISurveySerializer.cs" />
+    <Compile Include="Interfaces\IValueTextPair.cs" />
+    <Compile Include="ISurveyManagement.cs" />
+    <Compile Include="Model\QuestionDefinition\Choice.cs" />
+    <Compile Include="Model\QuestionDefinition\ChoicesRestfull.cs" />
+    <Compile Include="Model\QuestionDefinition\MatrixColumn.cs" />
+    <Compile Include="Model\QuestionDefinition\MatrixRow.cs" />
+    <Compile Include="Model\QuestionDefinition\MultipleTextItem.cs" />
+    <Compile Include="Model\Page.cs" />
+    <Compile Include="Model\QuestionDefinition\QuestionBase.cs" />
+    <Compile Include="Model\QuestionDefinition\SelectQuestionBase.cs" />
+    <Compile Include="Model\QuestionDefinition\CheckBox.cs" />
+    <Compile Include="Model\QuestionDefinition\Comment.cs" />
+    <Compile Include="Model\QuestionDefinition\Dropdown.cs" />
+    <Compile Include="Model\QuestionDefinition\File.cs" />
+    <Compile Include="Model\QuestionDefinition\Html.cs" />
+    <Compile Include="Model\QuestionDefinition\PlainMatrix.cs" />
+    <Compile Include="Model\QuestionDefinition\ComplexMatrix.cs" />
+    <Compile Include="Model\QuestionDefinition\ComplexMatrixBase.cs" />
+    <Compile Include="Model\QuestionDefinition\ComplexMatrixDynamic.cs" />
+    <Compile Include="Model\QuestionDefinition\MultipleText.cs" />
+    <Compile Include="Model\QuestionDefinition\Radiogroup.cs" />
+    <Compile Include="Model\QuestionDefinition\Rating.cs" />
+    <Compile Include="Model\QuestionDefinition\Text.cs" />
+    <Compile Include="Model\Survey.cs" />
+    <Compile Include="Model\SurveyTrigger.cs" />
+    <Compile Include="Model\QuestionDefinition\SurveyValidator.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="QuestionnaireModel.Context.cs">
-      <DependentUpon>QuestionnaireModel.Context.tt</DependentUpon>
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-    </Compile>
-    <Compile Include="QuestionnaireModel.cs">
-      <DependentUpon>QuestionnaireModel.tt</DependentUpon>
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-    </Compile>
-    <Compile Include="QuestionnaireModel.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>QuestionnaireModel.edmx</DependentUpon>
-    </Compile>
-    <Compile Include="QuestionTemplate.cs">
-      <DependentUpon>QuestionnaireModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="QuestionTemplateBase.cs">
-      <DependentUpon>SurveyModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="RadiogroupQuestionTemplate.cs">
-      <DependentUpon>SurveyModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="RatingQuestionTemplate.cs">
-      <DependentUpon>SurveyModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="SelectQuestionTemplateBase.cs">
-      <DependentUpon>SurveyModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="SessionResult.cs">
-      <DependentUpon>QuestionnaireModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Survey.cs">
-      <DependentUpon>SurveyModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Repo\SurveyManager.cs" />
-    <Compile Include="SurveyModel.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>SurveyModel.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="SurveyModel.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>SurveyModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="SurveyModel.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>SurveyModel.edmx</DependentUpon>
-    </Compile>
-    <Compile Include="SurveySection.cs">
-      <DependentUpon>QuestionnaireModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="TextQuestionTemplate.cs">
-      <DependentUpon>SurveyModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="ValueTextPair.cs">
-      <DependentUpon>SurveyModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="VotingSession.cs">
-      <DependentUpon>QuestionnaireModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="VotingSessionState.cs">
-      <DependentUpon>QuestionnaireModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="WriteInAnswer.cs">
-      <DependentUpon>QuestionnaireModel.tt</DependentUpon>
-    </Compile>
+    <Compile Include="Serialization\KnownTypesBinder.cs" />
+    <Compile Include="Serialization\SurveySerializer.cs" />
+    <Compile Include="Serialization\ValidatorsConverter.cs" />
+    <Compile Include="Serialization\ValueTextPairConverter.cs" />
+    <Compile Include="SurveyManager.cs" />
+    <Compile Include="SurveyModelContext.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
-    <EntityDeploy Include="QuestionnaireModel.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>QuestionnaireModel.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <None Include="QuestionnaireModel.edmx.diagram">
-      <DependentUpon>QuestionnaireModel.edmx</DependentUpon>
-    </None>
-    <EntityDeploy Include="SurveyModel.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>SurveyModel.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <None Include="SurveyModel.edmx.diagram">
-      <DependentUpon>SurveyModel.edmx</DependentUpon>
-    </None>
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="QuestionnaireModel.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>QuestionnaireModel.Context.cs</LastGenOutput>
-    </Content>
-    <Content Include="QuestionnaireModel.edmx.sql" />
-    <Content Include="QuestionnaireModel.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>QuestionnaireModel.cs</LastGenOutput>
-    </Content>
-    <Content Include="SurveyModel.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>SurveyModel.Context.cs</LastGenOutput>
-      <DependentUpon>SurveyModel.edmx</DependentUpon>
-    </Content>
-    <Content Include="SurveyModel.edmx.sql" />
-    <Content Include="SurveyModel.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>SurveyModel.cs</LastGenOutput>
-      <DependentUpon>SurveyModel.edmx</DependentUpon>
-    </Content>
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201704231151268_InitalSetup.resx">
+      <DependentUpon>201704231151268_InitalSetup.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -1,6 +1,5 @@
-﻿using Questionnaire.Data;
+﻿using Questionnaire.Data.Model;
 using Questionnaire.Service.Infrastructure;
-using System;
 using System.Collections.Generic;
 
 namespace Questionnaire.Service
