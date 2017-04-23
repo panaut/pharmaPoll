@@ -12,79 +12,104 @@
     New Survey
     <a href="#" class="startSurvey" data-toggle="tooltip" title="New Survey"> <i class="glyphicon glyphicon-plus"></i></a>
 </p>
-    <table class="table table-striped table-hover">
-        <thead>
-            <tr>
-                @*<th width="0"></th>*@
-                <th>Title</th>
-                <th width="25"></th>
-                <th width="25"></th>
-                <th width="25"></th>
-                <th width="25"></th>
-                <th width="25"></th>
-                <th width="25"></th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var item in Model)
+<table class="table table-striped table-hover" id="surveyTable">
+    <thead>
+        <tr>
+            @*<th width="0"></th>*@
+            <th>Title</th>
+            <th width="25"></th>
+            <th width="25"></th>
+            <th width="25"></th>
+            <th width="25"></th>
+            <th width="25"></th>
+            <th width="25"></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
             {
-                <tr data-surveyId="@item.Id">
-                    @*<th scope="row">@item.Id</th>*@
-                    <td>@item.Title</td>
-                    @if (!item.IsActive)
+            <tr data-surveyId="@item.Id">
+                @*<th scope="row">@item.Id</th>*@
+                <td>@item.Title</td>
+                @if (!item.IsActive)
                 {
-                        <td>
-                            <a href="#" class="startSurvey" data-toggle="tooltip" title="Publish Survey">
-                                <i class="glyphicon glyphicon-play"></i>
-                            </a>
-                            <a href="#" class="hidden stopSurvey" data-toggle="tooltip" title="Stop Survey">
-                                <i class="glyphicon glyphicon-stop"></i>
-                            </a>
-                        </td>
-                    }
-                    else
-                    {
-                        <td>
-                            <a href="#" class="hidden" data-toggle="tooltip" title="Publish Survey">
-                                <i class="glyphicon glyphicon-play startSurvey"></i>
-                            </a>
-                            <a href="#" data-toggle="tooltip" title="Stop Survey">
-                                <i class="glyphicon glyphicon-stop stopSurvey"></i>
-                            </a>
-                        </td>
-                    }
-                    <td><a href="two" data-toggle="tooltip" title="Download file for translation"> <i class="glyphicon glyphicon-download"></i></a></td>
-                    <td><a href="two" data-toggle="tooltip" title="Upload translation file"> <i class="glyphicon glyphicon-upload"></i></a></td>
-                    <td><a href="two" title="Edit Survey" data-toggle="modal" data-target="#modal-fullscreen"> <i id=@string.Concat(item.Id, "-glyphicon-pencil") class="glyphicon glyphicon-pencil"></i></a></td>
-                    <td><a href="three" data-toggle="tooltip" title="Delete Survey"> <i id=@string.Concat(item.Id, "-glyphicon-trash") class="glyphicon glyphicon-trash"></i></a></td>
-                    <td><span class="badge">14</span></td>
-                </tr>
-            }
-        </tbody>
-    </table>
+                    <td>
+                        <a href="#" class="startSurvey" data-toggle="tooltip" title="Publish Survey">
+                            <i class="glyphicon glyphicon-play"></i>
+                        </a>
+                        <a href="#" class="hidden stopSurvey" data-toggle="tooltip" title="Stop Survey">
+                            <i class="glyphicon glyphicon-stop"></i>
+                        </a>
+                    </td>
+                }
+                else
+                {
+                    <td>
+                        <a href="#" class="hidden" data-toggle="tooltip" title="Publish Survey">
+                            <i class="glyphicon glyphicon-play startSurvey"></i>
+                        </a>
+                        <a href="#" data-toggle="tooltip" title="Stop Survey">
+                            <i class="glyphicon glyphicon-stop stopSurvey"></i>
+                        </a>
+                    </td>
+                }
+                <td><a href="#" data-toggle="tooltip" title="Download file for translation"> <i class="glyphicon glyphicon-download"></i></a></td>
+                <td><a href="#" data-toggle="tooltip" title="Upload translation file"> <i class="glyphicon glyphicon-upload"></i></a></td>
+                <td><a href="#" title="Edit Survey: @item.Title" data-toggle="modal" data-id="@item.Id" class="editModalLink" data-target="#modal-fullscreen_edit"> <i id=@string.Concat(item.Id, "-glyphicon-pencil") class="glyphicon glyphicon-pencil"></i></a></td>
+                <td><a href="#" data-toggle="modal" title="delete_Survey @item.Title" data-target="#modal-delete"> <i id=@string.Concat(item.Id, "-glyphicon-trash") class="glyphicon glyphicon-trash"></i></a></td>
+                <td><span class="badge" title="Number of responses">not active</span></td>
+            </tr>
+        }
+    </tbody>
+</table>
 @*modal div*@
-    <div class="modal modal-fullscreen fade" id="modal-fullscreen" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
-        <div class="modal-dialog modal-lg" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLongTitle">Survey Editor</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
+<div class="modal modal-fullscreen fade" id="modal-fullscreen_edit" tabindex="-1" role="dialog" aria-labelledby="editSurveyModal" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">Survey Editor</h5>
+                <div class="alert alert-success hidden" id="successAlert">
+                    <strong>Success!</strong> Survey successfully saved
                 </div>
-                <div class="modal-body">
-                    <div id="surveyEditorContainer"></div>
+                <div class="alert alert-danger hidden" id="dangerAlert">
+                    <strong>Danger!</strong> Survey was not saved
                 </div>
-                @*<div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Save changes</button>
-                </div>*@
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div id="surveyEditorContainer" data-myValue=""></div>
+            </div>
+            <div class="hidden modal-footer" footer-id="footer1">
+                Your survey has been succesfully saved
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
             </div>
         </div>
     </div>
+</div>
 
-@*list view implementation*@   
- @*<br />
+<div class="modal modal-backdrop-transparent fade" id="modal-delete" tabindex="-1" role="dialog" aria-labelledby="deleteModal" aria-hidden="true">
+    <div class="modal-dialog" role="dialog">
+        <div class="modal-content">
+            <div class="modal-body">
+                <h5>Please confirm deletetion</h5>
+            </div>
+            <div class="modal-footer">
+                <button id="deleteSUrveyButton" type="button" class="btn btn-primary deleteSurvey" data-dismiss="modal">Delete</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="alert alert-su alert-dismissible fade show" role="alert">
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+    </button>
+    <strong>Survey has been deleted!</strong>
+</div>
+@*list view implementation*@
+@*<br />
     <ul class="list-group col-md-3">
         @foreach (var item in Model)
         {
@@ -107,89 +132,107 @@
     </ul>
     <br />*@
 
-    @section Scripts
+@section Scripts
 {
-@Scripts.Render("~/Scripts/dxSurvey/dxBroker.js")
-@Scripts.Render("~/bundles/surveyEditor")
-        <script>
-            $("document").ready(function () {
-                $(".startSurvey").click(function (sender) {
-                    var surveyId = $(this).closest('tr').attr("data-surveyId");
-                    var $startBtn = $(this);
-                    var $stopBtn = $(this).siblings('.stopSurvey');
+    @Scripts.Render("~/Scripts/dxSurvey/dxBroker.js")
+    @Scripts.Render("~/bundles/surveyEditor")
+    <script>
+        $(document).on("click", ".editModalLink", function () {
+            var surveyId = $(this).data('id');
+            document.getElementById("surveyEditorContainer").setAttribute("data-myValue", surveyId);
+            //var surveyId = $('#surveyEditorContainer').data('myValue');
+            //var surveyId = document.getElementById("surveyEditorContainer").getAttribute('data-myValue');
 
-                    $.ajax(
-                        '@Url.Action("ActivateSurvey", "Admin", new { area="" })',
-                        {
-                            method: "POST",
-                            async: true,
-                            data: { surveyId: surveyId },
-                            dataType: 'text',
-                            success: function (data, textStatus, jqXHR) {
-                                // Change 'Play' into 'Stop'
-                                $stopBtn.removeClass('hidden');
-                                $startBtn.addClass('hidden');
-                            },
-                            error: function (jqXHR, textStatus, errorThrown) {
-                                alert('ERROR - ' + errorThrown);
-                            }
-                        });
-                });
-                $("document").ready(function () {
-                    $(".Find").click(function (sender) {
-                        var surveyId = $(this).closest('tr').attr("data-surveyId");
-                        var $startBtn = $(this);
-                        var $stopBtn = $(this).siblings('.Find');
+            $.ajax(
+             '@Url.Action("GetSurvey", "Admin", new { area="" })',
+             {
+                 method: "GET",
+                 async: true,
+                 data: { surveyId: surveyId },
+                 dataType: 'text',
+                 success: function (data, textStatus, jqXHR) {
+                     $('#noSurveyAlert').css("display", "normal");
+                     survey.text = data;
+                 },
+                 error: function (jqXHR, textStatus, errorThrown) {
+                     $('#noSurveyAlert').css("display", "block");
+                 }
+             });
+        });
+        $("document").ready(function () {
+            $(".startSurvey").click(function (sender) {
+                var surveyId = $(this).closest('tr').attr("data-surveyId");
+                var $startBtn = $(this);
+                var $stopBtn = $(this).siblings('.stopSurvey');
 
-                        $.ajax(
-                            '@Url.Action("Find", "Admin", new { area="" })',
-                            {
-                                method: "POST",
-                                async: true,
-                                data: { surveyId: surveyId },
-                                dataType: 'text',
-                                success: function (data, textStatus, jqXHR) {
-                                    // Change 'Play' into 'Stop'
-                                    $stopBtn.removeClass('hidden');
-                                    $startBtn.addClass('hidden');
-                                },
-                                error: function (jqXHR, textStatus, errorThrown) {
-                                    alert('ERROR - ' + errorThrown);
-                                }
-                            });
+                $.ajax(
+                    '@Url.Action("ActivateSurvey", "Admin", new { area="" })',
+                    {
+                        method: "POST",
+                        async: true,
+                        data: { surveyId: surveyId },
+                        dataType: 'text',
+                        success: function (data, textStatus, jqXHR) {
+                            // Change 'Play' into 'Stop'
+                            $stopBtn.removeClass('hidden');
+                            $startBtn.addClass('hidden');
+                        },
+                        error: function (jqXHR, textStatus, errorThrown) {
+                            alert('ERROR - ' + errorThrown);
+                        }
                     });
+            });
+            $(".stopSurvey").click(function (sender) {
+                var surveyId = $(this).closest('tr').attr("data-surveyId");
+                var $stopBtn = $(this);
+                var $startBtn = $(this).siblings('.startSurvey');
 
-                $(".stopSurvey").click(function (sender) {
-                    var surveyId = $(this).closest('tr').attr("data-surveyId");
-                    var $stopBtn = $(this);
-                    var $startBtn = $(this).siblings('.startSurvey');
+                $.ajax(
+                    '@Url.Action("DeactivateSurvey", "Admin", new { area="" })',
+                    {
+                        method: "POST",
+                        async: true,
+                        data: { surveyId: surveyId },
+                        dataType: 'text',
+                        success: function (data, textStatus, jqXHR) {
+                            // Change 'Play' into 'Stop'
+                            $startBtn.removeClass('hidden');
+                            $stopBtn.addClass('hidden');
+                        },
+                        error: function (jqXHR, textStatus, errorThrown) {
+                            alert('ERROR - ' + errorThrown);
+                        }
+                    });
+            });
+            $(".deleteSurvey").click(function (sender) {
+                var surveyId = $(this).closest('tr').attr("data-surveyId");
 
-                    $.ajax(
-                        '@Url.Action("DeactivateSurvey", "Admin", new { area="" })',
-                        {
-                            method: "POST",
-                            async: true,
-                            data: { surveyId: surveyId },
-                            dataType: 'text',
-                            success: function (data, textStatus, jqXHR) {
-                                // Change 'Play' into 'Stop'
-                                $startBtn.removeClass('hidden');
-                                $stopBtn.addClass('hidden');
-                            },
-                            error: function (jqXHR, textStatus, errorThrown) {
-                                alert('ERROR - ' + errorThrown);
-                            }
-                        });
-                });
-            })
+                $.ajax(
+                    '@Url.Action("DeleteSurvey", "Admin", new { area="" })',
+                    {
+                        method: "POST",
+                        async: true,
+                        data: { surveyId: surveyId },
+                        dataType: 'text',
+                        success: function (data, textStatus, jqXHR) {
+                            alert('survey succesfykky deleted');
+                            window.location.reload();
+                        },
+                        error: function (jqXHR, textStatus, errorThrown) {
+                            alert('ERROR - ' + errorThrown);
+                        }
+                    });
+            });
+        })
 
-// survey editor scripting
+        // survey editor scripting
 
-        var editorOptions = { showJSONEditorTab: true,  showEmbededSurveyTab: false };
+        var editorOptions = { showJSONEditorTab: true, showEmbededSurveyTab: false };
         var survey = new SurveyEditor.SurveyEditor("surveyEditorContainer", editorOptions);
 
         // Add database id property to survey object
         Survey.JsonObject.metaData.addProperty("questionbase", { name: "internalId:number" });
+        //survey.loadSurvey()
 
         survey.onCanShowProperty.add(function (sender, options) {
             if (options.obj.getType() == "survey") {
@@ -271,8 +314,11 @@
         //    }
         //});
 
-        //set function on save callback
+        // set function on save callback
         survey.saveSurveyFunc = function () {
+            //var $successAlert = document.getElementById("successAlert");
+            var $successAlert = $(this).siblings('.alert-success');
+            var $dangerAlert = document.getElementById("dangerAlert");
             $.ajax(
                 '@Url.Action("SaveSurvey", "SurveyEditor", new { area="" })',
                 {
@@ -281,7 +327,9 @@
                     data: { surveyJson: survey.text },
                     success: function (data, textStatus, jqXHR) {
                         survey.surveyValue.surveyId = data;
-                        alert("Your Survey has been succesfully saved!");
+                        //$successAlert.removeClass('hidden');
+                        alert('Survey succesfully saved');
+                        window.location.reload();
                     },
                     error: function (jqXHR, textStatus, errorThrown) {
                         alert('ERROR - ' + errorThrown);
@@ -289,25 +337,25 @@
                 });
         }
 
-// .modal-backdrop classes
+        // .modal-backdrop classes
 
-            $(".modal-transparent").on('show.bs.modal', function () {
-                setTimeout(function () {
-                    $(".modal-backdrop").addClass("modal-backdrop-transparent");
-                }, 0);
-            });
-            $(".modal-transparent").on('hidden.bs.modal', function () {
+        $(".modal-transparent").on('show.bs.modal', function () {
+            setTimeout(function () {
                 $(".modal-backdrop").addClass("modal-backdrop-transparent");
-            });
+            }, 0);
+        });
+        $(".modal-transparent").on('hidden.bs.modal', function () {
+            $(".modal-backdrop").addClass("modal-backdrop-transparent");
+        });
 
-            $(".modal-fullscreen").on('show.bs.modal', function () {
-                setTimeout(function () {
-                    $(".modal-backdrop").addClass("modal-backdrop-fullscreen");
-                }, 0);
-            });
-            $(".modal-fullscreen").on('hidden.bs.modal', function () {
+        $(".modal-fullscreen").on('show.bs.modal', function () {
+            setTimeout(function () {
                 $(".modal-backdrop").addClass("modal-backdrop-fullscreen");
-            });
-</script>
-    }
+            }, 0);
+        });
+        $(".modal-fullscreen").on('hidden.bs.modal', function () {
+            $(".modal-backdrop").addClass("modal-backdrop-fullscreen");
+        });
+    </script>
+}
 

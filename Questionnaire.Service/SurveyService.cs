@@ -330,5 +330,43 @@ namespace Questionnaire.Service
             command.Execute(null);
             return command.Result;
         }
+        public ServiceResponse<bool?> DeleteSurvey(int surveyId)
+        {
+            ServiceCommand<bool?> command = new ServiceCommand<bool?>
+            {
+                Execution = (cmd, param) =>
+                {
+                    Survey surveyInDb = null;      // The survey object to be saved
+
+                    // Try to get survey with provided Id from database
+                    try
+                    {
+                        surveyInDb = this.surveyManager.Value.Find(surveyId);
+                    }
+                    catch (Exception ex)
+                    {
+                        cmd.Status = OperationStatus.Failure;
+                        var originalException = new ArgumentException($"Failed retrieve survey with id {surveyId}", ex);
+                        var exc = new CustomException(originalException, errorCode: 0);
+                        throw exc;
+                    }
+
+                    if (surveyInDb != null)
+                    {
+                        if (surveyInDb.IsActive)
+                        {
+                            var originalException = new ArgumentException($"Survey with id {surveyId} is active. Cannot delete active survey");
+                            var exc = new CustomException(originalException, errorCode: 0);
+                            throw exc;
+                        }
+                    }
+
+                    return surveyInDb.IsActive;
+                }
+            };
+
+            command.Execute(surveyId);
+            return command.Result;
+        }
     }
 }

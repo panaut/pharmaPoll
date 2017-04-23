@@ -44,17 +44,42 @@ namespace PollQuestionnaire.UI.Web.Controllers
 
             return result.OperationResult.Value;
         }
-        //[HttpPost()]
-        //public string FindSurvey(int surveyId)
-        //{
-        //    var result = surveyService.Value.GetServey(surveyId);
+        [HttpGet()]
+        public string GetSurvey(int surveyId)
+        {
+            var result = surveyService.Value.GetSurvey(surveyId);
 
-        //    if (result.Status != OperationStatus.Success)
-        //    {
-        //        throw new InvalidOperationException("failed to update survey status");
-        //    }
+            if (result.Status != OperationStatus.Success)
+            {
+                throw new InvalidOperationException("failed to update survey status");
+            }
 
-        //    return result.Value;
-        //}
+            return result.OperationResult;
+        }
+        [HttpPost()]
+        public string DeleteSurvey(int surveyId)
+        {
+            var result = surveyService.Value.DeleteSurvey(surveyId);
+
+            if (result.Status != OperationStatus.Success)
+            {
+                throw new InvalidOperationException("failed to update survey status");
+            }
+
+            return result.ToString();
+        }
+        [HttpPost()]
+        public string SaveSurvey(string surveyJson)
+        {
+            var result = surveyService.Value.CreateOrSaveSurvey(surveyJson);
+
+            if (result.Status != OperationStatus.Success)
+            {
+                throw new InvalidOperationException("failed to update survey status");
+            }
+
+            return result.ToString();
+        }
+        
     }
 }
