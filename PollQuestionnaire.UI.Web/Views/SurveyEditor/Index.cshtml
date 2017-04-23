@@ -12,7 +12,7 @@
     @Scripts.Render("~/bundles/surveyEditor")
 
     <script>
-        var editorOptions = { showJSONEditorTab: true,  showEmbededSurveyTab: false };
+        var editorOptions = { showJSONEditorTab: true, showEmbededSurveyTab: false };
         var survey = new SurveyEditor.SurveyEditor("surveyEditorContainer", editorOptions);
 
         // Add database id property to survey object
@@ -113,6 +113,6 @@
                         alert('ERROR - ' + errorThrown);
                     }
                 });
-        }
+        };
     </script>
 }

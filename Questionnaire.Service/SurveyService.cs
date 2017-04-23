@@ -1,11 +1,10 @@
 ﻿using Questionnaire.Data;
-using Questionnaire.Serialization;
+using Questionnaire.Data.Model;
+using Questionnaire.Data.Serialization;
 using Questionnaire.Service.Infrastructure;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Questionnaire.Service
 {
@@ -27,7 +26,7 @@ namespace Questionnaire.Service
             {
                 Execution = (cmd, param) =>
                             {
-                                Serialization.Model.Survey survey = null;      // The survey object to be saved
+                                Survey survey = null;      // The survey object to be saved
 
                                 // Try to deserialize JSON string
                                 try
@@ -79,7 +78,7 @@ namespace Questionnaire.Service
             {
                 Execution = (cmd, param) =>
                 {
-                    Serialization.Model.Survey survey = null;      // The survey object to be saved
+                    Survey survey = null;      // The survey object to be saved
 
                     // Try to deserialize JSON string
                     try
@@ -202,7 +201,7 @@ namespace Questionnaire.Service
                     if (surveyInDb != null)
                     {
                         var surveyJson = surveyInDb.SurveyJson;
-                        Serialization.Model.Survey survey = null;
+                        Survey survey = null;
                         // Try to deserialize JSON string from database
                         try
                         {
@@ -265,7 +264,7 @@ namespace Questionnaire.Service
                     if (surveyInDb != null)
                     {
                         var surveyJson = surveyInDb.SurveyJson;
-                        Serialization.Model.Survey survey = null;
+                        Survey survey = null;
                         // Try to deserialize JSON string from database
                         try
                         {

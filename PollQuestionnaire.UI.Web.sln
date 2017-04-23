@@ -11,7 +11,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Questionnaire.DataBroker", 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Questionnaire.Service", "Questionnaire.Service\Questionnaire.Service.csproj", "{76A4C661-1FA2-4F2E-A627-6AAC580E64D5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Questionnaire.Serialization", "Questionnaire.Serialization\Questionnaire.Serialization.csproj", "{87394046-9ECE-4C04-BB2A-74B0F988869A}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Questionnaire.Serialization.Tests", "Questionnaire.Serialization.Tests\Questionnaire.Serialization.Tests.csproj", "{5373E773-63CD-4FA0-B900-FC3C08E71487}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -35,10 +35,10 @@ Global
 		{76A4C661-1FA2-4F2E-A627-6AAC580E64D5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{76A4C661-1FA2-4F2E-A627-6AAC580E64D5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{76A4C661-1FA2-4F2E-A627-6AAC580E64D5}.Release|Any CPU.Build.0 = Release|Any CPU
-		{87394046-9ECE-4C04-BB2A-74B0F988869A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{87394046-9ECE-4C04-BB2A-74B0F988869A}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{87394046-9ECE-4C04-BB2A-74B0F988869A}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{87394046-9ECE-4C04-BB2A-74B0F988869A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5373E773-63CD-4FA0-B900-FC3C08E71487}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5373E773-63CD-4FA0-B900-FC3C08E71487}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5373E773-63CD-4FA0-B900-FC3C08E71487}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5373E773-63CD-4FA0-B900-FC3C08E71487}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
