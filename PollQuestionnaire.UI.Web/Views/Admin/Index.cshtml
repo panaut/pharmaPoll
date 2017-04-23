@@ -1,4 +1,4 @@
-﻿@model IEnumerable<Questionnaire.Data.Survey>
+﻿@model IEnumerable<Questionnaire.Data.Model.Survey>
 
 @{
     ViewBag.Title = "Admin";
@@ -10,7 +10,8 @@
 <br />
 <p>
     New Survey
-    <a href="#" class="startSurvey" data-toggle="tooltip" title="New Survey"> <i class="glyphicon glyphicon-plus"></i></a>
+    <a href="#" title="New Survey" data-toggle="modal" class="editModalLink" data-target="#modal-fullscreen_edit"> <i class="glyphicon glyphicon-plus"></i></a>
+    @*<a href="#" class="startSurvey" data-toggle="tooltip" title="New Survey"> <i class="glyphicon glyphicon-plus"></i></a>*@
 </p>
 <table class="table table-striped table-hover" id="surveyTable">
     <thead>
@@ -30,7 +31,7 @@
             {
             <tr data-surveyId="@item.Id">
                 @*<th scope="row">@item.Id</th>*@
-                <td>@item.Title</td>
+                <td>@item.title</td>
                 @if (!item.IsActive)
                 {
                     <td>
@@ -55,8 +56,8 @@
                 }
                 <td><a href="#" data-toggle="tooltip" title="Download file for translation"> <i class="glyphicon glyphicon-download"></i></a></td>
                 <td><a href="#" data-toggle="tooltip" title="Upload translation file"> <i class="glyphicon glyphicon-upload"></i></a></td>
-                <td><a href="#" title="Edit Survey: @item.Title" data-toggle="modal" data-id="@item.Id" class="editModalLink" data-target="#modal-fullscreen_edit"> <i id=@string.Concat(item.Id, "-glyphicon-pencil") class="glyphicon glyphicon-pencil"></i></a></td>
-                <td><a href="#" data-toggle="modal" title="delete_Survey @item.Title" data-target="#modal-delete"> <i id=@string.Concat(item.Id, "-glyphicon-trash") class="glyphicon glyphicon-trash"></i></a></td>
+                <td><a href="#" title="Edit Survey: @item.title" data-toggle="modal" data-id="@item.Id" class="editModalLink" data-target="#modal-fullscreen_edit"> <i id=@string.Concat(item.Id, "-glyphicon-pencil") class="glyphicon glyphicon-pencil"></i></a></td>
+                <td><a href="#" data-toggle="modal" title="delete_Survey @item.title" data-target="#modal-delete"> <i id=@string.Concat(item.Id, "-glyphicon-trash") class="glyphicon glyphicon-trash"></i></a></td>
                 <td><span class="badge" title="Number of responses">not active</span></td>
             </tr>
         }
