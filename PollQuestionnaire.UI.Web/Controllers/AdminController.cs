@@ -63,7 +63,7 @@ namespace PollQuestionnaire.UI.Web.Controllers
 
             if (result.Status != OperationStatus.Success)
             {
-                throw new InvalidOperationException("failed to update survey status");
+                throw new InvalidOperationException("Failed to update survey status");
             }
 
             return result.ToString();
