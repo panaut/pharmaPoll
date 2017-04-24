@@ -1,7 +1,6 @@
 ﻿using Newtonsoft.Json;
 using Questionnaire.Data.Model;
 using Questionnaire.Data.Model.QuestionDefinition;
-using Questionnaire.Serialization.Model;
 using System;
 using System.Collections.Generic;
 

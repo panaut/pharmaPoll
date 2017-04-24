@@ -1,9 +1,8 @@
-﻿using Questionnaire.Data.Model.QuestionDefinition;
-using Questionnaire.Serialization.Attributes;
+﻿using Questionnaire.Serialization.Attributes;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace Questionnaire.Serialization.Model.QuestionDefinition
+namespace Questionnaire.Data.Model.QuestionDefinition
 {
     [SurveyType("comment")]
     [Table("QDefBases_Comment")]

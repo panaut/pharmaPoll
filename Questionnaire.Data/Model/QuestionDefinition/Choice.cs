@@ -1,5 +1,4 @@
 ﻿using Newtonsoft.Json;
-using Questionnaire.Serialization.Model;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
