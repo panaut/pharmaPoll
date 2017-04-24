@@ -9,18 +9,7 @@ namespace Questionnaire.Data
 
         Survey Find(int id);
 
-        Survey CreatePoll(
-            string title,
-            string json,
-            bool isActive = false);
-
         Survey CreatePoll(Survey survey);
-
-        void UpdateSurvey(
-            int id,
-            string title,
-            string json,
-            bool isActive = false);
 
         void UpdateSurvey(Survey survey);
 

@@ -1,6 +1,7 @@
 ﻿using Questionnaire.Data.Model;
 using System;
 using System.Collections.Generic;
+using RefactorThis.GraphDiff;
 
 namespace Questionnaire.Data
 {
@@ -50,21 +51,6 @@ namespace Questionnaire.Data
             context.SaveChanges();
         }
 
-        public Survey CreatePoll(string title, string json, bool isActive = false)
-        {
-            var survey = new Survey();
-
-            survey.title = title;
-            survey.SurveyJson = json;
-            survey.IsActive = isActive;
-
-            context.Surveys.Add(survey);
-
-            context.SaveChanges();
-
-            return survey;
-        }
-
         public Survey CreatePoll(Survey survey)
         {
             context.Surveys.Add(survey);
@@ -108,25 +94,19 @@ namespace Questionnaire.Data
             throw new NotImplementedException();
         }
 
-        public void UpdateSurvey(int id, string title, string json, bool isActive = false)
-        {
-            var survey = this.Find(id);
-
-            if (survey.IsActive)
-                throw new InvalidOperationException($"Survey (SurveyId={id}) is already active");
-
-            survey.title = title;
-            survey.IsActive = isActive;
-            survey.SurveyJson = json;
-            context.SaveChanges();
-        }
         public void UpdateSurvey(Survey survey)
         {
-            var existingSurvey = this.Find(survey.Id);
-            var surveyEntry = context.Entry(existingSurvey);
-            surveyEntry.CurrentValues.SetValues(survey);
+            context.UpdateGraph(survey, mapl1 => 
+            mapl1.OwnedCollection(srv => srv.pages, page => 
+                page.OwnedCollection(pg => pg.elements)));
 
             context.SaveChanges();
+
+            //var existingSurvey = this.Find(survey.Id);
+            //var surveyEntry = context.Entry(existingSurvey);
+            //surveyEntry.CurrentValues.SetValues(survey);
+
+            //context.SaveChanges();
         }
 
     }

@@ -31,7 +31,7 @@ namespace Questionnaire.Data.Model.QuestionDefinition
 
         public int? PlainMatrixId { get; set; }
 
-        public bool ShouldSerializeRatingPlainMatrixId()
+        public bool ShouldSerializePlainMatrixId()
         {
             return false;
         }

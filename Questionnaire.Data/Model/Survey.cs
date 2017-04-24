@@ -24,13 +24,6 @@ namespace Questionnaire.Data.Model
             return false;
         }
 
-        public string SurveyJson { get; set; }
-
-        public bool ShouldSerializeSurveyJson()
-        {
-            return false;
-        }
-
         public bool clearInvisibleValues { get; set; } = false;
 
         public bool ShouldSerializeclearInvisibleValues()

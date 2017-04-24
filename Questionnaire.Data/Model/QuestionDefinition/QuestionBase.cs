@@ -34,7 +34,7 @@ namespace Questionnaire.Data.Model.QuestionDefinition
 
         public int? ComplexMatrixBaseId { get; set; }
 
-        public bool ShouldSerializeComplexMatrixId()
+        public bool ShouldSerializeComplexMatrixBaseId()
         {
             return false;
         }
@@ -42,7 +42,7 @@ namespace Questionnaire.Data.Model.QuestionDefinition
         [ForeignKey("ComplexMatrixBaseId")]
         public virtual ComplexMatrixBase ComplexMatrixBase { get; set; }
 
-        public bool ShouldSerializeComplexMatrix()
+        public bool ShouldSerializeComplexMatrixBase()
         {
             return false;
         }

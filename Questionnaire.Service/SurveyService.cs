@@ -230,8 +230,7 @@ namespace Questionnaire.Service
                     try
                     {
                         surveys = this.surveyManager.Value
-                                            .GetAllSurveys()
-                                            .Select(srv => { srv.SurveyJson = string.Empty; return srv; });
+                                            .GetAllSurveys();
                     }
                     catch (Exception ex)
                     {
