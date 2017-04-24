@@ -2,8 +2,6 @@
 using System;
 using System.Collections.Generic;
 using RefactorThis.GraphDiff;
-using System.Linq;
-using Questionnaire.Data.Model.QuestionDefinition;
 
 namespace Questionnaire.Data
 {
@@ -53,7 +51,7 @@ namespace Questionnaire.Data
             context.SaveChanges();
         }
 
-        public Survey CreatePoll(Survey survey)
+        public Survey CreateSurvey(Survey survey)
         {
             context.Surveys.Add(survey);
 
@@ -62,7 +60,7 @@ namespace Questionnaire.Data
             return survey;
         }
 
-        public void DeletePoll(int pollId)
+        public void DeleteSurvey(int pollId)
         {
             var surveyToDelete = this.Find(pollId);
             context.Surveys.Remove(surveyToDelete);

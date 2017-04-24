@@ -16,7 +16,7 @@ namespace Questionnaire.Service
 
         ServiceResponse<IEnumerable<Survey>> GetAllSurveys();
 
-        ServiceResponse<bool?> DeleteSurvey(int surveyId);
+        ServiceResponse DeleteSurvey(int surveyId);
 
     }
 }
