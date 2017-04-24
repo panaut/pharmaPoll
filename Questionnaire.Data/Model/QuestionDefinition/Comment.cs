@@ -3,7 +3,7 @@ using Questionnaire.Serialization.Attributes;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace Questionnaire.Serialization.Model
+namespace Questionnaire.Serialization.Model.QuestionDefinition
 {
     [SurveyType("comment")]
     [Table("QDefBases_Comment")]
