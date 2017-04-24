@@ -37,7 +37,8 @@ namespace Questionnaire.Data.Serialization
 
                     return new JsonSerializerSettings
                     {
-                        Binder = knownTypesBinder
+                        Binder = knownTypesBinder,
+                        Formatting = Formatting.Indented
                     };
                 };
             }
@@ -50,12 +51,32 @@ namespace Questionnaire.Data.Serialization
 
         public string Serialize(Survey survey)
         {
-            return JsonConvert.SerializeObject(survey);
+            return this.SerializeObject(survey);
         }
 
         public string Serialize(IEnumerable<Survey> surveys)
         {
-            return JsonConvert.SerializeObject(surveys);
+            return this.SerializeObject(surveys);
+        }
+
+        private string SerializeObject(object obj)
+        {
+            string objJson = string.Empty;
+
+            var serializer = JsonSerializer.CreateDefault();
+
+            using (var stringWriter = new System.IO.StringWriter())
+            {
+                using (var writer = new JsonTextWriter(stringWriter))
+                {
+                    writer.QuoteName = false;
+                    serializer.Serialize(writer, obj);
+                }
+
+                objJson = stringWriter.ToString();
+            }
+
+            return objJson;
         }
     }
 }

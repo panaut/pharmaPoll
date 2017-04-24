@@ -61,18 +61,21 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Attributes\SurveyType.cs" />
-    <Compile Include="Interfaces\ICellDiversity.cs" />
-    <Compile Include="Migrations\201704231151268_InitalSetup.cs" />
-    <Compile Include="Migrations\201704231151268_InitalSetup.Designer.cs">
-      <DependentUpon>201704231151268_InitalSetup.cs</DependentUpon>
+    <Compile Include="Migrations\201704240151305_InitalSetup.cs" />
+    <Compile Include="Migrations\201704240151305_InitalSetup.Designer.cs">
+      <DependentUpon>201704240151305_InitalSetup.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Misc Interfaces\ICellDiversity.cs" />
+    <Compile Include="Repository\ContextFactory.cs" />
+    <Compile Include="Repository\GenericRepository.cs" />
+    <Compile Include="Repository\IContextFactory.cs" />
+    <Compile Include="Repository\IGenericRepository.cs" />
     <Compile Include="Serialization\ISurveySerializer.cs" />
-    <Compile Include="Interfaces\IValueTextPair.cs" />
-    <Compile Include="ISurveyManagement.cs" />
+    <Compile Include="Misc Interfaces\IValueTextPair.cs" />
+    <Compile Include="Repository\ISurveyManagement.cs" />
     <Compile Include="Model\QuestionDefinition\Choice.cs" />
     <Compile Include="Model\QuestionDefinition\ChoicesRestfull.cs" />
-    <Compile Include="Model\QuestionDefinition\MatrixColumn.cs" />
     <Compile Include="Model\QuestionDefinition\MatrixRow.cs" />
     <Compile Include="Model\QuestionDefinition\MultipleTextItem.cs" />
     <Compile Include="Model\Page.cs" />
@@ -96,10 +99,11 @@
     <Compile Include="Model\QuestionDefinition\SurveyValidator.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Serialization\KnownTypesBinder.cs" />
+    <Compile Include="Serialization\MatrixColumnConverter.cs" />
     <Compile Include="Serialization\SurveySerializer.cs" />
     <Compile Include="Serialization\ValidatorsConverter.cs" />
     <Compile Include="Serialization\ValueTextPairConverter.cs" />
-    <Compile Include="SurveyManager.cs" />
+    <Compile Include="Repository\SurveyManager.cs" />
     <Compile Include="SurveyModelContext.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -110,8 +114,14 @@
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201704231151268_InitalSetup.resx">
-      <DependentUpon>201704231151268_InitalSetup.cs</DependentUpon>
+    <ProjectReference Include="..\Questionnaire.Service.Infrastructure\Questionnaire.Service.Infrastructure.csproj">
+      <Project>{7e4fce66-367d-43b1-99f1-7c0ebf8ac787}</Project>
+      <Name>Questionnaire.Service.Infrastructure</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201704240151305_InitalSetup.resx">
+      <DependentUpon>201704240151305_InitalSetup.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

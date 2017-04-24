@@ -18,7 +18,7 @@ namespace Questionnaire.Data.Migrations
                         text = c.String(maxLength: 256),
                     })
                 .PrimaryKey(t => t.Id)
-                .ForeignKey("dbo.SelectBases_PlainMatrix", t => t.PlainMatrixId)
+                .ForeignKey("dbo.QDefBases_PlainMatrix", t => t.PlainMatrixId)
                 .ForeignKey("dbo.ComplexMatrixBases_ComplexMatrix", t => t.ComplexMatrixId)
                 .Index(t => t.ComplexMatrixId)
                 .Index(t => t.PlainMatrixId);
@@ -28,7 +28,8 @@ namespace Questionnaire.Data.Migrations
                 c => new
                     {
                         Id = c.Int(nullable: false, identity: true),
-                        PageId = c.Int(nullable: false),
+                        PageId = c.Int(),
+                        ComplexMatrixBaseId = c.Int(),
                         name = c.String(maxLength: 512),
                         title = c.String(maxLength: 512),
                         visibleIf = c.String(maxLength: 1024),
@@ -40,8 +41,10 @@ namespace Questionnaire.Data.Migrations
                         visible = c.Boolean(nullable: false),
                     })
                 .PrimaryKey(t => t.Id)
-                .ForeignKey("dbo.Pages", t => t.PageId, cascadeDelete: true)
-                .Index(t => t.PageId);
+                .ForeignKey("dbo.SelectBases_ComplexMatrixBase", t => t.ComplexMatrixBaseId)
+                .ForeignKey("dbo.Pages", t => t.PageId)
+                .Index(t => t.PageId)
+                .Index(t => t.ComplexMatrixBaseId);
             
             CreateTable(
                 "dbo.Choices",
@@ -50,14 +53,17 @@ namespace Questionnaire.Data.Migrations
                         Id = c.Int(nullable: false, identity: true),
                         QuestionId = c.Int(),
                         RatingId = c.Int(),
+                        PlainMatrixId = c.Int(),
                         text = c.String(maxLength: 256),
                         value = c.String(maxLength: 256),
                     })
                 .PrimaryKey(t => t.Id)
+                .ForeignKey("dbo.QDefBases_PlainMatrix", t => t.PlainMatrixId)
                 .ForeignKey("dbo.QDefBases_SelectBases", t => t.QuestionId)
                 .ForeignKey("dbo.QDefBases_Rating", t => t.RatingId)
                 .Index(t => t.QuestionId)
-                .Index(t => t.RatingId);
+                .Index(t => t.RatingId)
+                .Index(t => t.PlainMatrixId);
             
             CreateTable(
                 "dbo.RestfullChoiceSources",
@@ -187,6 +193,17 @@ namespace Questionnaire.Data.Migrations
                     })
                 .PrimaryKey(t => t.Id)
                 .ForeignKey("dbo.SelectBases_ComplexMatrixBase", t => t.Id)
+                .Index(t => t.Id);
+            
+            CreateTable(
+                "dbo.QDefBases_PlainMatrix",
+                c => new
+                    {
+                        Id = c.Int(nullable: false),
+                        isAllRowRequired = c.Boolean(nullable: false),
+                    })
+                .PrimaryKey(t => t.Id)
+                .ForeignKey("dbo.QDefBases", t => t.Id)
                 .Index(t => t.Id);
             
             CreateTable(
@@ -334,50 +351,6 @@ namespace Questionnaire.Data.Migrations
                 .Index(t => t.Id);
             
             CreateTable(
-                "dbo.MatrixColumn",
-                c => new
-                    {
-                        Id = c.Int(nullable: false),
-                        ComplexMatrixBaseId = c.Int(),
-                        PlainMatrixId = c.Int(),
-                        cellType = c.String(maxLength: 32),
-                        inputType = c.String(maxLength: 32),
-                        placeHolder = c.String(maxLength: 256),
-                        colCount = c.Int(nullable: false),
-                    })
-                .PrimaryKey(t => t.Id)
-                .ForeignKey("dbo.QDefBases_SelectBases", t => t.Id)
-                .ForeignKey("dbo.SelectBases_ComplexMatrixBase", t => t.ComplexMatrixBaseId)
-                .ForeignKey("dbo.SelectBases_PlainMatrix", t => t.PlainMatrixId)
-                .Index(t => t.Id)
-                .Index(t => t.ComplexMatrixBaseId)
-                .Index(t => t.PlainMatrixId);
-            
-            CreateTable(
-                "dbo.SelectBases_PlainMatrix",
-                c => new
-                    {
-                        Id = c.Int(nullable: false),
-                        isAllRowRequired = c.Boolean(nullable: false),
-                    })
-                .PrimaryKey(t => t.Id)
-                .ForeignKey("dbo.QDefBases_SelectBases", t => t.Id)
-                .Index(t => t.Id);
-            
-            CreateTable(
-                "dbo.ComplexMatrixBases_ComplexMatrixDynamic",
-                c => new
-                    {
-                        Id = c.Int(nullable: false),
-                        addRowText = c.String(maxLength: 64),
-                        removeRowText = c.String(maxLength: 64),
-                        rowCount = c.Int(nullable: false),
-                    })
-                .PrimaryKey(t => t.Id)
-                .ForeignKey("dbo.SelectBases_ComplexMatrixBase", t => t.Id)
-                .Index(t => t.Id);
-            
-            CreateTable(
                 "dbo.SelectBases_Dropdown",
                 c => new
                     {
@@ -412,18 +385,27 @@ namespace Questionnaire.Data.Migrations
                 .ForeignKey("dbo.QDefBases_SelectBases", t => t.Id)
                 .Index(t => t.Id);
             
+            CreateTable(
+                "dbo.ComplexMatrixBases_ComplexMatrixDynamic",
+                c => new
+                    {
+                        Id = c.Int(nullable: false),
+                        addRowText = c.String(maxLength: 64),
+                        removeRowText = c.String(maxLength: 64),
+                        rowCount = c.Int(nullable: false),
+                    })
+                .PrimaryKey(t => t.Id)
+                .ForeignKey("dbo.SelectBases_ComplexMatrixBase", t => t.Id)
+                .Index(t => t.Id);
+            
         }
         
         public override void Down()
         {
+            DropForeignKey("dbo.ComplexMatrixBases_ComplexMatrixDynamic", "Id", "dbo.SelectBases_ComplexMatrixBase");
             DropForeignKey("dbo.QDefBases_Comment", "Id", "dbo.QDefBases_SelectBases");
             DropForeignKey("dbo.SelectBases_Radiogroup", "Id", "dbo.QDefBases_SelectBases");
             DropForeignKey("dbo.SelectBases_Dropdown", "Id", "dbo.QDefBases_SelectBases");
-            DropForeignKey("dbo.ComplexMatrixBases_ComplexMatrixDynamic", "Id", "dbo.SelectBases_ComplexMatrixBase");
-            DropForeignKey("dbo.SelectBases_PlainMatrix", "Id", "dbo.QDefBases_SelectBases");
-            DropForeignKey("dbo.MatrixColumn", "PlainMatrixId", "dbo.SelectBases_PlainMatrix");
-            DropForeignKey("dbo.MatrixColumn", "ComplexMatrixBaseId", "dbo.SelectBases_ComplexMatrixBase");
-            DropForeignKey("dbo.MatrixColumn", "Id", "dbo.QDefBases_SelectBases");
             DropForeignKey("dbo.SelectBases_CheckBox", "Id", "dbo.QDefBases_SelectBases");
             DropForeignKey("dbo.QDefBases_Text", "Id", "dbo.QDefBases");
             DropForeignKey("dbo.QDefBases_Rating", "Id", "dbo.QDefBases");
@@ -437,26 +419,25 @@ namespace Questionnaire.Data.Migrations
             DropForeignKey("dbo.Validators_Numeric", "Id", "dbo.Validators");
             DropForeignKey("dbo.Validators_Email", "Id", "dbo.Validators");
             DropForeignKey("dbo.Validators_AnswerCount", "Id", "dbo.Validators");
+            DropForeignKey("dbo.QDefBases_PlainMatrix", "Id", "dbo.QDefBases");
             DropForeignKey("dbo.ComplexMatrixBases_ComplexMatrix", "Id", "dbo.SelectBases_ComplexMatrixBase");
             DropForeignKey("dbo.SelectBases_ComplexMatrixBase", "Id", "dbo.QDefBases_SelectBases");
             DropForeignKey("dbo.QDefBases_SelectBases", "Id", "dbo.QDefBases");
             DropForeignKey("dbo.MatrixRow", "ComplexMatrixId", "dbo.ComplexMatrixBases_ComplexMatrix");
-            DropForeignKey("dbo.MatrixRow", "PlainMatrixId", "dbo.SelectBases_PlainMatrix");
+            DropForeignKey("dbo.MatrixRow", "PlainMatrixId", "dbo.QDefBases_PlainMatrix");
+            DropForeignKey("dbo.RestfullChoiceSources", "Id", "dbo.QDefBases_SelectBases");
             DropForeignKey("dbo.Triggers", "SurveyId", "dbo.Surveys");
             DropForeignKey("dbo.Pages", "SurveyId", "dbo.Surveys");
             DropForeignKey("dbo.Choices", "RatingId", "dbo.QDefBases_Rating");
             DropForeignKey("dbo.Validators", "QuestionId", "dbo.QDefBases");
             DropForeignKey("dbo.QDefBases", "PageId", "dbo.Pages");
-            DropForeignKey("dbo.RestfullChoiceSources", "Id", "dbo.QDefBases_SelectBases");
+            DropForeignKey("dbo.QDefBases", "ComplexMatrixBaseId", "dbo.SelectBases_ComplexMatrixBase");
             DropForeignKey("dbo.Choices", "QuestionId", "dbo.QDefBases_SelectBases");
+            DropForeignKey("dbo.Choices", "PlainMatrixId", "dbo.QDefBases_PlainMatrix");
+            DropIndex("dbo.ComplexMatrixBases_ComplexMatrixDynamic", new[] { "Id" });
             DropIndex("dbo.QDefBases_Comment", new[] { "Id" });
             DropIndex("dbo.SelectBases_Radiogroup", new[] { "Id" });
             DropIndex("dbo.SelectBases_Dropdown", new[] { "Id" });
-            DropIndex("dbo.ComplexMatrixBases_ComplexMatrixDynamic", new[] { "Id" });
-            DropIndex("dbo.SelectBases_PlainMatrix", new[] { "Id" });
-            DropIndex("dbo.MatrixColumn", new[] { "PlainMatrixId" });
-            DropIndex("dbo.MatrixColumn", new[] { "ComplexMatrixBaseId" });
-            DropIndex("dbo.MatrixColumn", new[] { "Id" });
             DropIndex("dbo.SelectBases_CheckBox", new[] { "Id" });
             DropIndex("dbo.QDefBases_Text", new[] { "Id" });
             DropIndex("dbo.QDefBases_Rating", new[] { "Id" });
@@ -470,6 +451,7 @@ namespace Questionnaire.Data.Migrations
             DropIndex("dbo.Validators_Numeric", new[] { "Id" });
             DropIndex("dbo.Validators_Email", new[] { "Id" });
             DropIndex("dbo.Validators_AnswerCount", new[] { "Id" });
+            DropIndex("dbo.QDefBases_PlainMatrix", new[] { "Id" });
             DropIndex("dbo.ComplexMatrixBases_ComplexMatrix", new[] { "Id" });
             DropIndex("dbo.SelectBases_ComplexMatrixBase", new[] { "Id" });
             DropIndex("dbo.QDefBases_SelectBases", new[] { "Id" });
@@ -477,17 +459,17 @@ namespace Questionnaire.Data.Migrations
             DropIndex("dbo.Validators", new[] { "QuestionId" });
             DropIndex("dbo.Pages", new[] { "SurveyId" });
             DropIndex("dbo.RestfullChoiceSources", new[] { "Id" });
+            DropIndex("dbo.Choices", new[] { "PlainMatrixId" });
             DropIndex("dbo.Choices", new[] { "RatingId" });
             DropIndex("dbo.Choices", new[] { "QuestionId" });
+            DropIndex("dbo.QDefBases", new[] { "ComplexMatrixBaseId" });
             DropIndex("dbo.QDefBases", new[] { "PageId" });
             DropIndex("dbo.MatrixRow", new[] { "PlainMatrixId" });
             DropIndex("dbo.MatrixRow", new[] { "ComplexMatrixId" });
+            DropTable("dbo.ComplexMatrixBases_ComplexMatrixDynamic");
             DropTable("dbo.QDefBases_Comment");
             DropTable("dbo.SelectBases_Radiogroup");
             DropTable("dbo.SelectBases_Dropdown");
-            DropTable("dbo.ComplexMatrixBases_ComplexMatrixDynamic");
-            DropTable("dbo.SelectBases_PlainMatrix");
-            DropTable("dbo.MatrixColumn");
             DropTable("dbo.SelectBases_CheckBox");
             DropTable("dbo.QDefBases_Text");
             DropTable("dbo.QDefBases_Rating");
@@ -500,6 +482,7 @@ namespace Questionnaire.Data.Migrations
             DropTable("dbo.Validators_Numeric");
             DropTable("dbo.Validators_Email");
             DropTable("dbo.Validators_AnswerCount");
+            DropTable("dbo.QDefBases_PlainMatrix");
             DropTable("dbo.ComplexMatrixBases_ComplexMatrix");
             DropTable("dbo.SelectBases_ComplexMatrixBase");
             DropTable("dbo.QDefBases_SelectBases");

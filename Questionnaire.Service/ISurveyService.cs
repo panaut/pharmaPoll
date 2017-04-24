@@ -12,8 +12,6 @@ namespace Questionnaire.Service
 
         ServiceResponse<bool?> SetSurveyStatus(int surveyId, bool status);
 
-        ServiceResponse<string> GetActiveSurvey();
-
         ServiceResponse<string> GetSurvey(int surveyId);
 
         ServiceResponse<IEnumerable<Survey>> GetAllSurveys();

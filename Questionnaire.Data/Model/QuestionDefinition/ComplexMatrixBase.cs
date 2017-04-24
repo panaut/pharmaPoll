@@ -1,4 +1,5 @@
-﻿using Questionnaire.Serialization.Model;
+﻿using Newtonsoft.Json;
+using Questionnaire.Data.Serialization;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -38,6 +39,7 @@ namespace Questionnaire.Data.Model.QuestionDefinition
             return this.horizontalScroll;
         }
 
-        public virtual ICollection<MatrixColumn> columns { get; set; } = new List<MatrixColumn>();
+        [JsonConverter(typeof(MatrixColumnConverter))]
+        public virtual ICollection<QuestionBase> columns { get; set; } = new List<QuestionBase>();
     }
 }

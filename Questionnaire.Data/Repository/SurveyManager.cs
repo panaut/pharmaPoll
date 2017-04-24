@@ -65,9 +65,21 @@ namespace Questionnaire.Data
             return survey;
         }
 
+        public Survey CreatePoll(Survey survey)
+        {
+            context.Surveys.Add(survey);
+
+            context.SaveChanges();
+
+            return survey;
+        }
+
         public void DeletePoll(int pollId)
         {
-            throw new NotImplementedException();
+            var surveyToDelete = this.Find(pollId);
+            context.Surveys.Remove(surveyToDelete);
+
+            context.SaveChanges();
         }
 
         /// <summary>
@@ -108,5 +120,14 @@ namespace Questionnaire.Data
             survey.SurveyJson = json;
             context.SaveChanges();
         }
+        public void UpdateSurvey(Survey survey)
+        {
+            var existingSurvey = this.Find(survey.Id);
+            var surveyEntry = context.Entry(existingSurvey);
+            surveyEntry.CurrentValues.SetValues(survey);
+
+            context.SaveChanges();
+        }
+
     }
 }

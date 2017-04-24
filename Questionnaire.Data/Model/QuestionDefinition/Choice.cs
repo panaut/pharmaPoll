@@ -30,6 +30,13 @@ namespace Questionnaire.Data.Model.QuestionDefinition
             return false;
         }
 
+        public int? PlainMatrixId { get; set; }
+
+        public bool ShouldSerializeRatingPlainMatrixId()
+        {
+            return false;
+        }
+
         [ForeignKey("QuestionId")]
         public virtual SelectQuestionBase Question { get; set; }
 
@@ -42,6 +49,14 @@ namespace Questionnaire.Data.Model.QuestionDefinition
         public virtual Rating Rating { get; set; }
 
         public bool ShouldSerializeRating()
+        {
+            return false;
+        }
+
+        [ForeignKey("PlainMatrixId")]
+        public virtual PlainMatrix PlainMatrix { get; set; }
+
+        public bool ShouldSerializePlainMatrix()
         {
             return false;
         }

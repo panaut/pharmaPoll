@@ -18,7 +18,7 @@ namespace Questionnaire.Data.Model.QuestionDefinition
             return this.Id != 0;
         }
 
-        public int PageId { get; set; }
+        public int? PageId { get; set; }
 
         public bool ShouldSerializePageId()
         {
@@ -28,6 +28,21 @@ namespace Questionnaire.Data.Model.QuestionDefinition
         public virtual Page Page { get; set; }
 
         public bool ShouldSerializePage()
+        {
+            return false;
+        }
+
+        public int? ComplexMatrixBaseId { get; set; }
+
+        public bool ShouldSerializeComplexMatrixId()
+        {
+            return false;
+        }
+
+        [ForeignKey("ComplexMatrixBaseId")]
+        public virtual ComplexMatrixBase ComplexMatrixBase { get; set; }
+
+        public bool ShouldSerializeComplexMatrix()
         {
             return false;
         }

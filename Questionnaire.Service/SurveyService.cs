@@ -40,19 +40,23 @@ namespace Questionnaire.Service
                                     throw exc;
                                 }
 
-                                Survey surveyInDb = null;   // Database record representing the survey
-
                                 // Try to save deserialized object to database
                                 try
                                 {
                                     if (survey != null)
                                     {
-                                        if (string.IsNullOrEmpty(survey.surveyId))
+                                        if (survey.Id == 0)
                                         {
                                             survey.surveyId = $"pqSurvey-{DateTime.Now.ToString("yyMMddHHmmss")}";
                                         }
+                                        else
+                                        {
+                                            throw new CustomException(
+                                                "Failed to save Survey object in database",
+                                                new ArgumentException("It's not allowed to insert Surveys with already assigned ID", "Survey.Id"));
+                                        }
 
-                                        surveyInDb = this.surveyManager.Value.CreatePoll(survey.title, surveyJson, isActive: true);
+                                        survey = this.surveyManager.Value.CreatePoll(survey);
                                     }
                                 }
                                 catch (Exception ex)
@@ -64,7 +68,7 @@ namespace Questionnaire.Service
 
                                 cmd.Result.Status = OperationStatus.Success;
 
-                                return surveyInDb.Id;
+                                return survey.Id;
                             }
             };
 
@@ -92,26 +96,18 @@ namespace Questionnaire.Service
                         throw exc;
                     }
 
-                    int surveyId = 0;   // Id of the Database record representing the survey
-
                     // Try to save deserialized object to database
                     try
                     {
                         if (survey != null)
                         {
-                            if (string.IsNullOrEmpty(survey.surveyId))
+                            if (survey.Id == 0)
                             {
-                                var surveyInDb = this.surveyManager.Value.CreatePoll(survey.title, surveyJson, isActive: false);
-                                surveyId = surveyInDb.Id;
+                                survey = this.surveyManager.Value.CreatePoll(survey);
                             }
                             else
                             {
-                                if (!int.TryParse(survey.surveyId, out surveyId))
-                                {
-                                    throw new CustomException(new ArgumentException($"Failed to parse SurveyId (value was: {survey.surveyId})", "surveyId"));
-                                }
-
-                                this.surveyManager.Value.UpdateSurvey(surveyId, survey.title, surveyJson, isActive: false);
+                                this.surveyManager.Value.UpdateSurvey(survey);
                             }
                         }
                     }
@@ -124,7 +120,7 @@ namespace Questionnaire.Service
 
                     cmd.Result.Status = OperationStatus.Success;
 
-                    return surveyId;
+                    return survey.Id;
                 }
             };
 
@@ -181,12 +177,12 @@ namespace Questionnaire.Service
             {
                 Execution = (cmd, param) =>
                 {
-                    Survey surveyInDb = null;      // The survey object to be saved
+                    Survey survey = null;      // The survey object to be saved
 
                     // Try to get survey with provided Id from database
                     try
                     {
-                        surveyInDb = this.surveyManager.Value.Find(surveyId);
+                        survey = this.surveyManager.Value.Find(surveyId);
                     }
                     catch (Exception ex)
                     {
@@ -198,86 +194,8 @@ namespace Questionnaire.Service
 
                     string retStr = string.Empty;      // Result JSON
 
-                    if (surveyInDb != null)
+                    if (survey != null)
                     {
-                        var surveyJson = surveyInDb.SurveyJson;
-                        Survey survey = null;
-                        // Try to deserialize JSON string from database
-                        try
-                        {
-                            survey = surveySerializer.Value.Deserialize(surveyJson);
-                            survey.surveyId = surveyInDb.Id.ToString();
-                        }
-                        catch (Exception ex)
-                        {
-                            cmd.Status = OperationStatus.Failure;
-                            var exc = new CustomException("Failed to Deserialize survey object", ex, errorCode: 0);
-                            throw exc;
-                        }
-
-                        // Try to serialize modified object into JSON string
-                        try
-                        {
-                            retStr = surveySerializer.Value.Serialize(survey);
-                        }
-                        catch (Exception ex)
-                        {
-                            cmd.Status = OperationStatus.Failure;
-                            var exc = new CustomException("Failed to Serialize survey object into JSON string", ex, errorCode: 0);
-                            throw exc;
-                        }
-
-                        cmd.Result.Status = OperationStatus.Success;
-                    }
-
-                    return retStr;
-                }
-            };
-
-            command.Execute(null);
-            return command.Result;
-        }
-
-        public ServiceResponse<string> GetActiveSurvey()
-        {
-            var command = new ServiceCommand<string>
-            {
-                Execution = (cmd, param) =>
-                {
-                    Survey surveyInDb = null;      // The survey object to be saved
-
-                    // Try to get active survey from database
-                    try
-                    {
-                        surveyInDb = this.surveyManager.Value.GetAllSurveys().SingleOrDefault(srv => srv.IsActive);
-                    }
-                    catch (Exception ex)
-                    {
-                        cmd.Status = OperationStatus.Failure;
-                        var originalException = new ArgumentException("Failed retrieve active survey", ex);
-                        var exc = new CustomException(originalException, errorCode: 0);
-                        throw exc;
-                    }
-
-                    string retStr = string.Empty;      // Result JSON
-
-                    if (surveyInDb != null)
-                    {
-                        var surveyJson = surveyInDb.SurveyJson;
-                        Survey survey = null;
-                        // Try to deserialize JSON string from database
-                        try
-                        {
-                            survey = surveySerializer.Value.Deserialize(surveyJson);
-                            survey.surveyId = surveyInDb.Id.ToString();
-                        }
-                        catch (Exception ex)
-                        {
-                            cmd.Status = OperationStatus.Failure;
-                            var exc = new CustomException("Failed to Deserialize survey object", ex, errorCode: 0);
-                            throw exc;
-                        }
-
                         // Try to serialize modified object into JSON string
                         try
                         {

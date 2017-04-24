@@ -1,12 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Questionnaire.Service.Infrastructure
 {
-    internal abstract class ServiceCommandBase
+    public abstract class ServiceCommandBase
     {
         public ServiceCommandBase()
         {

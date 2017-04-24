@@ -14,11 +14,15 @@ namespace Questionnaire.Data
             string json,
             bool isActive = false);
 
+        Survey CreatePoll(Survey survey);
+
         void UpdateSurvey(
             int id,
             string title,
             string json,
             bool isActive = false);
+
+        void UpdateSurvey(Survey survey);
 
         void ActivatePoll(int pollId);
 

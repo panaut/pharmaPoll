@@ -1,13 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Transactions;
 
 namespace Questionnaire.Service.Infrastructure
 {
-    internal class ServiceCommand<T> : ServiceCommand
+    public class ServiceCommand<T> : ServiceCommand
     {
         public new ServiceResponse<T> Result { get; set; }
 

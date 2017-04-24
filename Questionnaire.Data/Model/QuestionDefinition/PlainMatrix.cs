@@ -7,8 +7,8 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace Questionnaire.Data.Model.QuestionDefinition
 {
     [SurveyType("matrix")]
-    [Table("SelectBases_PlainMatrix")]
-    public class PlainMatrix : SelectQuestionBase
+    [Table("QDefBases_PlainMatrix")]
+    public class PlainMatrix : QuestionBase
     {
         public bool isAllRowRequired { get; set; } = false;
         public bool ShouldSerializeisAllRowRequired()
@@ -17,7 +17,7 @@ namespace Questionnaire.Data.Model.QuestionDefinition
         }
 
         [JsonConverter(typeof(ValueTextPairConverter))]
-        public virtual ICollection<MatrixColumn> columns { get; set; } = new List<MatrixColumn>();
+        public virtual ICollection<Choice> columns { get; set; } = new List<Choice>();
 
         [JsonConverter(typeof(ValueTextPairConverter))]
         public virtual ICollection<MatrixRow> rows { get; set; } = new List<MatrixRow>();

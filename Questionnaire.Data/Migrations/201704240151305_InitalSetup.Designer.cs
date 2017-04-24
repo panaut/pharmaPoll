@@ -13,7 +13,7 @@ namespace Questionnaire.Data.Migrations
         
         string IMigrationMetadata.Id
         {
-            get { return "201704231151268_InitalSetup"; }
+            get { return "201704240151305_InitalSetup"; }
         }
         
         string IMigrationMetadata.Source

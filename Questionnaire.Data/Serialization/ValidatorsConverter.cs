@@ -64,7 +64,7 @@ namespace Questionnaire.Data.Serialization
                     {
                         // Get Type Property from "$type" field...
                         var jObj = JObject.Parse(validator.ToString());
-                        var strType = jObj["$type"].Value<string>(); ;
+                        var strType = jObj["$type"].Value<string>();
 
                         Type targetType = this.GetMatchingType(strType);
 
@@ -124,8 +124,7 @@ namespace Questionnaire.Data.Serialization
             typeof(TextValidator),
             typeof(AnswerCountValidator),
             typeof(RegexValidator),
-            typeof(EmailValidator)
-        };
+            typeof(EmailValidator)};
         }
     }
 }

@@ -339,6 +339,10 @@
       <Project>{71aacca2-88a4-4342-8516-87823a864401}</Project>
       <Name>Questionnaire.Data</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Questionnaire.Service.Infrastructure\Questionnaire.Service.Infrastructure.csproj">
+      <Project>{7e4fce66-367d-43b1-99f1-7c0ebf8ac787}</Project>
+      <Name>Questionnaire.Service.Infrastructure</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Questionnaire.Service\Questionnaire.Service.csproj">
       <Project>{76a4c661-1fa2-4f2e-a627-6aac580e64d5}</Project>
       <Name>Questionnaire.Service</Name>
