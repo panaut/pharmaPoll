@@ -56,7 +56,7 @@ namespace Questionnaire.Service
                                                 new ArgumentException("It's not allowed to insert Surveys with already assigned ID", "Survey.Id"));
                                         }
 
-                                        survey = this.surveyManager.Value.CreatePoll(survey);
+                                        survey = this.surveyManager.Value.CreateSurvey(survey);
                                     }
                                 }
                                 catch (Exception ex)
@@ -103,7 +103,7 @@ namespace Questionnaire.Service
                         {
                             if (survey.Id == 0)
                             {
-                                survey = this.surveyManager.Value.CreatePoll(survey);
+                                survey = this.surveyManager.Value.CreateSurvey(survey);
                             }
                             else
                             {
@@ -246,38 +246,25 @@ namespace Questionnaire.Service
             command.Execute(null);
             return command.Result;
         }
-        public ServiceResponse<bool?> DeleteSurvey(int surveyId)
+
+        public ServiceResponse DeleteSurvey(int surveyId)
         {
-            ServiceCommand<bool?> command = new ServiceCommand<bool?>
+            ServiceCommand command = new ServiceCommand
             {
                 Execution = (cmd, param) =>
                 {
-                    Survey surveyInDb = null;      // The survey object to be saved
-
                     // Try to get survey with provided Id from database
                     try
                     {
-                        surveyInDb = this.surveyManager.Value.Find(surveyId);
+                        this.surveyManager.Value.DeleteSurvey(surveyId);
                     }
                     catch (Exception ex)
                     {
                         cmd.Status = OperationStatus.Failure;
-                        var originalException = new ArgumentException($"Failed retrieve survey with id {surveyId}", ex);
+                        var originalException = new ArgumentException($"Failed delete survey with id {surveyId}", ex);
                         var exc = new CustomException(originalException, errorCode: 0);
                         throw exc;
                     }
-
-                    if (surveyInDb != null)
-                    {
-                        if (surveyInDb.IsActive)
-                        {
-                            var originalException = new ArgumentException($"Survey with id {surveyId} is active. Cannot delete active survey");
-                            var exc = new CustomException(originalException, errorCode: 0);
-                            throw exc;
-                        }
-                    }
-
-                    return surveyInDb.IsActive;
                 }
             };
 

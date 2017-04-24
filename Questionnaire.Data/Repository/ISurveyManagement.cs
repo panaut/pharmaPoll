@@ -9,7 +9,7 @@ namespace Questionnaire.Data
 
         Survey Find(int id);
 
-        Survey CreatePoll(Survey survey);
+        Survey CreateSurvey(Survey survey);
 
         void UpdateSurvey(Survey survey);
 
@@ -19,6 +19,6 @@ namespace Questionnaire.Data
 
         void StopPoll(int pollId);
 
-        void DeletePoll(int pollId);
+        void DeleteSurvey(int pollId);
     }
 }
