@@ -31,7 +31,15 @@ namespace Questionnaire.Data.Serialization
             assemblyName = null;
             var attribute = this.knownTypesWithSurveyAttribute.SingleOrDefault(tup => tup.Item2.Equals(serializedType))?.Item1;
 
-            typeName = attribute != null ? ((SurveyType)attribute).TypeIdentifier : null;
+            if (attribute == null && serializedType.BaseType != null && serializedType.AssemblyQualifiedName.StartsWith("System.Data.Entity.DynamicProxies"))
+            {
+                // We are dealing with Entity Framework Proxy
+                this.BindToName(serializedType.BaseType, out assemblyName, out typeName);
+            }
+            else
+            {
+                typeName = attribute != null ? ((SurveyType)attribute).TypeIdentifier : null;
+            }
         }
     }
 }

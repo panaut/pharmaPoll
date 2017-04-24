@@ -2,12 +2,14 @@
 using System;
 using System.Collections.Generic;
 using RefactorThis.GraphDiff;
+using System.Linq;
+using Questionnaire.Data.Model.QuestionDefinition;
 
 namespace Questionnaire.Data
 {
     public class SurveyManager : ISurveyManagement
     {
-        private SurveyModelContext context = new SurveyModelContext();
+        private SurveyModelContext context = new SurveyModelContext(true, true, true);
 
         /// <summary>
         /// Activates survey with given Id.
