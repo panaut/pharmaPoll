@@ -43,6 +43,13 @@ namespace Questionnaire.Data
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
+
+            //modelBuilder.Entity<Page>().HasMany(page => page.elements).WithOptional(el => el.Page).WillCascadeOnDelete(true);
+            //modelBuilder.Entity<ComplexMatrixBase>().HasMany(matrix => matrix.columns).WithOptional(el => el.ComplexMatrixBase).WillCascadeOnDelete(true);
+            //modelBuilder.Entity<PlainMatrix>().HasMany(matrix => matrix.columns).WithOptional(el => el.PlainMatrix).WillCascadeOnDelete(true);
+            //modelBuilder.Entity<Rating>().HasMany(matrix => matrix.choices).WithOptional(ch => ch.Rating).WillCascadeOnDelete(true);
+            //modelBuilder.Entity<SelectQuestionBase>().HasMany(matrix => matrix.choices).WithOptional(ch => ch.Question).WillCascadeOnDelete(true);
+            //modelBuilder.Entity<MultipleText>().HasMany(mt => mt.items).WithRequired(mti => mti.MultipleTextQuestion).WillCascadeOnDelete(true);
         }
     }
 }

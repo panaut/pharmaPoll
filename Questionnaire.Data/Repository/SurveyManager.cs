@@ -89,11 +89,6 @@ namespace Questionnaire.Data
             return context.Surveys;
         }
 
-        public void StopPoll(int pollId)
-        {
-            throw new NotImplementedException();
-        }
-
         public void UpdateSurvey(Survey survey)
         {
             context.UpdateGraph(survey, mapl1 => 

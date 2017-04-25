@@ -75,6 +75,7 @@
     <Compile Include="Repository\GenericRepository.cs" />
     <Compile Include="Repository\IContextFactory.cs" />
     <Compile Include="Repository\IGenericRepository.cs" />
+    <Compile Include="Repository\SuveySynchronizer.cs" />
     <Compile Include="Serialization\ISurveySerializer.cs" />
     <Compile Include="Misc Interfaces\IValueTextPair.cs" />
     <Compile Include="Repository\ISurveyManagement.cs" />
