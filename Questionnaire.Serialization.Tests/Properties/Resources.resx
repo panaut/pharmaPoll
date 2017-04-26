@@ -1,0 +1,411 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="surveyJson" xml:space="preserve">
+    <value>{
+ pages: [
+  {
+   elements: [
+    {
+     $type: "rating",
+     name: "question1"
+    },
+    {
+     $type: "matrix",
+     name: "question2",
+     columns: [
+      "Column 1",
+      "Column 2",
+      "Column 3"
+     ],
+     rows: [
+      "Row 1",
+      "Row 2"
+     ]
+    },
+    {
+     $type: "matrixdropdown",
+     name: "question3",
+     columns: [
+      {
+       name: "Column 1",
+       choices: [
+        {
+         value: "1",
+         text: "A"
+        },
+        {
+         value: "2",
+         text: "B"
+        },
+        {
+         value: "3",
+         text: "C"
+        }
+       ],
+       cellType: "dropdown"
+      },
+      {
+       name: "Column 2",
+       choices: [
+        {
+         value: "1",
+         text: "AA"
+        },
+        {
+         value: "2",
+         text: "BB"
+        },
+        {
+         value: "3",
+         text: "CC"
+        }
+       ],
+       cellType: "checkbox"
+      },
+      {
+       name: "Column 3",
+       choices: [
+        {
+         value: "1",
+         text: "AAA"
+        },
+        {
+         value: "2",
+         text: "BBB"
+        },
+        {
+         value: "3",
+         text: "CCC"
+        }
+       ],
+       cellType: "radiogroup"
+      }
+     ],
+     choices: [
+      1,
+      2,
+      3,
+      4,
+      5
+     ],
+     rows: [
+      "Row 1",
+      "Row 2"
+     ]
+    },
+    {
+     $type: "multipletext",
+     name: "question4",
+     items: [
+      {
+       name: "text1"
+      },
+      {
+       name: "text2"
+      }
+     ]
+    }
+   ],
+   name: "page1"
+  },
+  {
+   elements: [
+    {
+     $type: "comment",
+     name: "question5"
+    },
+    {
+     $type: "dropdown",
+     choices: [
+      {
+       value: "1",
+       text: "first item"
+      },
+      {
+       value: "2",
+       text: "second item"
+      },
+      {
+       value: "3",
+       text: "third item"
+      }
+     ],
+     name: "question6"
+    }
+   ],
+   name: "page2"
+  },
+  {
+   elements: [
+    {
+     $type: "text",
+     name: "question7"
+    },
+    {
+     $type: "checkbox",
+     choices: [
+      {
+       value: "1",
+       text: "first item"
+      },
+      {
+       value: "2",
+       text: "second item"
+      },
+      {
+       value: "3",
+       text: "third item"
+      }
+     ],
+     name: "question8"
+    },
+    {
+     $type: "radiogroup",
+     choices: [
+      {
+       value: "1",
+       text: "first item"
+      },
+      {
+       value: "2",
+       text: "second item"
+      },
+      {
+       value: "3",
+       text: "third item"
+      }
+     ],
+     name: "question9"
+    },
+    {
+     $type: "dropdown",
+     choices: [
+      {
+       value: "1",
+       text: "first item"
+      },
+      {
+       value: "2",
+       text: "second item"
+      },
+      {
+       value: "3",
+       text: "third item"
+      }
+     ],
+     name: "question10"
+    }
+   ],
+   name: "page3"
+  },
+  {
+   elements: [
+    {
+     $type: "comment",
+     name: "question11"
+    },
+    {
+     $type: "rating",
+     name: "question12"
+    },
+    {
+     $type: "html",
+     name: "question13"
+    },
+    {
+     $type: "file",
+     name: "question14"
+    }
+   ],
+   name: "page4"
+  },
+  {
+   elements: [
+    {
+     $type: "matrixdynamic",
+     choices: [
+      1,
+      2,
+      3,
+      4,
+      5
+     ],
+     columns: [
+      {
+       name: "Column 1",
+       choices: [
+        {
+         value: "1",
+         text: "MDRC1C1"
+        },
+        {
+         value: "2",
+         text: "MDRC1C2"
+        },
+        {
+         value: "3",
+         text: "MDRC1C3"
+        },
+        {
+         value: "4",
+         text: "MDRC1C4"
+        },
+        {
+         value: "5",
+         text: "MDRC1C5"
+        }
+       ],
+       cellType: "dropdown"
+      },
+      {
+       name: "Column 2",
+       choices: [
+        {
+         value: "1",
+         text: "MDRC2C1"
+        },
+        {
+         value: "2",
+         text: "MDRC2C2"
+        },
+        {
+         value: "3",
+         text: "MDRC2C3"
+        },
+        {
+         value: "4",
+         text: "MDRC2C4"
+        }
+       ],
+       cellType: "checkbox"
+      },
+      {
+       name: "Column 3"
+      }
+     ],
+     name: "question15"
+    }
+   ],
+   name: "page5"
+  }
+ ]
+}</value>
+  </data>
+</root>

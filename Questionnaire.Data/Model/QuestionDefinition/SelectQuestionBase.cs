@@ -7,7 +7,7 @@ using System.Linq;
 
 namespace Questionnaire.Data.Model.QuestionDefinition
 {
-    [Table("QDefBases_SelectBases")]
+    [Table("QuestionBases_SelectBases")]
     public abstract class SelectQuestionBase : QuestionBase
     {
         public bool hasComment { get; set; } = false;

@@ -17,8 +17,6 @@ namespace Questionnaire.Data
 
         void DeactivatePoll(int pollId);
 
-        void StopPoll(int pollId);
-
         void DeleteSurvey(int pollId);
     }
 }

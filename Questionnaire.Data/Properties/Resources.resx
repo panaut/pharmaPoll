@@ -1,0 +1,231 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="ForeignKey_ComplexMatrixBaseQuestionBase" xml:space="preserve">
+    <value>ALTER TABLE [dbo].[QuestionBases]  WITH NOCHECK ADD  CONSTRAINT [FK_dbo.QuestionBases_dbo.SelectBases_ComplexMatrixBase_ComplexMatrixBaseId] FOREIGN KEY([ComplexMatrixBaseId])
+REFERENCES [dbo].[SelectBases_ComplexMatrixBase] ([Id])
+GO
+
+ALTER TABLE [dbo].[QuestionBases] NOCHECK CONSTRAINT [FK_dbo.QuestionBases_dbo.SelectBases_ComplexMatrixBase_ComplexMatrixBaseId]
+GO</value>
+  </data>
+  <data name="ForeignKey_ComplexMatrixMatrixRows" xml:space="preserve">
+    <value>ALTER TABLE [dbo].[MatrixRows]  WITH NOCHECK ADD  CONSTRAINT [FK_dbo.MatrixRows_dbo.ComplexMatrixBases_ComplexMatrix_ComplexMatrixId] FOREIGN KEY([ComplexMatrixId])
+REFERENCES [dbo].[ComplexMatrixBases_ComplexMatrix] ([Id])
+GO
+
+ALTER TABLE [dbo].[MatrixRows] NOCHECK CONSTRAINT [FK_dbo.MatrixRows_dbo.ComplexMatrixBases_ComplexMatrix_ComplexMatrixId]
+GO</value>
+  </data>
+  <data name="ForeignKey_PlainMatrixChoices" xml:space="preserve">
+    <value>ALTER TABLE [dbo].[Choices]  WITH NOCHECK ADD  CONSTRAINT [FK_dbo.Choices_dbo.QuestionBases_PlainMatrix_PlainMatrixId] FOREIGN KEY([PlainMatrixId])
+REFERENCES [dbo].[QuestionBases_PlainMatrix] ([Id])
+GO
+
+ALTER TABLE [dbo].[Choices] NOCHECK CONSTRAINT [FK_dbo.Choices_dbo.QuestionBases_PlainMatrix_PlainMatrixId]
+GO</value>
+  </data>
+  <data name="ForeignKey_PlainMatrixMatrixRows" xml:space="preserve">
+    <value>ALTER TABLE [dbo].[MatrixRows]  WITH NOCHECK ADD  CONSTRAINT [FK_dbo.MatrixRows_dbo.QuestionBases_PlainMatrix_PlainMatrixId] FOREIGN KEY([PlainMatrixId])
+REFERENCES [dbo].[QuestionBases_PlainMatrix] ([Id])
+GO
+
+ALTER TABLE [dbo].[MatrixRows] NOCHECK CONSTRAINT [FK_dbo.MatrixRows_dbo.QuestionBases_PlainMatrix_PlainMatrixId]
+GO</value>
+  </data>
+  <data name="ForeignKey_RatingChoices" xml:space="preserve">
+    <value>ALTER TABLE [dbo].[Choices]  WITH NOCHECK ADD  CONSTRAINT [FK_dbo.Choices_dbo.QuestionBases_Rating_RatingId] FOREIGN KEY([RatingId])
+REFERENCES [dbo].[QuestionBases_Rating] ([Id])
+GO
+
+ALTER TABLE [dbo].[Choices] NOCHECK CONSTRAINT [FK_dbo.Choices_dbo.QuestionBases_Rating_RatingId]
+GO</value>
+  </data>
+  <data name="ForeignKey_SelectQuestionBaseChoices" xml:space="preserve">
+    <value>ALTER TABLE [dbo].[Choices]  WITH NOCHECK ADD  CONSTRAINT [FK_dbo.Choices_dbo.QuestionBases_SelectBases_QuestionId] FOREIGN KEY([QuestionId])
+REFERENCES [dbo].[QuestionBases_SelectBases] ([Id])
+GO
+
+ALTER TABLE [dbo].[Choices] NOCHECK CONSTRAINT [FK_dbo.Choices_dbo.QuestionBases_SelectBases_QuestionId]
+GO</value>
+  </data>
+  <data name="Trigger_DeleteChoicesOfPlainMatrix" xml:space="preserve">
+    <value>CREATE TRIGGER dbo.DeleteChoicesOfPlainMatrix
+   ON  dbo.QuestionBases_PlainMatrix
+   FOR DELETE
+AS 
+BEGIN
+	DELETE dbo.Choices WHERE PlainMatrixId IN (SELECT Id from deleted)
+END</value>
+  </data>
+  <data name="Trigger_DeleteChoicesOfRating" xml:space="preserve">
+    <value>CREATE TRIGGER dbo.DeleteChoicesOfRating
+   ON  dbo.QuestionBases_Rating
+   FOR DELETE
+AS 
+BEGIN
+	DELETE dbo.Choices WHERE RatingId IN (SELECT Id from deleted)
+END</value>
+  </data>
+  <data name="Trigger_DeleteChoicesOfSelectBase" xml:space="preserve">
+    <value>CREATE TRIGGER dbo.DeleteChoicesOfSelectBase
+   ON  dbo.QuestionBases_SelectBases
+   FOR DELETE
+AS 
+BEGIN
+	DELETE dbo.Choices WHERE QuestionId IN (SELECT Id from deleted)
+END</value>
+  </data>
+  <data name="Trigger_DeleteComplexMatrixColumns" xml:space="preserve">
+    <value>CREATE TRIGGER dbo.DeleteComplexMatrixColumns
+   ON  dbo.SelectBases_ComplexMatrixBase
+   FOR DELETE
+AS 
+BEGIN
+	DELETE dbo.QuestionBases WHERE ComplexMatrixBaseId IN (SELECT Id from deleted)
+END</value>
+  </data>
+  <data name="Trigger_DeleteMatrixRowsOfComplexMatrix" xml:space="preserve">
+    <value>CREATE TRIGGER dbo.DeleteMatrixRowsOfComplexMatrix
+   ON  dbo.ComplexMatrixBases_ComplexMatrix
+   FOR DELETE
+AS 
+BEGIN
+	DELETE dbo.MatrixRows WHERE ComplexMatrixId IN (SELECT Id from deleted)
+END</value>
+  </data>
+  <data name="Trigger_DeleteMatrixRowsOfPlainMatrix" xml:space="preserve">
+    <value>CREATE TRIGGER dbo.DeleteMatrixRowsOfPlainMatrix
+   ON  dbo.QuestionBases_PlainMatrix
+   FOR DELETE
+AS 
+BEGIN
+	DELETE dbo.MatrixRows WHERE PlainMatrixId IN (SELECT Id from deleted)
+END</value>
+  </data>
+  <data name="Trigger_DeleteMultipleTextItemBase" xml:space="preserve">
+    <value>CREATE TRIGGER dbo.DeleteMultipleTextItemBase
+   ON  dbo.QuestionBases_MultipleTextItem
+   FOR DELETE
+AS 
+BEGIN
+	DELETE dbo.QuestionBases WHERE Id IN (SELECT Id from deleted)
+END</value>
+  </data>
+</root>

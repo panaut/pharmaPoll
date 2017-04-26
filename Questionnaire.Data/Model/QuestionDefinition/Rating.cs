@@ -8,7 +8,7 @@ using System.Linq;
 
 namespace Questionnaire.Data.Model.QuestionDefinition
 {
-    [Table("QDefBases_Rating")]
+    [Table("QuestionBases_Rating")]
     [SurveyType("rating")]
     public class Rating : QuestionBase
     {

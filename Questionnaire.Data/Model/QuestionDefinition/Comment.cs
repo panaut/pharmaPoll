@@ -5,8 +5,8 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace Questionnaire.Data.Model.QuestionDefinition
 {
     [SurveyType("comment")]
-    [Table("QDefBases_Comment")]
-    public class Comment : SelectQuestionBase
+    [Table("QuestionBases_Comment")]
+    public class Comment : QuestionBase
     {
         public int rows { get; set; } = 4;
 
