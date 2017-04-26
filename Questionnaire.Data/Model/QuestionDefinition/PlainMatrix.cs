@@ -7,7 +7,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace Questionnaire.Data.Model.QuestionDefinition
 {
     [SurveyType("matrix")]
-    [Table("QDefBases_PlainMatrix")]
+    [Table("QuestionBases_PlainMatrix")]
     public class PlainMatrix : QuestionBase
     {
         public bool isAllRowRequired { get; set; } = false;

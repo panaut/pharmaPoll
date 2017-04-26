@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Questionnaire.Data.Model.QuestionDefinition
 {
-    [Table("MatrixRow")]
+    [Table("MatrixRows")]
     public class MatrixRow : IValueTextPair
     {
         [JsonPropertyAttribute(PropertyName = "internalId")]

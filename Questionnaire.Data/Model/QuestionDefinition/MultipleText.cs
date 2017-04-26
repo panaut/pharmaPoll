@@ -5,7 +5,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace Questionnaire.Data.Model.QuestionDefinition
 {
     [SurveyType("multipletext")]
-    [Table("QDefBases_MultipleText")]
+    [Table("QuestionBases_MultipleText")]
     public class MultipleText : QuestionBase
     {
         public int colCount { get; set; }

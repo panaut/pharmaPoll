@@ -91,17 +91,11 @@ namespace Questionnaire.Data
 
         public void UpdateSurvey(Survey survey)
         {
-            context.UpdateGraph(survey, mapl1 => 
-            mapl1.OwnedCollection(srv => srv.pages, page => 
+            context.UpdateGraph(survey, mapl1 =>
+            mapl1.OwnedCollection(srv => srv.pages, page =>
                 page.OwnedCollection(pg => pg.elements)));
 
             context.SaveChanges();
-
-            //var existingSurvey = this.Find(survey.Id);
-            //var surveyEntry = context.Entry(existingSurvey);
-            //surveyEntry.CurrentValues.SetValues(survey);
-
-            //context.SaveChanges();
         }
 
     }

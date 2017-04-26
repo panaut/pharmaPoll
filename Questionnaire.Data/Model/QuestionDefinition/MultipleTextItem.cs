@@ -2,7 +2,7 @@
 
 namespace Questionnaire.Data.Model.QuestionDefinition
 {
-    [Table("QDefBases_MultipleTextItem")]
+    [Table("QuestionBases_MultipleTextItem")]
     public class MultipleTextItem : QuestionBase
     {
         public int MultipleTextQuestionId { get; set; }

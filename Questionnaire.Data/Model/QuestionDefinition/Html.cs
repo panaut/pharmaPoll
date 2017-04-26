@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace Questionnaire.Data.Model.QuestionDefinition
 {
     [SurveyType("html")]
-    [Table("QDefBases_Html")]
+    [Table("QuestionBases_Html")]
     public class Html : QuestionBase
     {
         public string html { get; set; }

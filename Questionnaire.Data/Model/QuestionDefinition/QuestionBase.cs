@@ -7,7 +7,7 @@ using System.Linq;
 
 namespace Questionnaire.Data.Model.QuestionDefinition
 {
-    [Table("QDefBases")]
+    [Table("QuestionBases")]
     public abstract class QuestionBase
     {
         [JsonPropertyAttribute(PropertyName = "internalId")]

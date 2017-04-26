@@ -5,7 +5,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace Questionnaire.Data.Model.QuestionDefinition
 {
     [SurveyType("text")]
-    [Table("QDefBases_Text")]
+    [Table("QuestionBases_Text")]
     public class Text : QuestionBase
     {
         public int size { get; set; } = 25;

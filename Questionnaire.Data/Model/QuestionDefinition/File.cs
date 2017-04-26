@@ -5,7 +5,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace Questionnaire.Data.Model.QuestionDefinition
 {
     [SurveyType("file")]
-    [Table("QDefBases_File")]
+    [Table("QuestionBases_File")]
     public class File : QuestionBase
     {
         [MaxLength(16)]
