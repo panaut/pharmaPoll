@@ -7,31 +7,9 @@ using System.Linq;
 
 namespace Questionnaire.Data.Model.QuestionDefinition
 {
-    [Table("QuestionBases")]
-    public abstract class QuestionBase
+    [Table("ElementBases_QuestionBase")]
+    public abstract class QuestionBase : ElementBase
     {
-        [JsonPropertyAttribute(PropertyName = "internalId")]
-        public int Id { get; set; }
-
-        public bool ShouldSerializeId()
-        {
-            return this.Id != 0;
-        }
-
-        public int? PageId { get; set; }
-
-        public bool ShouldSerializePageId()
-        {
-            return false;
-        }
-
-        public virtual Page Page { get; set; }
-
-        public bool ShouldSerializePage()
-        {
-            return false;
-        }
-
         public int? ComplexMatrixBaseId { get; set; }
 
         public bool ShouldSerializeComplexMatrixBaseId()
@@ -45,47 +23,6 @@ namespace Questionnaire.Data.Model.QuestionDefinition
         public bool ShouldSerializeComplexMatrixBase()
         {
             return false;
-        }
-
-        // ToDo: IC - Implement this relation 'backward'
-        //public int SurveyId { get; set; }
-
-        //public bool ShouldSerializeSurveyId()
-        //{
-        //    return false;
-        //}
-
-        //public virtual Survey Survey { get; set; }
-
-        //public bool ShouldSerializeSurvey()
-        //{
-        //    return false;
-        //}
-
-        [MaxLength(512)]
-        public string name { get; set; }
-
-        [MaxLength(512)]
-        public string title { get; set; }
-
-        public bool ShouldSerializetitle()
-        {
-            return !string.IsNullOrEmpty(this.title);
-        }
-
-        [MaxLength(1024)]
-        public string visibleIf { get; set; }
-
-        public bool ShouldSerializevisibleIf()
-        {
-            return !string.IsNullOrEmpty(this.visibleIf);
-        }
-
-        public bool readOnly { get; set; }
-
-        public bool ShouldSerializereadOnly()
-        {
-            return !this.readOnly;
         }
 
         public bool startWithNewLine { get; set; } = true;
@@ -115,13 +52,6 @@ namespace Questionnaire.Data.Model.QuestionDefinition
         public bool ShouldSerializeisRequired()
         {
             return this.isRequired;
-        }
-
-        public bool visible { get; set; } = true;
-
-        public bool ShouldSerializevisible()
-        {
-            return !this.visible;
         }
 
         [JsonProperty(ItemTypeNameHandling = TypeNameHandling.Objects)]

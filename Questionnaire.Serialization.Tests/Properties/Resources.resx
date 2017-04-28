@@ -117,6 +117,674 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="complexSurveyJson" xml:space="preserve">
+    <value>{
+ pages: [
+  {
+   elements: [
+    {
+     $type: "rating",
+     name: "question1"
+    },
+    {
+     $type: "matrix",
+     name: "question2",
+     columns: [
+      "Column 1",
+      "Column 2",
+      "Column 3"
+     ],
+     rows: [
+      "Row 1",
+      "Row 2"
+     ]
+    },
+    {
+     $type: "matrixdropdown",
+     choices: [
+      1,
+      2,
+      3,
+      4,
+      5
+     ],
+     columns: [
+      {
+       name: "Column 1",
+       choices: [
+        {
+         value: "1",
+         text: "A"
+        },
+        {
+         value: "2",
+         text: "B"
+        },
+        {
+         value: "3",
+         text: "C"
+        }
+       ],
+       cellType: "dropdown"
+      },
+      {
+       name: "Column 2",
+       choices: [
+        {
+         value: "1",
+         text: "AA"
+        },
+        {
+         value: "2",
+         text: "BB"
+        },
+        {
+         value: "3",
+         text: "CC"
+        }
+       ],
+       cellType: "checkbox"
+      },
+      {
+       name: "Column 3",
+       choices: [
+        {
+         value: "1",
+         text: "AAA"
+        },
+        {
+         value: "2",
+         text: "BBB"
+        },
+        {
+         value: "3",
+         text: "CCC"
+        }
+       ],
+       cellType: "radiogroup"
+      }
+     ],
+     name: "question3",
+     rows: [
+      "Row 1",
+      "Row 2"
+     ]
+    },
+    {
+     $type: "multipletext",
+     name: "question4",
+     items: [
+      {
+       name: "text1"
+      },
+      {
+       name: "text2"
+      }
+     ]
+    }
+   ],
+   name: "page1"
+  },
+  {
+   elements: [
+    {
+     $type: "matrixdropdown",
+     choices: [
+      1,
+      2,
+      3,
+      4,
+      5
+     ],
+     columns: [
+      {
+       name: "Column 1"
+      },
+      {
+       name: "Column 2"
+      },
+      {
+       name: "Column 3"
+      }
+     ],
+     name: "question16",
+     rows: [
+      "Row 1",
+      "Row 2"
+     ]
+    },
+    {
+     $type: "panel",
+     elements: [
+      {
+       $type: "comment",
+       name: "question5"
+      },
+      {
+       $type: "panel",
+       elements: [
+        {
+         $type: "dropdown",
+         choices: [
+          {
+           value: "1",
+           text: "first item"
+          },
+          {
+           value: "2",
+           text: "second item"
+          },
+          {
+           value: "3",
+           text: "third item"
+          }
+         ],
+         name: "question6"
+        }
+       ],
+       name: "panel2"
+      }
+     ],
+     name: "panel1"
+    }
+   ],
+   name: "page2"
+  },
+  {
+   elements: [
+    {
+     $type: "text",
+     name: "question7"
+    },
+    {
+     $type: "checkbox",
+     name: "question8",
+     choices: [
+      {
+       value: "1",
+       text: "first item"
+      },
+      {
+       value: "2",
+       text: "second item"
+      },
+      {
+       value: "3",
+       text: "third item"
+      }
+     ]
+    },
+    {
+     $type: "radiogroup",
+     name: "question9",
+     choices: [
+      {
+       value: "1",
+       text: "first item"
+      },
+      {
+       value: "2",
+       text: "second item"
+      },
+      {
+       value: "3",
+       text: "third item"
+      }
+     ]
+    },
+    {
+     $type: "dropdown",
+     choices: [
+      {
+       value: "1",
+       text: "first item"
+      },
+      {
+       value: "2",
+       text: "second item"
+      },
+      {
+       value: "3",
+       text: "third item"
+      }
+     ],
+     name: "question10"
+    }
+   ],
+   name: "page3"
+  },
+  {
+   elements: [
+    {
+     $type: "comment",
+     name: "question11"
+    },
+    {
+     $type: "rating",
+     name: "question12"
+    },
+    {
+     $type: "html",
+     name: "question13"
+    },
+    {
+     $type: "file",
+     name: "question14"
+    }
+   ],
+   name: "page4"
+  },
+  {
+   elements: [
+    {
+     $type: "matrixdynamic",
+     name: "question15",
+     columns: [
+      {
+       name: "Column 1",
+       choices: [
+        {
+         value: "1",
+         text: "MDRC1C1"
+        },
+        {
+         value: "2",
+         text: "MDRC1C2"
+        },
+        {
+         value: "3",
+         text: "MDRC1C3"
+        },
+        {
+         value: "4",
+         text: "MDRC1C4"
+        },
+        {
+         value: "5",
+         text: "MDRC1C5"
+        }
+       ],
+       cellType: "dropdown"
+      },
+      {
+       name: "Column 2",
+       choices: [
+        {
+         value: "1",
+         text: "MDRC2C1"
+        },
+        {
+         value: "2",
+         text: "MDRC2C2"
+        },
+        {
+         value: "3",
+         text: "MDRC2C3"
+        },
+        {
+         value: "4",
+         text: "MDRC2C4"
+        }
+       ],
+       cellType: "checkbox"
+      },
+      {
+       name: "Column 3"
+      }
+     ],
+     choices: [
+      1,
+      2,
+      3,
+      4,
+      5
+     ]
+    }
+   ],
+   name: "page5"
+  }
+ ]
+}</value>
+  </data>
+  <data name="complexSurveyNoNesting" xml:space="preserve">
+    <value>{
+ pages: [
+  {
+   elements: [
+    {
+     $type: "rating",
+     name: "question1"
+    },
+    {
+     $type: "matrix",
+     name: "question2",
+     columns: [
+      "Column 1",
+      "Column 2",
+      "Column 3"
+     ],
+     rows: [
+      "Row 1",
+      "Row 2"
+     ]
+    },
+    {
+     $type: "matrixdropdown",
+     choices: [
+      1,
+      2,
+      3,
+      4,
+      5
+     ],
+     columns: [
+      {
+       name: "Column 1",
+       choices: [
+        {
+         value: "1",
+         text: "A"
+        },
+        {
+         value: "2",
+         text: "B"
+        },
+        {
+         value: "3",
+         text: "C"
+        }
+       ],
+       cellType: "dropdown"
+      },
+      {
+       name: "Column 2",
+       choices: [
+        {
+         value: "1",
+         text: "AA"
+        },
+        {
+         value: "2",
+         text: "BB"
+        },
+        {
+         value: "3",
+         text: "CC"
+        }
+       ],
+       cellType: "checkbox"
+      },
+      {
+       name: "Column 3",
+       choices: [
+        {
+         value: "1",
+         text: "AAA"
+        },
+        {
+         value: "2",
+         text: "BBB"
+        },
+        {
+         value: "3",
+         text: "CCC"
+        }
+       ],
+       cellType: "radiogroup"
+      }
+     ],
+     name: "question3",
+     rows: [
+      "Row 1",
+      "Row 2"
+     ]
+    },
+    {
+     $type: "multipletext",
+     name: "question4",
+     items: [
+      {
+       name: "text1"
+      },
+      {
+       name: "text2"
+      }
+     ]
+    }
+   ],
+   name: "page1"
+  },
+  {
+   elements: [
+    {
+     $type: "matrixdropdown",
+     choices: [
+      1,
+      2,
+      3,
+      4,
+      5
+     ],
+     columns: [
+      {
+       name: "Column 1"
+      },
+      {
+       name: "Column 2"
+      },
+      {
+       name: "Column 3"
+      }
+     ],
+     name: "question16",
+     rows: [
+      "Row 1",
+      "Row 2"
+     ]
+    },
+    {
+     $type: "rating",
+     name: "question17"
+    },
+    {
+     $type: "panel",
+     elements: [
+      {
+       $type: "matrixdropdown",
+       choices: [
+        1,
+        2,
+        3,
+        4,
+        5
+       ],
+       columns: [
+        {
+         name: "Column 1"
+        },
+        {
+         name: "Column 2"
+        },
+        {
+         name: "Column 3"
+        }
+       ],
+       name: "question18",
+       rows: [
+        "Row 1",
+        "Row 2"
+       ]
+      },
+      {
+       $type: "file",
+       name: "question6"
+      },
+      {
+       $type: "comment",
+       name: "question5"
+      }
+     ],
+     name: "panel1"
+    }
+   ],
+   name: "page2"
+  },
+  {
+   elements: [
+    {
+     $type: "text",
+     name: "question7"
+    },
+    {
+     $type: "checkbox",
+     name: "question8",
+     choices: [
+      {
+       value: "1",
+       text: "first item"
+      },
+      {
+       value: "2",
+       text: "second item"
+      },
+      {
+       value: "3",
+       text: "third item"
+      }
+     ]
+    },
+    {
+     $type: "radiogroup",
+     name: "question9",
+     choices: [
+      {
+       value: "1",
+       text: "first item"
+      },
+      {
+       value: "2",
+       text: "second item"
+      },
+      {
+       value: "3",
+       text: "third item"
+      }
+     ]
+    },
+    {
+     $type: "dropdown",
+     name: "question10",
+     choices: [
+      {
+       value: "1",
+       text: "first item"
+      },
+      {
+       value: "2",
+       text: "second item"
+      },
+      {
+       value: "3",
+       text: "third item"
+      }
+     ]
+    }
+   ],
+   name: "page3"
+  },
+  {
+   elements: [
+    {
+     $type: "comment",
+     name: "question11"
+    },
+    {
+     $type: "rating",
+     name: "question12"
+    },
+    {
+     $type: "html",
+     name: "question13"
+    },
+    {
+     $type: "file",
+     name: "question14"
+    }
+   ],
+   name: "page4"
+  },
+  {
+   elements: [
+    {
+     $type: "matrixdynamic",
+     name: "question15",
+     columns: [
+      {
+       name: "Column 1",
+       choices: [
+        {
+         value: "1",
+         text: "MDRC1C1"
+        },
+        {
+         value: "2",
+         text: "MDRC1C2"
+        },
+        {
+         value: "3",
+         text: "MDRC1C3"
+        },
+        {
+         value: "4",
+         text: "MDRC1C4"
+        },
+        {
+         value: "5",
+         text: "MDRC1C5"
+        }
+       ],
+       cellType: "dropdown"
+      },
+      {
+       name: "Column 2",
+       choices: [
+        {
+         value: "1",
+         text: "MDRC2C1"
+        },
+        {
+         value: "2",
+         text: "MDRC2C2"
+        },
+        {
+         value: "3",
+         text: "MDRC2C3"
+        },
+        {
+         value: "4",
+         text: "MDRC2C4"
+        }
+       ],
+       cellType: "checkbox"
+      },
+      {
+       name: "Column 3"
+      }
+     ],
+     choices: [
+      1,
+      2,
+      3,
+      4,
+      5
+     ]
+    }
+   ],
+   name: "page5"
+  }
+ ]
+}</value>
+  </data>
   <data name="surveyJson" xml:space="preserve">
     <value>{
  pages: [

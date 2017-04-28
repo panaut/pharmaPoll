@@ -61,11 +61,11 @@ namespace Questionnaire.Data.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to ALTER TABLE [dbo].[QuestionBases]  WITH NOCHECK ADD  CONSTRAINT [FK_dbo.QuestionBases_dbo.SelectBases_ComplexMatrixBase_ComplexMatrixBaseId] FOREIGN KEY([ComplexMatrixBaseId])
+        ///   Looks up a localized string similar to ALTER TABLE [dbo].[ElementBases_QuestionBase]  WITH NOCHECK ADD  CONSTRAINT [FK_dbo.QuestionBases_dbo.SelectBases_ComplexMatrixBase_ComplexMatrixBaseId] FOREIGN KEY([ComplexMatrixBaseId])
         ///REFERENCES [dbo].[SelectBases_ComplexMatrixBase] ([Id])
         ///GO
         ///
-        ///ALTER TABLE [dbo].[QuestionBases] NOCHECK CONSTRAINT [FK_dbo.QuestionBases_dbo.SelectBases_ComplexMatrixBase_ComplexMatrixBaseId]
+        ///ALTER TABLE [dbo].[ElementBases_QuestionBase] NOCHECK CONSTRAINT [FK_dbo.QuestionBases_dbo.SelectBases_ComplexMatrixBase_ComplexMatrixBaseId]
         ///GO.
         /// </summary>
         internal static string ForeignKey_ComplexMatrixBaseQuestionBase {
@@ -85,6 +85,20 @@ namespace Questionnaire.Data.Properties {
         internal static string ForeignKey_ComplexMatrixMatrixRows {
             get {
                 return ResourceManager.GetString("ForeignKey_ComplexMatrixMatrixRows", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ALTER TABLE [dbo].[ElementBases]  WITH NOCHECK ADD  CONSTRAINT [FK_dbo.ElementBases_dbo.ElementBases_ElementContainer_ElementContainerId] FOREIGN KEY([ElementContainerId])
+        ///REFERENCES [dbo].[ElementBases_ElementContainer] ([Id])
+        ///GO
+        ///
+        ///ALTER TABLE [dbo].[ElementBases] NOCHECK CONSTRAINT [FK_dbo.ElementBases_dbo.ElementBases_ElementContainer_ElementContainerId]
+        ///GO.
+        /// </summary>
+        internal static string ForeignKey_ElementBaseElementContainer {
+            get {
+                return ResourceManager.GetString("ForeignKey_ElementBaseElementContainer", resourceCulture);
             }
         }
         
@@ -190,17 +204,39 @@ namespace Questionnaire.Data.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to CREATE TRIGGER dbo.DeleteComplexMatrixColumns
-        ///   ON  dbo.SelectBases_ComplexMatrixBase
+        ///   Looks up a localized string similar to CREATE TRIGGER [dbo].[DeleteComplexMatrixColumns]
+        ///   ON  [dbo].[SelectBases_ComplexMatrixBase]
         ///   FOR DELETE
         ///AS 
         ///BEGIN
-        ///	DELETE dbo.QuestionBases WHERE ComplexMatrixBaseId IN (SELECT Id from deleted)
+        ///
+        ///	DELETE dbo.ElementBases WHERE Id IN (SELECT Id FROM ElementBases_QuestionBase WHERE ComplexMatrixBaseId IN (SELECT Id from deleted))
         ///END.
         /// </summary>
         internal static string Trigger_DeleteComplexMatrixColumns {
             get {
                 return ResourceManager.GetString("Trigger_DeleteComplexMatrixColumns", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to CREATE TRIGGER [dbo].[DeleteElementBasesForContainer]
+        ///   ON  [dbo].[ElementBases_ElementContainer]
+        ///   FOR DELETE
+        ///AS 
+        ///BEGIN
+        ///	DELETE ElementBases WHERE ElementContainerId IN (SELECT Id FROM deleted)
+        ///
+        ///END
+        ///
+        ///GO
+        ///
+        ///ALTER TABLE [dbo].[ElementBases_ElementContainer] ENABLE TRIGGER [DeleteElementBasesForContainer]
+        ///GO.
+        /// </summary>
+        internal static string Trigger_DeleteElementBasesForContainer {
+            get {
+                return ResourceManager.GetString("Trigger_DeleteElementBasesForContainer", resourceCulture);
             }
         }
         
@@ -235,12 +271,12 @@ namespace Questionnaire.Data.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to CREATE TRIGGER dbo.DeleteMultipleTextItemBase
-        ///   ON  dbo.QuestionBases_MultipleTextItem
+        ///   Looks up a localized string similar to CREATE TRIGGER [dbo].[DeleteMultipleTextItemBase]
+        ///   ON  [dbo].[QuestionBases_MultipleTextItem]
         ///   FOR DELETE
         ///AS 
         ///BEGIN
-        ///	DELETE dbo.QuestionBases WHERE Id IN (SELECT Id from deleted)
+        ///	DELETE dbo.ElementBases WHERE Id IN (SELECT Id from deleted)
         ///END.
         /// </summary>
         internal static string Trigger_DeleteMultipleTextItemBase {

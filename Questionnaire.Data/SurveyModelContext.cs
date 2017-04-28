@@ -32,7 +32,7 @@ namespace Questionnaire.Data
 
         public DbSet<Page> Pages { get; set; }
 
-        public DbSet<QuestionBase> Questions { get; set; }
+        public DbSet<ElementBase> Elements { get; set; }
 
         public DbSet<SurveyTrigger> SurveyTriggers { get; set; }
 

@@ -118,11 +118,11 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="ForeignKey_ComplexMatrixBaseQuestionBase" xml:space="preserve">
-    <value>ALTER TABLE [dbo].[QuestionBases]  WITH NOCHECK ADD  CONSTRAINT [FK_dbo.QuestionBases_dbo.SelectBases_ComplexMatrixBase_ComplexMatrixBaseId] FOREIGN KEY([ComplexMatrixBaseId])
+    <value>ALTER TABLE [dbo].[ElementBases_QuestionBase]  WITH NOCHECK ADD  CONSTRAINT [FK_dbo.QuestionBases_dbo.SelectBases_ComplexMatrixBase_ComplexMatrixBaseId] FOREIGN KEY([ComplexMatrixBaseId])
 REFERENCES [dbo].[SelectBases_ComplexMatrixBase] ([Id])
 GO
 
-ALTER TABLE [dbo].[QuestionBases] NOCHECK CONSTRAINT [FK_dbo.QuestionBases_dbo.SelectBases_ComplexMatrixBase_ComplexMatrixBaseId]
+ALTER TABLE [dbo].[ElementBases_QuestionBase] NOCHECK CONSTRAINT [FK_dbo.QuestionBases_dbo.SelectBases_ComplexMatrixBase_ComplexMatrixBaseId]
 GO</value>
   </data>
   <data name="ForeignKey_ComplexMatrixMatrixRows" xml:space="preserve">
@@ -131,6 +131,14 @@ REFERENCES [dbo].[ComplexMatrixBases_ComplexMatrix] ([Id])
 GO
 
 ALTER TABLE [dbo].[MatrixRows] NOCHECK CONSTRAINT [FK_dbo.MatrixRows_dbo.ComplexMatrixBases_ComplexMatrix_ComplexMatrixId]
+GO</value>
+  </data>
+  <data name="ForeignKey_ElementBaseElementContainer" xml:space="preserve">
+    <value>ALTER TABLE [dbo].[ElementBases]  WITH NOCHECK ADD  CONSTRAINT [FK_dbo.ElementBases_dbo.ElementBases_ElementContainer_ElementContainerId] FOREIGN KEY([ElementContainerId])
+REFERENCES [dbo].[ElementBases_ElementContainer] ([Id])
+GO
+
+ALTER TABLE [dbo].[ElementBases] NOCHECK CONSTRAINT [FK_dbo.ElementBases_dbo.ElementBases_ElementContainer_ElementContainerId]
 GO</value>
   </data>
   <data name="ForeignKey_PlainMatrixChoices" xml:space="preserve">
@@ -193,13 +201,29 @@ BEGIN
 END</value>
   </data>
   <data name="Trigger_DeleteComplexMatrixColumns" xml:space="preserve">
-    <value>CREATE TRIGGER dbo.DeleteComplexMatrixColumns
-   ON  dbo.SelectBases_ComplexMatrixBase
+    <value>CREATE TRIGGER [dbo].[DeleteComplexMatrixColumns]
+   ON  [dbo].[SelectBases_ComplexMatrixBase]
    FOR DELETE
 AS 
 BEGIN
-	DELETE dbo.QuestionBases WHERE ComplexMatrixBaseId IN (SELECT Id from deleted)
+
+	DELETE dbo.ElementBases WHERE Id IN (SELECT Id FROM ElementBases_QuestionBase WHERE ComplexMatrixBaseId IN (SELECT Id from deleted))
 END</value>
+  </data>
+  <data name="Trigger_DeleteElementBasesForContainer" xml:space="preserve">
+    <value>CREATE TRIGGER [dbo].[DeleteElementBasesForContainer]
+   ON  [dbo].[ElementBases_ElementContainer]
+   FOR DELETE
+AS 
+BEGIN
+	DELETE ElementBases WHERE ElementContainerId IN (SELECT Id FROM deleted)
+
+END
+
+GO
+
+ALTER TABLE [dbo].[ElementBases_ElementContainer] ENABLE TRIGGER [DeleteElementBasesForContainer]
+GO</value>
   </data>
   <data name="Trigger_DeleteMatrixRowsOfComplexMatrix" xml:space="preserve">
     <value>CREATE TRIGGER dbo.DeleteMatrixRowsOfComplexMatrix
@@ -220,12 +244,12 @@ BEGIN
 END</value>
   </data>
   <data name="Trigger_DeleteMultipleTextItemBase" xml:space="preserve">
-    <value>CREATE TRIGGER dbo.DeleteMultipleTextItemBase
-   ON  dbo.QuestionBases_MultipleTextItem
+    <value>CREATE TRIGGER [dbo].[DeleteMultipleTextItemBase]
+   ON  [dbo].[QuestionBases_MultipleTextItem]
    FOR DELETE
 AS 
 BEGIN
-	DELETE dbo.QuestionBases WHERE Id IN (SELECT Id from deleted)
+	DELETE dbo.ElementBases WHERE Id IN (SELECT Id from deleted)
 END</value>
   </data>
 </root>

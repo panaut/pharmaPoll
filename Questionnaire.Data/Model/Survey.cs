@@ -1,4 +1,5 @@
 ﻿using Newtonsoft.Json;
+using Questionnaire.Data.Serialization;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -221,8 +222,14 @@ namespace Questionnaire.Data.Model
             return !string.IsNullOrEmpty(this.title);
         }
 
-        public virtual ICollection<Page> pages { get; set; } = new List<Page>();
+        [JsonProperty(PropertyName = "pages", ItemTypeNameHandling = TypeNameHandling.All)]
+        [JsonConverter(typeof(PageConverter))]
+        public virtual ICollection<ElementBase> elements { get; set; } = new List<ElementBase>();
 
+        public bool ShouldSerializeelements()
+        {
+            return this.elements != null && this.elements.Any();
+        }
 
         public virtual ICollection<SurveyTrigger> triggers { get; set; } = new List<SurveyTrigger>();
 
