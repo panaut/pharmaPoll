@@ -30,7 +30,8 @@ namespace Questionnaire.Data.Serialization
                         typeof(PlainMatrix),
                         typeof(ComplexMatrix),
                         typeof(ComplexMatrixDynamic),
-                        typeof(MultipleText)
+                        typeof(MultipleText),
+                        typeof(Panel)
                         }
                     };
 

@@ -8,7 +8,7 @@
 @Styles.Render("~/Content/surveyEditor/css")
 
 <br />
-<p>    
+<p>
     <a href="#" title="New Survey" data-toggle="modal" class="editModalLink" data-target="#modal-fullscreen_edit"> <i class="glyphicon glyphicon-plus"></i> Create New Survey</a>
     @*<a href="#" class="startSurvey" data-toggle="tooltip" title="New Survey"> <i class="glyphicon glyphicon-plus"></i></a>*@
 </p>
@@ -136,6 +136,7 @@
 {
     @Scripts.Render("~/Scripts/dxSurvey/dxBroker.js")
     @Scripts.Render("~/bundles/surveyEditor")
+    @Scripts.Render("~/Scripts/surveyjsEditorInit.js")
     <script>
         $(document).on("click", ".editModalLink", function () {
             var surveyId = $(this).data('id');
@@ -208,8 +209,7 @@
                 var surveyId = $(this).closest('tr').attr("data-surveyId");
                 var isActive;
                 var $deleteBtn = $('.startSurvey .' + surveyId)
-                if ($deleteBtn.hasClass("hidden"))
-                {
+                if ($deleteBtn.hasClass("hidden")) {
                     alert("Cannot delete active Survey. Please stop the Survey first!");
                 }
                 else {
@@ -229,98 +229,9 @@
                             }
                         });
                 }
-                    
+
             });
         })
-
-        // survey editor scripting
-
-        var editorOptions = { showJSONEditorTab: true, showEmbededSurveyTab: false };
-        var survey = new SurveyEditor.SurveyEditor("surveyEditorContainer", editorOptions);
-
-        // Add database id property to survey object
-        Survey.JsonObject.metaData.addProperty("survey", { name: "internalId:number" });
-        Survey.JsonObject.metaData.addProperty("questionbase", { name: "internalId:number" });
-
-        survey.onCanShowProperty.add(function (sender, options) {
-            if (options.obj.getType() == "survey") {
-                options.canShow = options.property.name != "surveyId";
-            }
-        });
-
-        survey.render('surveyEditorContainer');
-
-        survey.onCanShowProperty.add(function (sender, options) {
-            if (options.obj.getType() == "text") {
-                options.canShow = options.property.name != "internalId";
-            }
-        });
-
-        survey.onCanShowProperty.add(function (sender, options) {
-            if (options.obj.getType() == "checkbox") {
-                options.canShow = options.property.name != "internalId";
-            }
-        });
-
-        survey.onCanShowProperty.add(function (sender, options) {
-            if (options.obj.getType() == "radiogroup") {
-                options.canShow = options.property.name != "internalId";
-            }
-        });
-
-        survey.onCanShowProperty.add(function (sender, options) {
-            if (options.obj.getType() == "dropdown") {
-                options.canShow = options.property.name != "internalId";
-            }
-        });
-
-        survey.onCanShowProperty.add(function (sender, options) {
-            if (options.obj.getType() == "comment") {
-                options.canShow = options.property.name != "internalId";
-            }
-        });
-
-        survey.onCanShowProperty.add(function (sender, options) {
-            if (options.obj.getType() == "rating") {
-                options.canShow = options.property.name != "internalId";
-            }
-        });
-
-        survey.onCanShowProperty.add(function (sender, options) {
-            if (options.obj.getType() == "html") {
-                options.canShow = options.property.name != "internalId";
-            }
-        });
-
-        survey.onCanShowProperty.add(function (sender, options) {
-            if (options.obj.getType() == "file") {
-                options.canShow = options.property.name != "internalId";
-            }
-        });
-
-        survey.onCanShowProperty.add(function (sender, options) {
-            if (options.obj.getType() == "matrix") {
-                options.canShow = options.property.name != "internalId";
-            }
-        });
-
-        survey.onCanShowProperty.add(function (sender, options) {
-            if (options.obj.getType() == "matrixdropdown") {
-                options.canShow = options.property.name != "internalId";
-            }
-        });
-
-        survey.onCanShowProperty.add(function (sender, options) {
-            if (options.obj.getType() == "matrixdynamic") {
-                options.canShow = options.property.name != "internalId";
-            }
-        });
-
-        //survey.onCanShowProperty.add(function (sender, options) {
-        //    if (options.obj.getType() == "matrixdynamic") {
-        //        options.canShow = options.property.name != "internalId";
-        //    }
-        //});
 
         // set function on save callback
         survey.saveSurveyFunc = function () {

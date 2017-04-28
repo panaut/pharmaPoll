@@ -91,9 +91,9 @@ namespace Questionnaire.Data
 
         public void UpdateSurvey(Survey survey)
         {
-            context.UpdateGraph(survey, mapl1 =>
-            mapl1.OwnedCollection(srv => srv.pages, page =>
-                page.OwnedCollection(pg => pg.elements)));
+            //context.UpdateGraph(survey, mapl1 =>
+            //mapl1.OwnedCollection(srv => srv.pages, page =>
+            //    page.OwnedCollection(pg => pg.elements)));
 
             context.SaveChanges();
         }

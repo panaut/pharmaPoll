@@ -84,6 +84,96 @@ namespace Questionnaire.Serialization.Tests.Properties {
         ///    },
         ///    {
         ///     $type: &quot;matrixdropdown&quot;,
+        ///     choices: [
+        ///      1,
+        ///      2,
+        ///      3,
+        ///      4,
+        ///      5
+        ///     ],
+        ///     columns: [
+        ///      {
+        ///       name: &quot;Column 1&quot;,
+        ///       choices: [
+        ///        {
+        ///         value: &quot;1&quot;,
+        /// [rest of string was truncated]&quot;;.
+        /// </summary>
+        internal static string complexSurveyJson {
+            get {
+                return ResourceManager.GetString("complexSurveyJson", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {
+        /// pages: [
+        ///  {
+        ///   elements: [
+        ///    {
+        ///     $type: &quot;rating&quot;,
+        ///     name: &quot;question1&quot;
+        ///    },
+        ///    {
+        ///     $type: &quot;matrix&quot;,
+        ///     name: &quot;question2&quot;,
+        ///     columns: [
+        ///      &quot;Column 1&quot;,
+        ///      &quot;Column 2&quot;,
+        ///      &quot;Column 3&quot;
+        ///     ],
+        ///     rows: [
+        ///      &quot;Row 1&quot;,
+        ///      &quot;Row 2&quot;
+        ///     ]
+        ///    },
+        ///    {
+        ///     $type: &quot;matrixdropdown&quot;,
+        ///     choices: [
+        ///      1,
+        ///      2,
+        ///      3,
+        ///      4,
+        ///      5
+        ///     ],
+        ///     columns: [
+        ///      {
+        ///       name: &quot;Column 1&quot;,
+        ///       choices: [
+        ///        {
+        ///         value: &quot;1&quot;,
+        /// [rest of string was truncated]&quot;;.
+        /// </summary>
+        internal static string complexSurveyNoNesting {
+            get {
+                return ResourceManager.GetString("complexSurveyNoNesting", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {
+        /// pages: [
+        ///  {
+        ///   elements: [
+        ///    {
+        ///     $type: &quot;rating&quot;,
+        ///     name: &quot;question1&quot;
+        ///    },
+        ///    {
+        ///     $type: &quot;matrix&quot;,
+        ///     name: &quot;question2&quot;,
+        ///     columns: [
+        ///      &quot;Column 1&quot;,
+        ///      &quot;Column 2&quot;,
+        ///      &quot;Column 3&quot;
+        ///     ],
+        ///     rows: [
+        ///      &quot;Row 1&quot;,
+        ///      &quot;Row 2&quot;
+        ///     ]
+        ///    },
+        ///    {
+        ///     $type: &quot;matrixdropdown&quot;,
         ///     name: &quot;question3&quot;,
         ///     columns: [
         ///      {
