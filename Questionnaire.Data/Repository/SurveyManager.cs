@@ -69,12 +69,28 @@ namespace Questionnaire.Data
         }
 
         /// <summary>
-        /// Finds the survey with given id.
+        /// Finds the survey with given int id.
         /// </summary>
         /// <param name="id">Survey Id</param>
         /// <exception cref="ArgumentOutOfRangeException">If survey with corresponding id isn't found.</exception>
         /// <returns></returns>
         public Survey Find(int id)
+        {
+            var survey = context.Surveys.Find(id);
+
+            if (survey == null)
+                throw new ArgumentOutOfRangeException("surveyId");
+
+            return survey;
+        }
+
+        /// <summary>
+        /// Finds the survey with given string id.
+        /// </summary>
+        /// <param name="id">Survey Id</param>
+        /// <exception cref="ArgumentOutOfRangeException">If survey with corresponding id isn't found.</exception>
+        /// <returns></returns>
+        public Survey Find(string id)
         {
             var survey = context.Surveys.Find(id);
 
