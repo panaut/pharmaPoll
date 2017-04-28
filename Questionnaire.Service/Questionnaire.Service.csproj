@@ -45,6 +45,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Extensions\SurveyExtensions.cs" />
     <Compile Include="ISurveyService.cs" />
     <Compile Include="SurveyService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
