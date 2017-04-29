@@ -4,7 +4,6 @@ using Questionnaire.Data;
 using System.Linq;
 using Questionnaire.Data.Model.QuestionDefinition;
 using Questionnaire.Data.Model;
-using System.Data.Entity.Infrastructure;
 using System.Data.Entity;
 using Questionnaire.Data.Serialization;
 
@@ -143,6 +142,9 @@ namespace Questionnaire.Serialization.Tests
             var lastSurvey = context.Surveys.OrderByDescending(s => s.Id).First();
 
             var surveyJSON = (new SurveySerializer()).Serialize(lastSurvey);
+
+            var surveyService = new SurveyService();
+            surveyService.DeleteSurvey(lastSurvey.Id);
         }
 
         [TestMethod]

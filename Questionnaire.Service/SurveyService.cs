@@ -223,23 +223,22 @@ namespace Questionnaire.Service
             return command.Result;
         }
 
-        public ServiceResponse<string> GetSurvey(string surveyId)
+        public ServiceResponse<string> GetSurvey(string surveyCode)
         {
             var command = new ServiceCommand<string>
             {
                 Execution = (cmd, param) =>
                 {
-                    Survey survey = null;      // The survey object to be saved
+                    Survey survey = null; // Try to get survey with provided Code from database
 
-                    // Try to get survey with provided Id from database
                     try
                     {
-                        survey = this.surveyManager.Value.Find(surveyId);
+                        survey = this.surveyManager.Value.Find(surveyCode);
                     }
                     catch (Exception ex)
                     {
                         cmd.Status = OperationStatus.Failure;
-                        var originalException = new ArgumentException($"Failed retrieve survey with id {surveyId}", ex);
+                        var originalException = new ArgumentException($"Failed retrieve survey with Code {surveyCode}", ex);
                         var exc = new CustomException(originalException, errorCode: 0);
                         throw exc;
                     }
