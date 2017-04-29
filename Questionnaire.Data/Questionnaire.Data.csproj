@@ -69,6 +69,10 @@
     <Compile Include="Migrations\201704262336172_Initial.Designer.cs">
       <DependentUpon>201704262336172_Initial.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201704290047502_Rev001.cs" />
+    <Compile Include="Migrations\201704290047502_Rev001.Designer.cs">
+      <DependentUpon>201704290047502_Rev001.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Misc Interfaces\ICellDiversity.cs" />
     <Compile Include="Model\ElementContainer.cs" />
@@ -136,6 +140,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201704262336172_Initial.resx">
       <DependentUpon>201704262336172_Initial.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201704290047502_Rev001.resx">
+      <DependentUpon>201704290047502_Rev001.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

@@ -400,8 +400,7 @@ namespace Questionnaire.Data.Migrations
                     MultipleTextQuestionId = c.Int(nullable: false),
                 })
                 .PrimaryKey(t => t.Id)
-                .ForeignKey("dbo.ElementBases_QuestionBase", t => t.Id)
-                .ForeignKey("dbo.QuestionBases_MultipleText", t => t.MultipleTextQuestionId, cascadeDelete: true)
+                .ForeignKey("dbo.ElementBases_QuestionBase", t => t.Id, cascadeDelete: true)
                 .Index(t => t.Id)
                 .Index(t => t.MultipleTextQuestionId);
 
@@ -445,6 +444,9 @@ namespace Questionnaire.Data.Migrations
             // Replace automatically created index "dbo.Choices".ForeignKey("dbo.QuestionBases_Rating", t => t.RatingId)
             Sql(Properties.Resources.ForeignKey_RatingChoices);
 
+            // Replace automatically created index "dbo.QuestionBases_MultipleTextItem".ForeignKey("dbo.QuestionBases_MultipleText", t => t.MultipleTextQuestionId)
+            Sql(Properties.Resources.ForeignKey_MultipleTextMultipleTextItem);
+
             //************************************************************
             //
             //                      T R I G G E R S
@@ -455,7 +457,7 @@ namespace Questionnaire.Data.Migrations
             Sql(Properties.Resources.Trigger_DeleteElementBasesForContainer);
 
             // Once deleted base entry (QuestionBase) should be deleted as well
-            Sql(Properties.Resources.Trigger_DeleteMultipleTextItemBase);
+            Sql(Properties.Resources.Trigger_DeleteMultipleTextItems);
 
             // When deleted, Columns (also instances of QuestionBase class) should be deleted
             Sql(Properties.Resources.Trigger_DeleteComplexMatrixColumns);

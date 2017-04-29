@@ -1,8 +1,5 @@
-﻿using Newtonsoft.Json;
-using Questionnaire.Serialization.Attributes;
-using System.Collections.Generic;
+﻿using Questionnaire.Serialization.Attributes;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
 
 namespace Questionnaire.Data.Model
 {

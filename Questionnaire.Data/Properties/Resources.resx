@@ -141,6 +141,14 @@ GO
 ALTER TABLE [dbo].[ElementBases] NOCHECK CONSTRAINT [FK_dbo.ElementBases_dbo.ElementBases_ElementContainer_ElementContainerId]
 GO</value>
   </data>
+  <data name="ForeignKey_MultipleTextMultipleTextItem" xml:space="preserve">
+    <value>ALTER TABLE [dbo].[QuestionBases_MultipleTextItem]  WITH NOCHECK ADD  CONSTRAINT [FK_dbo.QuestionBases_MultipleTextItem_dbo.QuestionBases_MultipleText_MultipleTextQuestionId] FOREIGN KEY([MultipleTextQuestionId])
+REFERENCES [dbo].[QuestionBases_MultipleText] ([Id])
+GO
+
+ALTER TABLE [dbo].[QuestionBases_MultipleTextItem] NOCHECK CONSTRAINT [FK_dbo.QuestionBases_MultipleTextItem_dbo.QuestionBases_MultipleText_MultipleTextQuestionId]
+GO</value>
+  </data>
   <data name="ForeignKey_PlainMatrixChoices" xml:space="preserve">
     <value>ALTER TABLE [dbo].[Choices]  WITH NOCHECK ADD  CONSTRAINT [FK_dbo.Choices_dbo.QuestionBases_PlainMatrix_PlainMatrixId] FOREIGN KEY([PlainMatrixId])
 REFERENCES [dbo].[QuestionBases_PlainMatrix] ([Id])
@@ -243,13 +251,13 @@ BEGIN
 	DELETE dbo.MatrixRows WHERE PlainMatrixId IN (SELECT Id from deleted)
 END</value>
   </data>
-  <data name="Trigger_DeleteMultipleTextItemBase" xml:space="preserve">
-    <value>CREATE TRIGGER [dbo].[DeleteMultipleTextItemBase]
-   ON  [dbo].[QuestionBases_MultipleTextItem]
+  <data name="Trigger_DeleteMultipleTextItems" xml:space="preserve">
+    <value>CREATE TRIGGER [dbo].[DeleteMultipleTextItems]
+   ON  [dbo].[QuestionBases_MultipleText]
    FOR DELETE
 AS 
 BEGIN
-	DELETE dbo.ElementBases WHERE Id IN (SELECT Id from deleted)
+	DELETE dbo.ElementBases WHERE Id IN (SELECT Id FROM QuestionBases_MultipleTextItem WHERE MultipleTextQuestionId IN (SELECT Id from deleted))
 END</value>
   </data>
 </root>

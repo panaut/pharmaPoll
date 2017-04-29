@@ -103,6 +103,20 @@ namespace Questionnaire.Data.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to ALTER TABLE [dbo].[QuestionBases_MultipleTextItem]  WITH NOCHECK ADD  CONSTRAINT [FK_dbo.QuestionBases_MultipleTextItem_dbo.QuestionBases_MultipleText_MultipleTextQuestionId] FOREIGN KEY([MultipleTextQuestionId])
+        ///REFERENCES [dbo].[QuestionBases_MultipleText] ([Id])
+        ///GO
+        ///
+        ///ALTER TABLE [dbo].[QuestionBases_MultipleTextItem] NOCHECK CONSTRAINT [FK_dbo.QuestionBases_MultipleTextItem_dbo.QuestionBases_MultipleText_MultipleTextQuestionId]
+        ///GO.
+        /// </summary>
+        internal static string ForeignKey_MultipleTextMultipleTextItem {
+            get {
+                return ResourceManager.GetString("ForeignKey_MultipleTextMultipleTextItem", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to ALTER TABLE [dbo].[Choices]  WITH NOCHECK ADD  CONSTRAINT [FK_dbo.Choices_dbo.QuestionBases_PlainMatrix_PlainMatrixId] FOREIGN KEY([PlainMatrixId])
         ///REFERENCES [dbo].[QuestionBases_PlainMatrix] ([Id])
         ///GO
@@ -271,17 +285,17 @@ namespace Questionnaire.Data.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to CREATE TRIGGER [dbo].[DeleteMultipleTextItemBase]
-        ///   ON  [dbo].[QuestionBases_MultipleTextItem]
+        ///   Looks up a localized string similar to CREATE TRIGGER [dbo].[DeleteMultipleTextItems]
+        ///   ON  [dbo].[QuestionBases_MultipleText]
         ///   FOR DELETE
         ///AS 
         ///BEGIN
-        ///	DELETE dbo.ElementBases WHERE Id IN (SELECT Id from deleted)
+        ///	DELETE dbo.ElementBases WHERE Id IN (SELECT Id FROM QuestionBases_MultipleTextItem WHERE MultipleTextQuestionId IN (SELECT Id from deleted))
         ///END.
         /// </summary>
-        internal static string Trigger_DeleteMultipleTextItemBase {
+        internal static string Trigger_DeleteMultipleTextItems {
             get {
-                return ResourceManager.GetString("Trigger_DeleteMultipleTextItemBase", resourceCulture);
+                return ResourceManager.GetString("Trigger_DeleteMultipleTextItems", resourceCulture);
             }
         }
     }

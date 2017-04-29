@@ -15,6 +15,20 @@ namespace Questionnaire.Data.Model.QuestionDefinition
             return this.Id != 0;
         }
 
+        public int SurveyId { get; set; }
+
+        public bool ShouldSerializeSurveyId()
+        {
+            return false;
+        }
+
+        public virtual Survey Survey { get; set; }
+
+        public bool ShouldSerializeSurvey()
+        {
+            return false;
+        }
+
         public int? ComplexMatrixId { get; set; }
 
         public bool ShouldSerializeComplexMatrixId()

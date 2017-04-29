@@ -38,6 +38,8 @@ namespace Questionnaire.Data
 
         public DbSet<SurveyValidator> SurveyValidators { get; set; }
 
+        public DbSet<Choice> Choices { get; set; }
+
         public DbSet<MatrixRow> MatrixRows { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
