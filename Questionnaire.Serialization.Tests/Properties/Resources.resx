@@ -785,6 +785,53 @@
  ]
 }</value>
   </data>
+  <data name="MultipleTextSurvey" xml:space="preserve">
+    <value>{
+ pages: [
+  {
+   elements: [
+    {
+     $type: "multipletext",
+     items: [
+      {
+       name: "text1"
+      },
+      {
+       name: "text2"
+      }
+     ],
+     name: "question1"
+    }
+   ],
+   name: "page1"
+  },
+  {
+   elements: [
+    {
+     $type: "panel",
+     elements: [
+      {
+       $type: "multipletext",
+       items: [
+        {
+         name: "text1"
+        },
+        {
+         name: "text2"
+        }
+       ],
+       name: "question2"
+      }
+     ],
+     name: "panel1",
+     title: "The second page panel"
+    }
+   ],
+   name: "page2"
+  }
+ ]
+}</value>
+  </data>
   <data name="surveyJson" xml:space="preserve">
     <value>{
  pages: [

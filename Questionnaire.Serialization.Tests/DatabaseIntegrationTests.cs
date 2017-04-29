@@ -4,7 +4,6 @@ using Questionnaire.Data;
 using System.Linq;
 using Questionnaire.Data.Model.QuestionDefinition;
 using Questionnaire.Data.Model;
-using System.Data.Entity.Infrastructure;
 using System.Data.Entity;
 using Questionnaire.Data.Serialization;
 
@@ -27,6 +26,10 @@ namespace Questionnaire.Serialization.Tests
             var lastSurvey = context.Surveys.OrderByDescending(s => s.Id).First();
             var surveyService = new SurveyService();
             surveyService.DeleteSurvey(lastSurvey.Id);
+
+            this.AssertNoSurvey(context, lastSurvey);
+            this.AssertNoOfPages(context, lastSurvey, 0);
+            this.AssertNoQuestions(context, lastSurvey);
         }
 
         [TestMethod]
@@ -122,6 +125,13 @@ namespace Questionnaire.Serialization.Tests
             }
 
             context.SaveChanges();
+
+            //this.AssertNoSurvey(context, lastSurvey);
+            //this.AssertNoPages(context, lastSurvey);
+            this.AssertNoQuestions(context, lastSurvey);
+
+            var surveyService = new SurveyService();
+            surveyService.DeleteSurvey(lastSurvey.Id);
         }
 
         [TestMethod]
@@ -132,6 +142,9 @@ namespace Questionnaire.Serialization.Tests
             var lastSurvey = context.Surveys.OrderByDescending(s => s.Id).First();
 
             var surveyJSON = (new SurveySerializer()).Serialize(lastSurvey);
+
+            var surveyService = new SurveyService();
+            surveyService.DeleteSurvey(lastSurvey.Id);
         }
 
         [TestMethod]
@@ -155,6 +168,13 @@ namespace Questionnaire.Serialization.Tests
             }
 
             context.SaveChanges();
+
+            //this.AssertNoSurvey(context, lastSurvey);
+            //this.AssertNoOfPages(context, lastSurvey, 0);
+            this.AssertNoQuestions(context, lastSurvey);
+
+            var surveyService = new SurveyService();
+            surveyService.DeleteSurvey(lastSurvey.Id);
         }
 
         [TestMethod]
@@ -171,34 +191,61 @@ namespace Questionnaire.Serialization.Tests
                 context.Entry(page).State = EntityState.Deleted;
             }
 
-            try
+            context.SaveChanges();
+
+            //this.AssertNoSurvey(context, lastSurvey);
+            this.AssertNoOfPages(context, lastSurvey, 0);
+            this.AssertNoQuestions(context, lastSurvey);
+
+            var surveyService = new SurveyService();
+            surveyService.DeleteSurvey(lastSurvey.Id);
+        }
+
+        [TestMethod]
+        public void DeleteMultipleTextItems()
+        {
+            var context = new SurveyModelContext();
+
+            var lastSurvey = context.Surveys.OrderByDescending(s => s.Id).First();
+
+            var mtis = context.Elements
+                .OfType<MultipleTextItem>()
+                .Where(p => p.SurveyId == lastSurvey.Id);
+
+            foreach (var mti in mtis)
             {
-                context.SaveChanges();
+                context.Entry(mti).State = EntityState.Deleted;
             }
-            catch (DbUpdateConcurrencyException uceException)
-            {
-                var objectContext = ((IObjectContextAdapter)context).ObjectContext;
 
-                //foreach (var objectStateEntry in uceException.Entries)
-                //{
-                //    objectContext.Refresh(RefreshMode.StoreWins, objectStateEntry.Entity);
-                //}
+            context.SaveChanges();
 
-                IObjectContextAdapter adapter = objectContext;
+            var surveyService = new SurveyService();
+            surveyService.DeleteSurvey(lastSurvey.Id);
+        }
 
-                var deletedEntries = objectContext.ObjectStateManager.GetObjectStateEntries(EntityState.Deleted);
+        private void AssertNoSurvey(SurveyModelContext context, Survey survey)
+        {
+            Assert.AreEqual(false, context.Surveys.Where(s => s.Id == survey.Id).Any());
+        }
 
-                foreach (var deleted in deletedEntries)
-                {
-                    context.Entry(deleted).State = EntityState.Detached;
-                }
+        private void AssertNoOfPages(SurveyModelContext context, Survey survey, int expectedNumber)
+        {
+            Assert.AreEqual(expectedNumber, context.Pages.Count(s => s.SurveyId == survey.Id));
+        }
 
-                //adapter.ObjectContext.Refresh(
-                //    RefreshMode.StoreWins, 
-                //    deletedEntries);
+        private void AssertNoQuestions(SurveyModelContext context, Survey survey)
+        {
+            Assert.AreEqual(
+                false,
+                context.Elements.OfType<QuestionBase>().Any(qb => qb.SurveyId == survey.Id));
 
-                context.SaveChanges();
-            }
+            Assert.AreEqual(
+                false,
+                context.MatrixRows.Any(qb => qb.SurveyId == survey.Id));
+
+            Assert.AreEqual(
+                false,
+                context.Choices.Any(qb => qb.SurveyId == survey.Id));
         }
     }
 }

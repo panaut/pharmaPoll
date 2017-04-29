@@ -5,7 +5,7 @@ namespace Questionnaire.Data.Model.QuestionDefinition
     [Table("QuestionBases_MultipleTextItem")]
     public class MultipleTextItem : QuestionBase
     {
-        public int MultipleTextQuestionId { get; set; }
+        public int? MultipleTextQuestionId { get; set; }
 
         public bool ShouldSerializeMultipleTextQuestionId()
         {

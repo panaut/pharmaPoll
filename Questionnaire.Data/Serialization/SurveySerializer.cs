@@ -38,7 +38,7 @@ namespace Questionnaire.Data.Serialization
                     return new JsonSerializerSettings
                     {
                         Binder = knownTypesBinder,
-                        Formatting = Formatting.Indented
+                        Formatting = Formatting.None
                     };
                 };
             }
@@ -69,7 +69,7 @@ namespace Questionnaire.Data.Serialization
             {
                 using (var writer = new JsonTextWriter(stringWriter))
                 {
-                    writer.QuoteName = false;
+                    writer.QuoteName = true;
                     serializer.Serialize(writer, obj);
                 }
 

@@ -156,6 +156,52 @@ namespace Questionnaire.Serialization.Tests.Properties {
         ///  {
         ///   elements: [
         ///    {
+        ///     $type: &quot;multipletext&quot;,
+        ///     items: [
+        ///      {
+        ///       name: &quot;text1&quot;
+        ///      },
+        ///      {
+        ///       name: &quot;text2&quot;
+        ///      }
+        ///     ],
+        ///     name: &quot;question1&quot;
+        ///    }
+        ///   ],
+        ///   name: &quot;page1&quot;
+        ///  },
+        ///  {
+        ///   elements: [
+        ///    {
+        ///     $type: &quot;panel&quot;,
+        ///     elements: [
+        ///      {
+        ///       $type: &quot;multipletext&quot;,
+        ///       items: [
+        ///        {
+        ///         name: &quot;text1&quot;
+        ///        },
+        ///        {
+        ///         name: &quot;text2&quot;
+        ///        }
+        ///       ],
+        ///       name: &quot;question2&quot;
+        ///      }
+        ///     ],
+        ///  [rest of string was truncated]&quot;;.
+        /// </summary>
+        internal static string MultipleTextSurvey {
+            get {
+                return ResourceManager.GetString("MultipleTextSurvey", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {
+        /// pages: [
+        ///  {
+        ///   elements: [
+        ///    {
         ///     $type: &quot;rating&quot;,
         ///     name: &quot;question1&quot;
         ///    },

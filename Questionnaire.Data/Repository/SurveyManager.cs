@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using RefactorThis.GraphDiff;
+using System.Linq;
 
 namespace Questionnaire.Data
 {
@@ -87,15 +88,15 @@ namespace Questionnaire.Data
         /// <summary>
         /// Finds the survey with given string id.
         /// </summary>
-        /// <param name="id">Survey Id</param>
+        /// <param name="code">Survey Id</param>
         /// <exception cref="ArgumentOutOfRangeException">If survey with corresponding id isn't found.</exception>
         /// <returns></returns>
-        public Survey Find(string id)
+        public Survey Find(string code)
         {
-            var survey = context.Surveys.Find(id);
+            var survey = context.Surveys.SingleOrDefault(s => s.surveyId.Equals(code));
 
             if (survey == null)
-                throw new ArgumentOutOfRangeException("surveyId");
+                throw new ArgumentOutOfRangeException("code");
 
             return survey;
         }

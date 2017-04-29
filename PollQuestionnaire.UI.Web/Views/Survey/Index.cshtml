@@ -5,35 +5,70 @@
 @*<link href="http://getbootstrap.com/dist/css/bootstrap.css" type="text/css" rel="stylesheet" />*@
 @Styles.Render("~/Content/survey/css")
 
-<div id="noSurveyAlert" style="display: none">
-    <hr />
-    <div class="alert alert-warning" role="alert">There are no active surveys...</div>
+<div class="container-fluid">
+    <div class="row">
+        <div id="noSurveyAlert" style="display: none">
+            <hr />
+            <div class="alert alert-warning" role="alert">There are no active surveys...</div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-offset-8">
+            <form class="form-inline" style="float: right">
+                <div class="form-group">
+                    <div class="input-group">
+                        <div class="input-group-addon">CODE</div>
+                        <input type="text" class="form-control" id="surveyCode" placeholder="Type here...">
+                    </div>
+                </div>
+                <button type="button" class="btn btn-primary" onclick="loadSurvey()">Load</button>
+            </form>
+        </div>
+    </div>
+    <div class="row">
+        <div id="surveyElement"></div>
+    </div>
 </div>
-<div id="surveyElement"></div>
 
 @section Scripts {
     @Scripts.Render("~/Scripts/dxSurvey/dxBroker.js")
     @Scripts.Render("~/bundles/survey")
 
     <script>
+        Survey.JsonObject.metaData.addProperty("survey", { name: "internalId:number" });
+        Survey.JsonObject.metaData.addProperty("page", { name: "internalId:number" });
+        Survey.JsonObject.metaData.addProperty("panel", { name: "internalId:number" });
+        Survey.JsonObject.metaData.addProperty("questionbase", { name: "internalId:number" });
+        Survey.JsonObject.metaData.addProperty("multipletextitem", { name: "internalId:number" });
+        Survey.JsonObject.metaData.addProperty("matrixdropdowncolumn", { name: "internalId:number" });
+
         var survey = new Survey.Model();
 
-        $.ajax(
-            '@Url.Action("GetActiveSurvey", "Survey", new { area="" })',
-            {
-                method: "GET",
-                async: true,
-                dataType: 'json',
-                success: function (data, textStatus, jqXHR) {
-                    $('#noSurveyAlert').css("display", "normal");
+        function loadSurvey() {
+            // Get Survey UID from URL
+            var code = $('#surveyCode').val();
 
-                    survey.setJsonObject(data);
-                    $("#surveyElement").Survey({ model: survey });
-                },
-                error: function (jqXHR, textStatus, errorThrown) {
-                    $('#noSurveyAlert').css("display", "block");
-                }
-            });
+            $.ajax(
+                '@Url.Action("GetActiveSurvey", "Survey", new { area="" })',
+                {
+                    method: "GET",
+                    async: true,
+                    data: { surveyCode: code },
+                    dataType: 'json',
+                    success: function (data, textStatus, jqXHR) {
+                        $('#noSurveyAlert').css("display", "normal");
+
+                        survey.setJsonObject(data);
+                        $("#surveyElement").Survey({
+                            model: survey,
+                            onComplete: function (sender) { alert(JSON.stringify(sender.data)); }
+                        });
+                    },
+                    error: function (jqXHR, textStatus, errorThrown) {
+                        $('#noSurveyAlert').css("display", "block");
+                    }
+                });
+        };
 
         Survey.defaultBootstrapCss.navigationButton = "btn btn-primary";
         Survey.Survey.cssType = "bootstrap";

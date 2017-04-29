@@ -1,11 +1,6 @@
 ﻿using Questionnaire.Data.Model;
 using Questionnaire.Data.Model.QuestionDefinition;
-using System;
-using System.Collections.Generic;
 using System.Data.Entity;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Questionnaire.Data
 {
@@ -37,6 +32,8 @@ namespace Questionnaire.Data
         public DbSet<SurveyTrigger> SurveyTriggers { get; set; }
 
         public DbSet<SurveyValidator> SurveyValidators { get; set; }
+
+        public DbSet<Choice> Choices { get; set; }
 
         public DbSet<MatrixRow> MatrixRows { get; set; }
 
