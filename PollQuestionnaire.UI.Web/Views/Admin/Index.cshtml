@@ -127,7 +127,29 @@
         @Scripts.Render("~/bundles/surveyEditor")
         @Scripts.Render("~/Scripts/surveyjsEditorInit.js")
         <script>
-            
+
+            $(document).on("click", ".editModalLink", function () {
+                var surveyId = $(this).data('id');
+                document.getElementById("surveyEditorContainer").setAttribute("data-myValue", surveyId);
+                //var surveyId = $('#surveyEditorContainer').data('myValue');
+                //var surveyId = document.getElementById("surveyEditorContainer").getAttribute('data-myValue');
+
+                $.ajax(
+                 '@Url.Action("GetSurvey", "Admin", new { area="" })',
+                 {
+                     method: "GET",
+                     async: true,
+                     data: { surveyId: surveyId },
+                     dataType: 'text',
+                     success: function (data, textStatus, jqXHR) {
+                         $('#noSurveyAlert').css("display", "normal");
+                         survey.text = data;
+                     },
+                     error: function (jqXHR, textStatus, errorThrown) {
+                         $('#noSurveyAlert').css("display", "block");
+                     }
+                 });
+            });
             $("document").ready(function () {
                     $(function () {
                         $(".deleteSurveyModal").click(function () {
@@ -137,28 +159,6 @@
                             $(".modal-footer #deleteSUrveyButton").attr('data-isActive', isActive);
                             //attr('src', 'something.jpg');
                         })
-                    });
-                    $(document).on("click", ".editModalLink", function () {
-                        var surveyId = $(this).data('id');
-                        document.getElementById("surveyEditorContainer").setAttribute("data-myValue", surveyId);
-                        //var surveyId = $('#surveyEditorContainer').data('myValue');
-                        //var surveyId = document.getElementById("surveyEditorContainer").getAttribute('data-myValue');
-
-                        $.ajax(
-                         '@Url.Action("GetSurvey", "Admin", new { area="" })',
-                         {
-                             method: "GET",
-                             async: true,
-                             data: { surveyId: surveyId },
-                             dataType: 'text',
-                             success: function (data, textStatus, jqXHR) {
-                                 $('#noSurveyAlert').css("display", "normal");
-                                 survey.text = data;
-                             },
-                             error: function (jqXHR, textStatus, errorThrown) {
-                                 $('#noSurveyAlert').css("display", "block");
-                             }
-                         });
                     });
                     function resetaconfirmModal() {
                         ;

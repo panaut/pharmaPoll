@@ -9,6 +9,8 @@ namespace Questionnaire.Data
 
         Survey Find(int id);
 
+        Survey Find(string id);
+
         Survey CreateSurvey(Survey survey);
 
         void UpdateSurvey(Survey survey);

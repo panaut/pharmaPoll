@@ -4,7 +4,7 @@ using Questionnaire.Data.Serialization;
 using Questionnaire.Service.Infrastructure;
 using System;
 using System.Collections.Generic;
-using System.Linq;
+using Questionnaire.Service.Extensions;
 
 namespace Questionnaire.Service
 {
@@ -45,18 +45,20 @@ namespace Questionnaire.Service
                                 {
                                     if (survey != null)
                                     {
-                                        if (survey.Id == 0)
-                                        {
-                                            survey.surveyId = $"pqSurvey-{DateTime.Now.ToString("yyMMddHHmmss")}";
-                                        }
-                                        else
-                                        {
-                                            throw new CustomException(
-                                                "Failed to save Survey object in database",
-                                                new ArgumentException("It's not allowed to insert Surveys with already assigned ID", "Survey.Id"));
-                                        }
-
+                                        survey.GenerateUniqueId(4).GenerateTitle();
                                         survey = this.surveyManager.Value.CreateSurvey(survey);
+
+                                        //if (survey.Id == 0)
+                                        //{
+
+                                        //}
+                                        //else
+                                        //{
+                                        //    throw new CustomException(
+                                        //        "Failed to save Survey object in database",
+                                        //        new ArgumentException("It's not allowed to insert Surveys with already assigned ID", "Survey.Id"));
+                                        //}
+
                                     }
                                 }
                                 catch (Exception ex)
@@ -101,6 +103,8 @@ namespace Questionnaire.Service
                     {
                         if (survey != null)
                         {
+                            survey.GenerateUniqueId(4).GenerateTitle();
+
                             if (survey.Id == 0)
                             {
                                 survey = this.surveyManager.Value.CreateSurvey(survey);
@@ -172,6 +176,54 @@ namespace Questionnaire.Service
         }
 
         public ServiceResponse<string> GetSurvey(int surveyId)
+        {
+            var command = new ServiceCommand<string>
+            {
+                Execution = (cmd, param) =>
+                {
+                    Survey survey = null;      // The survey object to be saved
+
+                    // Try to get survey with provided Id from database
+                    try
+                    {
+                        survey = this.surveyManager.Value.Find(surveyId);
+                    }
+                    catch (Exception ex)
+                    {
+                        cmd.Status = OperationStatus.Failure;
+                        var originalException = new ArgumentException($"Failed retrieve survey with id {surveyId}", ex);
+                        var exc = new CustomException(originalException, errorCode: 0);
+                        throw exc;
+                    }
+
+                    string retStr = string.Empty;      // Result JSON
+
+                    if (survey != null)
+                    {
+                        // Try to serialize modified object into JSON string
+                        try
+                        {
+                            retStr = surveySerializer.Value.Serialize(survey);
+                        }
+                        catch (Exception ex)
+                        {
+                            cmd.Status = OperationStatus.Failure;
+                            var exc = new CustomException("Failed to Serialize survey object into JSON string", ex, errorCode: 0);
+                            throw exc;
+                        }
+
+                        cmd.Result.Status = OperationStatus.Success;
+                    }
+
+                    return retStr;
+                }
+            };
+
+            command.Execute(null);
+            return command.Result;
+        }
+
+        public ServiceResponse<string> GetSurvey(string surveyId)
         {
             var command = new ServiceCommand<string>
             {
