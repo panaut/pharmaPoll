@@ -15,8 +15,8 @@
 <table class="table table-striped table-hover" id="surveyTable">
     <thead>
         <tr>
-            @*<th width="0"></th>*@
-            <th>Title</th>
+            <th width="30">SurveyID</th>
+            <th>Survey Title</th>
             <th width="25"></th>
             <th width="25"></th>
             <th width="25"></th>
@@ -29,7 +29,7 @@
         @foreach (var item in Model)
             {
             <tr data-surveyId="@item.Id">
-                @*<th scope="row">@item.Id</th>*@
+                <td>@item.surveyId</td>
                 <td>@item.title</td>
                 @if (!item.IsActive)
                 {
@@ -55,8 +55,8 @@
                 }
                 <td><a href="#" class="dloadTranslation" data-toggle="tooltip" title="Download file for translation"> <i class="glyphicon glyphicon-download"></i></a></td>
                 <td><a href="#" class="uploadTranslation" data-toggle="tooltip" title="Upload translation file"> <i class="glyphicon glyphicon-upload"></i></a></td>
-                <td><a href="#" class="editModalLink" title="Edit Survey: @item.title" data-toggle="modal" data-id="@item.Id" data-target="#modal-fullscreen_edit"> <i id=@string.Concat(item.Id, "-glyphicon-pencil") class="glyphicon glyphicon-pencil"></i></a></td>
-                <td><a href="#" class="deleteSurveyModal" data-toggle="modal" title="Delete Survey: @item.title" data-target="#modal-delete" data-id="@item.Id" data-isActive="@item.IsActive"> <i id=@string.Concat(item.Id, "-glyphicon-trash") class="glyphicon glyphicon-trash"></i></a></td>
+                <td><a href="#" class="editModalLink" title="Edit Survey: @item.title" data-toggle="modal" data-id="@item.Id" data-surveyId="@item.surveyId" data-target="#modal-fullscreen_edit"> <i id="glyphicon-pencil" class="glyphicon glyphicon-pencil"></i></a></td>
+                <td><a href="#" class="deleteSurveyModal" data-toggle="modal" title="Delete Survey: @item.title" data-target="#modal-delete" data-id="@item.Id" data-isActive="@item.IsActive"> <i id="glyphicon-trash" class="glyphicon glyphicon-trash"></i></a></td>
                 <td><span class="badge" title="Number of responses">not active</span></td>
             </tr>
         }
@@ -73,7 +73,7 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <div id="surveyEditorContainer" data-myValue=""></div>
+                    <div id="surveyEditorContainer" data-id="" data-surveyId=""></div>
                 </div>
                 <div class="modal-footer">
                     Your survey has been succesfully saved
@@ -129,26 +129,33 @@
         <script>
 
             $(document).on("click", ".editModalLink", function () {
-                var surveyId = $(this).data('id');
-                document.getElementById("surveyEditorContainer").setAttribute("data-myValue", surveyId);
-                //var surveyId = $('#surveyEditorContainer').data('myValue');
-                //var surveyId = document.getElementById("surveyEditorContainer").getAttribute('data-myValue');
-
-                $.ajax(
-                 '@Url.Action("GetSurvey", "Admin", new { area="" })',
-                 {
-                     method: "GET",
-                     async: true,
-                     data: { surveyId: surveyId },
-                     dataType: 'text',
-                     success: function (data, textStatus, jqXHR) {
-                         $('#noSurveyAlert').css("display", "normal");
-                         survey.text = data;
-                     },
-                     error: function (jqXHR, textStatus, errorThrown) {
-                         $('#noSurveyAlert').css("display", "block");
-                     }
-                 });
+                var Id = $(this).data('id');
+                var surveyId = $(this).attr('data-surveyId');
+                document.getElementById("surveyEditorContainer").setAttribute("data-id", Id);
+                document.getElementById("surveyEditorContainer").setAttribute("data-surveyId", surveyId);
+                //var myValue = $('#surveyEditorContainer').data('myValue');
+                
+                if (surveyId == null)
+                {
+                    survey = new Survey.Model();
+                }
+                else {
+                    $.ajax(
+                     '@Url.Action("GetSurvey", "Admin", new { area="" })',
+                     {
+                         method: "GET",
+                         async: true,
+                         data: { surveyId: Id },
+                         dataType: 'text',
+                         success: function (data, textStatus, jqXHR) {
+                             $('#noSurveyAlert').css("display", "normal");
+                             survey.text = data;
+                         },
+                         error: function (jqXHR, textStatus, errorThrown) {
+                             $('#noSurveyAlert').css("display", "block");
+                         }
+                     });
+                }
             });
             $("document").ready(function () {
                     $(function () {

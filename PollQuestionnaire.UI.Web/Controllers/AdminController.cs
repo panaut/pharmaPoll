@@ -18,13 +18,12 @@ namespace PollQuestionnaire.UI.Web.Controllers
 
             return View(model);
         }
-
         [HttpPost()]
         public bool ActivateSurvey(int surveyId)
         {
             var result = surveyService.Value.SetSurveyStatus(surveyId, true);
 
-            if(result.Status != OperationStatus.Success)
+            if (result.Status != OperationStatus.Success)
             {
                 throw new InvalidOperationException("failed to update survey status");
             }
@@ -80,6 +79,6 @@ namespace PollQuestionnaire.UI.Web.Controllers
 
             return result.ToString();
         }
-        
+
     }
 }

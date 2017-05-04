@@ -1,0 +1,55 @@
+﻿@{
+    ViewBag.Title = "PatQueSurvey";
+    Layout = "~/Views/Shared/_LayoutSurvey.cshtml";
+}
+@*<link href="http://getbootstrap.com/dist/css/bootstrap.css" type="text/css" rel="stylesheet" />*@
+@Styles.Render("~/Content/survey/css")
+<div class="row">
+    <div id="surveyElement" data-id="@ViewBag.codeSurveyId"></div>
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/Scripts/dxSurvey/dxBroker.js")
+    @Scripts.Render("~/bundles/survey")
+
+    <script>
+        Survey.JsonObject.metaData.addProperty("survey", { name: "internalId:number" });
+        Survey.JsonObject.metaData.addProperty("page", { name: "internalId:number" });
+        Survey.JsonObject.metaData.addProperty("panel", { name: "internalId:number" });
+        Survey.JsonObject.metaData.addProperty("questionbase", { name: "internalId:number" });
+        Survey.JsonObject.metaData.addProperty("multipletextitem", { name: "internalId:number" });
+        Survey.JsonObject.metaData.addProperty("matrixdropdowncolumn", { name: "internalId:number" });
+
+        var survey = new Survey.Model();
+        loadSurvey();
+        function loadSurvey() {
+            var codeSurveyId = $('#surveyElement').data('id');
+
+            $.ajax(
+                '@Url.Action("GetActiveSurvey", "Survey", new { area="" })',
+                {
+                    method: "GET",
+                    async: true,
+                    data: { surveyCode: codeSurveyId },
+                    dataType: 'json',
+                    success: function (data, textStatus, jqXHR) {
+                        $('#noSurveyAlert').css("display", "normal");
+
+                        survey.setJsonObject(data);
+                        $("#surveyElement").Survey({
+                            model: survey,
+                            onComplete: function (sender) { alert(JSON.stringify(sender.data)); }
+                        });
+                    },
+                    error: function (jqXHR, textStatus, errorThrown) {
+                        $('#noSurveyAlert').css("display", "block");
+                    }
+                });
+        };
+
+        Survey.defaultBootstrapCss.navigationButton = "btn btn-primary";
+        Survey.Survey.cssType = "bootstrap";
+
+    </script>
+}
+

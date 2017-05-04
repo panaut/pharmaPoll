@@ -12,11 +12,25 @@ namespace PollQuestionnaire.UI.Web.Controllers
         private Lazy<ISurveyService> surveyService = new Lazy<ISurveyService>(() => new SurveyService());
 
         // GET: SurveyDemo
-        [HttpGet()]
         public ActionResult Index()
         {
+            var model = surveyService.Value.GetAllSurveys().OperationResult;
+            return View(model);
+        }
+
+        public ActionResult PatQueSurvey(string surveyId)
+        {
+            ViewBag.codeSurveyId = HttpUtility.HtmlEncode(surveyId);
+            //string codeSurveyId = Request.QueryString["surveyId"];
             return View();
         }
+
+        //// GET: SurveyDemo
+        //[HttpGet()]
+        //public ActionResult Index()
+        //{
+        //    return View();
+        //}
 
         [HttpGet()]
         public string GetActiveSurvey(string surveyCode)

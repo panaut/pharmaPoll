@@ -1,9 +1,43 @@
-﻿@{
-    ViewBag.Title = "Survey";
-}
+﻿@model IEnumerable<Questionnaire.Data.Model.Survey>
 
+@{
+    ViewBag.Title = "Active Surveys";
+}
 @*<link href="http://getbootstrap.com/dist/css/bootstrap.css" type="text/css" rel="stylesheet" />*@
 @Styles.Render("~/Content/survey/css")
+<br />
+<br />
+<br />
+<div class="table-responsive">
+
+    <table class="table table-bordered table-striped table-hover-surveylist table-hover" id="surveyTable" style="border:medium">
+        <thead class="thead-inverse">
+            <tr>
+                <th width="25">SurveyId</th>
+                <th width="150">Survey Name</th>
+            </tr>
+        </thead>
+        <tbody>            
+            @foreach (var item in Model)
+            {
+                if (item.IsActive)
+                {
+                    <tr data-surveyId="@item.surveyId" data-Id="@item.Id" class="clickrow">
+                        <td>@item.surveyId</td>
+                        <td>@item.title</td>
+                    </tr>
+                }
+            }      
+            @if (Model.Count(o => o.IsActive == true) == 0)
+            {
+                <tr>
+                    <td colspan="2">There are no Active Surveys</td>                    
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+<br />
 
 <div class="container-fluid">
     <div class="row">
@@ -17,7 +51,7 @@
             <form class="form-inline" style="float: right">
                 <div class="form-group">
                     <div class="input-group">
-                        <div class="input-group-addon">CODE</div>
+                        <div class="input-group-addon" title="A 4 digit uniq survey code ie. <N7T6>. You can find it on the Survey Admin page">Survey CODE</div>
                         <input type="text" class="form-control" id="surveyCode" placeholder="Type here...">
                     </div>
                 </div>
@@ -29,11 +63,9 @@
         <div id="surveyElement"></div>
     </div>
 </div>
-
 @section Scripts {
     @Scripts.Render("~/Scripts/dxSurvey/dxBroker.js")
     @Scripts.Render("~/bundles/survey")
-
     <script>
         Survey.JsonObject.metaData.addProperty("survey", { name: "internalId:number" });
         Survey.JsonObject.metaData.addProperty("page", { name: "internalId:number" });
@@ -43,6 +75,15 @@
         Survey.JsonObject.metaData.addProperty("matrixdropdowncolumn", { name: "internalId:number" });
 
         var survey = new Survey.Model();
+
+        $("document").ready(function () {
+            $('.clickrow').on('click', function () {
+                var pagePQS = $(location).attr('href') + "/PatQueSurvey?surveyId=";
+                var surveyId = $(this).attr('data-surveyId'); // the 4 char survey code
+                window.location.href = pagePQS + surveyId;
+            });
+        });
+        
 
         function loadSurvey() {
             // Get Survey UID from URL
