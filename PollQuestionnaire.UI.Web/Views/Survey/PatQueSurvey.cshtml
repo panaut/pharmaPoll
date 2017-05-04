@@ -4,10 +4,27 @@
 }
 @*<link href="http://getbootstrap.com/dist/css/bootstrap.css" type="text/css" rel="stylesheet" />*@
 @Styles.Render("~/Content/survey/css")
-<div class="row">
+@*<div class="row">
     <div id="surveyElement" data-id="@ViewBag.codeSurveyId"></div>
+</div>*@
+<div class="alert alert-warning hidden" id="alert">
+    <strong>We don&#39;t have a survey for you!</strong> 
 </div>
-
+<div class="modal fullscreen fade" id="surveyModal" tabindex="-1" role="dialog" aria-labelledby="SurveyModal" aria-hidden="true" data-backdrop="static" data-keyboard="false">
+    <div class="modal-dialog" role="dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="ModalTitle">SurveyCode: @ViewBag.codeSurveyId</h5>                
+            </div>
+            <div class="modal-body">
+                <div id="surveyElement" data-id="" data-surveyId="@ViewBag.codeSurveyId" data-surveyName="@ViewBag.surveyName"></div>
+            </div>
+            <div class="modal-footer">
+                <p>&copy; @DateTime.Now.Year - EuropaColon</p>
+</div>
+        </div>
+    </div>
+</div>
 @section Scripts {
     @Scripts.Render("~/Scripts/dxSurvey/dxBroker.js")
     @Scripts.Render("~/bundles/survey")
@@ -20,11 +37,22 @@
         Survey.JsonObject.metaData.addProperty("multipletextitem", { name: "internalId:number" });
         Survey.JsonObject.metaData.addProperty("matrixdropdowncolumn", { name: "internalId:number" });
 
+        
         var survey = new Survey.Model();
-        loadSurvey();
-        function loadSurvey() {
-            var codeSurveyId = $('#surveyElement').data('id');
+        var codeSurveyId = $('#surveyElement').attr('data-surveyId');
 
+        if (codeSurveyId != "")
+        {
+            $('#surveyModal').modal('show');            
+            loadSurvey();
+        }
+        else
+        {            
+            $('#surveyModal').modal('hide');
+            $('#alert').removeClass('hidden');
+            $('#ModalTitle').html('');
+        }
+        function loadSurvey() {            
             $.ajax(
                 '@Url.Action("GetActiveSurvey", "Survey", new { area="" })',
                 {
@@ -39,10 +67,10 @@
                         $("#surveyElement").Survey({
                             model: survey,
                             onComplete: function (sender) { alert(JSON.stringify(sender.data)); }
-                        });
+                        });                        
                     },
                     error: function (jqXHR, textStatus, errorThrown) {
-                        $('#noSurveyAlert').css("display", "block");
+                        $('#surveyElement').html('Could not fetch the survey!');
                     }
                 });
         };

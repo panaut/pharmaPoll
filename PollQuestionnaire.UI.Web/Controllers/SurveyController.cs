@@ -18,9 +18,10 @@ namespace PollQuestionnaire.UI.Web.Controllers
             return View(model);
         }
 
-        public ActionResult PatQueSurvey(string surveyId)
+        public ActionResult PatQueSurvey(string surveyId, string surveyName)
         {
             ViewBag.codeSurveyId = HttpUtility.HtmlEncode(surveyId);
+            ViewBag.surveyName = HttpUtility.HtmlEncode(surveyName);
             //string codeSurveyId = Request.QueryString["surveyId"];
             return View();
         }
@@ -40,7 +41,7 @@ namespace PollQuestionnaire.UI.Web.Controllers
 
             if (result.Status != OperationStatus.Success)
             {
-                throw new Exception();
+                throw new Exception("Could not fetch the survey with surveyId=" + surveyCode, null);
             }
 
             return result.OperationResult;

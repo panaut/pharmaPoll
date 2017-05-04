@@ -22,7 +22,7 @@
             {
                 if (item.IsActive)
                 {
-                    <tr data-surveyId="@item.surveyId" data-Id="@item.Id" class="clickrow">
+                    <tr data-surveyId="@item.surveyId" data-Id="@item.Id" data-surveyName="@item.title" class="clickrow">
                         <td>@item.surveyId</td>
                         <td>@item.title</td>
                     </tr>
@@ -80,7 +80,8 @@
             $('.clickrow').on('click', function () {
                 var pagePQS = $(location).attr('href') + "/PatQueSurvey?surveyId=";
                 var surveyId = $(this).attr('data-surveyId'); // the 4 char survey code
-                window.location.href = pagePQS + surveyId;
+                var surveyName = $(this).attr('data-surveyName');
+                window.location.href = pagePQS + surveyId + '&surveyName=' + surveyName;
             });
         });
         
