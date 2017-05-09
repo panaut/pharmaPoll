@@ -22,7 +22,7 @@ namespace Questionnaire.Service.Extensions
         {
             if (string.IsNullOrEmpty(survey.title))
             {
-                survey.title = $"pqSurvey-{DateTime.Now.ToString("yyMMddHHmmss")}";
+                survey.title = $"pqSurvey {DateTime.Now.ToString("yy-MM-dd HH:mm:ss")}";
             }
 
             return survey;

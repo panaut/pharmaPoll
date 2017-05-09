@@ -83,3 +83,15 @@ textarea {
      width: 1170px;
   }
 }
+
+/* border style */
+/*.table { border: 1px solid #000; }*/
+table td {
+    border-top: 1px solid #000;
+}
+.table-hover-surveylist tbody tr:hover td, .table-hover-surveylist tbody tr:hover th {
+  color: #337ab7;
+  cursor: pointer;
+}
+/*.table thead > tr > th { border-top: inherit; }
+.table thead > tr > th, .table tbody > tr > th, .table tfoot > tr > th, .table thead > tr > td, .table tbody > tr > td, .table tfoot > tr > td { border: 1px solid #000; }*/
