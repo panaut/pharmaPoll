@@ -14,13 +14,18 @@
     <div class="modal-dialog" role="dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="ModalTitle">SurveyCode: @ViewBag.codeSurveyId</h5>                
+                <h5 class="modal-title" id="ModalTitle">SurveyCode: @ViewBag.codeSurveyId
+                    <img src="~/images/europacolon_logo.png" class="img-responsive" alt="Europa Colon Logo">       
+                </h5>  
+                  
             </div>
             <div class="modal-body">
                 <div id="surveyElement" data-id="" data-surveyId="@ViewBag.codeSurveyId" data-surveyName="@ViewBag.surveyName"></div>
             </div>
             <div class="modal-footer">
-                <p>&copy; @DateTime.Now.Year - EuropaColon</p>
+                <p>&copy; @DateTime.Now.Year - EuropaColon
+                    <img src="~/images/europacolon_logo.png" class="img-responsive" alt="Europa Colon Logo">
+                </p>
 </div>
         </div>
     </div>

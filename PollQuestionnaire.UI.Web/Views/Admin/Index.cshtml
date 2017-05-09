@@ -6,7 +6,6 @@
 
 @*<link href="http://getbootstrap.com/dist/css/bootstrap.css" type="text/css" rel="stylesheet" />*@
 @Styles.Render("~/Content/surveyEditor/css")
-
 <br />
 <p>
     <a href="#" title="New Survey" data-toggle="modal" class="editModalLink" data-target="#modal-fullscreen_edit"> <i class="glyphicon glyphicon-plus"></i> Create New Survey</a>
@@ -63,8 +62,8 @@
     </tbody>
 </table>
 @*modal div*@
-    <div class="modal fullscreen fade" id="modal-fullscreen_edit" tabindex="-1" role="dialog" aria-labelledby="editSurveyModal" aria-hidden="true">
-        <div class="modal-dialog" role="dialog">
+    <div class="modal fullscreen fade" id="modal-fullscreen_edit" aria-hidden="true"  data-backdrop="static" data-keyboard="false" >
+        <div class="modal-dialog" >
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="ModalLongTitle">Survey Editor</h5>                    
@@ -77,7 +76,7 @@
                 </div>
                 <div class="modal-footer">
                     Your survey has been succesfully saved
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal" id="close_modal-fullscreen_edit">Close</button>
                 </div>
             </div>
         </div>
@@ -127,7 +126,21 @@
         @Scripts.Render("~/bundles/surveyEditor")
         @Scripts.Render("~/Scripts/surveyjsEditorInit.js")
         <script>
-
+            //$(document).on('hidden.bs.modal', '#modal-fullscreen_edit', function (event) {
+            //$(document).on('hidden.bs.modal', function (event) {
+            //    if (event.target.id == 'surveyquestioneditorwindow') {
+            //        event.stopPropagation();
+            //    }
+            //    //else if (event.target.id == 'modal-fullscreen_edit') {
+            //    //    alert('modal even - ');
+            //    //}
+            //});
+            //$('#modal-fullscreen_edit').to
+            //    on('hide.bs.modal', function (e) {
+            //    $
+            //        //preventDefault();
+            //    //$(this).off('hide.bs.modal');
+            //});
             $(document).on("click", ".editModalLink", function () {
                 var Id = $(this).data('id');
                 var surveyId = $(this).attr('data-surveyId');
@@ -239,7 +252,7 @@
                                     $('#alertText').html('Survey succesfykky deleted');
                                     $('#modal-alert').modal('show');
                                     //alert('Survey succesfykky deleted');
-                                    window.location.reload();
+                                    //window.location.reload();
                                 },
                                 error: function (jqXHR, textStatus, errorThrown) {
                                     alert('ERROR - ' + errorThrown);
@@ -265,7 +278,7 @@
                         survey.surveyValue.surveyId = data;
                         //$successAlert.removeClass('hidden');
                         alert('Survey succesfully saved');
-                        window.location.reload();
+                        //window.location.reload();
                     },
                     error: function (jqXHR, textStatus, errorThrown) {
                         alert('ERROR - ' + errorThrown);

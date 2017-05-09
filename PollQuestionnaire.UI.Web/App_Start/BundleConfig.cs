@@ -38,7 +38,7 @@ namespace PollQuestionnaire.UI.Web
                       "~/Content/surveyjs/surveyeditor.css"));
 
             bundles.Add(new StyleBundle("~/Content/survey/css").Include(
-                      "~/Content/surveyjs/survey.css"));
+                      "~/Content/surveyjs/survey.css"));            
         }
     }
 }
