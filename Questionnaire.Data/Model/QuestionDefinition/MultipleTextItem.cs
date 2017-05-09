@@ -19,5 +19,11 @@ namespace Questionnaire.Data.Model.QuestionDefinition
         {
             return false;
         }
+
+        public override void Visit(IVisitor visitor)
+        {
+            base.Visit(visitor);
+            visitor.Visit(this);
+        }
     }
 }

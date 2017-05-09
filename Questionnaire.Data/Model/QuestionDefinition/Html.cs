@@ -13,5 +13,11 @@ namespace Questionnaire.Data.Model.QuestionDefinition
         {
             return !string.IsNullOrEmpty(this.html);
         }
+
+        public override void Visit(IVisitor visitor)
+        {
+            base.Visit(visitor);
+            visitor.Visit(this);
+        }
     }
 }

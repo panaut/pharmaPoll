@@ -7,5 +7,10 @@ namespace Questionnaire.Data.Model
     [Table("ElementContainers_Panel")]
     public class Panel : ElementContainer
     {
+        public override void Visit(IVisitor visitor)
+        {
+            base.Visit(visitor);
+            visitor.Visit(this);
+        }
     }
 }

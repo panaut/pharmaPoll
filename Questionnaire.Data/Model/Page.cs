@@ -13,5 +13,11 @@ namespace Questionnaire.Data.Model
         {
             return this.navigationButtonsVisibility != "inherit";
         }
+
+        public override void Visit(IVisitor visitor)
+        {
+            base.Visit(visitor);
+            visitor.Visit(this);
+        }
     }
 }

@@ -5,7 +5,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace Questionnaire.Data.Model
 {
     [Table("ElementBases")]
-    public abstract class ElementBase
+    public abstract class ElementBase : IVisitable
     {
         [JsonPropertyAttribute(PropertyName = "internalId")]
         public int Id { get; set; }
@@ -32,6 +32,14 @@ namespace Questionnaire.Data.Model
         public int? ElementContainerId { get; set; }
 
         public bool ShouldSerializeElementContainerId()
+        {
+            return false;
+        }
+
+        [NotMapped]
+        public int? ElementContainerUId { get; set; }
+
+        public bool ShouldSerializeElementContainerUId()
         {
             return false;
         }
@@ -79,6 +87,11 @@ namespace Questionnaire.Data.Model
         public bool ShouldSerializereadOnly()
         {
             return this.readOnly;
+        }
+
+        public virtual void Visit(IVisitor visitor)
+        {
+            visitor.Visit(this);
         }
     }
 }

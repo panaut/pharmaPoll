@@ -3,6 +3,7 @@ using Questionnaire.Data.Serialization;
 using Questionnaire.Serialization.Attributes;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
+using System;
 
 namespace Questionnaire.Data.Model.QuestionDefinition
 {
@@ -12,5 +13,11 @@ namespace Questionnaire.Data.Model.QuestionDefinition
     {
         [JsonConverter(typeof(ValueTextPairConverter))]
         public virtual ICollection<MatrixRow> rows { get; set; } = new List<MatrixRow>();
+
+        public override void Visit(IVisitor visitor)
+        {
+            base.Visit(visitor);
+            visitor.Visit(this);
+        }
     }
 }

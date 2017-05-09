@@ -63,6 +63,12 @@ namespace Questionnaire.Data.Model.QuestionDefinition
             return this.validators != null && this.validators.Any();
         }
 
+        public override void Visit(IVisitor visitor)
+        {
+            base.Visit(visitor);
+            visitor.Visit(this);
+        }
+
         //public QuestionCustomWidget customWidget { get; set; }
 
         //public bool ShouldSerializecustomWidget()
