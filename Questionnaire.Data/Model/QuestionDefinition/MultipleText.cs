@@ -23,5 +23,11 @@ namespace Questionnaire.Data.Model.QuestionDefinition
         }
 
         public virtual ICollection<MultipleTextItem> items { get; set; } = new List<MultipleTextItem>();
+
+        public override void Visit(IVisitor visitor)
+        {
+            base.Visit(visitor);
+            visitor.Visit(this);
+        }
     }
 }

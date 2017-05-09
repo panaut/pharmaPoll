@@ -21,5 +21,11 @@ namespace Questionnaire.Data.Model.QuestionDefinition
 
         [JsonConverter(typeof(ValueTextPairConverter))]
         public virtual ICollection<MatrixRow> rows { get; set; } = new List<MatrixRow>();
+
+        public override void Visit(IVisitor visitor)
+        {
+            base.Visit(visitor);
+            visitor.Visit(this);
+        }
     }
 }

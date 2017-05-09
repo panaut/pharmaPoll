@@ -3,6 +3,8 @@ using System;
 using System.Collections.Generic;
 using RefactorThis.GraphDiff;
 using System.Linq;
+using Questionnaire.Data.Model.QuestionDefinition;
+using Questionnaire.Data.Repository;
 
 namespace Questionnaire.Data
 {
@@ -19,7 +21,7 @@ namespace Questionnaire.Data
         {
             var survey = this.Find(surveyId);
 
-            if(survey == null)
+            if (survey == null)
             {
                 throw new InvalidOperationException($"Survey with Id {surveyId} wasn't found");
             }
@@ -108,12 +110,33 @@ namespace Questionnaire.Data
 
         public void UpdateSurvey(Survey survey)
         {
-            //context.UpdateGraph(survey, mapl1 =>
-            //mapl1.OwnedCollection(srv => srv.pages, page =>
-            //    page.OwnedCollection(pg => pg.elements)));
+            // Update Survey
+            // Update Survey Triggers
 
-            context.SaveChanges();
-        }
+            // Update all existing questions (without changing their parent container)
+            // While updating don't forget about validators
+            // Update Existing Panels (both Pages and Panels)
+            // Add new panels to Context (APPEND container structure, without deleting)
+            // Assign each container with UID, and copy this propery to object received from UI
+            // Save context changes
 
+            // Re-wire Questions to Containers (using the described UID)
+            // Add new questions
+            // Delete unused questions
+            // Delete unused Containers
+
+
+
+
+            // ****************************************************
+            // How to synchronize a collection?
+            // ****************************************************
+            // - Determine objects to be deleted (They exst in context but the're not present in the received object)
+            // - Itterate through elements of the collection and set it's state to new or modified
+            // Do that for each of the collections listed above
+
+            var synchronizer = new SurveySynchronizer(context);
+            synchronizer.Syncronize(survey);
+        }      
     }
 }

@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace Questionnaire.Data.Model.QuestionDefinition
 {
     [Table("RestfullChoiceSources")]
-    public class RestfullChoiceSource
+    public class RestfullChoiceSource : IVisitable
     {
         [ForeignKey("Question")]
         [JsonProperty(propertyName: "internalId")]
@@ -14,7 +14,6 @@ namespace Questionnaire.Data.Model.QuestionDefinition
         {
             return this.Id != 0;
         }
-
 
         public virtual SelectQuestionBase Question { get; set; }
 
@@ -47,6 +46,11 @@ namespace Questionnaire.Data.Model.QuestionDefinition
         public bool ShouldSerializeTitleName()
         {
             return !string.IsNullOrEmpty(this.TitleName);
+        }
+
+        public virtual void Visit(IVisitor visitor)
+        {
+            visitor.Visit(this);
         }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using Newtonsoft.Json;
+using Questionnaire.Data.Model.QuestionDefinition;
 using Questionnaire.Data.Serialization;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -8,7 +9,7 @@ using System.Linq;
 namespace Questionnaire.Data.Model
 {
     [Table("Surveys")]
-    public class Survey
+    public class Survey : IVisitable
     {
         [JsonPropertyAttribute(PropertyName = "internalId")]
         public int Id { get; set; }
@@ -236,6 +237,44 @@ namespace Questionnaire.Data.Model
         public bool ShouldSerializetriggers()
         {
             return this.triggers != null && this.triggers.Any();
+        }
+
+        public virtual ICollection<MatrixRow> matrixRows { get; set; } = new List<MatrixRow>();
+
+        public bool ShouldSerializematrixRows()
+        {
+            return false;
+        }
+
+        public virtual ICollection<Choice> choices { get; set; } = new List<Choice>();
+
+        public bool ShouldSerializechoices()
+        {
+            return false;
+        }
+
+        public virtual void Visit(IVisitor visitor)
+        {
+            foreach (var page in this.elements.OfType<Page>())
+            {
+                page.Visit(visitor);
+                VisitContianerElements(page, visitor);
+            }
+        }
+
+        private void VisitContianerElements(ElementContainer container, IVisitor visitor)
+        {
+            visitor.VisitingNewContainer(container);
+
+            foreach (var element in container.elements)
+            {
+                element.Visit(visitor);
+            }
+
+            foreach (var containerElement in container.elements.OfType<ElementContainer>())
+            {
+                this.VisitContianerElements((ElementContainer)containerElement, visitor);
+            }
         }
     }
 }

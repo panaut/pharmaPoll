@@ -1,6 +1,5 @@
 ﻿using Newtonsoft.Json;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 
@@ -10,6 +9,14 @@ namespace Questionnaire.Data.Model
     public abstract class ElementContainer : ElementBase
     {
         public int innerIndent { get; set; }
+
+        [NotMapped]
+        public int ContainerUID { get; set; }
+
+        public bool ShouldSerializeContainerUID()
+        {
+            return false;
+        }
 
         public bool ShouldSerializeinnerIndent()
         {
@@ -22,6 +29,12 @@ namespace Questionnaire.Data.Model
         public bool ShouldSerializeelements()
         {
             return this.elements != null && this.elements.Any();
+        }
+
+        public override void Visit(IVisitor visitor)
+        {
+            base.Visit(visitor);
+            visitor.Visit(this);
         }
     }
 }

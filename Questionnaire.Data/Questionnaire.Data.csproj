@@ -75,6 +75,8 @@
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Misc Interfaces\ICellDiversity.cs" />
+    <Compile Include="Misc Interfaces\IVisitable.cs" />
+    <Compile Include="Misc Interfaces\IVIsitor.cs" />
     <Compile Include="Model\ElementContainer.cs" />
     <Compile Include="Model\Panel.cs" />
     <Compile Include="Model\ElementBase.cs" />
@@ -83,11 +85,16 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <Compile Include="Repository\Visitors\ContainerAppender.cs" />
     <Compile Include="Repository\ContextFactory.cs" />
     <Compile Include="Repository\GenericRepository.cs" />
     <Compile Include="Repository\IContextFactory.cs" />
     <Compile Include="Repository\IGenericRepository.cs" />
-    <Compile Include="Repository\SuveySynchronizer.cs" />
+    <Compile Include="Repository\SurveySynchronizer.cs" />
+    <Compile Include="Repository\Visitors\QuestionCollector.cs" />
+    <Compile Include="Repository\Visitors\QuestionInserter.cs" />
+    <Compile Include="Repository\Visitors\QuestionUpdater.cs" />
+    <Compile Include="Repository\Visitors\VisitorBase.cs" />
     <Compile Include="Serialization\ISurveySerializer.cs" />
     <Compile Include="Misc Interfaces\IValueTextPair.cs" />
     <Compile Include="Repository\ISurveyManagement.cs" />

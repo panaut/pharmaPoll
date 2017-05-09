@@ -13,28 +13,34 @@ namespace Questionnaire.Data.Model.QuestionDefinition
     public class Rating : QuestionBase
     {
         [MaxLength(256)]
-        public string mininumRateDescription { get; set; } = null;
+        public string minRateDescription { get; set; } = null;
 
         public bool ShouldSerializemininumRateDescription()
         {
-            return !string.IsNullOrEmpty(this.mininumRateDescription);
+            return !string.IsNullOrEmpty(this.minRateDescription);
         }
 
         [MaxLength(256)]
-        public string maximumRateDescription { get; set; } = null;
+        public string maxRateDescription { get; set; } = null;
 
         public bool ShouldSerializemaximumRateDescription()
         {
-            return !string.IsNullOrEmpty(this.maximumRateDescription);
+            return !string.IsNullOrEmpty(this.maxRateDescription);
         }
 
         [JsonProperty(PropertyName = "rateValues")]
         [JsonConverter(typeof(ValueTextPairConverter))]
-        public virtual ICollection<Choice> choices { get; set; }
+        public virtual ICollection<Choice> choices { get; set; } = new List<Choice>();
 
         public bool ShouldSerializechoices()
         {
             return this.choices != null && this.choices.Any();
+        }
+
+        public override void Visit(IVisitor visitor)
+        {
+            base.Visit(visitor);
+            visitor.Visit(this);
         }
     }
 }

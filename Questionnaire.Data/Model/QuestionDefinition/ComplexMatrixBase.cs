@@ -41,5 +41,11 @@ namespace Questionnaire.Data.Model.QuestionDefinition
 
         [JsonConverter(typeof(MatrixColumnConverter))]
         public virtual ICollection<QuestionBase> columns { get; set; } = new List<QuestionBase>();
+
+        public override void Visit(IVisitor visitor)
+        {
+            base.Visit(visitor);
+            visitor.Visit(this);
+        }
     }
 }

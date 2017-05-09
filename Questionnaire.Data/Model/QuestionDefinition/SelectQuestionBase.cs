@@ -70,5 +70,16 @@ namespace Questionnaire.Data.Model.QuestionDefinition
         {
             return this.choices != null && this.choices.Any();
         }
+
+        public override void Visit(IVisitor visitor)
+        {
+            foreach (var choice in choices)
+            {
+                choice.Visit(visitor);
+            }
+
+            base.Visit(visitor);
+            visitor.Visit(this);
+        }
     }
 }
