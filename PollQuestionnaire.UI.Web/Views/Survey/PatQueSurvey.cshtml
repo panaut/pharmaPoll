@@ -5,35 +5,49 @@
 @*<link href="http://getbootstrap.com/dist/css/bootstrap.css" type="text/css" rel="stylesheet" />*@
 @Styles.Render("~/Content/survey/css")
 @*<div class="row">
-    <div id="surveyElement" data-id="@ViewBag.codeSurveyId"></div>
-</div>*@
+        <div id="surveyElement" data-id="@ViewBag.codeSurveyId"></div>
+    </div>*@
 <div class="alert alert-warning hidden" id="alert">
-    <strong>We don&#39;t have a survey for you!</strong> 
+    <strong>We don&#39;t have a survey for you!</strong>
 </div>
 <div class="modal fullscreen fade" id="surveyModal" tabindex="-1" role="dialog" aria-labelledby="SurveyModal" aria-hidden="true" data-backdrop="static" data-keyboard="false">
     <div class="modal-dialog" role="dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="ModalTitle">SurveyCode: @ViewBag.codeSurveyId
-                    <img src="~/images/europacolon_logo.png" class="img-responsive" alt="Europa Colon Logo">       
-                </h5>  
-                  
+                <h5 class="modal-title" id="ModalTitle">
+                    SurveyCode: @ViewBag.codeSurveyId
+                    <img src="~/images/europacolon_logo.png" class="img-responsive" alt="Europa Colon Logo">
+                </h5>
+
             </div>
             <div class="modal-body">
-                <div id="surveyElement" data-id="" data-surveyId="@ViewBag.codeSurveyId" data-surveyName="@ViewBag.surveyName"></div>
+                <div id="surveyElement" data-id="" data-surveyId="@ViewBag.codeSurveyId" data-surveyName="@ViewBag.surveyName" onchange="surveyValueChanged();"></div>
             </div>
             <div class="modal-footer">
-                <p>&copy; @DateTime.Now.Year - EuropaColon
-                    <img src="~/images/europacolon_logo.png" class="img-responsive" alt="Europa Colon Logo">
-                </p>
-</div>
+                <p>
+                    &copy; @DateTime.Now.Year - EuropaColon</p>
+                    <img src="~/images/europacolon_logo.png" class="img-responsive" alt="Europa Colon Logo" />
+
+                    <div id="cookieHolder">
+                        <h5>This is the AdminIndexCookieJSON cookie holder:</h5>
+                        @if (Request.Cookies["AdminIndexSurveyCookie"] != null)
+                        {
+                            var val = Request.Cookies["AdminIndexSurveyCookie"].ToString();
+                            @val
+                        }
+                        else
+                        {
+                            <h5>There is no cookie</h5>
+                        }
+
+                    </div>
+                <button id="closeButton" type="button" class="btn btn-secondary" onclick="survey.deleteCookie(); reRunSurvey();">Delete Cookie</button>
+            </div>
         </div>
     </div>
 </div>
 @section Scripts {
-    @Scripts.Render("~/Scripts/dxSurvey/dxBroker.js")
     @Scripts.Render("~/bundles/survey")
-
     <script>
         Survey.JsonObject.metaData.addProperty("survey", { name: "internalId:number" });
         Survey.JsonObject.metaData.addProperty("page", { name: "internalId:number" });
@@ -41,23 +55,36 @@
         Survey.JsonObject.metaData.addProperty("questionbase", { name: "internalId:number" });
         Survey.JsonObject.metaData.addProperty("multipletextitem", { name: "internalId:number" });
         Survey.JsonObject.metaData.addProperty("matrixdropdowncolumn", { name: "internalId:number" });
-
         
         var survey = new Survey.Model();
         var codeSurveyId = $('#surveyElement').attr('data-surveyId');
+        
+        survey.showProgressBar = "bottom";
+                
+        var surveyValueChanged = function () {
+            var data = survey.data.toString();
+            if (readCookie("AdminIndexSurveyCookie") != null) {
+                eraseCookie("AdminIndexSurveyCookie");
+            }
+            createCookie("AdminIndexSurveyCookie", data, 2);
+        };
+        if (readCookie("AdminIndexSurveyCookie") != null) {
+            var cookieData = readCookie("AdminIndexSurveyCookie");
+        }
+        else {
+            cookieData = "";
+        }
 
-        if (codeSurveyId != "")
-        {
-            $('#surveyModal').modal('show');            
+        if (codeSurveyId != "") {
+            $('#surveyModal').modal('show');
             loadSurvey();
         }
-        else
-        {            
+        else {
             $('#surveyModal').modal('hide');
             $('#alert').removeClass('hidden');
             $('#ModalTitle').html('');
         }
-        function loadSurvey() {            
+        function loadSurvey() {
             $.ajax(
                 '@Url.Action("GetActiveSurvey", "Survey", new { area="" })',
                 {
@@ -71,8 +98,9 @@
                         survey.setJsonObject(data);
                         $("#surveyElement").Survey({
                             model: survey,
-                            onComplete: function (sender) { alert(JSON.stringify(sender.data)); }
-                        });                        
+                            onComplete: function (sender) { alert(JSON.stringify(sender.data)); },
+                            data: cookieData
+                        });
                     },
                     error: function (jqXHR, textStatus, errorThrown) {
                         $('#surveyElement').html('Could not fetch the survey!');
@@ -82,6 +110,39 @@
 
         Survey.defaultBootstrapCss.navigationButton = "btn btn-primary";
         Survey.Survey.cssType = "bootstrap";
+
+        function reRunSurvey() {
+        
+            survey.clear();
+        
+            survey.render('survey');
+        }
+
+        function createCookie(name, value, days) {
+            if (days) {
+                var date = new Date();
+                date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+                var expires = "; expires=" + date.toGMTString();
+            }
+            else var expires = "";
+
+            document.cookie = name + "=" + value + expires + "; path=/";
+        }
+
+        function readCookie(name) {
+            var nameEQ = name + "=";
+            var ca = document.cookie.split(';');
+            for (var i = 0; i < ca.length; i++) {
+                var c = ca[i];
+                while (c.charAt(0) == ' ') c = c.substring(1, c.length);
+                if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length, c.length);
+            }
+            return null;
+        }
+
+        function eraseCookie(name) {
+            createCookie(name, "", -1);
+        }
 
     </script>
 }
