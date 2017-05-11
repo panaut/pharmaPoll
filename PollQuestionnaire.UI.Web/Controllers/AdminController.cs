@@ -11,6 +11,7 @@ namespace PollQuestionnaire.UI.Web.Controllers
     {
         private Lazy<ISurveyService> surveyService = new Lazy<ISurveyService>(() => new SurveyService());
 
+        [Authorize]
         // GET: Admin
         public ActionResult Index()
         {

@@ -11,6 +11,7 @@ namespace PollQuestionnaire.UI.Web.Controllers
     {
         private Lazy<ISurveyService> surveyService = new Lazy<ISurveyService>(() => new SurveyService());
 
+        [Authorize]
         // GET: SurveyDemo
         public ActionResult Index()
         {
@@ -18,6 +19,7 @@ namespace PollQuestionnaire.UI.Web.Controllers
             return View(model);
         }
 
+        [AllowAnonymous]
         public ActionResult PatQueSurvey(string surveyId, string surveyName)
         {
             ViewBag.codeSurveyId = HttpUtility.HtmlEncode(surveyId);

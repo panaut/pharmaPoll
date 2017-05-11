@@ -62,11 +62,12 @@
         }
     </tbody>
 </table>
+
 @*modal div*@
 <div class="modal fullscreen fade" id="modal-fullscreen_edit" aria-hidden="true" data-backdrop="static" data-keyboard="false">
     <div class="modal-dialog">
         <div class="modal-content">
-            <div class="modal-header">
+            <div class="modal-header">                
                 <h5 class="modal-title" id="ModalLongTitle">Survey Editor</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
@@ -152,11 +153,13 @@
             //var myValue = $('#surveyEditorContainer').data('myValue');
 
             if (surveyId == null) {
-                survey = new SurveyEditor.SurveyEditor("surveyEditorContainer", editorOptions);
-                survey.saveSurveyFunc = saveSurvey;
+                survey.text ="{pages: [{name: \"page1\"}] }"
+                //survey.survey.setJsonObject("{pages: [{name: \"page1\"}] }");
+                //survey = new SurveyEditor.SurveyEditor("surveyEditorContainer", editorOptions);
+                //survey.saveSurveyFunc = saveSurvey;
             }
             else {
-                survey.saveSurveyFunc = saveSurvey;
+                survey.text = "{pages: [{name: \"page1\"}] }";
                 $.ajax(
                  '@Url.Action("GetSurvey", "Admin", new { area="" })',
                  {
@@ -266,7 +269,6 @@
 
             });
         })
-        // survey editor scripting
 
         //survey.onCanShowProperty.add(function (sender, options) {
         //    if (options.obj.getType() == "matrixdynamic") {
@@ -276,7 +278,7 @@
 
         // set function on save callback
         // set function on save callback
-        function saveSurvey() {
+        @*function saveSurvey() {
             //var $successAlert = document.getElementById("successAlert");
             var $successAlert = $(this).siblings('.alert-success');
             var $dangerAlert = document.getElementById("dangerAlert");
@@ -291,6 +293,27 @@
                         //$successAlert.removeClass('hidden');
                         alert('Survey succesfully saved');
                         window.location.reload();
+                    },
+                    error: function (jqXHR, textStatus, errorThrown) {
+                        alert('ERROR - ' + errorThrown);
+                    }
+                });
+        }*@
+        survey.saveSurveyFunc = function () {
+            //var $successAlert = document.getElementById("successAlert");
+            var $successAlert = $(this).siblings('.alert-success');
+            var $dangerAlert = document.getElementById("dangerAlert");
+            $.ajax(
+                '@Url.Action("SaveSurvey", "SurveyEditor", new { area="" })',
+                {
+                    method: "POST",
+                    async: true,
+                    data: { surveyJson: survey.text },
+                    success: function (data, textStatus, jqXHR) {
+                        survey.surveyValue.surveyId = data;
+                        //$successAlert.removeClass('hidden');
+                        alert('Survey succesfully saved');
+                        //window.location.reload();
                     },
                     error: function (jqXHR, textStatus, errorThrown) {
                         alert('ERROR - ' + errorThrown);

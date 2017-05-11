@@ -60,13 +60,14 @@
         var codeSurveyId = $('#surveyElement').attr('data-surveyId');
         
         survey.showProgressBar = "bottom";
-                
+        document.cookie.json = true;
+       
         var surveyValueChanged = function () {
-            var data = survey.data.toString();
+            var data = survey.data;
             if (readCookie("AdminIndexSurveyCookie") != null) {
                 eraseCookie("AdminIndexSurveyCookie");
             }
-            createCookie("AdminIndexSurveyCookie", data, 2);
+            createCookie("AdminIndexSurveyCookie", data.toString, 2);
         };
         if (readCookie("AdminIndexSurveyCookie") != null) {
             var cookieData = readCookie("AdminIndexSurveyCookie");
@@ -74,6 +75,7 @@
         else {
             cookieData = "";
         }
+
 
         if (codeSurveyId != "") {
             $('#surveyModal').modal('show');
@@ -110,6 +112,8 @@
 
         Survey.defaultBootstrapCss.navigationButton = "btn btn-primary";
         Survey.Survey.cssType = "bootstrap";
+        
+        
 
         function reRunSurvey() {
         
