@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Questionnaire.Data.Model.QuestionDefinition;
 
@@ -69,7 +68,9 @@ namespace Questionnaire.Data.Repository.Visitors
                     // UPDATE
                     var itemDb = questionDb.items.Single(mti => mti.Id == item.Id);
                     context.Entry(itemDb).CurrentValues.SetValues(item);
-                    itemDb.ComplexMatrixBaseId = questionDb.Id;
+
+                    // Restore Foreign keys
+                    itemDb.MultipleTextQuestionId = questionDb.Id;
                     itemDb.SurveyId = questionDb.SurveyId;
                 }
             }

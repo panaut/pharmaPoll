@@ -29,6 +29,13 @@ namespace Questionnaire.Data.Model
             return false;
         }
 
+        public int PositionWithinContainer { get; set; }
+
+        public bool ShouldSerializePositionWithinContainer()
+        {
+            return false;
+        }
+
         public int? ElementContainerId { get; set; }
 
         public bool ShouldSerializeElementContainerId()

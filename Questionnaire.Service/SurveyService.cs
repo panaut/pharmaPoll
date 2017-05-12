@@ -200,6 +200,9 @@ namespace Questionnaire.Service
 
                     if (survey != null)
                     {
+                        // Sort Pages and Elements properly...
+                        survey.SortElementsWithinContainer();
+
                         // Try to serialize modified object into JSON string
                         try
                         {
@@ -247,6 +250,9 @@ namespace Questionnaire.Service
 
                     if (survey != null)
                     {
+                        // Sort Pages and Elements properly...
+                        survey.SortElementsWithinContainer();
+
                         // Try to serialize modified object into JSON string
                         try
                         {

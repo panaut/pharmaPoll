@@ -5,6 +5,7 @@ using RefactorThis.GraphDiff;
 using System.Linq;
 using Questionnaire.Data.Model.QuestionDefinition;
 using Questionnaire.Data.Repository;
+using Questionnaire.Data.Repository.Visitors;
 
 namespace Questionnaire.Data
 {
@@ -56,6 +57,18 @@ namespace Questionnaire.Data
 
         public Survey CreateSurvey(Survey survey)
         {
+            QuestionCollector qCollector = new QuestionCollector();
+
+            // Write indexes to pages
+            var pageIndex = 1;
+            foreach(var page in survey.elements.OfType<Page>())
+            {
+                page.PositionWithinContainer = pageIndex++;
+            }
+
+            // Write indexes to elements within containers
+            survey.Visit(qCollector);
+
             context.Surveys.Add(survey);
 
             context.SaveChanges();
@@ -110,33 +123,8 @@ namespace Questionnaire.Data
 
         public void UpdateSurvey(Survey survey)
         {
-            // Update Survey
-            // Update Survey Triggers
-
-            // Update all existing questions (without changing their parent container)
-            // While updating don't forget about validators
-            // Update Existing Panels (both Pages and Panels)
-            // Add new panels to Context (APPEND container structure, without deleting)
-            // Assign each container with UID, and copy this propery to object received from UI
-            // Save context changes
-
-            // Re-wire Questions to Containers (using the described UID)
-            // Add new questions
-            // Delete unused questions
-            // Delete unused Containers
-
-
-
-
-            // ****************************************************
-            // How to synchronize a collection?
-            // ****************************************************
-            // - Determine objects to be deleted (They exst in context but the're not present in the received object)
-            // - Itterate through elements of the collection and set it's state to new or modified
-            // Do that for each of the collections listed above
-
             var synchronizer = new SurveySynchronizer(context);
             synchronizer.Syncronize(survey);
-        }      
+        }
     }
 }

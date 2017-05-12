@@ -258,6 +258,10 @@ namespace Questionnaire.Data.Model
             foreach (var page in this.elements.OfType<Page>())
             {
                 page.Visit(visitor);
+            }
+
+            foreach (var page in this.elements.OfType<Page>())
+            {
                 VisitContianerElements(page, visitor);
             }
         }
