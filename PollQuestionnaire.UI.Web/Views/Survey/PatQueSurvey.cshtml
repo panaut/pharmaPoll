@@ -21,7 +21,7 @@
 
             </div>
             <div class="modal-body">
-                <div id="surveyElement" data-id="" data-surveyId="@ViewBag.codeSurveyId" data-surveyName="@ViewBag.surveyName" onchange="surveyValueChanged();"></div>
+                <div id="surveyElement" data-id="" data-surveyId="@ViewBag.codeSurveyId" data-surveyName="@ViewBag.surveyName"></div>
             </div>
             <div class="modal-footer">
                 <p>
@@ -61,20 +61,17 @@
         
         survey.showProgressBar = "bottom";
         document.cookie.json = true;
-       
-        var surveyValueChanged = function () {
-            var data = survey.data;
-            if (readCookie("AdminIndexSurveyCookie") != null) {
+
+        survey.onValueChanged.add(function (sender, options) {
+            var data = JSON.stringify(sender.data);
+            if(readCookie("AdminIndexSurveyCookie") != null)
+            {
                 eraseCookie("AdminIndexSurveyCookie");
             }
-            createCookie("AdminIndexSurveyCookie", data.toString, 2);
-        };
-        if (readCookie("AdminIndexSurveyCookie") != null) {
-            var cookieData = readCookie("AdminIndexSurveyCookie");
-        }
-        else {
-            cookieData = "";
-        }
+            createCookie("AdminIndexSurveyCookie", data.toString(), 2)
+        });
+        
+       
 
 
         if (codeSurveyId != "") {
@@ -87,6 +84,15 @@
             $('#ModalTitle').html('');
         }
         function loadSurvey() {
+            if (readCookie("AdminIndexSurveyCookie") != null) 
+            {
+                var cookieData = readCookie("AdminIndexSurveyCookie");
+            }
+            else
+            {
+                cookieData = "";
+            }
+            //console.debug($.cookie("AdminIndexSurveyCookie"));
             $.ajax(
                 '@Url.Action("GetActiveSurvey", "Survey", new { area="" })',
                 {
