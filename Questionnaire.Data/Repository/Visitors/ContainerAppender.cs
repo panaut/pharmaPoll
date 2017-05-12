@@ -7,25 +7,40 @@ namespace Questionnaire.Data.Repository.Visitors
     // ToDo: IC - Refactor this class into visitor
     internal class ContainerAppender
     {
-        private object uidLock = new object();
+        //private object uidLock = new object();
         private int uid = 1;
+
+        //private object currentIndexLock = new object();
+        private int currentIndex = 1;
 
         public IDictionary<int?, ElementContainer> dbElementContainerDict { get; set; }
             = new Dictionary<int?, ElementContainer>();
 
         private SurveyModelContext context = null;
 
-        private int GetNexUid()
-        {
-            int nextUid = 0;
+        //private int GetNextUid()
+        //{
+        //    int nextUid = 0;
 
-            lock (uidLock)
-            {
-                nextUid = uid++;
-            }
+        //    lock (uidLock)
+        //    {
+        //        nextUid = uid++;
+        //    }
 
-            return nextUid;
-        }
+        //    return nextUid;
+        //}
+
+        //private int GetNextIndex()
+        //{
+        //    int retVal = 0;
+
+        //    lock (currentIndexLock)
+        //    {
+        //        retVal = this.currentIndex++;
+        //    }
+
+        //    return retVal;
+        //}
 
         public void AppendContainers(SurveyModelContext context, Survey surveyDb, Survey newSurvey)
         {
@@ -33,7 +48,10 @@ namespace Questionnaire.Data.Repository.Visitors
 
             foreach (var page in newSurvey.elements.OfType<Page>())
             {
-                page.ContainerUID = this.GetNexUid();
+                //page.ContainerUID = this.GetNextUid();
+                page.ContainerUID = this.uid++;
+                //page.PositionWithinContainer = this.GetNextIndex();
+                page.PositionWithinContainer = this.currentIndex++;
 
                 Page pageDb = null;
 
@@ -64,7 +82,8 @@ namespace Questionnaire.Data.Repository.Visitors
         {
             foreach (var panel in container.elements.OfType<Panel>())
             {
-                panel.ContainerUID = this.GetNexUid();
+                //panel.ContainerUID = this.GetNextUid();
+                panel.ContainerUID = this.uid++;
 
                 Panel panelDb = null;
 

@@ -1,13 +1,14 @@
 ﻿using Questionnaire.Data.Model;
-using System;
 using Questionnaire.Data.Model.QuestionDefinition;
-using Questionnaire.Data.Repository.Visitors;
 using System.Collections.Generic;
 
 namespace Questionnaire.Data.Repository.Visitors
 {
     internal class QuestionCollector : VisitorBase
     {
+        //private object currentIndexLock = new object();
+        private int currentIndex = 1;
+
         private ElementContainer currentContainer = null;
 
         public IEnumerable<ElementContainer> ElementContainers { get; private set; }
@@ -26,10 +27,25 @@ namespace Questionnaire.Data.Repository.Visitors
             this.ElementContainers = new List<ElementContainer>();
         }
 
+        //private int GetNextIndex()
+        //{
+        //    int retVal = 0;
+
+        //    lock(currentIndexLock)
+        //    {
+        //        retVal = this.currentIndex++;
+        //    }
+
+        //    return retVal;
+        //}
+
         public override void Visit(QuestionBase question)
         {
             question.ElementContainerUId = this.currentContainer.ContainerUID;
             ((List<QuestionBase>)Questions).Add(question);
+
+            //question.PositionWithinContainer = this.GetNextIndex();
+            question.PositionWithinContainer = this.currentIndex++;
 
             if (question.Id == 0)
             {
@@ -41,9 +57,19 @@ namespace Questionnaire.Data.Repository.Visitors
             }
         }
 
+        public override void Visit(Panel panel)
+        {
+            //panel.PositionWithinContainer = this.GetNextIndex();
+            panel.PositionWithinContainer = this.currentIndex++;
+        }
+
         public override void VisitingNewContainer(ElementContainer container)
         {
             this.currentContainer = container;
+
+            // reset indexCounter
+            this.currentIndex = 1;
+
             ((List<ElementContainer>)this.ElementContainers).Add(container);
         }
     }

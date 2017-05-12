@@ -41,6 +41,7 @@ namespace Questionnaire.Data.Repository
             this.AddNewContainers(newSurvey);
 
             // Collect Questions from newSurvey object
+            // and set positions of elements within containers
             this.CollectQuestions(newSurvey);
 
             // Update Questions found both in context and newSurvey
