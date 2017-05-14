@@ -127,6 +127,11 @@ namespace Questionnaire.Service.Extensions
             }
         }
 
+        public override void Visit(Survey survey)
+        {
+            UpdateLocalizationsForObject(survey, survey.Id, survey.Id);
+        }
+
         public override void Visit(ElementBase element)
         {
             UpdateLocalizationsForObject(element, element.Id, element.SurveyId);

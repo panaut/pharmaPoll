@@ -263,6 +263,8 @@ namespace Questionnaire.Data.Model
 
         public virtual void Visit(IVisitor visitor)
         {
+            visitor.Visit(this);
+
             foreach (var page in this.elements.OfType<Page>())
             {
                 page.Visit(visitor);

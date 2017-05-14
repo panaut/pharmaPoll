@@ -6,6 +6,11 @@ namespace Questionnaire.Data.Repository.Visitors
 {
     internal abstract class VisitorBase : IVisitor
     {
+        public virtual void Visit(Survey survey)
+        {
+
+        }
+
         public virtual void Visit(Page container)
         {
 

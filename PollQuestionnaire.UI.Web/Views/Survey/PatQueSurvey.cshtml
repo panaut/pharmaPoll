@@ -106,7 +106,7 @@
 
                         $("#surveyElement").Survey({
                             model: survey,
-                            onComplete: function (sender) { alert(JSON.stringify(sender.data)); }
+                            onComplete: saveResults
                         });
                     },
                     error: function (jqXHR, textStatus, errorThrown) {
@@ -122,6 +122,23 @@
             survey.clear();
 
             survey.render('survey');
+        }
+
+        function saveResults(survey) {
+            $.ajax(
+                '@Url.Action("SaveResults", "Survey", new { area="" })',
+                {
+                    method: "POST",
+                    async: true,
+                    data: { surveyId: survey.internalId, jsonResults: JSON.stringify(survey.data) },
+                    dataType: 'text',
+                    success: function (data, textStatus, jqXHR) {
+                        alert(JSON.stringify("Your survey has been saved"));
+                    },
+                    error: function (jqXHR, textStatus, errorThrown) {
+                        alert(JSON.stringify("Error"));
+                    }
+                });
         }
     </script>
 }

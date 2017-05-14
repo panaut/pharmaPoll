@@ -5,6 +5,10 @@ namespace Questionnaire.Service.Extensions
 {
     internal class VisitorBase : IVisitor
     {
+        public virtual void Visit(Survey survey)
+        {
+        }
+
         public virtual void Visit(ElementBase element)
         {
         }

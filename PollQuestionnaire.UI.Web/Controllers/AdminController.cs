@@ -15,7 +15,7 @@ namespace PollQuestionnaire.UI.Web.Controllers
         // GET: Admin
         public ActionResult Index()
         {
-            var model = surveyService.Value.GetAllSurveys().OperationResult;
+            var model = surveyService.Value.GetAllSurveys(onlyActive: false).OperationResult;
 
             return View(model);
         }
@@ -47,7 +47,7 @@ namespace PollQuestionnaire.UI.Web.Controllers
         [HttpGet()]
         public string GetSurvey(int surveyId)
         {
-            var result = surveyService.Value.GetSurvey(surveyId);
+            var result = surveyService.Value.GetSurvey(surveyId, onlyActive: false);
 
             if (result.Status != OperationStatus.Success)
             {

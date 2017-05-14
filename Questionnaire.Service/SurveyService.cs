@@ -104,15 +104,22 @@ namespace Questionnaire.Service
                     {
                         if (survey != null)
                         {
-                            survey.GenerateUniqueId(4).GenerateTitle();
-
                             if (survey.Id == 0)
                             {
+                                survey.GenerateUniqueId(4).GenerateTitle();
                                 survey = this.surveyManager.Value.CreateSurvey(survey);
                             }
                             else
                             {
-                                this.surveyManager.Value.UpdateSurvey(survey);
+                                // This is an update of an existing survey
+                                // Find it and check wheter it is active or not
+                                var surveyDb = this.surveyManager.Value.Find(survey.Id);
+
+                                // We will update only under condition that it's not active
+                                if (!surveyDb.IsActive)
+                                    this.surveyManager.Value.UpdateSurvey(survey);
+                                else
+                                    throw new InvalidOperationException("Active surveys aren't allowed to be updated");
                             }
                         }
                     }

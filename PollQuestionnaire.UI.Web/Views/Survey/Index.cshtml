@@ -17,7 +17,7 @@
                 <th width="150">Survey Name</th>
             </tr>
         </thead>
-        <tbody>            
+        <tbody>
             @foreach (var item in Model)
             {
                 if (item.IsActive)
@@ -27,11 +27,11 @@
                         <td>@item.title</td>
                     </tr>
                 }
-            }      
+            }
             @if (Model.Count(o => o.IsActive == true) == 0)
             {
                 <tr>
-                    <td colspan="2">There are no Active Surveys</td>                    
+                    <td colspan="2">There are no Active Surveys</td>
                 </tr>
             }
         </tbody>
@@ -84,7 +84,7 @@
                 window.location.href = pagePQS + surveyId + '&surveyName=' + surveyName;
             });
         });
-        
+
 
         function loadSurvey() {
             // Get Survey UID from URL
@@ -103,7 +103,7 @@
                         survey.setJsonObject(data);
                         $("#surveyElement").Survey({
                             model: survey,
-                            onComplete: function (sender) { alert(JSON.stringify(sender.data)); }
+                            onComplete: saveResults
                         });
                     },
                     error: function (jqXHR, textStatus, errorThrown) {
@@ -114,6 +114,22 @@
 
         Survey.defaultBootstrapCss.navigationButton = "btn btn-primary";
         Survey.Survey.cssType = "bootstrap";
+
+        function saveResults(survey) {
+            $.ajax(
+                '@Url.Action("SaveResults", "Survey", new { area="" })',
+                {
+                    method: "POST",
+                    async: true,
+                    data: { surveyId: survey.internalId, jsonResults: JSON.stringify(sender.data) },
+                    success: function (data, textStatus, jqXHR) {
+                        alert(JSON.stringify("Your survey has been saved"));
+                    },
+                    error: function (jqXHR, textStatus, errorThrown) {
+                        alert(JSON.stringify("Error"));
+                    }
+                });
+        }
 
     </script>
 }

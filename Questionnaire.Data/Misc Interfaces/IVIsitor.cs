@@ -6,6 +6,8 @@ namespace Questionnaire.Data.Model
     {
         void VisitingNewContainer(ElementContainer container);
 
+        void Visit(Survey survey);
+
         void Visit(ElementBase element);
 
         void Visit(ElementContainer container);
