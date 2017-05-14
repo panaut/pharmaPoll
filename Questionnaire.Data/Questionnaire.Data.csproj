@@ -46,10 +46,6 @@
       <HintPath>..\packages\NLog.4.4.6\lib\net45\NLog.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="RefactorThis.GraphDiff, Version=2.0.1.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\RefactorThis.GraphDiff.2.0.1\lib\RefactorThis.GraphDiff.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.configuration" />
@@ -64,6 +60,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Attributes\Localizable.cs" />
     <Compile Include="Attributes\SurveyType.cs" />
     <Compile Include="Migrations\201704262336172_Initial.cs" />
     <Compile Include="Migrations\201704262336172_Initial.Designer.cs">
@@ -73,18 +70,28 @@
     <Compile Include="Migrations\201704290047502_Rev001.Designer.cs">
       <DependentUpon>201704290047502_Rev001.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201705140930574_Rev002.cs" />
+    <Compile Include="Migrations\201705140930574_Rev002.Designer.cs">
+      <DependentUpon>201705140930574_Rev002.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Misc Interfaces\ICellDiversity.cs" />
     <Compile Include="Misc Interfaces\IVisitable.cs" />
     <Compile Include="Misc Interfaces\IVIsitor.cs" />
+    <Compile Include="Model\ECulture.cs" />
     <Compile Include="Model\ElementContainer.cs" />
+    <Compile Include="Model\LocalizedString.cs" />
     <Compile Include="Model\Panel.cs" />
     <Compile Include="Model\ElementBase.cs" />
+    <Compile Include="Model\Results\VotingSession.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <Compile Include="Repository\ILocalizationManager.cs" />
+    <Compile Include="Repository\IVotingSessionManagement.cs" />
+    <Compile Include="Repository\LocalizationManager.cs" />
     <Compile Include="Repository\Visitors\ContainerAppender.cs" />
     <Compile Include="Repository\ContextFactory.cs" />
     <Compile Include="Repository\GenericRepository.cs" />
@@ -95,6 +102,7 @@
     <Compile Include="Repository\Visitors\QuestionInserter.cs" />
     <Compile Include="Repository\Visitors\QuestionUpdater.cs" />
     <Compile Include="Repository\Visitors\VisitorBase.cs" />
+    <Compile Include="Repository\VotingSessionManagement.cs" />
     <Compile Include="Serialization\ISurveySerializer.cs" />
     <Compile Include="Misc Interfaces\IValueTextPair.cs" />
     <Compile Include="Repository\ISurveyManagement.cs" />
@@ -150,6 +158,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201704290047502_Rev001.resx">
       <DependentUpon>201704290047502_Rev001.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201705140930574_Rev002.resx">
+      <DependentUpon>201705140930574_Rev002.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

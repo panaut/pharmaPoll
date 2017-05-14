@@ -1,4 +1,5 @@
 ﻿using Newtonsoft.Json;
+using Questionnaire.Data.Attributes;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -43,6 +44,13 @@ namespace Questionnaire.Data.Model
             return false;
         }
 
+        public virtual ElementContainer ElementContainer { get; set; }
+
+        public bool ShouldSerializeElementContainer()
+        {
+            return false;
+        }
+
         [NotMapped]
         public int? ElementContainerUId { get; set; }
 
@@ -51,14 +59,8 @@ namespace Questionnaire.Data.Model
             return false;
         }
 
-        public virtual ElementContainer ElementContainer { get; set; }
-
-        public bool ShouldSerializeElementContainer()
-        {
-            return false;
-        }
-
         [MaxLength(512)]
+        [LocalizableProperty()]
         public string name { get; set; }
 
         public bool ShouldSerializename()
@@ -67,6 +69,7 @@ namespace Questionnaire.Data.Model
         }
 
         [MaxLength(512)]
+        [LocalizableProperty()]
         public string title { get; set; }
 
         public bool ShouldSerializetitle()

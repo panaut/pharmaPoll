@@ -1,5 +1,6 @@
 ﻿using Questionnaire.Data.Model;
 using Questionnaire.Data.Model.QuestionDefinition;
+using Questionnaire.Data.Model.Results;
 using System.Data.Entity;
 
 namespace Questionnaire.Data
@@ -36,6 +37,10 @@ namespace Questionnaire.Data
         public DbSet<Choice> Choices { get; set; }
 
         public DbSet<MatrixRow> MatrixRows { get; set; }
+
+        public DbSet<LocalizedString> LocalizedStrings { get; set; }
+
+        public DbSet<VotingSession> VotingSessions { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {

@@ -1,4 +1,5 @@
 ﻿using Newtonsoft.Json;
+using Questionnaire.Data.Attributes;
 using Questionnaire.Data.Serialization;
 using Questionnaire.Serialization.Attributes;
 using System.Collections.Generic;
@@ -13,6 +14,7 @@ namespace Questionnaire.Data.Model.QuestionDefinition
     public class Rating : QuestionBase
     {
         [MaxLength(256)]
+        [LocalizableProperty()]
         public string minRateDescription { get; set; } = null;
 
         public bool ShouldSerializemininumRateDescription()
@@ -21,6 +23,7 @@ namespace Questionnaire.Data.Model.QuestionDefinition
         }
 
         [MaxLength(256)]
+        [LocalizableProperty()]
         public string maxRateDescription { get; set; } = null;
 
         public bool ShouldSerializemaximumRateDescription()

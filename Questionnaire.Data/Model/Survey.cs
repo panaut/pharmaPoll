@@ -1,4 +1,5 @@
 ﻿using Newtonsoft.Json;
+using Questionnaire.Data.Attributes;
 using Questionnaire.Data.Model.QuestionDefinition;
 using Questionnaire.Data.Serialization;
 using System.Collections.Generic;
@@ -34,6 +35,7 @@ namespace Questionnaire.Data.Model
         }
 
         [MaxLength(1024)]
+        [LocalizableProperty()]
         public string completeText { get; set; }
 
         public bool ShouldSerializecompleteText()
@@ -41,6 +43,7 @@ namespace Questionnaire.Data.Model
             return !string.IsNullOrEmpty(this.completeText);
         }
 
+        [LocalizableProperty()]
         public string completedHtml { get; set; }
 
         public bool ShouldSerializecompletedHtml()
@@ -87,6 +90,7 @@ namespace Questionnaire.Data.Model
         }
 
         [MaxLength(32)]
+        [LocalizableProperty()]
         public string pageNextText { get; set; }
 
         public bool ShouldSerializepageNextText()
@@ -95,6 +99,7 @@ namespace Questionnaire.Data.Model
         }
 
         [MaxLength(32)]
+        [LocalizableProperty()]
         public string pagePrevText { get; set; }
 
         public bool ShouldSerializepagePrevText()
@@ -127,6 +132,7 @@ namespace Questionnaire.Data.Model
         }
 
         [MaxLength(32)]
+        [LocalizableProperty()]
         public string requiredText { get; set; } = "*";
 
         public bool ShouldSerializerequiredText()
@@ -199,7 +205,8 @@ namespace Questionnaire.Data.Model
             return !this.storeOthersAsComment;
         }
 
-        [MaxLength(256)]
+        [MaxLength(128)]
+        [Index(IsUnique = true)]
         public string surveyId { get; set; }
 
         public bool ShouldSerializesurveyId()
@@ -216,6 +223,7 @@ namespace Questionnaire.Data.Model
         }
 
         [MaxLength(1024)]
+        [LocalizableProperty()]
         public string title { get; set; }
 
         public bool ShouldSerializetitle()

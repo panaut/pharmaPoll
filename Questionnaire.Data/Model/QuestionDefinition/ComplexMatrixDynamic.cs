@@ -1,4 +1,5 @@
-﻿using Questionnaire.Serialization.Attributes;
+﻿using Questionnaire.Data.Attributes;
+using Questionnaire.Serialization.Attributes;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -9,6 +10,7 @@ namespace Questionnaire.Data.Model.QuestionDefinition
     public class ComplexMatrixDynamic : ComplexMatrixBase
     {
         [MaxLength(64)]
+        [LocalizableProperty()]
         public string addRowText { get; set; }
 
         public bool ShouldSerializeaddRowText()
@@ -17,6 +19,7 @@ namespace Questionnaire.Data.Model.QuestionDefinition
         }
 
         [MaxLength(64)]
+        [LocalizableProperty()]
         public string removeRowText { get; set; }
 
         public bool ShouldSerializeremoveRowText()

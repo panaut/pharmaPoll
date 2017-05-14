@@ -1,4 +1,5 @@
 ﻿using Newtonsoft.Json;
+using Questionnaire.Data.Attributes;
 using Questionnaire.Serialization.Attributes;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -31,6 +32,7 @@ namespace Questionnaire.Data.Model.QuestionDefinition
             return false;
         }
 
+        [LocalizableProperty()]
         public string Text { get; set; }
 
         public bool ShouldSerializeText()

@@ -1,9 +1,7 @@
 ﻿using Questionnaire.Data.Model;
 using System;
 using System.Collections.Generic;
-using RefactorThis.GraphDiff;
 using System.Linq;
-using Questionnaire.Data.Model.QuestionDefinition;
 using Questionnaire.Data.Repository;
 using Questionnaire.Data.Repository.Visitors;
 

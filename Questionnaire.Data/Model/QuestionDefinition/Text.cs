@@ -1,4 +1,5 @@
-﻿using Questionnaire.Serialization.Attributes;
+﻿using Questionnaire.Data.Attributes;
+using Questionnaire.Serialization.Attributes;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -24,6 +25,7 @@ namespace Questionnaire.Data.Model.QuestionDefinition
         }
 
         [MaxLength(512)]
+        [LocalizableProperty()]
         public string placeHolder { get; set; }
 
         public bool ShouldSerializeplaceHolder()

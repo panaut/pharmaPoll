@@ -1,4 +1,5 @@
 ﻿using Newtonsoft.Json;
+using Questionnaire.Data.Attributes;
 using Questionnaire.Data.Serialization;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -18,6 +19,7 @@ namespace Questionnaire.Data.Model.QuestionDefinition
         }
 
         [MaxLength(1024)]
+        [LocalizableProperty()]
         public string commentText { get; set; }
 
         public bool ShouldSerializecommentText()
@@ -48,6 +50,7 @@ namespace Questionnaire.Data.Model.QuestionDefinition
         }
 
         [MaxLength(256)]
+        [LocalizableProperty()]
         public string otherText { get; set; }
 
         public bool ShouldSerializeotherText()
@@ -56,6 +59,7 @@ namespace Questionnaire.Data.Model.QuestionDefinition
         }
 
         [MaxLength(1024)]
+        [LocalizableProperty()]
         public string otherErrorText { get; set; }
 
         public bool ShouldSerializeotherErrorText()
@@ -73,11 +77,6 @@ namespace Questionnaire.Data.Model.QuestionDefinition
 
         public override void Visit(IVisitor visitor)
         {
-            foreach (var choice in choices)
-            {
-                choice.Visit(visitor);
-            }
-
             base.Visit(visitor);
             visitor.Visit(this);
         }

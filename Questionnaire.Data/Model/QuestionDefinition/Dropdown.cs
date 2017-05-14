@@ -1,4 +1,5 @@
-﻿using Questionnaire.Serialization.Attributes;
+﻿using Questionnaire.Data.Attributes;
+using Questionnaire.Serialization.Attributes;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -9,6 +10,7 @@ namespace Questionnaire.Data.Model.QuestionDefinition
     public class Dropdown : SelectQuestionBase
     {
         [MaxLength(256)]
+        [LocalizableProperty()]
         public string optionsCaption { get; set; }
 
         public bool ShouldSerializeoptionsCaption()

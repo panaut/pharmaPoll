@@ -1,4 +1,5 @@
 ﻿using Newtonsoft.Json;
+using Questionnaire.Data.Attributes;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -69,6 +70,7 @@ namespace Questionnaire.Data.Model.QuestionDefinition
         private string textProp;
 
         [MaxLength(256)]
+        [LocalizableProperty()]
         public string text
         {
             get

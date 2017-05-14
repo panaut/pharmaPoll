@@ -12,11 +12,11 @@ namespace Questionnaire.Service
 
         ServiceResponse<bool?> SetSurveyStatus(int surveyId, bool status);
 
-        ServiceResponse<string> GetSurvey(int surveyId);
+        ServiceResponse<string> GetSurvey(int surveyId, bool onlyActive = true);
 
-        ServiceResponse<string> GetSurvey(string surveyCode);
+        ServiceResponse<string> GetSurvey(string surveyCode, bool onlyActive = true);
 
-        ServiceResponse<IEnumerable<Survey>> GetAllSurveys();
+        ServiceResponse<IEnumerable<Survey>> GetAllSurveys(bool onlyActive = true);
 
         ServiceResponse DeleteSurvey(int surveyId);
 

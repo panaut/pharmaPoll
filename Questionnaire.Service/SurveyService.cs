@@ -5,6 +5,7 @@ using Questionnaire.Service.Infrastructure;
 using System;
 using System.Collections.Generic;
 using Questionnaire.Service.Extensions;
+using System.Linq;
 
 namespace Questionnaire.Service
 {
@@ -47,24 +48,24 @@ namespace Questionnaire.Service
                                     {
                                         survey.GenerateUniqueId(4).GenerateTitle();
                                         survey = this.surveyManager.Value.CreateSurvey(survey);
-
-                                        //if (survey.Id == 0)
-                                        //{
-
-                                        //}
-                                        //else
-                                        //{
-                                        //    throw new CustomException(
-                                        //        "Failed to save Survey object in database",
-                                        //        new ArgumentException("It's not allowed to insert Surveys with already assigned ID", "Survey.Id"));
-                                        //}
-
                                     }
                                 }
                                 catch (Exception ex)
                                 {
                                     cmd.Status = OperationStatus.Failure;
                                     var exc = new CustomException("Failed to save Survey object in database", ex);
+                                    throw exc;
+                                }
+
+                                // Finally - try to extract localizable properties
+                                try
+                                {
+                                    survey.ExtractLocalizations();
+                                }
+                                catch (Exception ex)
+                                {
+                                    cmd.Status = OperationStatus.Failure;
+                                    var exc = new CustomException("Failed to update localizations for survey", ex);
                                     throw exc;
                                 }
 
@@ -122,6 +123,18 @@ namespace Questionnaire.Service
                         throw exc;
                     }
 
+                    // Finally - try to extract localizable properties
+                    try
+                    {
+                        survey.ExtractLocalizations();
+                    }
+                    catch (Exception ex)
+                    {
+                        cmd.Status = OperationStatus.Failure;
+                        var exc = new CustomException("Failed to update localizations for survey", ex);
+                        throw exc;
+                    }
+
                     cmd.Result.Status = OperationStatus.Success;
 
                     return survey.Id;
@@ -175,7 +188,7 @@ namespace Questionnaire.Service
             return command.Result;
         }
 
-        public ServiceResponse<string> GetSurvey(int surveyId)
+        public ServiceResponse<string> GetSurvey(int surveyId, bool onlyActive = true)
         {
             var command = new ServiceCommand<string>
             {
@@ -194,6 +207,18 @@ namespace Questionnaire.Service
                         var originalException = new ArgumentException($"Failed retrieve survey with id {surveyId}", ex);
                         var exc = new CustomException(originalException, errorCode: 0);
                         throw exc;
+                    }
+
+                    if (survey != null && onlyActive)
+                    {
+                        // Check whether the survey is active
+                        // If not, raise custom exception
+                        if (!survey.IsActive)
+                        {
+                            cmd.Status = OperationStatus.Failure;
+                            var exc = new CustomException(new InvalidOperationException("Requested survey is not active"), errorCode: 0);
+                            throw exc;
+                        }
                     }
 
                     string retStr = string.Empty;      // Result JSON
@@ -226,7 +251,7 @@ namespace Questionnaire.Service
             return command.Result;
         }
 
-        public ServiceResponse<string> GetSurvey(string surveyCode)
+        public ServiceResponse<string> GetSurvey(string surveyCode, bool onlyActive = true)
         {
             var command = new ServiceCommand<string>
             {
@@ -248,6 +273,18 @@ namespace Questionnaire.Service
 
                     string retStr = string.Empty;      // Result JSON
 
+                    if (survey != null && onlyActive)
+                    {
+                        // Check whether the survey is active
+                        // If not, raise custom exception
+                        if (!survey.IsActive)
+                        {
+                            cmd.Status = OperationStatus.Failure;
+                            var exc = new CustomException(new InvalidOperationException("Requested survey is not active"), errorCode: 0);
+                            throw exc;
+                        }
+                    }
+
                     if (survey != null)
                     {
                         // Sort Pages and Elements properly...
@@ -276,7 +313,7 @@ namespace Questionnaire.Service
             return command.Result;
         }
 
-        public ServiceResponse<IEnumerable<Survey>> GetAllSurveys()
+        public ServiceResponse<IEnumerable<Survey>> GetAllSurveys(bool onlyActive = true)
         {
             var command = new ServiceCommand<IEnumerable<Survey>>
             {
@@ -287,7 +324,8 @@ namespace Questionnaire.Service
                     try
                     {
                         surveys = this.surveyManager.Value
-                                            .GetAllSurveys();
+                                            .GetAllSurveys()
+                                            .Where(s => !onlyActive || s.IsActive);
                     }
                     catch (Exception ex)
                     {
