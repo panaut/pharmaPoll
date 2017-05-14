@@ -34,6 +34,11 @@ namespace PollQuestionnaire.UI.Web
                       "~/Content/bootstrap.css",
                       "~/Content/site.css"));
 
+            bundles.Add(new StyleBundle("~/Content/surveycss").Include(
+                      "~/Content/bootstrap.css",
+                      "~/Content/style.css",
+                      "~/Content/site.css"));
+
             bundles.Add(new StyleBundle("~/Content/surveyEditor/css").Include(
                       "~/Content/surveyjs/surveyeditor.css"));
 
