@@ -23,6 +23,7 @@
             <th width="25"></th>
             <th width="25"></th>
             <th width="25"></th>
+            <th width="25"></th>
         </tr>
     </thead>
     <tbody>
@@ -53,6 +54,7 @@
                         </a>
                     </td>
                 }
+                <td><a href="#" class="uploadPdf" data-toggle="modal" data-target="#uploadPdf" title="Upload printable version"> <i class="glyphicon glyphicon-print"></i></a></td>
                 <td><a href="#" class="dloadTranslation" data-toggle="tooltip" title="Download file for translation"> <i class="glyphicon glyphicon-download"></i></a></td>
                 <td><a href="#" class="uploadTranslation" data-toggle="tooltip" title="Upload translation file"> <i class="glyphicon glyphicon-upload"></i></a></td>
                 <td><a href="#" class="editModalLink" title="Edit Survey: @item.title" data-toggle="modal" data-id="@item.Id" data-surveyId="@item.surveyId" data-target="#modal-fullscreen_edit"> <i id="glyphicon-pencil" class="glyphicon glyphicon-pencil"></i></a></td>
@@ -118,7 +120,38 @@
         </div>
     </div>
 </div>
-
+<div class="modal modal-backdrop-transparent fade" id="uploadPdf" tabindex="-1" role="dialog" aria-labelledby="deleteSurveyModal" aria-hidden="true">
+    <div class="modal-dialog" role="dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="ModalLongTitle">Upload printable version</h5>
+                <h6 id="Modaltext">Supported documents are in pdf and doc format</h6>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <input id="fileUpload" name="FileUpload" multiple="" type="file" class="btn btn-primary form-control" />
+                <label class="btn btn-default btn-file">
+                    Browse <input type="file" style="display: none;">
+                </label>
+                <div class="fileinput fileinput-new" data-provides="fileinput">
+                    <span class="btn btn-default btn-file"><span>Choose file</span><input type="file" /></span>
+                    <span class="fileinput-filename"></span><span class="fileinput-new">No file chosen</span>
+                </div>
+                <div>
+                    <label class="control-label">Select File</label>
+                    <input id="input-1a" type="file" class="file btn-file" data-show-preview="false">
+                </div>
+                <label>Brochure File</label>
+                <input id="pdffile" style="" name="file" type="file" class="btn-file" />
+            </div>
+            <div class="modal-footer">
+                <button id="uploadPdfButton" type="button" class="btn btn-primary uploadPdf" data-dismiss="modal" name="passedValue" data-id="" data-isActive="">Upload file</button>
+            </div>
+        </div>
+    </div>
+</div>
 @section Scripts
 {
     @Scripts.Render("~/bundles/surveyEditor")
