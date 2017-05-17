@@ -22,7 +22,7 @@ namespace PollQuestionnaire.UI.Web.Controllers
         {
         }
 
-        public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager )
+        public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager)
         {
             UserManager = userManager;
             SignInManager = signInManager;
@@ -34,9 +34,9 @@ namespace PollQuestionnaire.UI.Web.Controllers
             {
                 return _signInManager ?? HttpContext.GetOwinContext().Get<ApplicationSignInManager>();
             }
-            private set 
-            { 
-                _signInManager = value; 
+            private set
+            {
+                _signInManager = value;
             }
         }
 
@@ -57,6 +57,24 @@ namespace PollQuestionnaire.UI.Web.Controllers
         [AllowAnonymous]
         public ActionResult Login(string returnUrl)
         {
+            //// adding default user
+            //// check if the default user exists
+            //string adminUser = "PQAdmin";
+            //var resultCheckAdmin = await UserManager.FindByNameAsync(adminUser);
+            //if (resultCheckAdmin == null)
+            //{
+            //    // if not create default user                
+            //    string adminUserEmail = "PQAdmin@patque.net";
+            //    string adminUserPassword = "Paki2804!";
+            //    var user = new ApplicationUser { UserName = adminUser, Email = adminUserEmail };
+            //    var resultRegister = await UserManager.CreateAsync(user, adminUserPassword);
+            //    if (resultRegister.Succeeded)
+            //    {
+            //        await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
+            //    }
+            //    AddErrors(resultRegister);                
+            //}
+
             ViewBag.ReturnUrl = returnUrl;
             return View();
         }
@@ -120,7 +138,7 @@ namespace PollQuestionnaire.UI.Web.Controllers
             // If a user enters incorrect codes for a specified amount of time then the user account 
             // will be locked out for a specified amount of time. 
             // You can configure the account lockout settings in IdentityConfig
-            var result = await SignInManager.TwoFactorSignInAsync(model.Provider, model.Code, isPersistent:  model.RememberMe, rememberBrowser: model.RememberBrowser);
+            var result = await SignInManager.TwoFactorSignInAsync(model.Provider, model.Code, isPersistent: model.RememberMe, rememberBrowser: model.RememberBrowser);
             switch (result)
             {
                 case SignInStatus.Success:
@@ -155,8 +173,8 @@ namespace PollQuestionnaire.UI.Web.Controllers
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
-                    await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);
-                    
+                    await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
+
                     // For more information on how to enable account confirmation and password reset please visit http://go.microsoft.com/fwlink/?LinkID=320771
                     // Send an email with this link
                     // string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
