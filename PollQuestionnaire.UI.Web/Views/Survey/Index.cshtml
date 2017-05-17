@@ -5,6 +5,7 @@
 }
 @*<link href="http://getbootstrap.com/dist/css/bootstrap.css" type="text/css" rel="stylesheet" />*@
 @Styles.Render("~/Content/survey/css")
+
 <br />
 <br />
 <br />
@@ -28,7 +29,7 @@
                     </tr>
                 }
             }
-            @if (Model.Count(o => o.IsActive == true) == 0)
+            @if (!Model.Any())
             {
                 <tr>
                     <td colspan="2">There are no Active Surveys</td>
@@ -63,73 +64,23 @@
         <div id="surveyElement"></div>
     </div>
 </div>
+
 @section Scripts {
-    @Scripts.Render("~/Scripts/dxSurvey/dxBroker.js")
     @Scripts.Render("~/bundles/survey")
+
     <script>
-        Survey.JsonObject.metaData.addProperty("survey", { name: "internalId:number" });
-        Survey.JsonObject.metaData.addProperty("page", { name: "internalId:number" });
-        Survey.JsonObject.metaData.addProperty("panel", { name: "internalId:number" });
-        Survey.JsonObject.metaData.addProperty("questionbase", { name: "internalId:number" });
-        Survey.JsonObject.metaData.addProperty("multipletextitem", { name: "internalId:number" });
-        Survey.JsonObject.metaData.addProperty("matrixdropdowncolumn", { name: "internalId:number" });
-
-        var survey = new Survey.Model();
-
         $("document").ready(function () {
             $('.clickrow').on('click', function () {
-                var pagePQS = $(location).attr('href') + "/PatQueSurvey?surveyId=";
                 var surveyId = $(this).attr('data-surveyId'); // the 4 char survey code
                 var surveyName = $(this).attr('data-surveyName');
-                window.location.href = pagePQS + surveyId + '&surveyName=' + surveyName;
+                spinStart();
+
+                var pagePQS = '@Html.Raw(Url.Action("PatQueSurvey", "Survey", new { surveyId="__surveyCode__", surveyName = "__surveyName__", area = "" }))';
+                pagePQS = pagePQS.replace('__surveyCode__', surveyId);
+                pagePQS = pagePQS.replace('__surveyName__', surveyName);
+                window.location.href = pagePQS;
             });
         });
-
-
-        function loadSurvey() {
-            // Get Survey UID from URL
-            var code = $('#surveyCode').val();
-
-            $.ajax(
-                '@Url.Action("GetActiveSurvey", "Survey", new { area="" })',
-                {
-                    method: "GET",
-                    async: true,
-                    data: { surveyCode: code },
-                    dataType: 'json',
-                    success: function (data, textStatus, jqXHR) {
-                        $('#noSurveyAlert').css("display", "normal");
-
-                        survey.setJsonObject(data);
-                        $("#surveyElement").Survey({
-                            model: survey,
-                            onComplete: saveResults
-                        });
-                    },
-                    error: function (jqXHR, textStatus, errorThrown) {
-                        $('#noSurveyAlert').css("display", "block");
-                    }
-                });
-        };
-
-        Survey.defaultBootstrapCss.navigationButton = "btn btn-primary";
-        Survey.Survey.cssType = "bootstrap";
-
-        function saveResults(survey) {
-            $.ajax(
-                '@Url.Action("SaveResults", "Survey", new { area="" })',
-                {
-                    method: "POST",
-                    async: true,
-                    data: { surveyId: survey.internalId, jsonResults: JSON.stringify(sender.data) },
-                    success: function (data, textStatus, jqXHR) {
-                        alert(JSON.stringify("Your survey has been saved"));
-                    },
-                    error: function (jqXHR, textStatus, errorThrown) {
-                        alert(JSON.stringify("Error"));
-                    }
-                });
-        }
 
     </script>
 }

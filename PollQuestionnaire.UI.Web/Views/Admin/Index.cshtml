@@ -55,7 +55,7 @@
                 }
                 <td><a href="#" class="dloadTranslation" data-toggle="tooltip" title="Download file for translation"> <i class="glyphicon glyphicon-download"></i></a></td>
                 <td><a href="#" class="uploadTranslation" data-toggle="tooltip" title="Upload translation file"> <i class="glyphicon glyphicon-upload"></i></a></td>
-                <td><a href="#" class="editModalLink" title="Edit Survey: @item.title" data-toggle="modal" data-id="@item.Id" data-surveyId="@item.surveyId" data-target="#modal-fullscreen_edit"> <i id="glyphicon-pencil" class="glyphicon glyphicon-pencil"></i></a></td>
+                <td><a href="#" class="editModalLink" title="Edit Survey: @item.title" data-id="@item.Id" data-surveyId="@item.surveyId"> <i id="glyphicon-pencil" class="glyphicon glyphicon-pencil"></i></a></td>
                 <td><a href="#" class="deleteSurveyModal" data-toggle="modal" title="Delete Survey: @item.title" data-target="#modal-delete" data-id="@item.Id" data-isActive="@item.IsActive"> <i id="glyphicon-trash" class="glyphicon glyphicon-trash"></i></a></td>
                 <td><span class="badge" title="Number of responses">not active</span></td>
             </tr>
@@ -126,8 +126,9 @@
 
 
     <script>
-
         $(document).on("click", ".editModalLink", function () {
+            spinStart();
+
             var Id = $(this).data('id');
             var surveyId = $(this).attr('data-surveyId');
             document.getElementById("surveyEditorContainer").setAttribute("data-id", Id);
@@ -145,9 +146,13 @@
                          $('#noSurveyAlert').css("display", "normal");
                          //survey.survey.setJsonObject(data);
                          survey.text = JSON.stringify(data);
+                         $('#modal-fullscreen_edit').modal('show');
+                         spinStop();
                      },
                      error: function (jqXHR, textStatus, errorThrown) {
                          $('#noSurveyAlert').css("display", "block");
+
+                         spinStop();
                      }
                  });
         });
@@ -244,9 +249,11 @@
         })
 
         survey.saveSurveyFunc = function () {
-            //var $successAlert = document.getElementById("successAlert");
             var $successAlert = $(this).siblings('.alert-success');
             var $dangerAlert = document.getElementById("dangerAlert");
+
+            spinStart();
+
             $.ajax(
                 '@Url.Action("SaveSurvey", "SurveyEditor", new { area="" })',
                 {
@@ -255,11 +262,13 @@
                     data: { surveyJson: survey.text },
                     success: function (data, textStatus, jqXHR) {
                         survey.surveyValue.surveyId = data;
-                        //$successAlert.removeClass('hidden');
+                        spinStop();
                         alert('Survey succesfully saved');
+
                         window.location.reload();
                     },
                     error: function (jqXHR, textStatus, errorThrown) {
+                        spinStop();
                         alert('ERROR - ' + errorThrown);
                     }
                 });

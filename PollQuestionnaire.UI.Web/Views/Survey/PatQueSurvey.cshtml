@@ -28,14 +28,11 @@
                             <td style="vertical-align:central; text-align:center">
                                 <h5 class="modal-title" id="ModalTitle">SurveyCode: @ViewBag.codeSurveyId</h5>
                                 <h5 class="modal-title" id="ModalTitle">Survey name: @ViewBag.surveyName</h5>
-                                </h5>
                             </td>
                             <td></td>
                         </tr>
                     </tbody>
                 </table>
-
-
             </div>
             <div class="modal-body">
                 <div id="surveyElement" data-id="" data-surveyId="@ViewBag.codeSurveyId" data-surveyName="@ViewBag.surveyName"></div>
@@ -49,6 +46,7 @@
         </div>
     </div>
 </div>
+
 @section Scripts {
     @Scripts.Render("~/bundles/survey")
     <script>
@@ -87,7 +85,20 @@
             $('#ModalTitle').html('');
         }
         function loadSurvey() {
-            $.ajax(
+            var surveyJson = JSON.parse('@Html.Raw(ViewBag.surveyJson)');
+            survey.setJsonObject(surveyJson);
+            var dataAsString = localStorage.getItem('tempSurveyResults');
+            survey.data = JSON.parse(dataAsString);
+
+            var currentPageNum = localStorage.getItem('lastPageVisited');
+            survey.currentPageNo = currentPageNum;
+
+            $("#surveyElement").Survey({
+                model: survey,
+                onComplete: saveResults
+            });
+
+            @*$.ajax(
                 '@Url.Action("GetActiveSurvey", "Survey", new { area="" })',
                 {
                     method: "GET",
@@ -112,7 +123,7 @@
                     error: function (jqXHR, textStatus, errorThrown) {
                         $('#surveyElement').html('Could not fetch the survey!');
                     }
-                });
+                });*@
         };
 
         Survey.defaultBootstrapCss.navigationButton = "btn btn-primary";

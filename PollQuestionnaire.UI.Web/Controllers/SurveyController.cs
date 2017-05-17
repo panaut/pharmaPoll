@@ -26,6 +26,16 @@ namespace PollQuestionnaire.UI.Web.Controllers
             ViewBag.codeSurveyId = HttpUtility.HtmlEncode(surveyId);
             ViewBag.surveyName = HttpUtility.HtmlEncode(surveyName);
             //string codeSurveyId = Request.QueryString["surveyId"];
+
+            var result = surveyService.Value.GetSurvey(surveyId);
+
+            if(result.Status != OperationStatus.Success)
+            {
+                throw new Exception();
+            }
+
+            ViewBag.surveyJson = result.OperationResult;
+
             return View();
         }
 
