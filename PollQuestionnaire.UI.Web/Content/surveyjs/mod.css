@@ -19,3 +19,8 @@ color: #337ab7;
 
 /*color is #337ab7*/
 }
+.svd_container .svd_actions .btn-group.open .dropdown-toggle {
+      background-color: #337ab7;
+      border-color: #337ab7; }
+    .svd_container .svd_actions .dropdown-menu > .active > a {
+      background-color: #337ab7; }

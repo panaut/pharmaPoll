@@ -23,6 +23,7 @@
             <th width="25"></th>
             <th width="25"></th>
             <th width="25"></th>
+            <th width="25"></th>
         </tr>
     </thead>
     <tbody>
@@ -53,6 +54,7 @@
                         </a>
                     </td>
                 }
+                <td><a href="#" class="uploadPdf" data-toggle="modal" data-target="#uploadPdf" title="Upload printable version"> <i class="glyphicon glyphicon-print"></i></a></td>
                 <td><a href="#" class="dloadTranslation" data-toggle="tooltip" title="Download file for translation"> <i class="glyphicon glyphicon-download"></i></a></td>
                 <td><a href="#" class="uploadTranslation" data-toggle="tooltip" title="Upload translation file"> <i class="glyphicon glyphicon-upload"></i></a></td>
                 <td><a href="#" class="editModalLink" title="Edit Survey: @item.title" data-id="@item.Id" data-surveyId="@item.surveyId"> <i id="glyphicon-pencil" class="glyphicon glyphicon-pencil"></i></a></td>
@@ -67,7 +69,7 @@
 <div class="modal fullscreen fade" id="modal-fullscreen_edit" aria-hidden="true" data-backdrop="static" data-keyboard="false">
     <div class="modal-dialog">
         <div class="modal-content">
-            <div class="modal-header">                
+            <div class="modal-header">
                 <h5 class="modal-title" id="ModalLongTitle">Survey Editor</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
@@ -118,7 +120,40 @@
         </div>
     </div>
 </div>
-
+<div class="modal modal-backdrop-transparent fade" id="uploadPdf" tabindex="-1" role="dialog" aria-labelledby="deleteSurveyModal" aria-hidden="true">
+    <div class="modal-dialog" role="dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="ModalLongTitle">Printable file upload</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body" style="padding:5%">                
+                <div class="row">
+                    <div class="form-group">
+                        <input type="file" name="img[]" class="file">
+                        <div class="input-group col-xs-12">
+                            <span class="input-group-addon"><i class="glyphicon glyphicon-file"></i></span>
+                            <input type="text" class="form-control input-lg" disabled placeholder="Upload Image" style="min-width:100%">
+                            <span class="input-group-btn">
+                                <button class="browse btn btn-primary input-lg" type="button"><i class="glyphicon glyphicon-search"></i> Browse</button>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            <div class="modal-footer">
+                <button id="uploadPdfButton" type="button" class="btn btn-primary uploadPdf" data-dismiss="modal" name="passedValue" data-id="" data-isActive="">Upload file</button>
+            </div>
+        </div>
+    </div>
+</div>
+<style>
+    .file {
+        visibility: hidden;
+        position: absolute;
+    }
+</style>
 @section Scripts
 {
     @Scripts.Render("~/bundles/surveyEditor")
@@ -126,6 +161,15 @@
 
 
     <script>
+        // file upload
+        $(document).on('click', '.browse', function () {
+            var file = $(this).parent().parent().parent().find('.file');
+            file.trigger('click');
+        });
+        $(document).on('change', '.file', function () {
+            $(this).parent().find('.form-control').val($(this).val().replace(/C:\\fakepath\\/i, ''));
+        });
+
         $(document).on("click", ".editModalLink", function () {
             spinStart();
 
