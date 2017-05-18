@@ -12,14 +12,12 @@
         @RenderBody()
         <hr />
         <footer>
-            <p>
-                &copy; @DateTime.Now.Year - EuropaColon@*S &amp; M Studio*@
+            <p>&copy; @DateTime.Now.Year - EuropaColon@*S &amp; M Studio*@
             </p>
         </footer>
     </div>
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
-    @Scripts.Render("~/bundles/Spinner")
     @RenderSection("scripts", required: false)
 </body>
 </html>
