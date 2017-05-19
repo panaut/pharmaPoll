@@ -9,6 +9,7 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using PollQuestionnaire.UI.Web.Models;
+using System.Web.Helpers;
 
 namespace PollQuestionnaire.UI.Web.Controllers
 {
@@ -51,12 +52,31 @@ namespace PollQuestionnaire.UI.Web.Controllers
                 _userManager = value;
             }
         }
+        private void SetANewRequestVerificationTokenManuallyInCookieAndOnTheForm()
+        {
+            if (Response == null)
+                return;
+
+            string cookieToken, formToken;
+            AntiForgery.GetTokens(null, out cookieToken, out formToken);
+            SetCookie("__RequestVerificationToken", cookieToken);
+            ViewBag.FormToken = formToken;
+        }
+
+        private void SetCookie(string name, string value)
+        {
+            if (Response.Cookies.AllKeys.Contains(name))
+                Response.Cookies[name].Value = value;
+            else
+                Response.Cookies.Add(new HttpCookie(name, value));
+        }
 
         //
         // GET: /Account/Login
         [AllowAnonymous]
         public ActionResult Login(string returnUrl)
         {
+            SetANewRequestVerificationTokenManuallyInCookieAndOnTheForm();
             ViewBag.ReturnUrl = returnUrl;
             return View();
         }
