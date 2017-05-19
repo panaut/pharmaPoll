@@ -12,6 +12,7 @@ namespace PollQuestionnaire.UI.Web
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
+            DefaultSettings.CreateDefaultDbUser();
         }
     }
 }
