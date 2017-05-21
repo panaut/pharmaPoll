@@ -33,11 +33,12 @@ namespace Questionnaire.Data.Model.QuestionDefinition
         }
 
         [LocalizableProperty()]
-        public string Text { get; set; }
+        [MaxLength(256)]
+        public string text { get; set; }
 
         public bool ShouldSerializeText()
         {
-            return !string.IsNullOrEmpty(this.Text);
+            return !string.IsNullOrEmpty(this.text);
         }
     }
 

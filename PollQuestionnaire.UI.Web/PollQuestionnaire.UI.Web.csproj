@@ -419,7 +419,7 @@
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>30710</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>https://localhost:44301/</IISUrl>
+          <IISUrl>http://localhost:30710/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>

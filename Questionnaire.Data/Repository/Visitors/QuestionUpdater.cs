@@ -18,7 +18,7 @@ namespace Questionnaire.Data.Repository.Visitors
 
         public override void Visit(QuestionBase question)
         {
-            var questionDb = context.Elements.Find(question.Id);
+            var questionDb = (QuestionBase)context.Elements.Find(question.Id);
 
             // Make sure parentId is not being overwritten
             var parentId = questionDb.ElementContainerId;
@@ -30,6 +30,44 @@ namespace Questionnaire.Data.Repository.Visitors
             // restore foreign keys (leave question with 'old' parents)
             questionDb.ElementContainerId = parentId;
             questionDb.SurveyId = surveyId;
+
+            // Synchronize Validators
+            var idsInDb = questionDb.validators.Select(mti => mti.Id);
+            var newIds = question.validators.Select(mti => mti.Id);
+
+            var idsToDelete = new HashSet<int>(idsInDb.Except(newIds));
+
+            if (idsToDelete.Any())
+            {
+                foreach (var item in questionDb.validators.ToList())
+                {
+                    if (idsToDelete.Contains(item.Id))
+                    {
+                        // DELETE
+                        context.Entry(item).State = System.Data.Entity.EntityState.Deleted;
+                    }
+                }
+            }
+
+            // Synchronize contained collection
+            foreach (var item in question.validators)
+            {
+                if (item.Id == 0)
+                {
+                    // INSERT
+                    item.QuestionId = questionDb.Id;
+                    context.SurveyValidators.Add(item);
+                }
+                else
+                {
+                    // UPDATE
+                    var itemDb = questionDb.validators.Single(mti => mti.Id == item.Id);
+                    context.Entry(itemDb).CurrentValues.SetValues(item);
+
+                    // Restore Foreign keys
+                    itemDb.QuestionId = questionDb.Id;
+                }
+            }
         }
 
         public override void Visit(MultipleText question)
