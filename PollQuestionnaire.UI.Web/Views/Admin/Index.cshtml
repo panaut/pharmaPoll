@@ -159,7 +159,6 @@
     @Scripts.Render("~/bundles/surveyEditor")
     @Scripts.Render("~/Scripts/surveyjsEditorInit.js")
 
-
     <script>
         // file upload
         $(document).on('click', '.browse', function () {
@@ -309,7 +308,7 @@
                         spinStop();
                         alert('Survey succesfully saved');
 
-                        window.location.reload();
+                        //window.location.reload();
                     },
                     error: function (jqXHR, textStatus, errorThrown) {
                         spinStop();

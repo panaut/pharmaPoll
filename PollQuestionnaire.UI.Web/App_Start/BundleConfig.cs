@@ -18,6 +18,10 @@ namespace PollQuestionnaire.UI.Web
             bundles.Add(new ScriptBundle("~/bundles/survey").Include(
                         "~/Scripts/surveyjs/survey/survey.jquery.min.js"));
 
+            bundles.Add(new ScriptBundle("~/bundles/Spinner").Include(
+                       "~/Scripts/Spinner/spin.js",
+                       "~/Scripts/Spinner/dimmSpin.js"));
+
             bundles.Add(new ScriptBundle("~/bundles/jqueryval").Include(
                         "~/Scripts/jquery.validate*"));
 

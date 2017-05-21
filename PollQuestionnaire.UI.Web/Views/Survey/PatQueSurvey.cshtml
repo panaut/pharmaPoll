@@ -88,6 +88,7 @@
             $('#ModalTitle').html('');
         }
         function loadSurvey() {
+            spinStart();
             $.ajax(
                 '@Url.Action("GetActiveSurvey", "Survey", new { area="" })',
                 {
@@ -104,7 +105,7 @@
 
                         var currentPageNum = localStorage.getItem('lastPageVisited');
                         survey.currentPageNo = currentPageNum;
-
+                        spinStop();
                         $("#surveyElement").Survey({
                             model: survey,
                             onComplete: saveResults
@@ -112,6 +113,7 @@
                     },
                     error: function (jqXHR, textStatus, errorThrown) {
                         $('#surveyElement').html('Could not fetch the survey!');
+                        spinStop();
                     }
                 });
         };
@@ -126,6 +128,7 @@
         }
 
         function saveResults(survey) {
+            spinStart();
             $.ajax(
                 '@Url.Action("SaveResults", "Survey", new { area="" })',
                 {
@@ -135,9 +138,11 @@
                     dataType: 'text',
                     success: function (data, textStatus, jqXHR) {
                         alert(JSON.stringify("Your survey has been saved"));
+                        spinStop();
                     },
                     error: function (jqXHR, textStatus, errorThrown) {
                         alert(JSON.stringify("Error"));
+                        spinStop();
                     }
                 });
         }
