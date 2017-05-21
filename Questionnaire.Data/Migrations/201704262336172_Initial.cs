@@ -121,7 +121,7 @@ namespace Questionnaire.Data.Migrations
                 {
                     Id = c.Int(nullable: false, identity: true),
                     QuestionId = c.Int(nullable: false),
-                    Text = c.String(),
+                    text = c.String(maxLength: 256),
                 })
                 .PrimaryKey(t => t.Id)
                 .ForeignKey("dbo.ElementBases_QuestionBase", t => t.QuestionId, cascadeDelete: true)
@@ -471,14 +471,18 @@ namespace Questionnaire.Data.Migrations
             Sql(Properties.Resources.Trigger_DeleteMatrixRowsOfComplexMatrix);
             Sql(Properties.Resources.Trigger_DeleteMatrixRowsOfPlainMatrix);
 
-            //************************************************************
-            //
-            //                C O N F I G U R A T I O N
-            //
-            //************************************************************
 
-            // Turn Trigger Recursion ON
-            Sql("ALTER DATABASE CURRENT SET RECURSIVE_TRIGGERS ON", true);
+            // ToDo: IC - Review usage of the followong code and determine is it really necesary.
+            // Application logic seems to work fine even without it.
+            // It seems to be problematic to host since host usually don't allow sp_configure!
+            ////************************************************************
+            ////
+            ////                C O N F I G U R A T I O N
+            ////
+            ////************************************************************
+
+            //// Turn Trigger Recursion ON
+            //Sql("ALTER DATABASE CURRENT SET RECURSIVE_TRIGGERS ON", true);
         }
 
         public override void Down()

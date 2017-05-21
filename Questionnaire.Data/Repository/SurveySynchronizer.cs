@@ -19,6 +19,7 @@ namespace Questionnaire.Data.Repository
         private IEnumerable<QuestionBase> questionsToUpdate;
         private IEnumerable<QuestionBase> questionsToInsert;
         private IEnumerable<ElementContainer> newSurveyContainers;
+        private IDictionary<int, ElementContainer> newSurveyContainersDict;
 
         public SurveySynchronizer(SurveyModelContext context)
         {
@@ -63,7 +64,7 @@ namespace Questionnaire.Data.Repository
             idsForDeletion = new HashSet<int>(containerIds.Except(this.newSurveyContainers.Select(q => q.Id)));
 
             // Re-wire questions and containers
-            this.RewirePanelsAndQuestions(this.dbElementContainerDict, idsForDeletion);
+            this.RewirePanelsAndQuestions(idsForDeletion);
 
             this.DeletePanels(idsForDeletion);
 
@@ -93,6 +94,9 @@ namespace Questionnaire.Data.Repository
             this.questionsToUpdate = questionCollector.QuestionsToUpdate;
 
             this.newSurveyContainers = questionCollector.ElementContainers;
+            this.newSurveyContainersDict = questionCollector
+                .ElementContainers
+                .ToDictionary(cont => cont.ContainerUID, cont => cont);
         }
 
         private void SyncSurveyTriggers(Survey newSurvey)
@@ -118,13 +122,15 @@ namespace Questionnaire.Data.Repository
                 .ForEach(q => context.Entry(q).State = EntityState.Deleted);
         }
 
-        private void RewirePanelsAndQuestions(IDictionary<int?, ElementContainer> dbElementConts, HashSet<int> idsOfPanelsToDelete)
+        private void RewirePanelsAndQuestions(HashSet<int> idsOfPanelsToDelete)
         {
             foreach (var panel in this.surveyDb.elements.OfType<Panel>())
             {
-                if(!idsOfPanelsToDelete.Contains(panel.Id))
+                if (!idsOfPanelsToDelete.Contains(panel.Id))
                 {
-                    var parentContainerDb = dbElementConts[panel.ElementContainerUId];
+                    var enumeratedPanel = this.newSurveyContainersDict[panel.ContainerUID];
+                    var parentContainerDb = this.dbElementContainerDict[panel.ElementContainerUId];
+                    panel.PositionWithinContainer = enumeratedPanel.PositionWithinContainer;
                     panel.ElementContainerId = parentContainerDb.Id;
                 }
             }
@@ -133,7 +139,7 @@ namespace Questionnaire.Data.Repository
             {
                 // Get matching question from context
                 var questionDb = context.Elements.Find(question.Id);
-                var parentContainerDb = dbElementConts[question.ElementContainerUId];
+                var parentContainerDb = this.dbElementContainerDict[question.ElementContainerUId];
 
                 questionDb.ElementContainerId = parentContainerDb.Id;
             }
@@ -142,7 +148,7 @@ namespace Questionnaire.Data.Repository
 
             foreach (var question in this.questionsToInsert)
             {
-                var parentContainerDb = dbElementConts[question.ElementContainerUId];
+                var parentContainerDb = this.dbElementContainerDict[question.ElementContainerUId];
 
                 parentContainerDb.elements.Add(question);
 

@@ -156,7 +156,11 @@ namespace PollQuestionnaire.UI.Web.Controllers
 
         //
         // GET: /Account/Register
+#if DEBUG
+        [AllowAnonymous]
+#else
         [Authorize]
+#endif
         public ActionResult Register()
         {
             return View();
@@ -443,7 +447,7 @@ namespace PollQuestionnaire.UI.Web.Controllers
             base.Dispose(disposing);
         }
 
-        #region Helpers
+#region Helpers
         // Used for XSRF protection when adding external logins
         private const string XsrfKey = "XsrfId";
 
@@ -500,6 +504,6 @@ namespace PollQuestionnaire.UI.Web.Controllers
                 context.HttpContext.GetOwinContext().Authentication.Challenge(properties, LoginProvider);
             }
         }
-        #endregion
+#endregion
     }
 }

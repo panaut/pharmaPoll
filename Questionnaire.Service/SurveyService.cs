@@ -57,17 +57,18 @@ namespace Questionnaire.Service
                                     throw exc;
                                 }
 
-                                // Finally - try to extract localizable properties
-                                try
-                                {
-                                    survey.ExtractLocalizations();
-                                }
-                                catch (Exception ex)
-                                {
-                                    cmd.Status = OperationStatus.Failure;
-                                    var exc = new CustomException("Failed to update localizations for survey", ex);
-                                    throw exc;
-                                }
+                                // ToDo: IC - Use this code, maybe not here but when requesting localization file...
+                                //// Finally - try to extract localizable properties
+                                //try
+                                //{
+                                //    survey.ExtractLocalizations();
+                                //}
+                                //catch (Exception ex)
+                                //{
+                                //    cmd.Status = OperationStatus.Failure;
+                                //    var exc = new CustomException("Failed to update localizations for survey", ex);
+                                //    throw exc;
+                                //}
 
                                 cmd.Result.Status = OperationStatus.Success;
 
@@ -130,17 +131,18 @@ namespace Questionnaire.Service
                         throw exc;
                     }
 
-                    // Finally - try to extract localizable properties
-                    try
-                    {
-                        survey.ExtractLocalizations();
-                    }
-                    catch (Exception ex)
-                    {
-                        cmd.Status = OperationStatus.Failure;
-                        var exc = new CustomException("Failed to update localizations for survey", ex);
-                        throw exc;
-                    }
+                    // ToDo: IC - Use this code, maybe not here but when requesting localization file...
+                    //// Finally - try to extract localizable properties
+                    //try
+                    //{
+                    //    survey.ExtractLocalizations();
+                    //}
+                    //catch (Exception ex)
+                    //{
+                    //    cmd.Status = OperationStatus.Failure;
+                    //    var exc = new CustomException("Failed to update localizations for survey", ex);
+                    //    throw exc;
+                    //}
 
                     cmd.Result.Status = OperationStatus.Success;
 

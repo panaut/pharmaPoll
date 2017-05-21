@@ -6,6 +6,7 @@ Survey.JsonObject.metaData.addProperty("survey", { name: "internalId:number" });
 Survey.JsonObject.metaData.addProperty("page", { name: "internalId:number" });
 Survey.JsonObject.metaData.addProperty("panel", { name: "internalId:number" });
 Survey.JsonObject.metaData.addProperty("questionbase", { name: "internalId:number" });
+Survey.JsonObject.metaData.addProperty("surveyvalidator", { name: "internalId:number" });
 Survey.JsonObject.metaData.addProperty("multipletextitem", { name: "internalId:number" });
 Survey.JsonObject.metaData.addProperty("matrixdropdowncolumn", { name: "internalId:number" });
 
