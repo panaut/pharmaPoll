@@ -72,7 +72,7 @@
             <div class="modal-header">
                 <h5 class="modal-title" id="ModalLongTitle">Survey Editor</h5>
                 @*<button type="button" class="close closefirstmodal">&times;</button>*@
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close" id="closeModalButton">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
@@ -121,11 +121,11 @@
         </div>
     </div>
 </div>
-<div class="modal modal-backdrop-transparent fade" id="uploadPdf" tabindex="-1" role="dialog" aria-labelledby="deleteSurveyModal" aria-hidden="true">
+<div class="modal modal-backdrop-transparent fade" id="uploadPdfmodal" tabindex="-1" role="dialog" aria-labelledby="deleteSurveyModal" aria-hidden="true">
     <div class="modal-dialog" role="dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="ModalLongTitle">Printable file upload</h5>
+                <h5 class="modal-title" id="uploadPdfTitle">Printable file upload</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -160,37 +160,27 @@
     @Scripts.Render("~/bundles/surveyEditor")
     @Scripts.Render("~/Scripts/surveyjsEditorInit.js")
 
-    <script>
-        //$('#modal-fullscreen_edit').on('hide.bs.modal', function (e) {
-        //    document.title = $(event.currentTarget).id;//$(event.target).prop("id");
-        //    //$('#ModalLongTitle').innerHtml(e.sender);
-            
+    <script>      
+        $('.uploadPdf').on('click', function (e) {
+            var language = window.navigator.userLanguage || window.navigator.language;
+            //alert(language); //works IE/SAFARI/CHROME/FF
+            $('#uploadPdfTitle').html(language);
+            $('#uploadPdfmodal').modal('show');
+        });
 
-        //});
-        //$(document).on('hidden.bs.modal', '#Control_id', function (event) {
-        //    // code to run on closing
-        //});
-        //dialog.on("hidden.bs.modal", function(e) {
-        //    // ensure we don't accidentally intercept hidden events triggered
-        //    // by children of the current dialog. We shouldn't anymore now BS
-        //    // namespaces its events; but still worth doing
-        //    if (e.target === this) {
-        //        dialog.remove();
-        //    }
-        //});
+        
         $('#modal-fullscreen_edit').on('hide.bs.modal', function (e) {
             //document.title = e.originalEvent;
             if (e.target === this) {
                 e.preventDefault();
-                    }
-            else {
-                //$('#modal-fullscreen_edit').hide();
             }
         });
-        //$modal.on("hide", function (e) {
-        //    e.preventDefault();
-        //});
-        // file upload
+
+        $('#closeModalButton').on('click', function (e) {
+            $('#modal fullscreen fade').hide();
+            window.location.reload();
+        });        
+
         $(document).on('click', '.browse', function () {
             var file = $(this).parent().parent().parent().find('.file');
             file.trigger('click');
