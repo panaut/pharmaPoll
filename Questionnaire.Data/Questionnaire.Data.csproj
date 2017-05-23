@@ -133,6 +133,7 @@
     <Compile Include="Serialization\KnownTypesBinder.cs" />
     <Compile Include="Serialization\MatrixColumnConverter.cs" />
     <Compile Include="Serialization\PageConverter.cs" />
+    <Compile Include="Serialization\StringObjectsConverter.cs" />
     <Compile Include="Serialization\SurveySerializer.cs" />
     <Compile Include="Serialization\ValidatorsConverter.cs" />
     <Compile Include="Serialization\ValueTextPairConverter.cs" />
