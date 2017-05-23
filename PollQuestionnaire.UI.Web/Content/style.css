@@ -8227,3 +8227,8 @@ body.md-skin {
     margin: 0;
   }
 }
+
+/*stylyng questions*/
+ div[id^="sq_"]{     
+     margin-bottom: 15px;    
+}
