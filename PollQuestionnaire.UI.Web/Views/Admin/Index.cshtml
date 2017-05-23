@@ -57,7 +57,7 @@
                 <td><a href="#" class="uploadPdf" data-toggle="modal" data-target="#uploadPdf" title="Upload printable version"> <i class="glyphicon glyphicon-print"></i></a></td>
                 <td><a href="#" class="dloadTranslation" data-toggle="tooltip" title="Download file for translation"> <i class="glyphicon glyphicon-download"></i></a></td>
                 <td><a href="#" class="uploadTranslation" data-toggle="tooltip" title="Upload translation file"> <i class="glyphicon glyphicon-upload"></i></a></td>
-                <td><a href="#" class="editModalLink" title="Edit Survey: @item.title" data-id="@item.Id" data-surveyId="@item.surveyId"> <i id="glyphicon-pencil" class="glyphicon glyphicon-pencil"></i></a></td>
+                <td><a href="#" class="editModalLink" data-target="#modal-fullscreen_edit" title="Edit Survey: @item.title" data-id="@item.Id" data-surveyId="@item.surveyId"> <i id="glyphicon-pencil" class="glyphicon glyphicon-pencil"></i></a></td>
                 <td><a href="#" class="deleteSurveyModal" data-toggle="modal" title="Delete Survey: @item.title" data-target="#modal-delete" data-id="@item.Id" data-isActive="@item.IsActive"> <i id="glyphicon-trash" class="glyphicon glyphicon-trash"></i></a></td>
                 <td><span class="badge" title="Number of responses">not active</span></td>
             </tr>
@@ -66,12 +66,13 @@
 </table>
 
 @*modal div*@
-<div class="modal fullscreen fade" id="modal-fullscreen_edit" aria-hidden="true" data-backdrop="static" data-keyboard="false">
+<div class="modal fullscreen fade" id="modal-fullscreen_edit" aria-hidden="true" >
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="ModalLongTitle">Survey Editor</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                @*<button type="button" class="close closefirstmodal">&times;</button>*@
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close" id="closeModalButton">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
@@ -120,11 +121,11 @@
         </div>
     </div>
 </div>
-<div class="modal modal-backdrop-transparent fade" id="uploadPdf" tabindex="-1" role="dialog" aria-labelledby="deleteSurveyModal" aria-hidden="true">
+<div class="modal modal-backdrop-transparent fade" id="uploadPdfmodal" tabindex="-1" role="dialog" aria-labelledby="deleteSurveyModal" aria-hidden="true">
     <div class="modal-dialog" role="dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="ModalLongTitle">Printable file upload</h5>
+                <h5 class="modal-title" id="uploadPdfTitle">Printable file upload</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -159,8 +160,27 @@
     @Scripts.Render("~/bundles/surveyEditor")
     @Scripts.Render("~/Scripts/surveyjsEditorInit.js")
 
-    <script>
-        // file upload
+    <script>      
+        $('.uploadPdf').on('click', function (e) {
+            var language = window.navigator.userLanguage || window.navigator.language;
+            //alert(language); //works IE/SAFARI/CHROME/FF
+            $('#uploadPdfTitle').html(language);
+            $('#uploadPdfmodal').modal('show');
+        });
+
+        
+        $('#modal-fullscreen_edit').on('hide.bs.modal', function (e) {
+            //document.title = e.originalEvent;
+            if (e.target === this) {
+                e.preventDefault();
+            }
+        });
+
+        $('#closeModalButton').on('click', function (e) {
+            $('#modal fullscreen fade').hide();
+            window.location.reload();
+        });        
+
         $(document).on('click', '.browse', function () {
             var file = $(this).parent().parent().parent().find('.file');
             file.trigger('click');
