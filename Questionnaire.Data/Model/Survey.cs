@@ -207,6 +207,7 @@ namespace Questionnaire.Data.Model
 
         [MaxLength(128)]
         [Index(IsUnique = true)]
+        [JsonProperty(PropertyName = "surveyCode")]
         public string surveyId { get; set; }
 
         public bool ShouldSerializesurveyId()
@@ -240,6 +241,7 @@ namespace Questionnaire.Data.Model
             return this.elements != null && this.elements.Any();
         }
 
+        [JsonProperty(ItemTypeNameHandling = TypeNameHandling.All)]
         public virtual ICollection<SurveyTrigger> triggers { get; set; } = new List<SurveyTrigger>();
 
         public bool ShouldSerializetriggers()

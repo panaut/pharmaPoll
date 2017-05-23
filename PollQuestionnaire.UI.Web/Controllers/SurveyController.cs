@@ -56,7 +56,6 @@ namespace PollQuestionnaire.UI.Web.Controllers
         [HttpGet()]
         public string GetActiveSurvey(string surveyCode)
         {
-            // ToDo: Implement retrieval of a survey based on surveyId field (a unique non-id survey identifier e.g. F45RA)
             var result = surveyService.Value.GetSurvey(surveyCode);
 
             if (result.Status != OperationStatus.Success)

@@ -101,7 +101,43 @@ namespace Questionnaire.Data.Repository
 
         private void SyncSurveyTriggers(Survey newSurvey)
         {
-            // ToDo: IC - Implemet this as soon as triggers get implemented
+            // Synchronize Validators
+            var idsInDb = this.surveyDb.triggers.Select(t => t.Id);
+            var newIds = newSurvey.triggers.Select(t => t.Id);
+
+            var idsToDelete = new HashSet<int>(idsInDb.Except(newIds));
+
+            if (idsToDelete.Any())
+            {
+                foreach (var item in this.surveyDb.triggers.ToList())
+                {
+                    if (idsToDelete.Contains(item.Id))
+                    {
+                        // DELETE
+                        context.Entry(item).State = EntityState.Deleted;
+                    }
+                }
+            }
+
+            // Synchronize contained collection
+            foreach (var item in newSurvey.triggers)
+            {
+                if (item.Id == 0)
+                {
+                    // INSERT
+                    item.SurveyId = this.surveyDb.Id;
+                    context.SurveyTriggers.Add(item);
+                }
+                else
+                {
+                    // UPDATE
+                    var itemDb = this.surveyDb.triggers.Single(t => t.Id == item.Id);
+                    context.Entry(itemDb).CurrentValues.SetValues(item);
+
+                    // Restore Foreign keys
+                    itemDb.SurveyId = this.surveyDb.Id;
+                }
+            }
         }
 
         private void SyncQuestionsForUpdate(IEnumerable<QuestionBase> qToUpdate)
