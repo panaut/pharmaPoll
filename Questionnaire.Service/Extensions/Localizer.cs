@@ -36,21 +36,28 @@ namespace Questionnaire.Service.Extensions
                 // Let's get localization for this property
                 var localizedProperty = this.locManager.Find(typeIdentifier, id, locPropInfo.Value, this.targetCulture);
 
-                if(localizedProperty == null || string.IsNullOrEmpty(localizedProperty.LocalizedValue))
+                if (localizedProperty == null || string.IsNullOrEmpty(localizedProperty.LocalizedValue))
                 {
                     // Localization for desired culture doesn't exist
                     // Fallback to default culture
                     localizedProperty = this.locManager.Find(typeIdentifier, id, locPropInfo.Value, ECulture.DEFAULT);
                 }
 
-                // Convert the localized value to match the target property type
-                var converter = TypeDescriptor.GetConverter(locPropInfo.Key.PropertyType); // Converter for type
+                if (localizedProperty != null && !string.IsNullOrEmpty(localizedProperty.LocalizedValue))
+                {
+                    // Convert the localized value to match the target property type
+                    var converter = TypeDescriptor.GetConverter(locPropInfo.Key.PropertyType); // Converter for type
 
-                // Convert value
-                var convertedValue = converter.ConvertFrom(localizedProperty);
+                    // Convert value
+                    var convertedValue = converter.ConvertFrom(localizedProperty);
 
-                // Now we just have to set the retrieved value
-                locPropInfo.Key.SetValue(obj, convertedValue);
+                    // Now we just have to set the retrieved value
+                    locPropInfo.Key.SetValue(obj, convertedValue);
+                }
+                else
+                {
+                    // Not even DEFAULT Localization exists - don't localize
+                }
             }
         }
 

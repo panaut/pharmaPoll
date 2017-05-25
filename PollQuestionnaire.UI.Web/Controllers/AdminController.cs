@@ -81,18 +81,18 @@ namespace PollQuestionnaire.UI.Web.Controllers
 
             return result.ToString();
         }
-        [HttpGet()]
-        public string GetLocalizationList(string surveyCode)
-        {
-            var result = surveyService.Value.GetLocalizationList(surveyCode, onlyActive: false);
+        //[HttpGet()]
+        //public string GetLocalizationList(string surveyCode)
+        //{
+        //    var result = surveyService.Value.GetLocalizationList(surveyCode, onlyActive: false);
 
-            if (result.Status != OperationStatus.Success)
-            {
-                throw new InvalidOperationException("failed to update survey status");
-            }
+        //    if (result.Status != OperationStatus.Success)
+        //    {
+        //        throw new InvalidOperationException("failed to update survey status");
+        //    }
 
-            return result.OperationResult;
-        }
+        //    return result.OperationResult;
+        //}
         [HttpPost]
         public ActionResult GetFolderStructure()
         {
