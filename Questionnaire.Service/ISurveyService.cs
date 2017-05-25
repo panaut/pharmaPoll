@@ -12,13 +12,17 @@ namespace Questionnaire.Service
 
         ServiceResponse<bool?> SetSurveyStatus(int surveyId, bool status);
 
-        ServiceResponse<string> GetSurvey(int surveyId, bool onlyActive = true);
+        ServiceResponse<string> GetSurvey(int surveyId, string culture = "DEFAULT", bool onlyActive = true);
 
-        ServiceResponse<string> GetSurvey(string surveyCode, bool onlyActive = true);
+        ServiceResponse<string> GetSurvey(string surveyCode, string culture = "DEFAULT", bool onlyActive = true);
 
         ServiceResponse<IEnumerable<Survey>> GetAllSurveys(bool onlyActive = true);
 
         ServiceResponse DeleteSurvey(int surveyId);
+
+        ServiceResponse<byte[]> GetCsvLocalizations(int surveyId, bool doNotExtractAgain = false);
+
+        ServiceResponse UpdateLocalizationFromCSVs(int surveyId, byte[] csvBytes);
 
     }
 }

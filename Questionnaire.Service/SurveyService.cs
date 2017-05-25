@@ -6,19 +6,23 @@ using System;
 using System.Collections.Generic;
 using Questionnaire.Service.Extensions;
 using System.Linq;
+using NLog;
 
 namespace Questionnaire.Service
 {
     public class SurveyService : ISurveyService
     {
-        private Lazy<ISurveySerializer> surveySerializer;
+        private static Logger logger = LogManager.GetLogger("SurveyService");
 
+        private Lazy<ISurveySerializer> surveySerializer;
         private Lazy<ISurveyManagement> surveyManager;
+        private Lazy<ILocalizationManager> localizationManager;
 
         public SurveyService()
         {
             this.surveySerializer = new Lazy<ISurveySerializer>(() => new SurveySerializer());
             this.surveyManager = new Lazy<ISurveyManagement>(() => new SurveyManager());
+            this.localizationManager = new Lazy<ILocalizationManager>(() => new LocalizationManager());
         }
 
         public ServiceResponse<int> CreateSurvey(string surveyJson)
@@ -197,7 +201,7 @@ namespace Questionnaire.Service
             return command.Result;
         }
 
-        public ServiceResponse<string> GetSurvey(int surveyId, bool onlyActive = true)
+        public ServiceResponse<string> GetSurvey(int surveyId, string culture = "DEFAULT", bool onlyActive = true)
         {
             var command = new ServiceCommand<string>
             {
@@ -214,7 +218,7 @@ namespace Questionnaire.Service
                     {
                         cmd.Status = OperationStatus.Failure;
                         var originalException = new ArgumentException($"Failed retrieve survey with id {surveyId}", ex);
-                        var exc = new CustomException(originalException, errorCode: 0);
+                        var exc = new CustomException(originalException);
                         throw exc;
                     }
 
@@ -225,7 +229,7 @@ namespace Questionnaire.Service
                         if (!survey.IsActive)
                         {
                             cmd.Status = OperationStatus.Failure;
-                            var exc = new CustomException(new InvalidOperationException("Requested survey is not active"), errorCode: 0);
+                            var exc = new CustomException(new InvalidOperationException("Requested survey is not active"));
                             throw exc;
                         }
                     }
@@ -237,6 +241,25 @@ namespace Questionnaire.Service
                         // Sort Pages and Elements properly...
                         survey.SortElementsWithinContainer();
 
+                        // Localize Survey
+                        ECulture desiredCulture;            // Desired culture enum value
+                        if (!Enum.TryParse(culture, out desiredCulture))
+                        {
+                            logger.Info("Culture {0} is not supported. Survey with ID: {1} will not be localized.", culture, surveyId);
+                            desiredCulture = ECulture.DEFAULT;
+                        }
+
+                        try
+                        {
+                            survey.Localize(desiredCulture);
+                        }
+                        catch (Exception ex)
+                        {
+                            cmd.Status = OperationStatus.Failure;
+                            var exc = new CustomException($"Failed to localize survey with ID: {surveyId} into culture {culture}.", ex);
+                            throw exc;
+                        }
+
                         // Try to serialize modified object into JSON string
                         try
                         {
@@ -245,7 +268,7 @@ namespace Questionnaire.Service
                         catch (Exception ex)
                         {
                             cmd.Status = OperationStatus.Failure;
-                            var exc = new CustomException("Failed to Serialize survey object into JSON string", ex, errorCode: 0);
+                            var exc = new CustomException("Failed to Serialize survey object into JSON string", ex);
                             throw exc;
                         }
 
@@ -260,7 +283,7 @@ namespace Questionnaire.Service
             return command.Result;
         }
 
-        public ServiceResponse<string> GetSurvey(string surveyCode, bool onlyActive = true)
+        public ServiceResponse<string> GetSurvey(string surveyCode, string culture = "DEFAULT", bool onlyActive = true)
         {
             var command = new ServiceCommand<string>
             {
@@ -276,7 +299,7 @@ namespace Questionnaire.Service
                     {
                         cmd.Status = OperationStatus.Failure;
                         var originalException = new ArgumentException($"Failed retrieve survey with Code {surveyCode}", ex);
-                        var exc = new CustomException(originalException, errorCode: 0);
+                        var exc = new CustomException(originalException);
                         throw exc;
                     }
 
@@ -289,7 +312,7 @@ namespace Questionnaire.Service
                         if (!survey.IsActive)
                         {
                             cmd.Status = OperationStatus.Failure;
-                            var exc = new CustomException(new InvalidOperationException("Requested survey is not active"), errorCode: 0);
+                            var exc = new CustomException(new InvalidOperationException("Requested survey is not active"));
                             throw exc;
                         }
                     }
@@ -299,6 +322,25 @@ namespace Questionnaire.Service
                         // Sort Pages and Elements properly...
                         survey.SortElementsWithinContainer();
 
+                        // Localize Survey
+                        ECulture desiredCulture;            // Desired culture enum value
+                        if (!Enum.TryParse(culture, out desiredCulture))
+                        {
+                            logger.Info("Culture {0} is not supported. Survey with Code: {1} will not be localized.", culture, surveyCode);
+                            desiredCulture = ECulture.DEFAULT;
+                        }
+
+                        try
+                        {
+                            survey.Localize(desiredCulture);
+                        }
+                        catch (Exception ex)
+                        {
+                            cmd.Status = OperationStatus.Failure;
+                            var exc = new CustomException($"Failed to localize survey with Code: {surveyCode} into culture {culture}.", ex);
+                            throw exc;
+                        }
+
                         // Try to serialize modified object into JSON string
                         try
                         {
@@ -307,7 +349,7 @@ namespace Questionnaire.Service
                         catch (Exception ex)
                         {
                             cmd.Status = OperationStatus.Failure;
-                            var exc = new CustomException("Failed to Serialize survey object into JSON string", ex, errorCode: 0);
+                            var exc = new CustomException("Failed to Serialize survey object into JSON string", ex);
                             throw exc;
                         }
 
@@ -339,7 +381,7 @@ namespace Questionnaire.Service
                     catch (Exception ex)
                     {
                         cmd.Status = OperationStatus.Failure;
-                        var exc = new CustomException("Failed to retrieve survey objects", ex, errorCode: 0);
+                        var exc = new CustomException("Failed to retrieve survey objects", ex);
                         throw exc;
                     }
 
@@ -366,13 +408,130 @@ namespace Questionnaire.Service
                     {
                         cmd.Status = OperationStatus.Failure;
                         var originalException = new ArgumentException($"Failed delete survey with id {surveyId}", ex);
-                        var exc = new CustomException(originalException, errorCode: 0);
+                        var exc = new CustomException(originalException);
                         throw exc;
                     }
                 }
             };
 
             command.Execute(surveyId);
+            return command.Result;
+        }
+
+        public ServiceResponse<byte[]> GetCsvLocalizations(int surveyId, bool doNotExtractAgain = false)
+        {
+            var command = new ServiceCommand<byte[]>
+            {
+                Execution = (cmd, parameter) =>
+                {
+                    if (!doNotExtractAgain)
+                    {
+                        try
+                        {
+                            // Get the survey and make sure all Localizable strings are extracted to Localizations
+                            var survey = this.surveyManager.Value.Find(surveyId);
+
+                            survey.ExtractLocalizations();
+                        }
+                        catch (Exception ex)
+                        {
+                            cmd.Status = OperationStatus.Failure;
+                            var exc = new CustomException($"Failed to extract localization strings to CSV for survey with ID: {surveyId}.", ex);
+                            throw exc;
+                        }
+                    }
+
+                    IEnumerable<LocalizedString> localizations = null;
+                    byte[] retVal = null;
+
+                    try
+                    {
+                        localizations = this.localizationManager.Value
+                                            .GetLocalizationsForSurvey(surveyId)
+                                            .ToList();
+
+                        retVal = localizations.ToCSV();
+                    }
+                    catch (Exception ex)
+                    {
+                        cmd.Status = OperationStatus.Failure;
+                        var exc = new CustomException($"Failed to serialize localization strings to CSV for survey with ID: {surveyId}.", ex);
+                        throw exc;
+                    }
+
+                    cmd.Result.Status = OperationStatus.Success;
+
+                    return retVal;
+                }
+            };
+
+            command.Execute(null);
+            return command.Result;
+        }
+
+        public ServiceResponse UpdateLocalizationFromCSVs(int surveyId, byte[] csvBytes)
+        {
+            var command = new ServiceCommand
+            {
+                Execution = (cmd, parameter) =>
+                {
+                    IEnumerable<LocalizedString> localizedStrings;
+                    try
+                    {
+                        localizedStrings = csvBytes.ParseLocalizationsCSV();
+                    }
+                    catch (Exception ex)
+                    {
+                        cmd.Status = OperationStatus.Failure;
+                        var exc = new CustomException($"Failed to parse CSV file for survey with ID: {surveyId}.", ex);
+                        throw exc;
+                    }
+
+                    if (localizedStrings.Any(ls => ls.SurveyId != surveyId))
+                    {
+                        cmd.Status = OperationStatus.Failure;
+                        var ex = new Exception("Inconsistant CVR data");
+                        var exc = new CustomException($"Some of the localizations belong to other survey.", ex);
+                        throw exc;
+                    }
+
+                    try
+                    {
+                        foreach (var localization in localizedStrings)
+                        {
+                            // Get this localization entry if it exists
+                            var locStrDb = this.localizationManager.Value.Find(
+                                                    localization.TypeIdentifier,
+                                                    localization.TypeUniqueId,
+                                                    localization.FieldIdentifier,
+                                                    localization.Culture);
+
+                            if (locStrDb == null)
+                            {
+                                // This is a new entry, it should be added to database
+                                this.localizationManager.Value.Insert(localization, doSave: false);
+                            }
+                            else
+                            {
+                                // This entry already exists, we shall update it
+                                this.localizationManager.Value.Update(localization, doSave: false);
+                            }
+                        }
+
+                        this.localizationManager.Value.SaveChanges();
+                    }
+                    catch (Exception ex)
+                    {
+                        cmd.Status = OperationStatus.Failure;
+                        var exc = new CustomException($"Failed to update localizations for survey with ID: {surveyId}.", ex);
+                        throw exc;
+                    }
+
+                    cmd.Result.Status = OperationStatus.Success;
+                }
+            };
+
+            command.Execute(null);
             return command.Result;
         }
     }

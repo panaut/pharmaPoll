@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
 using Questionnaire.Data.Model;
+using System.Linq;
 
 namespace Questionnaire.Data
 {
@@ -16,6 +18,11 @@ namespace Questionnaire.Data
             var loc = context.LocalizedStrings.Find(typeIdentifier, typeUniqueId, fieldIdentifier, culture);
 
             return loc;
+        }
+
+        public IEnumerable<LocalizedString> GetLocalizationsForSurvey(int surveyId)
+        {
+            return context.LocalizedStrings.Where(ls => ls.SurveyId == surveyId);
         }
 
         public void Insert(LocalizedString entry, bool doSave = true)

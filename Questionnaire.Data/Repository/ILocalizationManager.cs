@@ -1,4 +1,6 @@
 ﻿using Questionnaire.Data.Model;
+using System.Collections;
+using System.Collections.Generic;
 
 namespace Questionnaire.Data
 {
@@ -9,6 +11,8 @@ namespace Questionnaire.Data
             int typeUniqueId,
             string fieldIdentifier,
             ECulture culture);
+
+        IEnumerable<LocalizedString> GetLocalizationsForSurvey(int surveyId);
 
         void Insert(LocalizedString entry, bool doSave = true);
 
