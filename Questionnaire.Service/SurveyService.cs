@@ -12,13 +12,14 @@ namespace Questionnaire.Service
     public class SurveyService : ISurveyService
     {
         private Lazy<ISurveySerializer> surveySerializer;
-
         private Lazy<ISurveyManagement> surveyManager;
+        private Lazy<ILocalizationManager> localizationManager;
 
         public SurveyService()
         {
             this.surveySerializer = new Lazy<ISurveySerializer>(() => new SurveySerializer());
             this.surveyManager = new Lazy<ISurveyManagement>(() => new SurveyManager());
+            this.localizationManager = new Lazy<ILocalizationManager>(() => new LocalizationManager());
         }
 
         public ServiceResponse<int> CreateSurvey(string surveyJson)
@@ -374,6 +375,60 @@ namespace Questionnaire.Service
 
             command.Execute(surveyId);
             return command.Result;
+        }
+
+        public ServiceResponse<byte[]> GetCsvLocalizations(int surveyId, bool doNotExtractAgain = false)
+        {
+            var command = new ServiceCommand<byte[]>
+            {
+                Execution = (cmd, parameter) =>
+                {
+                    if(!doNotExtractAgain)
+                    {
+                        try
+                        {
+                            // Get the survey and make sure all Localizable strings are extracted to Localizations
+                            var survey = this.surveyManager.Value.Find(surveyId);
+
+                            survey.ExtractLocalizations();
+                        }
+                        catch (Exception ex)
+                        {
+                            cmd.Status = OperationStatus.Failure;
+                            var exc = new CustomException($"Failed to extract localization strings to CSV for survey with ID: {surveyId}.", ex, errorCode: 0);
+                            throw exc;
+                        }
+                    }
+
+                    IEnumerable<LocalizedString> localizations = null;
+                    byte[] retVal = null;
+
+                    try
+                    {
+                        localizations = this.localizationManager.Value
+                                            .GetLocalizationsForSurvey(surveyId)
+                                            .ToList();
+
+                        retVal = localizations.ToCSV();
+                    }
+                    catch (Exception ex)
+                    {
+                        cmd.Status = OperationStatus.Failure;
+                        var exc = new CustomException($"Failed to serialize localization strings to CSV for survey with ID: {surveyId}.", ex, errorCode: 0);
+                        throw exc;
+                    }
+
+                    return retVal;
+                }
+            };
+
+            command.Execute(null);
+            return command.Result;
+        }
+
+        public ServiceResponse UpdateLocalizationFromCSVs(int surveyId, byte[] csvBytes)
+        {
+            throw new NotImplementedException();
         }
     }
 }

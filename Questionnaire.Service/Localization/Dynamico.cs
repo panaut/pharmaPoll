@@ -62,7 +62,7 @@ namespace Questionnaire.Service.Localization
             {
                 if (this.properties.ContainsKey(memberName))
                 {
-                    this.logger.Error("Failed to add Member {0} to dynamic type. Member already exists", memberName);
+                    this.logger.Info("Failed to add Member {0} to dynamic type. Member already exists", memberName);
                     return false;
                 }
 
@@ -89,7 +89,7 @@ namespace Questionnaire.Service.Localization
             {
                 if (!this.properties.ContainsKey(memberName))
                 {
-                    this.logger.Error("Failed to remove Member {0} from dynamic type. Member doesn't exists", memberName);
+                    this.logger.Info("Failed to remove Member {0} from dynamic type. Member doesn't exists", memberName);
                     return false;
                 }
 

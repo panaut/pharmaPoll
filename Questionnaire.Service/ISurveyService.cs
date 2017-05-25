@@ -20,5 +20,9 @@ namespace Questionnaire.Service
 
         ServiceResponse DeleteSurvey(int surveyId);
 
+        ServiceResponse<byte[]> GetCsvLocalizations(int surveyId, bool doNotExtractAgain = false);
+
+        ServiceResponse UpdateLocalizationFromCSVs(int surveyId, byte[] csvBytes);
+
     }
 }

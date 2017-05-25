@@ -45,6 +45,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Extensions\LocalizableStringExtensions.cs" />
     <Compile Include="Extensions\Localizer.cs" />
     <Compile Include="Extensions\SurveyExtensions.cs" />
     <Compile Include="Extensions\VisitorBase.cs" />
