@@ -8,6 +8,7 @@
 <div class="alert alert-warning hidden" id="alert">
     <strong>We don&#39;t have a survey for you!</strong>
 </div>
+
 <div class="modal fullscreen fade" id="surveyModal" tabindex="-1" role="dialog" aria-labelledby="SurveyModal" aria-hidden="true" data-backdrop="static" data-keyboard="false">
     <div class="modal-dialog" role="dialog">
         <div class="modal-content">
@@ -37,7 +38,11 @@
                 </table>
             </div>
             <div class="modal-body">
-                <div id="surveyElement" data-id="" data-surveyId="@ViewBag.codeSurveyId" data-surveyName="@ViewBag.surveyName"></div>
+                <div class="row" id="concent" data-surveyId="@ViewBag.codeSurveyId" data-surveyCulture="@ViewBag.surveyCulture">
+                    @Html.Raw(ViewBag.concent)
+                </div>
+                <div id="surveyElement" data-id="" data-surveyId="@ViewBag.codeSurveyId" data-surveyName="@ViewBag.surveyCulture">
+                </div>
             </div>
             <div class="modal-footer">
                 <p>
@@ -60,6 +65,9 @@
 
         var survey = new Survey.Model({ cookieName: "surveyCmpleted" });
         var codeSurveyId = $('#surveyElement').attr('data-surveyId');
+        var htmlFileName = codeSurveyId + "_en-US.html"
+        var filePath = "http://localhost:30710/Concents/";
+        var fullPath = filePath + htmlFileName;
 
         survey.showProgressBar = "bottom";
         survey.cookie
@@ -72,19 +80,25 @@
 
         });
 
+        //$('#concent').load(fullPath +" #target");
+
         survey.onComplete.add(function (sender) {
             localStorage.removeItem('tempSurveyResults');
         });
 
-        if (codeSurveyId != "") {
-            $('#surveyModal').modal('show');
-            loadSurvey();
-        }
-        else {
-            $('#surveyModal').modal('hide');
-            $('#alert').removeClass('hidden');
-            $('#ModalTitle').html('');
-        }
+        $('#surveyModal').modal('show');
+
+        $('#confirmConcent').on('click', function (e) {
+            if (codeSurveyId != "") {
+                loadSurvey();
+            }
+            else {
+                $('#surveyModal').modal('hide');
+                $('#alert').removeClass('hidden');
+                $('#ModalTitle').html('');
+            }
+        });
+
         function loadSurvey() {
             spinStart();
             $.ajax(
@@ -104,6 +118,7 @@
                         var currentPageNum = localStorage.getItem('lastPageVisited');
                         survey.currentPageNo = currentPageNum;
                         spinStop();
+                        $('#concent').addClass('hidden');
                         $("#surveyElement").Survey({
                             model: survey,
                             onComplete: saveResults
