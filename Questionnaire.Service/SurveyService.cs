@@ -534,5 +534,30 @@ namespace Questionnaire.Service
             command.Execute(null);
             return command.Result;
         }
+
+        public ServiceResponse DeleteLocalizations(int surveyId)
+        {
+            var command = new ServiceCommand
+            {
+                Execution = (cmd, parameter) =>
+                {
+                    try
+                    {
+                        this.localizationManager.Value.DeleteLocalizations(surveyId);
+                    }
+                    catch (Exception ex)
+                    {
+                        cmd.Status = OperationStatus.Failure;
+                        var exc = new CustomException($"Failed to delete localizations for survey with ID: {surveyId}.", ex);
+                        throw exc;
+                    }
+
+                    cmd.Result.Status = OperationStatus.Success;
+                }
+            };
+
+            command.Execute(null);
+            return command.Result;
+        }
     }
 }
