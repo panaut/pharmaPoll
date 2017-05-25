@@ -11,8 +11,8 @@ namespace Questionnaire.Data
 
         public LocalizedString Find(
             string typeIdentifier,
-            int typeUniqueId, 
-            string fieldIdentifier, 
+            int typeUniqueId,
+            string fieldIdentifier,
             ECulture culture)
         {
             var loc = context.LocalizedStrings.Find(typeIdentifier, typeUniqueId, fieldIdentifier, culture);
@@ -38,21 +38,33 @@ namespace Questionnaire.Data
         {
             var dbEntry = context.Entry(entry);
 
-            if(dbEntry.State == System.Data.Entity.EntityState.Detached)
+            if (dbEntry.State == System.Data.Entity.EntityState.Detached)
             {
                 var dbEntity = this.Find(
                     entry.TypeIdentifier,
-                    entry.TypeUniqueId, 
+                    entry.TypeUniqueId,
                     entry.FieldIdentifier,
                     entry.Culture);
 
                 context.Entry(dbEntity).CurrentValues.SetValues(entry);
             }
 
-            if(doSave)
+            if (doSave)
             {
                 context.SaveChanges();
             }
+        }
+
+        public void DeleteLocalizations(int surveyId)
+        {
+            var localizationStringsForSurvey = context.LocalizedStrings.Where(ls => ls.SurveyId == surveyId).ToList();
+
+            foreach (var loc in localizationStringsForSurvey)
+            {
+                context.LocalizedStrings.Remove(loc);
+            }
+
+            context.SaveChanges();
         }
 
         public void SaveChanges()

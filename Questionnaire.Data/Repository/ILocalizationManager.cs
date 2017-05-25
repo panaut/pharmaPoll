@@ -18,6 +18,8 @@ namespace Questionnaire.Data
 
         void Update(LocalizedString entry, bool doSave = true);
 
+        void DeleteLocalizations(int surveyId);
+
         void SaveChanges();
     }
 }
