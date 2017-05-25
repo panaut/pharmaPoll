@@ -50,6 +50,9 @@
     <Compile Include="Extensions\VisitorBase.cs" />
     <Compile Include="ISurveyService.cs" />
     <Compile Include="IVotingService.cs" />
+    <Compile Include="Localization\CollectionAggregator.cs" />
+    <Compile Include="Localization\CsvSerializer.cs" />
+    <Compile Include="Localization\Dynamico.cs" />
     <Compile Include="SurveyService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="VotingService.cs" />
