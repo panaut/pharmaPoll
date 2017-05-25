@@ -1,6 +1,7 @@
 ﻿using Questionnaire.Service;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -21,11 +22,18 @@ namespace PollQuestionnaire.UI.Web.Controllers
         }
 
         [AllowAnonymous]
-        public ActionResult PatQueSurvey(string surveyId, string surveyName)
+        public ActionResult PatQueSurvey(string surveyId, string surveyName)//, string culture)
         {
             ViewBag.codeSurveyId = HttpUtility.HtmlEncode(surveyId);
             ViewBag.surveyName = HttpUtility.HtmlEncode(surveyName);
-            //string codeSurveyId = Request.QueryString["surveyId"];
+            //ViewBag.culture = HttpUtility.HtmlEncode(culture);
+
+            var fileName = surveyId + "_en-US.html";
+            var filePath = "~/Concents/";
+            var fullPath = filePath + fileName;
+            var fileContents = System.IO.File.ReadAllText(Server.MapPath(fullPath));
+            ViewBag.concent = HttpUtility.HtmlDecode(fileContents);
+
             return View();
         }
 
