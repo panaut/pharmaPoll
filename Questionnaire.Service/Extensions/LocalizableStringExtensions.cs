@@ -45,7 +45,7 @@ namespace Questionnaire.Service.Extensions
             return bytes;
         }
 
-        public static IEnumerable<LocalizedString> FromCSV(this byte[] bytes)
+        public static IEnumerable<LocalizedString> ParseLocalizationsCSV(this byte[] bytes)
         {
             CsvSerializer serializer = new CsvSerializer();
             List<LocalizedString> localizedStrings = new List<LocalizedString>();

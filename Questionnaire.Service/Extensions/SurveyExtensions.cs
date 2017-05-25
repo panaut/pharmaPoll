@@ -44,11 +44,21 @@ namespace Questionnaire.Service.Extensions
         public static Survey ExtractLocalizations(this Survey survey)
         {
             var localizationManager = new LocalizationManager();
-            var localizer = new Localizer(localizationManager);
+            var extractor = new LocalizationExtractor(localizationManager);
 
-            survey.Visit(localizer);
+            survey.Visit(extractor);
 
             localizationManager.SaveChanges();
+
+            return survey;
+        }
+
+        public static Survey Localize(this Survey survey, ECulture culture)
+        {
+            var localizationManager = new LocalizationManager();
+            var localizer = new Localizer(culture, localizationManager);
+
+            survey.Visit(localizer);
 
             return survey;
         }

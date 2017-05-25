@@ -46,6 +46,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Extensions\LocalizableStringExtensions.cs" />
+    <Compile Include="Extensions\LocalizationExtractor.cs" />
+    <Compile Include="Extensions\LocalizationVisitorBase.cs" />
     <Compile Include="Extensions\Localizer.cs" />
     <Compile Include="Extensions\SurveyExtensions.cs" />
     <Compile Include="Extensions\VisitorBase.cs" />

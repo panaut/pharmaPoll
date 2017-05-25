@@ -21,7 +21,6 @@ namespace Questionnaire.Data.Model
         [Column(Order = 4)]
         public ECulture Culture { get; set; }
 
-        [Index]
         public int SurveyId { get; set; }
 
         public Survey Survey { get; set; }

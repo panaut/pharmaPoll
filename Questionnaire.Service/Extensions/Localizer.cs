@@ -1,150 +1,77 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using Questionnaire.Data;
 using Questionnaire.Data.Model;
-using Questionnaire.Data.Attributes;
-using System.Reflection;
-using Questionnaire.Data;
 using Questionnaire.Data.Model.QuestionDefinition;
-using System.Collections.Concurrent;
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace Questionnaire.Service.Extensions
 {
-    internal class Localizer : VisitorBase
+    internal class Localizer : LocalizationVisitorBase
     {
-        private ILocalizationManager locManager;
+        private ECulture targetCulture;
 
-        private static ConcurrentDictionary<Type, IDictionary<PropertyInfo, string>> LocalizablePropertiesMap
-            = new ConcurrentDictionary<Type, IDictionary<PropertyInfo, string>>();
-
-        private static ConcurrentDictionary<Type, string> TypeIdentifiersMap
-            = new ConcurrentDictionary<Type, string>();
-
-        public Localizer(ILocalizationManager localizationManager)
+        public Localizer(ECulture culture, ILocalizationManager localizationManager)
+            : base(localizationManager)
         {
-            this.locManager = localizationManager;
+            this.targetCulture = culture;
         }
 
-        private void UpdateMapping(Type type)
-        {
-            // Do we have this type mapped?
-            var typeIdentifier = TypeIdentifiersMap.ContainsKey(type)
-                ? TypeIdentifiersMap[type] : null;
-
-            // If not - let's add it...
-            if (string.IsNullOrEmpty(typeIdentifier))
-            {
-                var att = (LocalizationTypeIdentifier)type
-                    .GetCustomAttribute(typeof(LocalizationTypeIdentifier), inherit: false);
-
-                if (att == null || string.IsNullOrEmpty(att.TypeIdentifier))
-                {
-                    typeIdentifier = type.Name;
-                }
-                else
-                {
-                    typeIdentifier = att.TypeIdentifier;
-                }
-
-                TypeIdentifiersMap.TryAdd(type, typeIdentifier);
-            }
-
-            // Do We have this type mapped>?
-            var mapEntry = LocalizablePropertiesMap.ContainsKey(type)
-                ? LocalizablePropertiesMap[type] : null;
-
-            // If not - add it...
-            if (mapEntry == null)
-            {
-                var typesLocalizableProperties = type
-                    .GetProperties()
-                    .Where(pi => pi.GetCustomAttributes(typeof(LocalizableProperty), inherit: true)
-                    .Any());
-
-                IDictionary<PropertyInfo, string> dict = new Dictionary<PropertyInfo, string>();
-
-                foreach (var locProp in typesLocalizableProperties)
-                {
-                    // Get the custom attribute
-                    var att = (LocalizableProperty)locProp.GetCustomAttribute(typeof(LocalizableProperty), inherit: true);
-
-                    dict.Add(locProp, string.IsNullOrEmpty(att.FieldIdentifier) ? locProp.Name : att.FieldIdentifier);
-                }
-
-                mapEntry = dict;
-                LocalizablePropertiesMap.TryAdd(type, mapEntry);
-            }
-        }
-
-        private void UpdateLocalizationsForObject(object obj, int id, int surveyId)
+        private void LocalizeObject(object obj, int id, int surveyId)
         {
             UpdateMapping(obj.GetType());
 
             // Do we have this type mapped?
             var typeIdentifier = TypeIdentifiersMap[obj.GetType()];
 
-            // Do We have this type mapped>?
+            // Do We have this type mapped?
             var mapEntry = LocalizablePropertiesMap[obj.GetType()];
 
-            // Now we check whether Localization entries for this type's properties exist
+            // Now we localize this type's properties
             foreach (var locPropInfo in mapEntry)
             {
-                object rawPropValue = locPropInfo.Key.GetValue(obj);
-                string currentPropertyValue = rawPropValue != null ? rawPropValue.ToString() : null;
+                // Let's get localization for this property
+                var localizedProperty = this.locManager.Find(typeIdentifier, id, locPropInfo.Value, this.targetCulture);
 
-                // Try to get localization entry for this property
-                var localizationEntry = this.locManager.Find(
-                        typeIdentifier,
-                        id,
-                        locPropInfo.Value,
-                        ECulture.DEFAULT);
-
-                if (localizationEntry == null)
+                if(localizedProperty == null || string.IsNullOrEmpty(localizedProperty.LocalizedValue))
                 {
-                    // This entry should be inserted
-                    this.locManager.Insert(new LocalizedString
-                    {
-                        TypeIdentifier = typeIdentifier,
-                        TypeUniqueId = id,
-                        FieldIdentifier = locPropInfo.Value,
-                        Culture = ECulture.DEFAULT,
-                        SurveyId = surveyId,
-                        LocalizedValue = currentPropertyValue
-                    },
-                    doSave: false);
+                    // Localization for desired culture doesn't exist
+                    // Fallback to default culture
+                    localizedProperty = this.locManager.Find(typeIdentifier, id, locPropInfo.Value, ECulture.DEFAULT);
                 }
-                else
-                {
-                    if (localizationEntry.LocalizedValue != currentPropertyValue)
-                    {
-                        // Since the native value of the string has changed, translations to other languages might not be appropriate
 
-                        // This entry should be updated
-                        localizationEntry.LocalizedValue = currentPropertyValue;
-                        this.locManager.Update(localizationEntry, doSave: false);
-                    }
-                }
+                // Convert the localized value to match the target property type
+                var converter = TypeDescriptor.GetConverter(locPropInfo.Key.PropertyType); // Converter for type
+
+                // Convert value
+                var convertedValue = converter.ConvertFrom(localizedProperty);
+
+                // Now we just have to set the retrieved value
+                locPropInfo.Key.SetValue(obj, convertedValue);
             }
         }
 
         public override void Visit(Survey survey)
         {
-            UpdateLocalizationsForObject(survey, survey.Id, survey.Id);
+            LocalizeObject(survey, survey.Id, survey.Id);
         }
 
         public override void Visit(ElementBase element)
         {
-            UpdateLocalizationsForObject(element, element.Id, element.SurveyId);
+            LocalizeObject(element, element.Id, element.SurveyId);
         }
 
         public override void Visit(Choice choice)
         {
-            UpdateLocalizationsForObject(choice, choice.Id, choice.SurveyId);
+            LocalizeObject(choice, choice.Id, choice.SurveyId);
         }
 
         public override void Visit(MatrixRow matrixRow)
         {
-            UpdateLocalizationsForObject(matrixRow, matrixRow.Id, matrixRow.SurveyId);
+            LocalizeObject(matrixRow, matrixRow.Id, matrixRow.SurveyId);
         }
 
         public override void Visit(SelectQuestionBase question)
