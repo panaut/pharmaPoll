@@ -15,7 +15,7 @@ namespace Questionnaire.Service.Extensions
         public static byte[] ToCSV(this IEnumerable<LocalizedString> surveyLocalizations)
         {
             List<Dynamico<LocalizedString>> serializerDataSource = new List<Dynamico<LocalizedString>>();
-            byte[] bytes;
+            byte[] bytes = null;
 
             // Group the localizations by key
             var grouppedLocalizations = surveyLocalizations.GroupBy(ls =>
@@ -32,14 +32,24 @@ namespace Questionnaire.Service.Extensions
                 serializerDataSource.Add(csvRow);
             }
 
-            // Now data source is ready for serialization
-            CsvSerializer serializer = new CsvSerializer();
-
-            using (var ms = new MemoryStream())
+            if (serializerDataSource.Any())
             {
-                serializer.Serialize(ms, serializerDataSource, Enum.GetNames(typeof(ECulture)));
+                // Get list of properties to feed the serializer
+                var props = serializerDataSource.First().Properties;
 
-                bytes = ms.ToArray();
+                // Now data source is ready for serialization
+                CsvSerializer serializer = new CsvSerializer();
+
+                using (var ms = new MemoryStream())
+                {
+                    serializer.Serialize(ms, serializerDataSource, props);
+                    bytes = ms.ToArray();
+                }
+            }
+            else
+            {
+                // File is empty
+                throw new InvalidDataException("No available data for localizations");
             }
 
             return bytes;

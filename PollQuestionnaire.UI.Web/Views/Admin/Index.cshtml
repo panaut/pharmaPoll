@@ -57,7 +57,7 @@
                     </td>
                 }
                 <td><a href="#" class="uploadPdf" data-toggle="modal" data-target="#uploadPdf" data-surveyId="@item.surveyId" title="Upload printable version"> <i class="glyphicon glyphicon-print"></i></a></td>
-                <td><a href="#" class="dloadTranslation" data-toggle="tooltip" title="Download file for translation"> <i class="glyphicon glyphicon-download"></i></a></td>
+                <td><a href="@Url.Action("DownloadLocalizationCsv", "Admin", new { surveyId = item.Id, area = "" })" class="dloadTranslation" data-toggle="tooltip" title="Download file for translation"> <i class="glyphicon glyphicon-download"></i></a></td>
                 <td><a href="#" class="uploadTranslation" data-toggle="tooltip" title="Upload translation file"> <i class="glyphicon glyphicon-upload"></i></a></td>
                 <td><a href="#" class="editModalLink" data-target="#modal-fullscreen_edit" title="Edit Survey: @item.title" data-id="@item.Id" data-surveyId="@item.surveyId"> <i id="glyphicon-pencil" class="glyphicon glyphicon-pencil"></i></a></td>
                 <td><a href="#" class="deleteSurveyModal" data-toggle="modal" title="Delete Survey: @item.title" data-target="#modal-delete" data-id="@item.Id" data-isActive="@item.IsActive"> <i id="glyphicon-trash" class="glyphicon glyphicon-trash"></i></a></td>
@@ -148,7 +148,7 @@
                 <div class="row">
                     <div class="form-group input-group col-xs-12">
                         Select Culture For Localization File fsdf
-                        
+
                         <button id="uploadPdfButton" type="button" class="btn btn-primary uploadPdf" data-dismiss="modal" name="passedValue" data-id="" data-isActive="">Upload file</button>
                     </div>
                     <div class="dropdown">
@@ -164,7 +164,7 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                   
+
                 </div>
             </div>
             <style>

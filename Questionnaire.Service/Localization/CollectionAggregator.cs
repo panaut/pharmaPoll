@@ -46,8 +46,7 @@ namespace Questionnaire.Service.Localization
                     .ToString();
 
                 var additionalMemberValue = additionalMemberValueFunc
-                    .Invoke(additionalMemberValueRaw)
-                    .ToString();
+                    .Invoke(additionalMemberValueRaw)?.ToString();
 
                 if (!discreteValuesAreDefined)
                 {
