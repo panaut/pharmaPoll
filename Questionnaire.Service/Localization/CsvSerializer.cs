@@ -384,6 +384,7 @@ namespace Questionnaire.Service.Localization
                                     ? string.Empty
                                     : raw.ToString()
                                           .Replace(this.Separator.ToString(), this.Replacement)
+                                          .Replace("\n", this.NewlineReplacement)
                                           .Replace(Environment.NewLine, this.NewlineReplacement);
 
                     if (this.UseTextQualifier)

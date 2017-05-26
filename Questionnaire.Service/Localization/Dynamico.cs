@@ -11,13 +11,24 @@ namespace Questionnaire.Service.Localization
     {
         private ILogger logger = LogManager.GetLogger("Dynamico");
 
+        private int nextIndex = 0;           // Member indexer
+
+        private IDictionary<string, int> propertyIndexes = new Dictionary<string, int>();
         private IDictionary<string, object> properties;
 
         private IEnumerable<PropertyInfo> typePropertyInfo;
 
         private bool ignoreReferenceTypesExceptString;
 
-        public IEnumerable<string> Properties { get { return this.properties.Select(p => p.Key); } }
+        public IEnumerable<string> Properties
+        {
+            get
+            {
+                return this.properties
+                    .Join(this.propertyIndexes, p => p.Key, p => p.Key, (p, q) => new { index = q.Value, Property = p.Key })
+                    .OrderBy(a => a.index).Select(a => a.Property);
+            }
+        }
 
         public Dynamico(T instance, bool ignoreReferenceTypesExceptString = true)
             : this(ignoreReferenceTypesExceptString)
@@ -37,8 +48,7 @@ namespace Questionnaire.Service.Localization
             // Get properties through reflection.
             var props =
                 type.GetProperties(
-                    BindingFlags.Public | BindingFlags.Instance | BindingFlags.GetProperty
-                    | BindingFlags.SetProperty);
+                    BindingFlags.Public | BindingFlags.Instance | BindingFlags.GetProperty | BindingFlags.SetProperty);
 
             // Convert array into IQueriable
             var queriableProps = props.AsQueryable();
@@ -46,14 +56,13 @@ namespace Questionnaire.Service.Localization
             if (this.ignoreReferenceTypesExceptString)
             {
                 queriableProps = queriableProps.Where(
-                                    prop =>
-                                        prop.PropertyType.IsValueType
-                                        || prop.PropertyType.Name == "String");
+                                    prop => prop.PropertyType.IsValueType || prop.PropertyType.Name == "String");
             }
 
             this.typePropertyInfo = queriableProps;
 
             this.properties = queriableProps.ToDictionary(pi => pi.Name, pi => new object());
+            this.propertyIndexes = queriableProps.ToDictionary(pi => pi.Name, pi => this.nextIndex++);
         }
 
         public bool TryAddMember(string memberName)
@@ -67,6 +76,7 @@ namespace Questionnaire.Service.Localization
                 }
 
                 this.properties.Add(memberName, null);
+                this.propertyIndexes.Add(memberName, this.nextIndex++);
                 return true;
             }
             catch (Exception ex)
@@ -81,6 +91,7 @@ namespace Questionnaire.Service.Localization
         public void AddMember(string memberName)
         {
             this.properties.Add(memberName, null);
+            this.propertyIndexes.Add(memberName, this.nextIndex++);
         }
 
         public bool TryRemoveMember(string memberName)
@@ -94,6 +105,8 @@ namespace Questionnaire.Service.Localization
                 }
 
                 this.properties.Remove(memberName);
+                this.propertyIndexes.Remove(memberName);
+
                 return true;
             }
             catch (Exception ex)
@@ -108,6 +121,7 @@ namespace Questionnaire.Service.Localization
         public void RemoveMember(string memberName)
         {
             this.properties.Remove(memberName);
+            this.propertyIndexes.Remove(memberName);
         }
 
         public void SetMember(string memberName, object value)

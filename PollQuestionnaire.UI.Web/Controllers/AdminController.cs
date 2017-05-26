@@ -92,7 +92,7 @@ namespace PollQuestionnaire.UI.Web.Controllers
                 throw new InvalidOperationException("Failed to generate CSV localizations file");
             }
 
-            return File(result.OperationResult, "text/csv", $"QUESTIONNAIRE_{surveyId}_LOCALIZATION");
+            return File(result.OperationResult, "text/csv", $"Localization.csv");
         }
 
         //[HttpGet()]

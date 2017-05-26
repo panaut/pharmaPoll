@@ -43,10 +43,11 @@ namespace Questionnaire.Service.Localization
 
                 var additionalMemberName = additionalMemberNameFunc
                     .Invoke(additionalMemberNameRaw)
-                    .ToString();
+                    ?.ToString();
 
                 var additionalMemberValue = additionalMemberValueFunc
-                    .Invoke(additionalMemberValueRaw)?.ToString();
+                    .Invoke(additionalMemberValueRaw)
+                    ?.ToString();
 
                 if (!discreteValuesAreDefined)
                 {

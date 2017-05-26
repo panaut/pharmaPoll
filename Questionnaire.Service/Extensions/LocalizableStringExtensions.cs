@@ -39,6 +39,7 @@ namespace Questionnaire.Service.Extensions
 
                 // Now data source is ready for serialization
                 CsvSerializer serializer = new CsvSerializer();
+                serializer.NewlineReplacement = "#|newline|#";
 
                 using (var ms = new MemoryStream())
                 {
