@@ -25,6 +25,7 @@ namespace Questionnaire.Data.Model
 
         public Survey Survey { get; set; }
 
+        [MaxLength(1024)]
         public string LocalizedValue { get; set; }
     }
 }

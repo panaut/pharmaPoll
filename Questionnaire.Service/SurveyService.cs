@@ -139,7 +139,8 @@ namespace Questionnaire.Service
                     //// Finally - try to extract localizable properties
                     //try
                     //{
-                    //    survey.ExtractLocalizations();
+                    //    var surveyDb = this.surveyManager.Value.Find(survey.Id);
+                    //    surveyDb.ExtractLocalizations();
                     //}
                     //catch (Exception ex)
                     //{

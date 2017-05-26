@@ -39,7 +39,15 @@ namespace Questionnaire.Service.Extensions
 
                 if (att == null || string.IsNullOrEmpty(att.TypeIdentifier))
                 {
-                    typeIdentifier = type.Name;
+                    if (type.BaseType != null && type.AssemblyQualifiedName.StartsWith("System.Data.Entity.DynamicProxies"))
+                    {
+                        // We are dealing with Entity Framework Proxy
+                        typeIdentifier = type.BaseType.Name;
+                    }
+                    else
+                    {
+                        typeIdentifier = type.Name;
+                    }
                 }
                 else
                 {

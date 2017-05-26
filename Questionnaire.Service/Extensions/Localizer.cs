@@ -14,10 +14,30 @@ namespace Questionnaire.Service.Extensions
     {
         private ECulture targetCulture;
 
+        private IDictionary<string, LocalizedString> CachedStrings;
+
         public Localizer(ECulture culture, ILocalizationManager localizationManager)
             : base(localizationManager)
         {
             this.targetCulture = culture;
+        }
+
+        private LocalizedString GetLocalization(
+                    string typeIdentifier,
+                    int typeUniqueId,
+                    string fieldIdentifier,
+                    ECulture culture)
+        {
+            var key = $"{typeIdentifier}-{typeUniqueId}-{fieldIdentifier}-{culture}";
+
+            LocalizedString retVal = null;
+
+            if (this.CachedStrings.ContainsKey(key))
+            {
+                retVal = this.CachedStrings[key];
+            }
+
+            return retVal;
         }
 
         private void LocalizeObject(object obj, int id, int surveyId)
@@ -34,13 +54,13 @@ namespace Questionnaire.Service.Extensions
             foreach (var locPropInfo in mapEntry)
             {
                 // Let's get localization for this property
-                var localizedProperty = this.locManager.Find(typeIdentifier, id, locPropInfo.Value, this.targetCulture);
+                var localizedProperty = this.GetLocalization(typeIdentifier, id, locPropInfo.Value, this.targetCulture);
 
-                if (localizedProperty == null || string.IsNullOrEmpty(localizedProperty.LocalizedValue))
+                if (targetCulture != ECulture.DEFAULT && (localizedProperty == null || string.IsNullOrEmpty(localizedProperty.LocalizedValue)))
                 {
                     // Localization for desired culture doesn't exist
                     // Fallback to default culture
-                    localizedProperty = this.locManager.Find(typeIdentifier, id, locPropInfo.Value, ECulture.DEFAULT);
+                    localizedProperty = this.GetLocalization(typeIdentifier, id, locPropInfo.Value, ECulture.DEFAULT);
                 }
 
                 if (localizedProperty != null && !string.IsNullOrEmpty(localizedProperty.LocalizedValue))
@@ -49,7 +69,7 @@ namespace Questionnaire.Service.Extensions
                     var converter = TypeDescriptor.GetConverter(locPropInfo.Key.PropertyType); // Converter for type
 
                     // Convert value
-                    var convertedValue = converter.ConvertFrom(localizedProperty);
+                    var convertedValue = converter.ConvertFrom(localizedProperty.LocalizedValue);
 
                     // Now we just have to set the retrieved value
                     locPropInfo.Key.SetValue(obj, convertedValue);
@@ -63,6 +83,9 @@ namespace Questionnaire.Service.Extensions
 
         public override void Visit(Survey survey)
         {
+            this.CachedStrings = this.locManager.GetLocalizationsForSurvey(survey.Id).ToDictionary(
+                ls => $"{ls.TypeIdentifier}-{ls.TypeUniqueId}-{ls.FieldIdentifier}-{ls.Culture}");
+
             LocalizeObject(survey, survey.Id, survey.Id);
         }
 

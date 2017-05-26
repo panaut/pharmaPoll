@@ -60,7 +60,7 @@ namespace Questionnaire.Service.Extensions
                     {
                         // Since the native value of the string has changed, translations to other languages might not be appropriate
                         // ToDo: IC - Investigate what to do with out-dated strings!
-                        
+
                         // This entry should be updated
                         localizationEntry.LocalizedValue = currentPropertyValue;
                         this.locManager.Update(localizationEntry, doSave: false);
