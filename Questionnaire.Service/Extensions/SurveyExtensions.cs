@@ -1,11 +1,7 @@
-﻿using Questionnaire.Data.Model;
+﻿using Questionnaire.Data;
+using Questionnaire.Data.Model;
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Questionnaire.Data.Model.QuestionDefinition;
-using Questionnaire.Data;
 
 namespace Questionnaire.Service.Extensions
 {

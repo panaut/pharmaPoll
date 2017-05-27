@@ -34,7 +34,7 @@ namespace Questionnaire.Service.Extensions
                 string currentPropertyValue = rawPropValue != null ? rawPropValue.ToString() : null;
 
                 // Try to get localization entry for this property
-                var localizationEntry = this.locManager.Find(
+                var localizationEntry = this.GetLocalization(
                         typeIdentifier,
                         id,
                         locPropInfo.Value,
@@ -71,6 +71,9 @@ namespace Questionnaire.Service.Extensions
 
         public override void Visit(Survey survey)
         {
+            this.CachedStrings = this.locManager.GetLocalizationsForSurvey(survey.Id).ToDictionary(
+                ls => $"{ls.TypeIdentifier}-{ls.TypeUniqueId}-{ls.FieldIdentifier}-{ls.Culture}");
+
             UpdateLocalizationsForObject(survey, survey.Id, survey.Id);
         }
 

@@ -59,6 +59,7 @@ namespace Questionnaire.Service.Extensions
         public static IEnumerable<LocalizedString> ParseLocalizationsCSV(this byte[] bytes)
         {
             CsvSerializer serializer = new CsvSerializer();
+            serializer.NewlineReplacement = "#|newline|#";
             List<LocalizedString> localizedStrings = new List<LocalizedString>();
             IList<Dynamico<LocalizedString>> dynamicos = new List<Dynamico<LocalizedString>>();
 

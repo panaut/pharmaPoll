@@ -58,7 +58,7 @@
                 }
                 <td><a href="#" class="uploadPdf" data-toggle="modal" data-target="#uploadPdf" data-surveyId="@item.surveyId" title="Upload printable version"> <i class="glyphicon glyphicon-print"></i></a></td>
                 <td><a href="#" class="dloadTranslation" data-toggle="tooltip" title="Download file for translation" data-id="@item.Id" data-surveyId="@item.surveyId"> <i class="glyphicon glyphicon-download"></i></a></td>
-                <td><a href="#" class="uploadTranslation" data-toggle="tooltip" title="Upload translation file" data-id="@item.Id" data-surveyId="@item.surveyId"> <i class="glyphicon glyphicon-upload"></i></a></td>
+                <td><a href="#" class="uploadTranslation" data-toggle="tooltip" data-target="#uploadLocalizationsModal" title="Upload translation file" data-id="@item.Id" data-surveyId="@item.surveyId"> <i class="glyphicon glyphicon-upload"></i></a></td>
                 <td><a href="#" class="editModalLink" data-target="#modal-fullscreen_edit" title="Edit Survey: @item.title" data-id="@item.Id" data-surveyId="@item.surveyId"> <i id="glyphicon-pencil" class="glyphicon glyphicon-pencil"></i></a></td>
                 <td><a href="#" class="deleteSurveyModal" data-toggle="modal" data-target="#modal-delete" title="Delete Survey: @item.title" data-id="@item.Id" data-isActive="@item.IsActive"> <i id="glyphicon-trash" class="glyphicon glyphicon-trash"></i></a></td>
                 <td><span class="badge" title="Number of responses">not active</span></td>
@@ -150,8 +150,6 @@
                 <div class="row">
                     <div class="form-group input-group col-xs-12">
                         Select Culture For Localization File fsdf
-
-                        <button id="uploadPdfButton" type="button" class="btn btn-primary uploadPdf" data-dismiss="modal" name="passedValue" data-id="" data-isActive="">Upload file</button>
                     </div>
                     <div class="dropdown">
                         <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">
@@ -164,14 +162,45 @@
                             <li><a href="#">JavaScript</a></li>
                         </ul>
                     </div>
-                </div>                
+                </div>
             </div>
             <div class="modal-footer">
-
+                <button id="uploadPdfButton" type="button" class="btn btn-primary" data-dismiss="modal" name="passedValue" data-id="" data-isActive="">Upload file</button>
             </div>
         </div>
     </div>
 </div>
+
+<div class="modal modal-backdrop-transparent fade" id="uploadLocalizationsModal" tabindex="-1" role="dialog" aria-labelledby="localizationdModal" aria-hidden="true">
+    <div class="modal-dialog" role="dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title" id="uploadLocalizationsTitle">Upload CSV file containing localized strings</h3>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body" style="padding:5%">
+                <div class="row">
+                    <div class="form-group">
+                        <input type="file" name="csvFileLocation" class="file" id="csvFileLocation">
+                        <div class="input-group col-xs-12">
+                            <span class="input-group-addon"><i class="glyphicon glyphicon-file"></i></span>
+                            <input type="text" class="form-control input-lg" disabled placeholder="Upload CSV File" style="min-width:100%">
+                            <span class="input-group-btn">
+                                <button class="browse btn btn-primary input-lg" type="button"><i class="glyphicon glyphicon-search"></i> Browse</button>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button id="uploadCsvButton" type="button" class="btn btn-primary uploadCsv" data-dismiss="modal" name="passedValue" data-id="" data-isActive="">Upload file</button>
+            </div>
+        </div>
+    </div>
+</div>
+
 <style>
     .file {
         visibility: hidden;
@@ -184,58 +213,62 @@
     @Scripts.Render("~/Scripts/surveyjsEditorInit.js")
     @Scripts.Render("~/bundles/bootstrap")
 
-                <script>
-                    $
-                    $('.uploadPdf').on('click', function (e) {
-                        var language = window.navigator.userLanguage || window.navigator.language;
-                        //alert(language); //works IE/SAFARI/CHROME/FF
-                        $('#uploadPdfTitle').html(language);
-                        $('#uploadPdfmodal').modal('show');
-                        var surveyId = $('.uploadPdf').attr('data-surveyId');
+    <script>
+        var _surveyId = 0;
+        var _surveyCode = '';
+        var _language = '';
 
-                        //dropdown = $('#cultureDropdown')
-                        //// Remove current options
-                        //dropdown.html('');
-                        //// Add the empty option with the empty message
-                        //emptyMessage = 'Select an option'
-                        //dropdown.append('<option value="">' + emptyMessage + '</option>');
+        $('.uploadPdf').on('click', function (e) {
+            _language = window.navigator.userLanguage || window.navigator.language;
+            _surveyCode = $(this).attr('data-surveyId');
 
+            $('#uploadPdfTitle').html(language);
+            $('#uploadPdfmodal').modal('show');
+        });
 
-                        //spinStart();
-                        @*$.ajax(
-                 '@Url.Action("GetLocalizationList", "Admin", new { area="" })',
+        $('.uploadTranslation').on('click', function (e) {
+            _surveyId = $(this).attr('data-Id');
+            _language = window.navigator.userLanguage || window.navigator.language;
+
+            $('#uploadLocalizationsModal').modal('show');
+        });
+
+        $('.dloadTranslation').click(function (event) {
+            spinStart();
+
+            var $link = $(this);
+
+            var id = $link.data('id');
+            var dloadURL = '@Url.Action("CreateLocalizationCsv", "Admin", new { area = "" })';
+
+            $.ajax(
+                 dloadURL,
                  {
                      method: "GET",
                      async: true,
-                     data: { surveyId: Id },
-                     dataType: 'json',
+                     data: { surveyId: id },
                      success: function (data, textStatus, jqXHR) {
-                         result = jQuery.parseJSON(data);
-                         // Check result isnt empty
-                         if (result != '') {
-                             // Loop through each of the results and append the option to the dropdown
-                             $.each(result, function (k, v) {
-                                 dropdown.append('<option value="' + v.id + '">' + v.name + '</option>');
-                             });
-                         }
-                         spinStop();
+                         //var blob = new Blob([data], { type: 'application/text' });
+
+                         //var dLink = document.createElement('a');
+                         //dLink.href = window.URL.createObjectURL(blob);
+                         //dLink.download = 'LocalizationStrings.csv';
+                         //dLink.click();
+
+                         getCsvFile(data);
                      },
                      error: function (jqXHR, textStatus, errorThrown) {
-                         $('#noSurveyAlert').css("display", "block");
-
                          spinStop();
                      }
-                 });*@
+                 });
+        });
 
-                    });
-
-
-                    $('#modal-fullscreen_edit').on('hide.bs.modal', function (e) {
-                        //document.title = e.originalEvent;
-                        if (e.target === this) {
-                            e.preventDefault();
-                        }
-                    });
+        $('#modal-fullscreen_edit').on('hide.bs.modal', function (e) {
+            //document.title = e.originalEvent;
+            if (e.target === this) {
+                e.preventDefault();
+            }
+        });
 
         $('#closeModalButton').on('click', function (e) {
             $('#modal fullscreen fade').hide();
@@ -309,8 +342,11 @@
                     // Adding one more key to FormData object
                     fileData.append('localisation', 'en-US');
 
+                    var url = '@Url.Action("UploadFiles", "Admin", new { surveyCode = "__code__", area = "" })';
+                    url = url.replace('__code__', _surveyCode);
+
                     $.ajax({
-                        url: '/Admin/UploadFiles',
+                        url: url,
                         type: "POST",
                         contentType: false, // Not to set any content header
                         processData: false, // Not to process data
@@ -322,6 +358,47 @@
                             alert(err.statusText);
                         }
                     });
+                } else {
+                    alert("FormData is not supported.");
+                }
+            });
+
+            $('#uploadCsvButton').click(function () {
+                // Checking whether FormData is available in browser
+                if (window.FormData !== undefined) {
+
+                    var fileUpload = $("#csvFileLocation").get(0);
+                    var files = fileUpload.files;
+
+                    // Create FormData object
+                    var fileData = new FormData();
+
+                    // Looping over all files and add it to FormData object
+                    for (var i = 0; i < files.length; i++) {
+                        fileData.append(files[i].name, files[i]);
+                    }
+
+                    if (files.length == 1) {
+                        spinStart();
+                        var url = '@Url.Action("UploadLocalizationCsv", "Admin", new { surveyId = "__id__", area = "" })';
+                        url = url.replace('__id__', _surveyId);
+
+                        $.ajax({
+                            url: url,
+                            type: "POST",
+                            contentType: false, // Not to set any content header
+                            processData: false, // Not to process data
+                            data: fileData,
+                            success: function (result) {
+                                spinStop();
+                                alert("Localizations have been updated.");
+                            },
+                            error: function (err) {
+                                spinStop();
+                                alert(err.statusText);
+                            }
+                        });
+                    }
                 } else {
                     alert("FormData is not supported.");
                 }
@@ -451,6 +528,14 @@
         $(".fullscreen").on('hidden.bs.modal', function () {
             $(".modal-backdrop").addClass("modal-backdrop-fullscreen");
         });
+
+        function getCsvFile(fileName) {
+            var dloadURL = '@Url.Action("DownloadLocalizationCsv", "Admin", new { fileName = "__fileName__",  area = "" })';
+            dloadURL = dloadURL.replace('__fileName__', fileName);
+            spinStop();
+
+            window.location = dloadURL;
+        }
     </script>
 }
 

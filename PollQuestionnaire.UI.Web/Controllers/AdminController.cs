@@ -1,6 +1,6 @@
 ﻿using Questionnaire.Service;
+using Questionnaire.Service.Infrastructure;
 using System;
-using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Web;
@@ -45,6 +45,7 @@ namespace PollQuestionnaire.UI.Web.Controllers
 
             return result.OperationResult.Value;
         }
+
         [HttpGet()]
         public string GetSurvey(int surveyId)
         {
@@ -83,16 +84,81 @@ namespace PollQuestionnaire.UI.Web.Controllers
         }
 
         [HttpGet]
-        public FileResult DownloadLocalizationCsv(int surveyId)
+        public FileResult DownloadLocalizationCsv(string fileName)
         {
-            var result = surveyService.Value.GetCsvLocalizations(surveyId, true);
+            var filePath = Path.Combine(Server.MapPath("~/Downloads"), fileName);
+
+            if(!System.IO.File.Exists(filePath))
+            {
+                throw new CustomException($"Localization file not found at location {filePath}.", new Exception());
+            }
+
+            return File(filePath, "text/csv", $"Localization.csv");
+        }
+
+        [HttpGet]
+        public string CreateLocalizationCsv(int surveyId)
+        {
+            var result = surveyService.Value.GetCsvLocalizations(surveyId);
 
             if (result.Status != OperationStatus.Success)
             {
                 throw new InvalidOperationException("Failed to generate CSV localizations file");
             }
 
-            return File(result.OperationResult, "text/csv", $"Localization.csv");
+            var locFileName = $"localizations_{surveyId}";
+
+            try
+            {
+                // Save the file in the local file system
+                var downloads = Server.MapPath("~/Downloads");
+                if (!Directory.Exists(downloads))
+                {
+                    Directory.CreateDirectory(downloads);
+                }
+
+                var tempFileName = Path.Combine(downloads, locFileName);
+
+                using (var fs = new FileStream(tempFileName, FileMode.Create, FileAccess.Write))
+                {
+                    fs.Write(result.OperationResult, 0, result.OperationResult.Length);
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new CustomException("Failed to save CSV localizations file to Downloads folder.", ex);
+            }
+
+            return locFileName;
+        }
+
+        [HttpPost]
+        public void UploadLocalizationCsv(int surveyId)
+        {
+            //  Get all files from Request object  
+            HttpFileCollectionBase files = Request.Files;
+            for (int i = 0; i < files.Count; i++)
+            {
+                HttpPostedFileBase file = files[i];
+
+                var csvStream = file.InputStream;
+
+                byte[] bytes;
+
+                // Get bytes
+                using (var ms = new MemoryStream())
+                {
+                    csvStream.CopyTo(ms);
+                    bytes = ms.ToArray();
+                }
+
+                var result = this.surveyService.Value.UpdateLocalizationFromCSVs(surveyId, bytes);
+
+                if (result.Status != OperationStatus.Success)
+                {
+                    throw new InvalidOperationException("Failed to update CSV localizations from file");
+                }
+            }
         }
 
         //[HttpGet]
@@ -108,18 +174,6 @@ namespace PollQuestionnaire.UI.Web.Controllers
         //    return result.OperationResult;
         //}
 
-        //[HttpGet()]
-        //public string GetLocalizationList(string surveyCode)
-        //{
-        //    var result = surveyService.Value.GetLocalizationList(surveyCode, onlyActive: false);
-
-        //    if (result.Status != OperationStatus.Success)
-        //    {
-        //        throw new InvalidOperationException("failed to update survey status");
-        //    }
-
-        //    return result.OperationResult;
-        //}
         [HttpPost]
         public ActionResult GetFolderStructure()
         {
@@ -161,8 +215,9 @@ namespace PollQuestionnaire.UI.Web.Controllers
             ////}
             //return files;
         }
+
         [HttpPost]
-        public ActionResult UploadFiles()
+        public ActionResult UploadFiles(string surveyCode)
         {
             // Checking no of files injected in Request object  
             if (Request.Files.Count > 0)

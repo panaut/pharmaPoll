@@ -498,28 +498,7 @@ namespace Questionnaire.Service
 
                     try
                     {
-                        foreach (var localization in localizedStrings)
-                        {
-                            // Get this localization entry if it exists
-                            var locStrDb = this.localizationManager.Value.Find(
-                                                    localization.TypeIdentifier,
-                                                    localization.TypeUniqueId,
-                                                    localization.FieldIdentifier,
-                                                    localization.Culture);
-
-                            if (locStrDb == null)
-                            {
-                                // This is a new entry, it should be added to database
-                                this.localizationManager.Value.Insert(localization, doSave: false);
-                            }
-                            else
-                            {
-                                // This entry already exists, we shall update it
-                                this.localizationManager.Value.Update(localization, doSave: false);
-                            }
-                        }
-
-                        this.localizationManager.Value.SaveChanges();
+                        this.localizationManager.Value.UpdateLocalizationsForSurvey(surveyId, localizedStrings);
                     }
                     catch (Exception ex)
                     {

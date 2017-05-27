@@ -14,30 +14,10 @@ namespace Questionnaire.Service.Extensions
     {
         private ECulture targetCulture;
 
-        private IDictionary<string, LocalizedString> CachedStrings;
-
         public Localizer(ECulture culture, ILocalizationManager localizationManager)
             : base(localizationManager)
         {
             this.targetCulture = culture;
-        }
-
-        private LocalizedString GetLocalization(
-                    string typeIdentifier,
-                    int typeUniqueId,
-                    string fieldIdentifier,
-                    ECulture culture)
-        {
-            var key = $"{typeIdentifier}-{typeUniqueId}-{fieldIdentifier}-{culture}";
-
-            LocalizedString retVal = null;
-
-            if (this.CachedStrings.ContainsKey(key))
-            {
-                retVal = this.CachedStrings[key];
-            }
-
-            return retVal;
         }
 
         private void LocalizeObject(object obj, int id, int surveyId)

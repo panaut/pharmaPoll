@@ -25,6 +25,39 @@ namespace Questionnaire.Data
             return context.LocalizedStrings.Where(ls => ls.SurveyId == surveyId);
         }
 
+        public void UpdateLocalizationsForSurvey(int surveyId, IEnumerable<LocalizedString> localizations)
+        {
+            // Cache localization strings for this survey
+            var cachedStrings = this.GetLocalizationsForSurvey(surveyId).ToDictionary(
+                    ls => $"{ls.TypeIdentifier}-{ls.TypeUniqueId}-{ls.FieldIdentifier}-{ls.Culture}");
+
+            foreach (var localization in localizations)
+            {
+                var key = $"{localization.TypeIdentifier}-{localization.TypeUniqueId}-{localization.FieldIdentifier}-{localization.Culture}";
+
+                LocalizedString locStrDb = null;
+
+                // Get this localization entry if it exists
+                if (cachedStrings.ContainsKey(key))
+                {
+                    locStrDb = cachedStrings[key];
+                }
+
+                if (locStrDb == null)
+                {
+                    // This is a new entry, it should be added to database
+                    this.Insert(localization, doSave: false);
+                }
+                else
+                {
+                    // This entry already exists, we shall update it
+                    this.Update(localization, doSave: false);
+                }
+            }
+
+            this.SaveChanges();
+        }
+
         public void Insert(LocalizedString entry, bool doSave = true)
         {
             context.LocalizedStrings.Add(entry);
