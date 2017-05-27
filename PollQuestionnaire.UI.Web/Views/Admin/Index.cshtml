@@ -57,8 +57,8 @@
                     </td>
                 }
                 <td><a href="#" class="uploadPdf" data-toggle="modal" data-target="#uploadPdf" data-surveyId="@item.surveyId" title="Upload printable version"> <i class="glyphicon glyphicon-print"></i></a></td>
-                <td><a href="@Url.Action("DownloadLocalizationCsv", "Admin", new { surveyId = item.Id, area = "" })" class="dloadTranslation" data-toggle="tooltip" title="Download file for translation"> <i class="glyphicon glyphicon-download"></i></a></td>
-                <td><a href="#" class="uploadTranslation" data-toggle="tooltip" title="Upload translation file"> <i class="glyphicon glyphicon-upload"></i></a></td>
+                <td><a href="#" class="dloadTranslation" data-toggle="tooltip" title="Download file for translation" data-id="@item.Id" data-surveyId="@item.surveyId"> <i class="glyphicon glyphicon-download"></i></a></td>
+                <td><a href="#" class="uploadTranslation" data-toggle="tooltip" title="Upload translation file" data-id="@item.Id" data-surveyId="@item.surveyId"> <i class="glyphicon glyphicon-upload"></i></a></td>
                 <td><a href="#" class="editModalLink" data-target="#modal-fullscreen_edit" title="Edit Survey: @item.title" data-id="@item.Id" data-surveyId="@item.surveyId"> <i id="glyphicon-pencil" class="glyphicon glyphicon-pencil"></i></a></td>
                 <td><a href="#" class="deleteSurveyModal" data-toggle="modal" title="Delete Survey: @item.title" data-target="#modal-delete" data-id="@item.Id" data-isActive="@item.IsActive"> <i id="glyphicon-trash" class="glyphicon glyphicon-trash"></i></a></td>
                 <td><span class="badge" title="Number of responses">not active</span></td>
@@ -180,24 +180,24 @@
                 @Scripts.Render("~/bundles/bootstrap")
 
                 <script>
-                    $
                     $('.uploadPdf').on('click', function (e) {
                         var language = window.navigator.userLanguage || window.navigator.language;
                         //alert(language); //works IE/SAFARI/CHROME/FF
                         $('#uploadPdfTitle').html(language);
                         $('#uploadPdfmodal').modal('show');
                         var surveyId = $('.uploadPdf').attr('data-surveyId');
+                    });
 
-                        //dropdown = $('#cultureDropdown')
-                        //// Remove current options
-                        //dropdown.html('');
-                        //// Add the empty option with the empty message
-                        //emptyMessage = 'Select an option'
-                        //dropdown.append('<option value="">' + emptyMessage + '</option>');
+                    //dropdown = $('#cultureDropdown')
+                    //// Remove current options
+                    //dropdown.html('');
+                    //// Add the empty option with the empty message
+                    //emptyMessage = 'Select an option'
+                    //dropdown.append('<option value="">' + emptyMessage + '</option>');
 
 
-                        //spinStart();
-                        @*$.ajax(
+                    //spinStart();
+                    @*$.ajax(
                  '@Url.Action("GetLocalizationList", "Admin", new { area="" })',
                  {
                      method: "GET",
@@ -222,8 +222,36 @@
                      }
                  });*@
 
-                    });
+                    $('.dloadTranslation').click(function (event) {
+                        spinStart();
 
+                        var $link = $(this);
+
+                        var id = $link.data('id');
+                        var dloadURL = '@Url.Action("DownloadLocalizationCsv", "Admin", new { area = "" })';
+
+                        $.ajax(
+                             dloadURL,
+                             {
+                                 method: "GET",
+                                 async: true,
+                                 data: { surveyId: id },
+                                 success: function (data, textStatus, jqXHR) {
+                                     var blob = new Blob([data], { type: 'application/text' });
+
+                                     var dLink = document.createElement('a');
+                                     dLink.href = window.URL.createObjectURL(blob);
+                                     dLink.download = 'LocalizationStrings.csv';
+                                     dLink.click();
+
+                                     spinStop();
+
+                                 },
+                                 error: function (jqXHR, textStatus, errorThrown) {
+                                     spinStop();
+                                 }
+                             });
+                    });
 
                     $('#modal-fullscreen_edit').on('hide.bs.modal', function (e) {
                         //document.title = e.originalEvent;

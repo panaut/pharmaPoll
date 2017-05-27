@@ -85,7 +85,7 @@ namespace PollQuestionnaire.UI.Web.Controllers
         [HttpGet]
         public FileResult DownloadLocalizationCsv(int surveyId)
         {
-            var result = surveyService.Value.GetCsvLocalizations(surveyId);
+            var result = surveyService.Value.GetCsvLocalizations(surveyId, true);
 
             if (result.Status != OperationStatus.Success)
             {
@@ -94,6 +94,19 @@ namespace PollQuestionnaire.UI.Web.Controllers
 
             return File(result.OperationResult, "text/csv", $"Localization.csv");
         }
+
+        //[HttpGet]
+        //public byte[] GetLocalizationCsvBytes(int surveyId)
+        //{
+        //    var result = surveyService.Value.GetCsvLocalizations(surveyId, true);
+
+        //    if (result.Status != OperationStatus.Success)
+        //    {
+        //        throw new InvalidOperationException("Failed to generate CSV localizations file");
+        //    }
+
+        //    return result.OperationResult;
+        //}
 
         //[HttpGet()]
         //public string GetLocalizationList(string surveyCode)
