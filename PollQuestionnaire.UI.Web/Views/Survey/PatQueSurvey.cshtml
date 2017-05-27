@@ -29,7 +29,7 @@
                             <td><a href="#" class="dloadTranslation" data-toggle="tooltip" title="Download file for translation"><img src="~/images/europacolon_logo.png" class="img-responsive" alt="Europa Colon Logo"> </a></td>
                             <td style="vertical-align:central; text-align:center;">
                                 <h5 class="modal-title" id="ModalTitle">SurveyCode: @ViewBag.codeSurveyId</h5>
-                                <h5 class="modal-title" id="ModalTitle">Survey name: @ViewBag.surveyName</h5>
+                                <h5 class="modal-title" id="ModalTitle">@ViewBag.surveyName</h5>
                             </td>
                             <td><h1><a href="#" class="dloadPdf" data-toggle="modal" data-language="@ViewBag.language" data-surveyId="@ViewBag.codeSurveyId" title="Download printable version"> <i class="glyphicon glyphicon-print"></i></a></h1></td>
                             <td></td>
@@ -83,13 +83,19 @@
         //$('#concent').load(fullPath +" #target");
 
         survey.onComplete.add(function (sender) {
-            localStorage.removeItem('tempSurveyResults');
+            //localStorage.removeItem('tempSurveyResults');
+            //localStorage.removeItem('lastPageVisited');
         });
 
         $('#surveyModal').modal('show');
-
+        if (localStorage.getItem('concentAccepted') == "true")
+        {
+            $('#concent').addClass('hidden');
+            loadSurvey();
+        }
         $('#confirmConcent').on('click', function (e) {
             if (codeSurveyId != "") {
+                localStorage.setItem('concentAccepted', true);
                 loadSurvey();
             }
             else {
