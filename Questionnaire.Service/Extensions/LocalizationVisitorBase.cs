@@ -1,12 +1,11 @@
 ﻿using Questionnaire.Data;
 using Questionnaire.Data.Attributes;
+using Questionnaire.Data.Model;
 using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Questionnaire.Service.Extensions
 {
@@ -19,6 +18,8 @@ namespace Questionnaire.Service.Extensions
 
         protected static ConcurrentDictionary<Type, string> TypeIdentifiersMap
             = new ConcurrentDictionary<Type, string>();
+
+        protected IDictionary<string, LocalizedString> CachedStrings;
 
         public LocalizationVisitorBase(ILocalizationManager localizationManager)
         {
@@ -82,6 +83,24 @@ namespace Questionnaire.Service.Extensions
                 mapEntry = dict;
                 LocalizablePropertiesMap.TryAdd(type, mapEntry);
             }
+        }
+
+        protected LocalizedString GetLocalization(
+            string typeIdentifier,
+            int typeUniqueId,
+            string fieldIdentifier,
+            ECulture culture)
+        {
+            var key = $"{typeIdentifier}-{typeUniqueId}-{fieldIdentifier}-{culture}";
+
+            LocalizedString retVal = null;
+
+            if (this.CachedStrings.ContainsKey(key))
+            {
+                retVal = this.CachedStrings[key];
+            }
+
+            return retVal;
         }
     }
 }

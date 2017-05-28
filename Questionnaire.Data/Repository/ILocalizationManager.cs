@@ -14,6 +14,8 @@ namespace Questionnaire.Data
 
         IEnumerable<LocalizedString> GetLocalizationsForSurvey(int surveyId);
 
+        void UpdateLocalizationsForSurvey(int surveyId, IEnumerable<LocalizedString> localizations);
+
         void Insert(LocalizedString entry, bool doSave = true);
 
         void Update(LocalizedString entry, bool doSave = true);
