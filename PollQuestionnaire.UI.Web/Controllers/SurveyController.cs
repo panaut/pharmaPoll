@@ -17,16 +17,22 @@ namespace PollQuestionnaire.UI.Web.Controllers
         // GET: SurveyDemo
         public ActionResult Index()
         {
-            var model = surveyService.Value.GetAllSurveys().OperationResult;
-            return View(model);
+            var model = surveyService.Value.GetAllSurveyInfo().OperationResult;
+            return View(model.ToList());
         }
 
         [AllowAnonymous]
-        public ActionResult PatQueSurvey(string surveyId, string surveyName)//, string culture)
+        public ActionResult PatQueSurvey(string surveyId)
         {
-            ViewBag.codeSurveyId = HttpUtility.HtmlEncode(surveyId);
-            ViewBag.surveyName = HttpUtility.HtmlEncode(surveyName);
-            //ViewBag.culture = HttpUtility.HtmlEncode(culture);
+            var result = this.surveyService.Value.GetSurveyInfo(surveyId);
+
+            if (result.Status != OperationStatus.Success)
+            {
+                throw new Exception($"Survey with code: {surveyId} wasn't found");
+            }
+
+            ViewBag.codeSurveyId = HttpUtility.HtmlEncode(result.OperationResult.Code);
+            ViewBag.surveyName = HttpUtility.HtmlEncode(result.OperationResult.Title);
 
             var fileName = surveyId + "_en-US.html";
             var filePath = "~/Concents/";
@@ -46,7 +52,7 @@ namespace PollQuestionnaire.UI.Web.Controllers
             var result = votingService.Value
                 .InitializeSession(surveyId, clientIp, jsonResults, isFinal: true);
 
-            if(result.Status != OperationStatus.Success)
+            if (result.Status != OperationStatus.Success)
             {
                 throw new Exception("Failed to store results");
             }
@@ -54,15 +60,11 @@ namespace PollQuestionnaire.UI.Web.Controllers
             return result.OperationResult;
         }
 
-        //// GET: SurveyDemo
-        //[HttpGet()]
-        //public ActionResult Index()
-        //{
-        //    return View();
-        //}
-
         [HttpGet()]
-        public string GetActiveSurvey(string surveyCode)
+        public string GetActiveSurvey(
+                        string surveyCode, 
+                        string localizationCulture = null,
+                        string sessionCode = null)
         {
             var result = surveyService.Value.GetSurvey(surveyCode);
 

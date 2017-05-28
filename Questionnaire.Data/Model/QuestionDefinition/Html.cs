@@ -1,4 +1,6 @@
-﻿using Questionnaire.Serialization.Attributes;
+﻿using Questionnaire.Data.Attributes;
+using Questionnaire.Serialization.Attributes;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Questionnaire.Data.Model.QuestionDefinition
@@ -7,6 +9,8 @@ namespace Questionnaire.Data.Model.QuestionDefinition
     [Table("QuestionBases_Html")]
     public class Html : QuestionBase
     {
+        [MaxLength(1024)]
+        [LocalizableProperty()]
         public string html { get; set; }
 
         public bool ShouldSerializehtml()

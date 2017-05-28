@@ -1,6 +1,7 @@
 ﻿using Newtonsoft.Json;
 using Questionnaire.Data.Attributes;
 using Questionnaire.Data.Model.QuestionDefinition;
+using Questionnaire.Data.Model.Results;
 using Questionnaire.Data.Serialization;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -247,6 +248,13 @@ namespace Questionnaire.Data.Model
         public bool ShouldSerializetriggers()
         {
             return this.triggers != null && this.triggers.Any();
+        }
+
+        public virtual ICollection<VotingSession> VotingSessions { get; set; } = new List<VotingSession>();
+
+        public bool ShouldSerializeVotingSessions()
+        {
+            return false;
         }
 
         public virtual ICollection<MatrixRow> matrixRows { get; set; } = new List<MatrixRow>();

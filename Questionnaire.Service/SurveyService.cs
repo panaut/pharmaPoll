@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using Questionnaire.Service.Extensions;
 using System.Linq;
 using NLog;
+using Questionnaire.Service.Objects;
 
 namespace Questionnaire.Service
 {
@@ -365,19 +366,70 @@ namespace Questionnaire.Service
             return command.Result;
         }
 
-        public ServiceResponse<IEnumerable<Survey>> GetAllSurveys(bool onlyActive = true)
+        public ServiceResponse<SurveyInfo> GetSurveyInfo(string surveyCode, bool onlyActive = true)
         {
-            var command = new ServiceCommand<IEnumerable<Survey>>
+            var command = new ServiceCommand<SurveyInfo>
             {
                 Execution = (cmd, parameter) =>
                 {
-                    IEnumerable<Survey> surveys = null;
+                    SurveyInfo survey = null;
 
                     try
                     {
-                        surveys = this.surveyManager.Value
+                        var surveys = this.surveyManager.Value
+                                                .GetAllSurveys()
+                                                .Where(s => s.surveyId.ToLower().Equals(surveyCode.ToLower()) && (!onlyActive || s.IsActive))
+                                                .ToList();
+
+                        if (surveys.Count == 1)
+                        {
+                            survey = surveys.Select(s => new SurveyInfo(
+                                                         s.Id,
+                                                         s.surveyId,
+                                                         s.title,
+                                                         s.IsActive,
+                                                         s.VotingSessions.Count(vs => vs.IsCompleted),
+                                                         s.VotingSessions.Count()))
+                                                         .Single();
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        cmd.Status = OperationStatus.Failure;
+                        var exc = new CustomException("Failed to retrieve survey object", ex);
+                        throw exc;
+                    }
+
+                    return survey;
+                }
+            };
+
+            command.Execute(null);
+            return command.Result;
+        }
+
+        public ServiceResponse<IEnumerable<SurveyInfo>> GetAllSurveyInfo(bool onlyActive = true)
+        {
+            var command = new ServiceCommand<IEnumerable<SurveyInfo>>
+            {
+                Execution = (cmd, parameter) =>
+                {
+                    IEnumerable<SurveyInfo> surveyInfos;
+
+                    try
+                    {
+                        var surveys = this.surveyManager.Value
                                             .GetAllSurveys()
-                                            .Where(s => !onlyActive || s.IsActive);
+                                            .Where(s => !onlyActive || s.IsActive)
+                                            .ToList();
+
+                        surveyInfos = surveys.Select(s => new SurveyInfo(
+                                                         s.Id,
+                                                         s.surveyId,
+                                                         s.title,
+                                                         s.IsActive,
+                                                         s.VotingSessions.Count(vs => vs.IsCompleted),
+                                                         s.VotingSessions.Count()));
                     }
                     catch (Exception ex)
                     {
@@ -386,7 +438,7 @@ namespace Questionnaire.Service
                         throw exc;
                     }
 
-                    return surveys;
+                    return surveyInfos;
                 }
             };
 

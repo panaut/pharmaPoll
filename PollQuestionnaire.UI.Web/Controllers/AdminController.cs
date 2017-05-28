@@ -16,9 +16,9 @@ namespace PollQuestionnaire.UI.Web.Controllers
         // GET: Admin
         public ActionResult Index()
         {
-            var model = surveyService.Value.GetAllSurveys(onlyActive: false).OperationResult;
+            var model = surveyService.Value.GetAllSurveyInfo(onlyActive: false).OperationResult;
 
-            return View(model);
+            return View(model.ToList());
         }
         [HttpPost()]
         public bool ActivateSurvey(int surveyId)

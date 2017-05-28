@@ -1,4 +1,4 @@
-﻿@model IEnumerable<Questionnaire.Data.Model.Survey>
+﻿@model IList<Questionnaire.Service.Objects.SurveyInfo>
 
 @{
     ViewBag.Title = "Admin";
@@ -31,8 +31,8 @@
         @foreach (var item in Model)
             {
             <tr data-surveyId="@item.Id">
-                <td>@item.surveyId</td>
-                <td>@item.title</td>
+                <td>@item.Code</td>
+                <td>@item.Title</td>
                 @if (!item.IsActive)
                 {
                     <td>
@@ -55,11 +55,11 @@
                         </a>
                     </td>
                 }
-                <td><a href="#" class="uploadPdf" data-toggle="modal" data-target="#uploadPdf" data-surveyId="@item.surveyId" title="Upload printable version"> <i class="glyphicon glyphicon-print"></i></a></td>
-                <td><a href="#" class="dloadTranslation" data-toggle="tooltip" title="Download file for translation" data-id="@item.Id" data-surveyId="@item.surveyId"> <i class="glyphicon glyphicon-download"></i></a></td>
-                <td><a href="#" class="uploadTranslation" data-toggle="tooltip" data-target="#uploadLocalizationsModal" title="Upload translation file" data-id="@item.Id" data-surveyId="@item.surveyId"> <i class="glyphicon glyphicon-upload"></i></a></td>
-                <td><a href="#" class="editModalLink" data-target="#modal-fullscreen_edit" title="Edit Survey: @item.title" data-id="@item.Id" data-surveyId="@item.surveyId"> <i id="glyphicon-pencil" class="glyphicon glyphicon-pencil"></i></a></td>
-                <td><a href="#" class="deleteSurveyModal" data-toggle="modal" data-target="#deleteModal" title="Delete Survey: @item.title" data-id="@item.Id" data-isActive="@item.IsActive"> <i id="glyphicon-trash" class="glyphicon glyphicon-trash"></i></a></td>
+                <td><a href="#" class="uploadPdf" data-toggle="modal" data-target="#uploadPdf" data-surveyId="@item.Code" title="Upload printable version"> <i class="glyphicon glyphicon-print"></i></a></td>
+                <td><a href="#" class="dloadTranslation" data-toggle="tooltip" title="Download file for translation" data-id="@item.Id" data-surveyId="@item.Code"> <i class="glyphicon glyphicon-download"></i></a></td>
+                <td><a href="#" class="uploadTranslation" data-toggle="tooltip" data-target="#uploadLocalizationsModal" title="Upload translation file" data-id="@item.Id" data-surveyId="@item.Code"> <i class="glyphicon glyphicon-upload"></i></a></td>
+                <td><a href="#" class="editModalLink" data-target="#modal-fullscreen_edit" title="Edit Survey: @item.Title" data-id="@item.Id" data-surveyId="@item.Code"> <i id="glyphicon-pencil" class="glyphicon glyphicon-pencil"></i></a></td>
+                <td><a href="#" class="deleteSurveyModal" data-toggle="modal" data-target="#deleteModal" title="Delete Survey: @item.Title" data-id="@item.Id" data-isActive="@item.IsActive"> <i id="glyphicon-trash" class="glyphicon glyphicon-trash"></i></a></td>
                 <td><span class="badge" title="Number of responses">not active</span></td>
             </tr>
         }

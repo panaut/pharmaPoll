@@ -1,9 +1,9 @@
-﻿@model IEnumerable<Questionnaire.Data.Model.Survey>
+﻿@model IList<Questionnaire.Service.Objects.SurveyInfo>
 
 @{
     ViewBag.Title = "Active Surveys";
 }
-@*<link href="http://getbootstrap.com/dist/css/bootstrap.css" type="text/css" rel="stylesheet" />*@
+
 @Styles.Render("~/Content/survey/css")
 <br />
 <br />
@@ -22,13 +22,13 @@
             {
                 if (item.IsActive)
                 {
-                    <tr data-surveyId="@item.surveyId" data-Id="@item.Id" data-surveyName="@item.title" class="clickrow">
-                        <td>@item.surveyId</td>
-                        <td>@item.title</td>
+                    <tr data-surveyId="@item.Code" data-Id="@item.Id" data-surveyName="@item.Title" class="clickrow">
+                        <td>@item.Code</td>
+                        <td>@item.Title</td>
                     </tr>
                 }
             }
-            @if (Model.Count(o => o.IsActive == true) == 0)
+            @if (Model.Count == 0)
             {
                 <tr>
                     <td colspan="2">There are no Active Surveys</td>

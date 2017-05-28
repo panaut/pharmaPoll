@@ -1,5 +1,6 @@
 ﻿using Questionnaire.Data.Model;
 using Questionnaire.Service.Infrastructure;
+using Questionnaire.Service.Objects;
 using System.Collections.Generic;
 
 namespace Questionnaire.Service
@@ -16,7 +17,9 @@ namespace Questionnaire.Service
 
         ServiceResponse<string> GetSurvey(string surveyCode, string culture = "DEFAULT", bool onlyActive = true);
 
-        ServiceResponse<IEnumerable<Survey>> GetAllSurveys(bool onlyActive = true);
+        ServiceResponse<SurveyInfo> GetSurveyInfo(string surveyCode, bool onlyActive = true);
+
+        ServiceResponse<IEnumerable<SurveyInfo>> GetAllSurveyInfo(bool onlyActive = true);
 
         ServiceResponse DeleteSurvey(int surveyId);
 
