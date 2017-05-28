@@ -4,7 +4,6 @@
     ViewBag.Title = "Admin";
 }
 
-@*<link href="http://getbootstrap.com/dist/css/bootstrap.css" type="text/css" rel="stylesheet" />*@
 @Styles.Render("~/Content/surveyEditor/css")
 @Styles.Render("~/Content/css")
 
@@ -59,8 +58,8 @@
                 <td><a href="#" class="uploadPdf" data-toggle="modal" data-target="#uploadPdf" title="Upload printable version" data-surveyId="@item.surveyId"> <i class="glyphicon glyphicon-print"></i></a></td>
                 <td><a href="@Url.Action("DownloadLocalizationCsv", "Admin", new { surveyId = item.Id, area = "" })" class="dloadTranslation" data-toggle="tooltip" title="Download file for translation"> <i class="glyphicon glyphicon-download"></i></a></td>
                 <td><a href="#" class="uploadTranslation" data-toggle="tooltip" title="Upload translation file"> <i class="glyphicon glyphicon-upload"></i></a></td>
-                <td><a href="#" class="editModalLink" data-target="#modal-fullscreen_edit" title="Edit Survey: @item.title" data-id="@item.Id" data-surveyId="@item.surveyId"> <i id="glyphicon-pencil" class="glyphicon glyphicon-pencil"></i></a></td>
-                <td><a href="#" class="deleteSurveyModal" data-toggle="modal" data-target="#modal-delete" title="Delete Survey: @item.title" data-id="@item.Id" data-isActive="@item.IsActive"> <i id="glyphicon-trash" class="glyphicon glyphicon-trash"></i></a></td>
+                <td><a href="#" class="editModalLink" data-target="#modal-fullscreen_edit" title="Edit Survey: @item.surveyId" data-id="@item.Id" data-surveyId="@item.surveyId"> <i id="glyphicon-pencil" class="glyphicon glyphicon-pencil"></i></a></td>
+                <td><a href="#" class="deleteSurveyModal" data-toggle="modal" data-target="#deleteModal" title="Delete Survey: @item.title" data-id="@item.Id" data-isActive="@item.IsActive"> <i id="glyphicon-trash" class="glyphicon glyphicon-trash"></i></a></td>
                 <td><span class="badge" title="Number of responses">not active</span></td>
             </tr>
         }
@@ -111,7 +110,7 @@
     </div>
 </div>
 
-<div class="modal modal-backdrop-transparent fade" id="modal-delete" tabindex="-1" role="dialog" aria-labelledby="deleteModal" aria-hidden="true">
+<div class="modal modal-backdrop-transparent fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModal" aria-hidden="true">
     <div class="modal-dialog" role="dialog">
         <div class="modal-content">
             <div class="modal-body">
@@ -124,6 +123,7 @@
         </div>
     </div>
 </div>
+
 
 <div class="modal modal-backdrop-transparent fade" id="uploadPdfmodal" tabindex="-1" role="dialog" aria-labelledby="uploadModal" aria-hidden="true">
     <div class="modal-dialog" role="dialog">
@@ -173,19 +173,15 @@
     </div>
 </div>
 <style>
-    .file {
-        visibility: hidden;
-        position: absolute;
-    }
+
 </style>
 @section Scripts
 {
     @Scripts.Render("~/bundles/surveyEditor")
     @Scripts.Render("~/Scripts/surveyjsEditorInit.js")
-    @Scripts.Render("~/bundles/bootstrap")
+    @*@Scripts.Render("~/bundles/bootstrap")*@
 
-    <script>
-        $
+    <script>       
         $('.uploadPdf').on('click', function (e) {
             var language = window.navigator.userLanguage || window.navigator.language;
             //alert(language); //works IE/SAFARI/CHROME/FF
@@ -242,6 +238,7 @@
             window.location.reload();
         });
 
+        // pdf upload
         $(document).on('click', '.browse', function () {
             var file = $(this).parent().parent().parent().find('.file');
             file.trigger('click');
@@ -252,7 +249,6 @@
 
         $(document).on("click", ".editModalLink", function () {
             spinStart();
-
             var Id = $(this).data('id');
             var surveyId = $(this).attr('data-surveyId');
             document.getElementById("surveyEditorContainer").setAttribute("data-id", Id);
@@ -280,6 +276,7 @@
                      }
                  });
         });
+
         $("document").ready(function () {
             $(function () {
                 $(".deleteSurveyModal").click(function () {
@@ -289,6 +286,8 @@
                     $(".modal-footer #deleteSUrveyButton").attr('data-isActive', isActive);
                 })
             });
+
+            
 
             $('#uploadPdfButton').click(function () {
 
@@ -327,7 +326,6 @@
                 }
             });
 
-            //reload_cart();
             $(".startSurvey").click(function (sender) {
                 var surveyId = $(this).closest('tr').attr("data-surveyId");
                 var $startBtn = $(this);

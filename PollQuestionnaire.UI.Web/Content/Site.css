@@ -1,4 +1,7 @@
-﻿body {
+﻿/* need to have padding 
+    or menu will cover top of the screen
+*/
+body {
     padding-top: 50px;
     padding-bottom: 20px;
 }
