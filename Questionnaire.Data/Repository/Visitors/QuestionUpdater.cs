@@ -18,6 +18,8 @@ namespace Questionnaire.Data.Repository.Visitors
 
         public override void Visit(QuestionBase question)
         {
+            // ToDo: IC - Mind change of type - in that case DELETE -> INSERT should be applied
+
             var questionDb = (QuestionBase)context.Elements.Find(question.Id);
 
             // Make sure parentId is not being overwritten

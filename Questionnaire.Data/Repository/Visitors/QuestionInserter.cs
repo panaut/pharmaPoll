@@ -46,6 +46,7 @@ namespace Questionnaire.Data.Repository.Visitors
             foreach (var column in question.columns)
             {
                 column.SurveyId = question.SurveyId;
+                column.Visit(this);
             }
         }
 
