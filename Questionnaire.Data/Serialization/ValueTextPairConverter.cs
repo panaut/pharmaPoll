@@ -12,7 +12,14 @@ namespace Questionnaire.Data.Serialization
     {
         public override bool CanConvert(Type objectType)
         {
-            throw new NotImplementedException();
+            if (typeof(IEnumerable<IValueTextPair>).IsAssignableFrom(objectType))
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
 
         public override object ReadJson(JsonReader reader, Type objectType, object existingValue, JsonSerializer serializer)

@@ -18,9 +18,9 @@ namespace Questionnaire.Data
             return session;
         }
 
-        public VotingSession Find(string resumeCode)
+        public VotingSession Find(string surveyCode, string resumeCode)
         {
-            var session = context.VotingSessions.Single(s => resumeCode.Equals(s.Code));
+            var session = context.VotingSessions.Single(s => resumeCode.Equals(s.Code) && s.Survey.surveyId.Equals(surveyCode));
 
             if (session == null)
                 throw new ArgumentOutOfRangeException("resumeCode");

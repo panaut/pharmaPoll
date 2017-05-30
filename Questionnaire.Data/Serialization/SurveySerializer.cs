@@ -41,7 +41,8 @@ namespace Questionnaire.Data.Serialization
                     return new JsonSerializerSettings
                     {
                         Binder = knownTypesBinder,
-                        Formatting = Formatting.None
+                        Formatting = Formatting.None,
+                        //ContractResolver = new EditorContractResolver()
                     };
                 };
             }
