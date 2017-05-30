@@ -7,7 +7,6 @@
 @Styles.Render("~/Content/surveyEditor/css")
 @Styles.Render("~/Content/css")
 
-
 <br />
 <p>
     <a href="#" title="New Survey" data-toggle="modal" class="editModalLink" data-target="#modal-fullscreen_edit"> <i class="glyphicon glyphicon-plus"></i> Create New Survey</a>
@@ -201,9 +200,6 @@
     </div>
 </div>
 
-<style>
-
-</style>
 @section Scripts
 {
     @Scripts.Render("~/bundles/surveyEditor")
@@ -388,13 +384,13 @@
                             contentType: false, // Not to set any content header
                             processData: false, // Not to process data
                             data: fileData,
-                            success: function (result) {
+                            success: function (result, textStatus, jqXHR) {
                                 spinStop();
-                                alert("Localizations have been updated.");
+                                showMessage('Success!', 'Localizations have been updated.');
                             },
-                            error: function (err) {
+                            error: function (jqXHR, textStatus, errorThrown) {
                                 spinStop();
-                                alert(err.statusText);
+                                showMessage('Well... That wasn\'t that well...', errorThrown);
                             }
                         });
                     }
@@ -423,7 +419,7 @@
                         error: function (jqXHR, textStatus, errorThrown) {
                             $('#alertText').html('ERROR - ' + errorThrown);
                             $('#alertModal').modal('show');
-                            alert('ERROR - ' + errorThrown);
+                            showMessage('Well... That wasn\'t that well...', errorThrown);
                         }
                     });
             });
@@ -445,10 +441,11 @@
                             $stopBtn.addClass('hidden');
                         },
                         error: function (jqXHR, textStatus, errorThrown) {
-                            alert('ERROR - ' + errorThrown);
+                            showMessage('Well... That wasn\'t that well...', errorThrown);
                         }
                     });
             });
+
             $(".deleteSurvey").click(function (sender) {
                 var surveyId = $(this).attr('data-id');
                 var isActive = $(this).attr('data-isActive');
@@ -467,17 +464,17 @@
                             data: { surveyId: surveyId },
                             dataType: 'text',
                             success: function (data, textStatus, jqXHR) {
-                                $('#alertText').html('Survey succesfykky deleted');
+                                $('#alertText').html('Survey successully deleted');
                                 $('#modal-alert').modal('show');
-                                alert('Survey succesfykky deleted');
+                                showMessage('Success!', 'Survey successfully deleted');
+
                                 window.location.reload();
                             },
                             error: function (jqXHR, textStatus, errorThrown) {
-                                alert('ERROR - ' + errorThrown);
+                                showMessage('Well... That wasn\'t that well...', errorThrown);
                             }
                         });
                 }
-
             });
         })
 
@@ -487,22 +484,27 @@
 
             spinStart();
 
+            var surveyText = survey.text;
+            //surveyText = escape(surveyText);
+            //surveyText = '<br />';
+
             $.ajax(
                 '@Url.Action("SaveSurvey", "SurveyEditor", new { area="" })',
                 {
                     method: "POST",
                     async: true,
-                    data: { surveyJson: survey.text },
+                    data: { surveyJson: surveyText },
                     success: function (data, textStatus, jqXHR) {
                         survey.surveyValue.surveyId = data;
                         spinStop();
-                        alert('Survey succesfully saved');
 
-                        //window.location.reload();
+                        showMessage('Success!', 'Survey succesfully saved');
+
+                       //window.location.reload();
                     },
                     error: function (jqXHR, textStatus, errorThrown) {
                         spinStop();
-                        alert('ERROR - ' + errorThrown);
+                        showMessage('Well... That wasn\'t that well...', errorThrown);
                     }
                 });
         }

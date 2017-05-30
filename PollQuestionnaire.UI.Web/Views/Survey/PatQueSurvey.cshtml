@@ -38,9 +38,6 @@
                 </table>
             </div>
             <div class="modal-body">
-                <div class="row" id="concent" data-surveyId="@ViewBag.codeSurveyId" data-surveyCulture="@ViewBag.surveyCulture">
-                    @Html.Raw(ViewBag.concent)
-                </div>
                 <div id="surveyElement" data-id="" data-surveyId="@ViewBag.codeSurveyId" data-surveyName="@ViewBag.surveyCulture">
                 </div>
             </div>
@@ -65,9 +62,8 @@
 
         var survey = new Survey.Model({ cookieName: "surveyCmpleted" });
         var codeSurveyId = $('#surveyElement').attr('data-surveyId');
-        var htmlFileName = codeSurveyId + "_en-US.html"
-        var filePath = "http://localhost:30710/Concents/";
-        var fullPath = filePath + htmlFileName;
+
+        var sessionCode = '@ViewBag.sessionCode';
 
         survey.showProgressBar = "bottom";
         survey.cookie
@@ -77,61 +73,76 @@
             var someData = JSON.stringify(sender.data);
             localStorage.setItem('tempSurveyResults', JSON.stringify(sender.data));
             localStorage.setItem('lastPageVisited', sender.currentPageNo);
-
         });
 
-        //$('#concent').load(fullPath +" #target");
+        // Ajax load
+        loadSurvey(codeSurveyId);
 
         survey.onComplete.add(function (sender) {
             //localStorage.removeItem('tempSurveyResults');
             //localStorage.removeItem('lastPageVisited');
         });
 
-        $('#surveyModal').modal('show');
-        if (localStorage.getItem('concentAccepted') == "true")
-        {
-            $('#concent').addClass('hidden');
-            loadSurvey();
-        }
-        $('#confirmConcent').on('click', function (e) {
-            if (codeSurveyId != "") {
-                localStorage.setItem('concentAccepted', true);
-                loadSurvey();
-            }
-            else {
-                $('#surveyModal').modal('hide');
-                $('#alert').removeClass('hidden');
-                $('#ModalTitle').html('');
-            }
-        });
-
-        function loadSurvey() {
+        function loadSurvey(surveyCode) {
             spinStart();
             $.ajax(
                 '@Url.Action("GetActiveSurvey", "Survey", new { area="" })',
                 {
                     method: "GET",
                     async: true,
-                    data: { surveyCode: codeSurveyId },
+                    data: { surveyCode: surveyCode },
                     dataType: 'json',
                     success: function (data, textStatus, jqXHR) {
-                        $('#noSurveyAlert').css("display", "normal");
-
                         survey.setJsonObject(data);
-                        var dataAsString = localStorage.getItem('tempSurveyResults');
-                        survey.data = JSON.parse(dataAsString);
 
-                        var currentPageNum = localStorage.getItem('lastPageVisited');
-                        survey.currentPageNo = currentPageNum;
+                        if (!sessionCode || sessionCode == undefined || sessionCode == '' || sessionCode.length == 0) {
+
+                            var dataAsString = localStorage.getItem('tempSurveyResults');
+                            survey.data = JSON.parse(dataAsString);
+
+                            var currentPageNum = localStorage.getItem('lastPageVisited');
+                            survey.currentPageNo = currentPageNum;
+                            $("#surveyElement").Survey({
+                                model: survey,
+                                onComplete: saveResults
+                            });
+
+                            spinStop();
+                            $('#surveyModal').modal('show');
+                        }
+                        else {
+                            loadOngoingSession(sessionCode);
+                        }
+                    },
+                    error: function (jqXHR, textStatus, errorThrown) {
+                        showMessage('Well... That wasn\'t that well...', 'We were unable to load the survey. Have you checked the survey code?');
                         spinStop();
-                        $('#concent').addClass('hidden');
+                    }
+                });
+        };
+
+        function loadOngoingSession(code) {
+            spinStart();
+            $.ajax(
+                '@Url.Action("GetActiveSession", "Survey", new { area="" })',
+                {
+                    method: "GET",
+                    async: true,
+                    data: { surveyCode: codeSurveyId, sessionCode: code },
+                    dataType: 'json',
+                    success: function (data, textStatus, jqXHR) {
+                        survey.data = JSON.parse(data.JsonResults);
+                        survey.currentPageNo = data.LastPageVisited;
                         $("#surveyElement").Survey({
                             model: survey,
                             onComplete: saveResults
                         });
+
+                        spinStop();
+                        $('#surveyModal').modal('show');
                     },
                     error: function (jqXHR, textStatus, errorThrown) {
-                        $('#surveyElement').html('Could not fetch the survey!');
+                        showMessage('Well... That wasn\'t that well...', 'We were unable to find your session data. Please check the session code and try again...');
                         spinStop();
                     }
                 });
@@ -148,20 +159,37 @@
 
         function saveResults(survey) {
             spinStart();
+
+            var lastVisitedPage = localStorage.getItem('lastPageVisited');
+
             $.ajax(
                 '@Url.Action("SaveResults", "Survey", new { area="" })',
                 {
                     method: "POST",
                     async: true,
-                    data: { surveyId: survey.internalId, jsonResults: JSON.stringify(survey.data) },
+                    data: {
+                        surveyId: survey.internalId,
+                        jsonResults: JSON.stringify(survey.data),
+                        sessionCode: sessionCode,
+                        lastVisitedPageIndex: lastVisitedPage,
+                        isFinal: true
+                    },
                     dataType: 'text',
                     success: function (data, textStatus, jqXHR) {
-                        alert(JSON.stringify("Your survey has been saved"));
+                        var resumeLink = '@Url.Action("PatQueSurvey", "Survey", new { area="", surveyCode="__surveyCode__", sessionCode="__sessionCode__" })';
+                        resumeLink = resumeLink.replace("__surveyCode__", codeSurveyId);
+                        resumeLink = resumeLink.replace("__sessionCode__", data);
+
+                        var successMsg = 'If my friend created a button for Save-In-Progress, and you clicked it, you will be able to continue filling out this survey any time you like. To do so just click this link: __resumeLink__';
+                        successMsg = successMsg.replace("__resumeLink__", resumeLink);
+
                         spinStop();
+                        showMessage('Thank you!', successMsg);
                     },
                     error: function (jqXHR, textStatus, errorThrown) {
-                        alert(JSON.stringify("Error"));
                         spinStop();
+                        showMessage('Well... That wasn\'t that well...', 'We are experiencing "temporary" dificulties :-) However data you submitted is stored in your browser. Please try to submit your data whenever you feel like it...');
+
                     }
                 });
         }

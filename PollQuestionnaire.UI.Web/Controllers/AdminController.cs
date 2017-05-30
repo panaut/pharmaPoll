@@ -70,6 +70,7 @@ namespace PollQuestionnaire.UI.Web.Controllers
 
             return result.ToString();
         }
+
         [HttpPost()]
         public string SaveSurvey(string surveyJson)
         {
@@ -93,7 +94,7 @@ namespace PollQuestionnaire.UI.Web.Controllers
                 throw new CustomException($"Localization file not found at location {filePath}.", new Exception());
             }
 
-            return File(filePath, "text/csv", $"Localization.csv");
+            return File(filePath, "text/csv", $"Localization.txt");
         }
 
         [HttpGet]
@@ -160,19 +161,6 @@ namespace PollQuestionnaire.UI.Web.Controllers
                 }
             }
         }
-
-        //[HttpGet]
-        //public byte[] GetLocalizationCsvBytes(int surveyId)
-        //{
-        //    var result = surveyService.Value.GetCsvLocalizations(surveyId, true);
-
-        //    if (result.Status != OperationStatus.Success)
-        //    {
-        //        throw new InvalidOperationException("Failed to generate CSV localizations file");
-        //    }
-
-        //    return result.OperationResult;
-        //}
 
         [HttpPost]
         public ActionResult GetFolderStructure()

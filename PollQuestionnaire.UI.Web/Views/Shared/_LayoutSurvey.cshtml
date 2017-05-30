@@ -10,6 +10,23 @@
 <body>
     <div class="container body-content">
         @RenderBody()
+
+        <div class="modal fade" id="infoModal" tabindex="-1" role="dialog" aria-labelledby="infoModal" aria-hidden="true">
+            <div class="modal-dialog" role="dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="infoModalTitle">TITLE</h5>
+                    </div>
+                    <div class="modal-body">
+                        <h5 id="infoModalContent" style="text-align:center; font-size:large">YOUR NAME HERE</h5>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary" data-dismiss="modal" data-id="" data-isActive="">OK</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
         <hr />
         <footer>
             <p>&copy; @DateTime.Now.Year - EuropaColon</p>
@@ -19,5 +36,13 @@
     @Scripts.Render("~/bundles/bootstrap")
     @Scripts.Render("~/bundles/Spinner")
     @RenderSection("scripts", required: false)
+
+    <script>
+        function showMessage(title, content) {
+            $('#infoModalTitle').html(title);
+            $('#infoModalContent').html(content);
+            $('#infoModal').modal('show');
+        }
+    </script>
 </body>
 </html>

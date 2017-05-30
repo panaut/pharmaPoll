@@ -1,9 +1,6 @@
-﻿using Newtonsoft.Json;
-using Questionnaire.Service;
+﻿using Questionnaire.Service;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+
 using System.Web.Mvc;
 
 namespace PollQuestionnaire.UI.Web.Controllers
@@ -19,6 +16,7 @@ namespace PollQuestionnaire.UI.Web.Controllers
         }
 
         [HttpPost()]
+        [ValidateInput(false)]
         public int SaveSurvey(string surveyJson)
         {
             var result = surveyService.Value.CreateOrSaveSurvey(surveyJson);

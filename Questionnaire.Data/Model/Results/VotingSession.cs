@@ -10,9 +10,11 @@ namespace Questionnaire.Data.Model.Results
 
         public int SurveyId { get; set; }
 
-        public Survey Survey { get; set; }
+        public virtual Survey Survey { get; set; }
 
         public bool IsCompleted { get; set; }
+
+        public int? LastPageVisited { get; set; }
 
         [MaxLength(15)]
         public string ClientIP { get; set; }

@@ -6,7 +6,7 @@ namespace Questionnaire.Data
     {
         VotingSession Find(int id);
 
-        VotingSession Find(string resumeCode);
+        VotingSession Find(string surveyCode, string resumeCode);
 
         void Insert(VotingSession votingSession);
 

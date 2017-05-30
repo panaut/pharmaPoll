@@ -82,6 +82,10 @@
     <Compile Include="Migrations\201705281940046_Rev004.Designer.cs">
       <DependentUpon>201705281940046_Rev004.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201705302123092_Rev005.cs" />
+    <Compile Include="Migrations\201705302123092_Rev005.Designer.cs">
+      <DependentUpon>201705302123092_Rev005.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Misc Interfaces\ICellDiversity.cs" />
     <Compile Include="Misc Interfaces\IVisitable.cs" />
@@ -111,6 +115,7 @@
     <Compile Include="Repository\Visitors\QuestionUpdater.cs" />
     <Compile Include="Repository\Visitors\VisitorBase.cs" />
     <Compile Include="Repository\VotingSessionManagement.cs" />
+    <Compile Include="Serialization\EditorContractResolver.cs" />
     <Compile Include="Serialization\ISurveySerializer.cs" />
     <Compile Include="Misc Interfaces\IValueTextPair.cs" />
     <Compile Include="Repository\ISurveyManagement.cs" />
@@ -176,6 +181,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201705281940046_Rev004.resx">
       <DependentUpon>201705281940046_Rev004.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201705302123092_Rev005.resx">
+      <DependentUpon>201705302123092_Rev005.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

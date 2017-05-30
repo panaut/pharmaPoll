@@ -79,10 +79,9 @@
 
         $("document").ready(function () {
             $('.clickrow').on('click', function () {
-                var pagePQS = $(location).attr('href') + "/PatQueSurvey?surveyId=";
+                var pagePQS = $(location).attr('href') + "/PatQueSurvey?surveyCode=";
                 var surveyId = $(this).attr('data-surveyId'); // the 4 char survey code
-                var surveyName = $(this).attr('data-surveyName');
-                window.location.href = pagePQS + surveyId + '&surveyName=' + surveyName;
+                window.location.href = pagePQS + surveyId;
             });
         });
 

@@ -1,4 +1,6 @@
-﻿using Questionnaire.Service;
+﻿using Newtonsoft.Json;
+using Questionnaire.Service;
+using Questionnaire.Service.Objects;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -22,35 +24,38 @@ namespace PollQuestionnaire.UI.Web.Controllers
         }
 
         [AllowAnonymous]
-        public ActionResult PatQueSurvey(string surveyId)
+        public ActionResult PatQueSurvey(
+                        string surveyCode,
+                        string sessionCode = null)
         {
-            var result = this.surveyService.Value.GetSurveyInfo(surveyId);
+            var surveyInfoResult = this.surveyService.Value.GetSurveyInfo(surveyCode);
 
-            if (result.Status != OperationStatus.Success)
+            if (surveyInfoResult.Status != OperationStatus.Success)
             {
-                throw new Exception($"Survey with code: {surveyId} wasn't found");
+                throw new Exception($"Survey with code: {surveyCode} wasn't found");
             }
 
-            ViewBag.codeSurveyId = HttpUtility.HtmlEncode(result.OperationResult.Code);
-            ViewBag.surveyName = HttpUtility.HtmlEncode(result.OperationResult.Title);
-
-            var fileName = surveyId + "_en-US.html";
-            var filePath = "~/Concents/";
-            var fullPath = filePath + fileName;
-            var fileContents = System.IO.File.ReadAllText(Server.MapPath(fullPath));
-            ViewBag.concent = HttpUtility.HtmlDecode(fileContents);
+            ViewBag.codeSurveyId = HttpUtility.HtmlEncode(surveyInfoResult.OperationResult.Code);
+            ViewBag.surveyName = HttpUtility.HtmlEncode(surveyInfoResult.OperationResult.Title);
+            ViewBag.sessionCode = HttpUtility.HtmlEncode(sessionCode);
 
             return View();
         }
 
         [HttpPost]
         [AllowAnonymous]
-        public string SaveResults(int surveyId, string jsonResults)
+        public string SaveResults(
+            int surveyId,
+            string jsonResults,
+            string sessionCode = default(string),
+            int? lastVisitedPageIndex = default(int?),
+            bool isFinal = true)
         {
             var clientIp = Request.UserHostAddress;
 
             var result = votingService.Value
-                .InitializeSession(surveyId, clientIp, jsonResults, isFinal: true);
+                .SaveSession(
+                surveyId, clientIp, jsonResults, lastVisitedPageIndex, sessionCode, isFinal);
 
             if (result.Status != OperationStatus.Success)
             {
@@ -61,19 +66,36 @@ namespace PollQuestionnaire.UI.Web.Controllers
         }
 
         [HttpGet()]
-        public string GetActiveSurvey(
-                        string surveyCode, 
-                        string localizationCulture = null,
-                        string sessionCode = null)
+        public string GetActiveSurvey(string surveyCode)
         {
-            var result = surveyService.Value.GetSurvey(surveyCode);
+            // Now retrieve the survey
+            var surveyResult = this.surveyService.Value.GetSurvey(surveyCode);
 
-            if (result.Status != OperationStatus.Success)
+            if (surveyResult.Status != OperationStatus.Success)
             {
-                throw new Exception("Could not fetch the survey with surveyId=" + surveyCode, null);
+                throw new Exception($"Survey with code: {surveyCode} wasn't found");
             }
 
-            return result.OperationResult;
+            return surveyResult.OperationResult;
+        }
+
+        [HttpGet()]
+        public string GetActiveSession(string surveyCode, string sessionCode)
+        {
+            // Retrieve the session
+            var sessionResult = this.votingService.Value.GetSession(surveyCode, sessionCode);
+
+            if (sessionResult.Status != OperationStatus.Success)
+            {
+                throw new Exception("Failed to retrieve voting session");
+            }
+
+            if (sessionResult.OperationResult == null)
+            {
+                throw new Exception("Session doesn't exist or it is inactive.");
+            }
+
+            return JsonConvert.SerializeObject(sessionResult.OperationResult);
         }
     }
 }
