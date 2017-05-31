@@ -30,7 +30,7 @@
                             <td>
                                 @*<h5 class="modal-title" id="ModalTitle">SurveyCode: @ViewBag.codeSurveyId</h5>*@
                                 <h2 class="modal-title" id="ModalTitle">@ViewBag.surveyName</h2>
-                                <h3><a href="#" class="continueLater" data-toggle="modal" data-surveyId="@ViewBag.codeSurveyId" title="You can continue the survey at any time anywhere">Continue with the survey later</a></h3>
+                                <h3><a href="#" class="continLater" data-target="#continueLater" data-surveyId="@ViewBag.codeSurveyId" title="You can continue the survey at any time anywhere">Continue with the survey later</a></h3>
                             </td>
                             <td>
                                 <a href="#" class="dloadPdf" data-toggle="modal" data-language="@ViewBag.language" data-surveyId="@ViewBag.codeSurveyId" title="Download printable version">
@@ -57,6 +57,20 @@
         </div>
     </div>
 </div>
+<div class="modal modal-backdrop-transparent fade" id="continueLater" tabindex="-1" role="dialog" aria-labelledby="continueLater" aria-hidden="true">
+    <div class="modal-dialog" role="dialog">
+        <div class="modal-content">
+            <div class="modal-body">
+                <h5 style="text-align:center; font-size:large">Confirm deletetion!</h5>
+            </div>
+            <div class="modal-footer">
+                <button id="generateLink" type="button" class="btn btn-primary" data-dismiss="modal" name="passedValue" data-id="" data-isActive="">Generate link</button>
+                <input type="text" id="emailInput"class="form-control input-lg" placeholder="Enter your Email" style="min-width:100%">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
 @section Scripts {
     @Scripts.Render("~/bundles/survey")
     <script>
@@ -67,7 +81,7 @@
         Survey.JsonObject.metaData.addProperty("multipletextitem", { name: "internalId:number" });
         Survey.JsonObject.metaData.addProperty("matrixdropdowncolumn", { name: "internalId:number" });
 
-        var survey = new Survey.Model({ cookieName: "surveyCmpleted" });
+        var survey = new Survey.Model({ cookieName: "surveyCompleted" });
         var codeSurveyId = $('#surveyElement').attr('data-surveyId');
 
         var sessionCode = '@ViewBag.sessionCode';
@@ -82,14 +96,11 @@
             localStorage.setItem('tempSurveyResults', JSON.stringify(sender.data));
             localStorage.setItem('lastPageVisited', sender.currentPageNo);
         });
-
+        $('#generateLink').on('click', function (e) {
+            saveResults(survey, true);
+        });
         // Ajax load
         loadSurvey(codeSurveyId);
-
-        survey.onComplete.add(function (sender) {
-            //localStorage.removeItem('tempSurveyResults');
-            //localStorage.removeItem('lastPageVisited');
-        });
 
         function loadSurvey(surveyCode) {
             spinStart();
@@ -179,22 +190,21 @@
             survey.render('survey');
         }
 
-        function saveResults(survey) {
+        function saveResults(survey, isIncomoplete) {
             spinStart();
 
             var lastVisitedPage = localStorage.getItem('lastPageVisited');
-
             $.ajax(
                 '@Url.Action("SaveResults", "Survey", new { area="" })',
                 {
                     method: "POST",
                     async: true,
-                    data: {
+                    data: {                        
                         surveyId: survey.internalId,
                         jsonResults: JSON.stringify(survey.data),
                         sessionCode: sessionCode,
                         lastVisitedPageIndex: lastVisitedPage,
-                        isFinal: true       // ToDo: IB - Get this value from the cookie (is it complete or not...)
+                        isFinal: !isIncomoplete
                     },
                     dataType: 'text',
                     success: function (data, textStatus, jqXHR) {
