@@ -1,4 +1,6 @@
-﻿@{
+﻿@using PollQuestionnaire.UI.Web.Resources;
+
+@{
     ViewBag.Title = "PatQueSurvey";
     Layout = "~/Views/Shared/_LayoutSurvey.cshtml";
 }
@@ -28,15 +30,14 @@
                             <td></td>
                             <td><a href="#" class="dloadTranslation" data-toggle="tooltip" title="www.europacolon.com"><img src="~/images/EuropaColon_Logo_2016_256x183.jpg" class="img-responsive" alt="Europa Colon Logo" style="width:80%"> </a></td>
                             <td>
-                                @*<h5 class="modal-title" id="ModalTitle">SurveyCode: @ViewBag.codeSurveyId</h5>*@
                                 <h2 class="modal-title" id="ModalTitle">@ViewBag.surveyName</h2>
                                 <h3><a href="#" class="continLater" data-target="#continueLater" data-surveyId="@ViewBag.codeSurveyId" title="You can continue the survey at any time anywhere">Continue with the survey later</a></h3>
                             </td>
                             <td>
-                                <a href="#" class="dloadPdf" data-toggle="modal" data-language="@ViewBag.language" data-surveyId="@ViewBag.codeSurveyId" title="Download printable version">
+                                <a href="#" class="dloadPdf" data-toggle="modal" data-language="@ViewBag.language" data-surveyId="@ViewBag.codeSurveyId" title="@LocalizedResources.patque_btnPrint_tooltip">
                                     <div>
                                         <h1><i class="glyphicon glyphicon-print"></i></h1>
-                                        <h3>Print</h3>
+                                        <h3>@LocalizedResources.patque_btnPrint_Text</h3>
                                     </div>
                                 </a>
                             </td>
@@ -57,6 +58,7 @@
         </div>
     </div>
 </div>
+
 <div class="modal modal-backdrop-transparent fade" id="continueLater" tabindex="-1" role="dialog" aria-labelledby="continueLater" aria-hidden="true">
     <div class="modal-dialog" role="dialog">
         <div class="modal-content">
@@ -71,6 +73,7 @@
         </div>
     </div>
 </div>
+
 @section Scripts {
     @Scripts.Render("~/bundles/survey")
     <script>
@@ -96,9 +99,11 @@
             localStorage.setItem('tempSurveyResults', JSON.stringify(sender.data));
             localStorage.setItem('lastPageVisited', sender.currentPageNo);
         });
+
         $('#generateLink').on('click', function (e) {
             saveResults(survey, true);
         });
+
         // Ajax load
         loadSurvey(codeSurveyId);
 
@@ -134,8 +139,11 @@
                         }
                     },
                     error: function (jqXHR, textStatus, errorThrown) {
-                        showMessage('Well... That wasn\'t that well...', 'We were unable to load the survey. Have you checked the survey code?');
                         spinStop();
+
+                        // Show no-survey message
+                        $('#alert').removeClass('hidden');
+                        showMessage('@LocalizedResources.patque_dialog_error_caption', '@LocalizedResources.patque_dialog_error_surveyLoadFailed');
                     }
                 });
         };
@@ -161,7 +169,7 @@
                         $('#surveyModal').modal('show');
                     },
                     error: function (jqXHR, textStatus, errorThrown) {
-                        showMessage('Well... That wasn\'t that well...', 'We were unable to find your session data. Please check the session code and try again...');
+                        showMessage('@LocalizedResources.patque_dialog_error_caption', '@LocalizedResources.patque_dialog_error_sessionNotFound');
                         spinStop();
                     }
                 });
@@ -208,27 +216,29 @@
                     },
                     dataType: 'text',
                     success: function (data, textStatus, jqXHR) {
-                        var resumeLink = '';
-                        if (!language || language == undefined || language == '' || language.length == 0) {
-                            resumeLink = '@Url.Action("PatQueSurvey", "Survey", new { area="", surveyCode="__surveyCode__", sessionCode="__sessionCode__" })';
-                        }
-                        else {
-                            resumeLink = '@Url.Action("PatQueSurvey", "Survey", new { area="", surveyCode="__surveyCode__", sessionCode="__sessionCode__", lang="__language__" })';
-                            resumeLink = resumeLink.replace("__language__", language);
-                        }
-
-                        resumeLink = resumeLink.replace("__surveyCode__", codeSurveyId);
-                        resumeLink = resumeLink.replace("__sessionCode__", data);
-
-                        var successMsg = 'If my friend created a button for Save-In-Progress, and you clicked it, you will be able to continue filling out this survey any time you like. To do so just click this link: __resumeLink__';
-                        successMsg = successMsg.replace("__resumeLink__", resumeLink);
-
                         spinStop();
-                        showMessage('Thank you!', successMsg);
+                        if (isIncomoplete)
+                        {
+                            var resumeLink = '';
+                            if (!language || language == undefined || language == '' || language.length == 0) {
+                                resumeLink = '@Url.Action("PatQueSurvey", "Survey", new { area="", surveyCode="__surveyCode__", sessionCode="__sessionCode__" })';
+                            }
+                            else {
+                                resumeLink = '@Url.Action("PatQueSurvey", "Survey", new { area="", surveyCode="__surveyCode__", sessionCode="__sessionCode__", lang="__language__" })';
+                                resumeLink = resumeLink.replace("__language__", language);
+                            }
+
+                            resumeLink = resumeLink.replace("__surveyCode__", codeSurveyId);
+                            resumeLink = resumeLink.replace("__sessionCode__", data);
+
+                            var successMsg = '@LocalizedResources.patque_dialog_sessionSavedMessage' + '<div style="float:left"><h5>www.patque.net__resumeLink__</h5></div>';
+                            successMsg = successMsg.replace("__resumeLink__", resumeLink);
+                            showMessage('@LocalizedResources.patque_dialog_thankYouCaption', successMsg);
+                        }
                     },
                     error: function (jqXHR, textStatus, errorThrown) {
                         spinStop();
-                        showMessage('Well... That wasn\'t that well...', 'We are experiencing "temporary" dificulties :-) However data you submitted is stored in your browser. Please try to submit your data whenever you feel like it...');
+                        showMessage('@LocalizedResources.patque_dialog_error_caption', '@LocalizedResources.patque_dialog_error_saveSessionFailed');
 
                     }
                 });

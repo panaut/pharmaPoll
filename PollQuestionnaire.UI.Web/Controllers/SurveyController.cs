@@ -31,6 +31,14 @@ namespace PollQuestionnaire.UI.Web.Controllers
                         string sessionCode = default(string),
                         string lang = default(string))
         {
+            // Survey Code is mandatory parameter
+            if(string.IsNullOrEmpty(surveyCode))
+            {
+                // Redirect to Index Page
+                var model = surveyService.Value.GetAllSurveyInfo().OperationResult;
+                return View("Index", model.ToList());
+            }
+
             // Set Culture of the current thread
             this.SetCulture(lang);
 
@@ -41,10 +49,13 @@ namespace PollQuestionnaire.UI.Web.Controllers
                 throw new Exception($"Survey with code: {surveyCode} wasn't found");
             }
 
-            ViewBag.language = lang;
-            ViewBag.codeSurveyId = HttpUtility.HtmlEncode(surveyInfoResult.OperationResult.Code);
-            ViewBag.surveyName = HttpUtility.HtmlEncode(surveyInfoResult.OperationResult.Title);
-            ViewBag.sessionCode = HttpUtility.HtmlEncode(sessionCode);
+            if (surveyInfoResult.OperationResult != null)
+            {
+                ViewBag.language = lang;
+                ViewBag.codeSurveyId = HttpUtility.HtmlEncode(surveyInfoResult.OperationResult.Code);
+                ViewBag.surveyName = HttpUtility.HtmlEncode(surveyInfoResult.OperationResult.Title);
+                ViewBag.sessionCode = HttpUtility.HtmlEncode(sessionCode);
+            }
 
             return View();
         }

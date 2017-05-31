@@ -253,19 +253,18 @@ namespace Questionnaire.Service
 
                         if (desiredCulture != ECulture.DEFAULT)
                         {
-                            // this is a 'known' culture - set localization for proper localization of Survey misc elements
-                            survey.locale = culture;
-                        }
-
-                        try
-                        {
-                            survey.Localize(desiredCulture);
-                        }
-                        catch (Exception ex)
-                        {
-                            cmd.Status = OperationStatus.Failure;
-                            var exc = new CustomException($"Failed to localize survey with ID: {surveyId} into culture {culture}.", ex);
-                            throw exc;
+                            try
+                            {
+                                // this is a 'known' culture - set localization for proper localization of Survey misc elements
+                                survey.locale = culture;
+                                survey.Localize(desiredCulture);
+                            }
+                            catch (Exception ex)
+                            {
+                                cmd.Status = OperationStatus.Failure;
+                                var exc = new CustomException($"Failed to localize survey with ID: {surveyId} into culture {culture}.", ex);
+                                throw exc;
+                            }
                         }
 
                         // Try to serialize modified object into JSON string
@@ -338,21 +337,20 @@ namespace Questionnaire.Service
                             desiredCulture = ECulture.DEFAULT;
                         }
 
-                        if(desiredCulture != ECulture.DEFAULT)
+                        if (desiredCulture != ECulture.DEFAULT)
                         {
-                            // this is a 'known' culture - set localization for proper localization of Survey misc elements
-                            survey.locale = culture;
-                        }
-
-                        try
-                        {
-                            survey.Localize(desiredCulture);
-                        }
-                        catch (Exception ex)
-                        {
-                            cmd.Status = OperationStatus.Failure;
-                            var exc = new CustomException($"Failed to localize survey with Code: {surveyCode} into culture {culture}.", ex);
-                            throw exc;
+                            try
+                            {
+                                // this is a 'known' culture - set localization for proper localization of Survey misc elements
+                                survey.locale = culture;
+                                survey.Localize(desiredCulture);
+                            }
+                            catch (Exception ex)
+                            {
+                                cmd.Status = OperationStatus.Failure;
+                                var exc = new CustomException($"Failed to localize survey with Code: {surveyCode} into culture {culture}.", ex);
+                                throw exc;
+                            }
                         }
 
                         // Try to serialize modified object into JSON string

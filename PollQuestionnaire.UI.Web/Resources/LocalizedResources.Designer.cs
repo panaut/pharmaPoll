@@ -61,11 +61,74 @@ namespace PollQuestionnaire.UI.Web.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Print.
+        /// </summary>
+        public static string patque_btnPrint_Text {
+            get {
+                return ResourceManager.GetString("patque_btnPrint_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Print PDF version of this form.
         /// </summary>
         public static string patque_btnPrint_tooltip {
             get {
                 return ResourceManager.GetString("patque_btnPrint_tooltip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Well... That wasn\&apos;t that well....
+        /// </summary>
+        public static string patque_dialog_error_caption {
+            get {
+                return ResourceManager.GetString("patque_dialog_error_caption", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to We are experiencing &quot;temporary&quot; dificulties :-) However data you submitted is stored in your browser. Please try to submit your data whenever you feel like it....
+        /// </summary>
+        public static string patque_dialog_error_saveSessionFailed {
+            get {
+                return ResourceManager.GetString("patque_dialog_error_saveSessionFailed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to We were unable to find your session data. Please check the session code and try again....
+        /// </summary>
+        public static string patque_dialog_error_sessionNotFound {
+            get {
+                return ResourceManager.GetString("patque_dialog_error_sessionNotFound", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to We were unable to load the survey. Have you checked the survey code?.
+        /// </summary>
+        public static string patque_dialog_error_surveyLoadFailed {
+            get {
+                return ResourceManager.GetString("patque_dialog_error_surveyLoadFailed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to You will be able to resume this survey any time you like. To do so, just click this link:.
+        /// </summary>
+        public static string patque_dialog_sessionSavedMessage {
+            get {
+                return ResourceManager.GetString("patque_dialog_sessionSavedMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Thank you!.
+        /// </summary>
+        public static string patque_dialog_thankYouCaption {
+            get {
+                return ResourceManager.GetString("patque_dialog_thankYouCaption", resourceCulture);
             }
         }
     }
