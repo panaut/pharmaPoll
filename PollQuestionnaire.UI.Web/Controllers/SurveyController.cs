@@ -3,8 +3,10 @@ using Questionnaire.Service;
 using Questionnaire.Service.Objects;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.IO;
 using System.Linq;
+using System.Threading;
 using System.Web;
 using System.Web.Mvc;
 
@@ -26,8 +28,12 @@ namespace PollQuestionnaire.UI.Web.Controllers
         [AllowAnonymous]
         public ActionResult PatQueSurvey(
                         string surveyCode,
-                        string sessionCode = null)
+                        string sessionCode = default(string),
+                        string lang = default(string))
         {
+            // Set Culture of the current thread
+            this.SetCulture(lang);
+
             var surveyInfoResult = this.surveyService.Value.GetSurveyInfo(surveyCode);
 
             if (surveyInfoResult.Status != OperationStatus.Success)
@@ -35,6 +41,7 @@ namespace PollQuestionnaire.UI.Web.Controllers
                 throw new Exception($"Survey with code: {surveyCode} wasn't found");
             }
 
+            ViewBag.language = lang;
             ViewBag.codeSurveyId = HttpUtility.HtmlEncode(surveyInfoResult.OperationResult.Code);
             ViewBag.surveyName = HttpUtility.HtmlEncode(surveyInfoResult.OperationResult.Title);
             ViewBag.sessionCode = HttpUtility.HtmlEncode(sessionCode);
@@ -66,10 +73,10 @@ namespace PollQuestionnaire.UI.Web.Controllers
         }
 
         [HttpGet()]
-        public string GetActiveSurvey(string surveyCode)
+        public string GetActiveSurvey(string surveyCode, string lang = default(string))
         {
             // Now retrieve the survey
-            var surveyResult = this.surveyService.Value.GetSurvey(surveyCode);
+            var surveyResult = this.surveyService.Value.GetSurvey(surveyCode, lang);
 
             if (surveyResult.Status != OperationStatus.Success)
             {
@@ -96,6 +103,52 @@ namespace PollQuestionnaire.UI.Web.Controllers
             }
 
             return JsonConvert.SerializeObject(sessionResult.OperationResult);
+        }
+
+        private void SetCulture(string language)
+        {
+            CultureInfo ci;
+            switch (language?.ToLower())
+            {
+                case "en":
+                    ci = new CultureInfo("en");
+                    break;
+                case "sr":
+                    ci = new CultureInfo("sr");
+                    break;
+                case "at":
+                    ci = new CultureInfo("de-AT");
+                    break;
+                case "de":
+                    ci = new CultureInfo("de-DE");
+                    break;
+                case "es":
+                    ci = new CultureInfo("es");
+                    break;
+                case "gr":
+                    ci = new CultureInfo("el");
+                    break;
+                case "pt":
+                    ci = new CultureInfo("pt");
+                    break;
+                case "pl":
+                    ci = new CultureInfo("pl");
+                    break;
+                case "hu":
+                    ci = new CultureInfo("hu");
+                    break;
+                case "tr":
+                    ci = new CultureInfo("tr");
+                    break;
+                case "it":
+                    ci = new CultureInfo("it");
+                    break;
+                default:
+                    ci = CultureInfo.CurrentCulture;
+                    break;
+            }
+
+            Thread.CurrentThread.CurrentUICulture = ci;
         }
     }
 }

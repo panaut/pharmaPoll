@@ -251,6 +251,12 @@ namespace Questionnaire.Service
                             desiredCulture = ECulture.DEFAULT;
                         }
 
+                        if (desiredCulture != ECulture.DEFAULT)
+                        {
+                            // this is a 'known' culture - set localization for proper localization of Survey misc elements
+                            survey.locale = culture;
+                        }
+
                         try
                         {
                             survey.Localize(desiredCulture);
@@ -330,6 +336,12 @@ namespace Questionnaire.Service
                         {
                             logger.Info("Culture {0} is not supported. Survey with Code: {1} will not be localized.", culture, surveyCode);
                             desiredCulture = ECulture.DEFAULT;
+                        }
+
+                        if(desiredCulture != ECulture.DEFAULT)
+                        {
+                            // this is a 'known' culture - set localization for proper localization of Survey misc elements
+                            survey.locale = culture;
                         }
 
                         try

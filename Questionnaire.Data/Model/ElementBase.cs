@@ -60,7 +60,7 @@ namespace Questionnaire.Data.Model
         }
 
         [MaxLength(512)]
-        [LocalizableProperty()]
+        //[LocalizableProperty()]
         public string name { get; set; }
 
         public bool ShouldSerializename()

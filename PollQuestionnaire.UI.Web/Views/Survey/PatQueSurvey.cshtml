@@ -31,7 +31,7 @@
                                 <h5 class="modal-title" id="ModalTitle">SurveyCode: @ViewBag.codeSurveyId</h5>
                                 <h5 class="modal-title" id="ModalTitle">@ViewBag.surveyName</h5>
                             </td>
-                            <td><h1><a href="#" class="dloadPdf" data-toggle="modal" data-language="@ViewBag.language" data-surveyId="@ViewBag.codeSurveyId" title="Download printable version"> <i class="glyphicon glyphicon-print"></i></a></h1></td>
+                            <td><h1><a href="#" class="dloadPdf" data-toggle="modal" data-language="@ViewBag.language" data-surveyId="@ViewBag.codeSurveyId" title="@PollQuestionnaire.UI.Web.Resources.LocalizedResources.patque_btnPrint_tooltip"> <i class="glyphicon glyphicon-print"></i></a></h1></td>
                             <td></td>
                         </tr>
                     </tbody>
@@ -64,6 +64,7 @@
         var codeSurveyId = $('#surveyElement').attr('data-surveyId');
 
         var sessionCode = '@ViewBag.sessionCode';
+        var language = '@ViewBag.language';
 
         survey.showProgressBar = "bottom";
         survey.cookie
@@ -90,7 +91,7 @@
                 {
                     method: "GET",
                     async: true,
-                    data: { surveyCode: surveyCode },
+                    data: { surveyCode: surveyCode, lang: language },
                     dataType: 'json',
                     success: function (data, textStatus, jqXHR) {
                         survey.setJsonObject(data);
@@ -176,9 +177,10 @@
                     },
                     dataType: 'text',
                     success: function (data, textStatus, jqXHR) {
-                        var resumeLink = '@Url.Action("PatQueSurvey", "Survey", new { area="", surveyCode="__surveyCode__", sessionCode="__sessionCode__" })';
+                        var resumeLink = '@Url.Action("PatQueSurvey", "Survey", new { area="", surveyCode="__surveyCode__", sessionCode="__sessionCode__", lang="__language__" })';
                         resumeLink = resumeLink.replace("__surveyCode__", codeSurveyId);
                         resumeLink = resumeLink.replace("__sessionCode__", data);
+                        resumeLink = resumeLink.replace("__language__", language);
 
                         var successMsg = 'If my friend created a button for Save-In-Progress, and you clicked it, you will be able to continue filling out this survey any time you like. To do so just click this link: __resumeLink__';
                         successMsg = successMsg.replace("__resumeLink__", resumeLink);
