@@ -17,21 +17,29 @@
                     <thead>
                         <tr>
                             <th width="5"></th>
-                            <th width="50"></th>
-                            <th></th>
-                            <th width="25"></th>
+                            <th valign="middle" width="100"></th>
+                            <th valign="middle"></th>
+                            <th class="vertical-center" width="25"></th>
                             <th width="5"></th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr style="border:; border-color:darkgray">
                             <td></td>
-                            <td><a href="#" class="dloadTranslation" data-toggle="tooltip" title="Download file for translation"><img src="~/images/europacolon_logo.png" class="img-responsive" alt="Europa Colon Logo"> </a></td>
-                            <td style="vertical-align:central; text-align:center;">
-                                <h5 class="modal-title" id="ModalTitle">SurveyCode: @ViewBag.codeSurveyId</h5>
-                                <h5 class="modal-title" id="ModalTitle">@ViewBag.surveyName</h5>
+                            <td><a href="#" class="dloadTranslation" data-toggle="tooltip" title="www.europacolon.com"><img src="~/images/EuropaColon_Logo_2016_256x183.jpg" class="img-responsive" alt="Europa Colon Logo" style="width:80%"> </a></td>
+                            <td>
+                                @*<h5 class="modal-title" id="ModalTitle">SurveyCode: @ViewBag.codeSurveyId</h5>*@
+                                <h2 class="modal-title" id="ModalTitle">@ViewBag.surveyName</h2>
+                                <h3><a href="#" class="continueLater" data-toggle="modal" data-surveyId="@ViewBag.codeSurveyId" title="You can continue the survey at any time anywhere">Continue with the survey later</a></h3>
                             </td>
-                            <td><h1><a href="#" class="dloadPdf" data-toggle="modal" data-language="@ViewBag.language" data-surveyId="@ViewBag.codeSurveyId" title="Download printable version"> <i class="glyphicon glyphicon-print"></i></a></h1></td>
+                            <td>
+                                <a href="#" class="dloadPdf" data-toggle="modal" data-language="@ViewBag.language" data-surveyId="@ViewBag.codeSurveyId" title="Download printable version">
+                                    <div>
+                                        <h1><i class="glyphicon glyphicon-print"></i></h1>
+                                        <h3>Print</h3>
+                                    </div>
+                                </a>
+                            </td>
                             <td></td>
                         </tr>
                     </tbody>
@@ -45,7 +53,6 @@
                 <p>
                     &copy; @DateTime.Now.Year - EuropaColon
                 </p>
-                @*<img src="~/images/europacolon_logo.png" class="img-responsive" alt="Europa Colon Logo" />*@
             </div>
         </div>
     </div>
@@ -150,6 +157,20 @@
 
         Survey.defaultBootstrapCss.navigationButton = "btn btn-primary";
         Survey.Survey.cssType = "bootstrap";
+
+        var myCss = {
+            matrix: { root: "table table-striped" },
+            //navigationButton: "button btn-lg",
+            text: "form-control input-lg col-xs-4",
+            comment: "form-control input-lg"
+        };
+
+
+        $("#surveyElement").Survey({
+            model: survey,
+            css: myCss
+        });
+
 
         function reRunSurvey() {
             survey.clear();

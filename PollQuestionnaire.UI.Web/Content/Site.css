@@ -73,23 +73,25 @@ textarea {
   margin: 0;
   margin-right: auto;
   margin-left: auto;
-  width: 80%;
+  width: 60%;
 }
 @media (min-width: 768px) {
   .fullscreen .modal-dialog {
-    width: 80%;
+    width: 60%;
   }
 }
 @media (min-width: 992px) {
   .fullscreen .modal-dialog {
-    width: 80%;
+    width: 60%;
   }
 }
 @media (min-width: 1200px) {
   .fullscreen .modal-dialog {
-     width: 80%;
+     width: 60%;
   }
 }
+
+
 
 /* border style */
 /*.table { border: 1px solid #000; }*/
