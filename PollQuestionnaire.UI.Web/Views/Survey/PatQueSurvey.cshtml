@@ -194,14 +194,21 @@
                         jsonResults: JSON.stringify(survey.data),
                         sessionCode: sessionCode,
                         lastVisitedPageIndex: lastVisitedPage,
-                        isFinal: true
+                        isFinal: true       // ToDo: IB - Get this value from the cookie (is it complete or not...)
                     },
                     dataType: 'text',
                     success: function (data, textStatus, jqXHR) {
-                        var resumeLink = '@Url.Action("PatQueSurvey", "Survey", new { area="", surveyCode="__surveyCode__", sessionCode="__sessionCode__", lang="__language__" })';
+                        var resumeLink = '';
+                        if (!language || language == undefined || language == '' || language.length == 0) {
+                            resumeLink = '@Url.Action("PatQueSurvey", "Survey", new { area="", surveyCode="__surveyCode__", sessionCode="__sessionCode__" })';
+                        }
+                        else {
+                            resumeLink = '@Url.Action("PatQueSurvey", "Survey", new { area="", surveyCode="__surveyCode__", sessionCode="__sessionCode__", lang="__language__" })';
+                            resumeLink = resumeLink.replace("__language__", language);
+                        }
+
                         resumeLink = resumeLink.replace("__surveyCode__", codeSurveyId);
                         resumeLink = resumeLink.replace("__sessionCode__", data);
-                        resumeLink = resumeLink.replace("__language__", language);
 
                         var successMsg = 'If my friend created a button for Save-In-Progress, and you clicked it, you will be able to continue filling out this survey any time you like. To do so just click this link: __resumeLink__';
                         successMsg = successMsg.replace("__resumeLink__", resumeLink);
