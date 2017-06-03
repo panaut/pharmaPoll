@@ -79,6 +79,24 @@ namespace PollQuestionnaire.UI.Web.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Continue survey later.
+        /// </summary>
+        public static string patque_dialog_continueLaterText {
+            get {
+                return ResourceManager.GetString("patque_dialog_continueLaterText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to You can continue the survey at any time anywhere.
+        /// </summary>
+        public static string patque_dialog_continueLaterTitle {
+            get {
+                return ResourceManager.GetString("patque_dialog_continueLaterTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Well... That wasn\&apos;t that well....
         /// </summary>
         public static string patque_dialog_error_caption {
@@ -111,6 +129,60 @@ namespace PollQuestionnaire.UI.Web.Resources {
         public static string patque_dialog_error_surveyLoadFailed {
             get {
                 return ResourceManager.GetString("patque_dialog_error_surveyLoadFailed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Close.
+        /// </summary>
+        public static string patque_dialog_resume_btnClose {
+            get {
+                return ResourceManager.GetString("patque_dialog_resume_btnClose", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Send email and Close.
+        /// </summary>
+        public static string patque_dialog_resume_btnSendEmail {
+            get {
+                return ResourceManager.GetString("patque_dialog_resume_btnSendEmail", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to * Please enter valid email.
+        /// </summary>
+        public static string patque_dialog_resume_emailWarning {
+            get {
+                return ResourceManager.GetString("patque_dialog_resume_emailWarning", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to You will be able to resume this survey any time you like. To do so, you will need the link cited below..
+        /// </summary>
+        public static string patque_dialog_resume_text1 {
+            get {
+                return ResourceManager.GetString("patque_dialog_resume_text1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to You can simply write it down, or if you want us to email it to you, please leave your email address in the box under the link. Rest assured your email address will not be used in any other purposes..
+        /// </summary>
+        public static string patque_dialog_resume_text2 {
+            get {
+                return ResourceManager.GetString("patque_dialog_resume_text2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Your work is saved.
+        /// </summary>
+        public static string patque_dialog_resume_title {
+            get {
+                return ResourceManager.GetString("patque_dialog_resume_title", resourceCulture);
             }
         }
         

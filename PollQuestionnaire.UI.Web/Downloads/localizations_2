@@ -1,0 +1,1002 @@
+RowNumber	TypeIdentifier	TypeUniqueId	FieldIdentifier	SurveyId	DEFAULT	en	sr	de	at	es	nl	gr	pt	pl	hu	tr	it
+1	CheckBox	28	commentText	2													
+2	CheckBox	28	otherErrorText	2													
+3	CheckBox	28	otherText	2													
+4	CheckBox	28	title	2	10. Could you please provide us with some information about your lifestyle (please check all that applies)?												
+5	CheckBox	35	commentText	2													
+6	CheckBox	35	otherErrorText	2													
+7	CheckBox	35	otherText	2	Other (please name)												
+8	CheckBox	35	title	2	3. What symptoms did you have before you were diagnosed (more than one answer is possible)?												
+9	CheckBox	89	commentText	2													
+10	CheckBox	89	otherErrorText	2													
+11	CheckBox	89	otherText	2	Other (please name)												
+12	CheckBox	89	title	2	14.#|tab|#What doctor(s) or professionals have you visited in the last 12 months exclusively for colorectal cancer (please mark all that apply)?												
+13	CheckBox	96	commentText	2													
+14	CheckBox	96	otherErrorText	2													
+15	CheckBox	96	otherText	2	Other (please name)												
+16	CheckBox	96	title	2	4.#|tab|#If yes, where (more than one answer is possible, please mark all that applies)?												
+17	CheckBox	171	commentText	2													
+18	CheckBox	171	otherErrorText	2													
+19	CheckBox	171	otherText	2	Other (specify)												
+20	CheckBox	171	title	2	10.#|tab|#*If no, why did you stop the chemotherapy treatment (please select all that apply)? 												
+21	CheckBox	174	commentText	2													
+22	CheckBox	174	otherErrorText	2													
+23	CheckBox	174	otherText	2													
+24	CheckBox	174	title	2	13.#|tab|#Did your treatment include any of the following medicines (please mark all that apply)?												
+25	CheckBox	185	commentText	2													
+26	CheckBox	185	otherErrorText	2													
+27	CheckBox	185	otherText	2	Other (please name) 												
+28	CheckBox	185	title	2	8.#|tab|#Which chemotherapy drugs did you receive (please mark all that apply)? 												
+29	CheckBox	310	commentText	2													
+30	CheckBox	310	otherErrorText	2													
+31	CheckBox	310	otherText	2													
+32	CheckBox	310	title	2	4.#|tab|#In your opinion, what would improve your relationship with your health care team (more than one answer is possible, please mark all that apply):												
+33	CheckBox	311	commentText	2													
+34	CheckBox	311	otherErrorText	2													
+35	CheckBox	311	otherText	2	•#|tab|#Other information (please name)												
+36	CheckBox	311	title	2	5.#|tab|#In your opinion, which of the following information is important for people with metastatic colorectal cancer (please mark all that apply)?												
+37	CheckBox	312	commentText	2													
+38	CheckBox	312	otherErrorText	2													
+39	CheckBox	312	otherText	2													
+40	CheckBox	312	title	2	6.#|tab|#What would help patients with metastatic colorectal cancer in your country that is currently not available (please mark all that apply)?												
+41	CheckBox	350	commentText	2													
+42	CheckBox	350	otherErrorText	2													
+43	CheckBox	350	otherText	2													
+44	CheckBox	350	title	2	 												
+45	CheckBox	362	commentText	2													
+46	CheckBox	362	otherErrorText	2													
+47	CheckBox	362	otherText	2													
+48	CheckBox	362	title	2	7. What is the highest degree that you have earned? Please circle any qualification you have received.												
+49	CheckBox	364	commentText	2													
+50	CheckBox	364	otherErrorText	2													
+51	CheckBox	364	otherText	2													
+52	CheckBox	364	title	2	1.#|tab|#Who is your main source of support (more than one answer is possible, please mark all that apply)?												
+53	CheckBox	1376	commentText	2													
+54	CheckBox	1376	otherErrorText	2													
+55	CheckBox	1376	otherText	2													
+56	CheckBox	1376	title	2	11.#|tab|#*If yes, which difficulties did you encounter?												
+57	Choice	10	text	2	1920												
+58	Choice	11	text	2	1921												
+59	Choice	12	text	2	1922												
+60	Choice	13	text	2	1923												
+61	Choice	14	text	2	1924												
+62	Choice	15	text	2	1925												
+63	Choice	16	text	2	1926												
+64	Choice	17	text	2	1927												
+65	Choice	18	text	2	1928												
+66	Choice	19	text	2	1929												
+67	Choice	20	text	2	1930												
+68	Choice	21	text	2	1931												
+69	Choice	22	text	2	1932												
+70	Choice	23	text	2	1933												
+71	Choice	24	text	2	1934												
+72	Choice	25	text	2	1935												
+73	Choice	26	text	2	1936												
+74	Choice	27	text	2	1937												
+75	Choice	28	text	2	1938												
+76	Choice	29	text	2	1939												
+77	Choice	30	text	2	1940												
+78	Choice	31	text	2	1941												
+79	Choice	32	text	2	1942												
+80	Choice	33	text	2	1943												
+81	Choice	34	text	2	1944												
+82	Choice	35	text	2	1945												
+83	Choice	36	text	2	1946												
+84	Choice	37	text	2	1947												
+85	Choice	38	text	2	1948												
+86	Choice	39	text	2	1949												
+87	Choice	40	text	2	1950												
+88	Choice	41	text	2	1951												
+89	Choice	42	text	2	1952												
+90	Choice	43	text	2	1953												
+91	Choice	44	text	2	1954												
+92	Choice	45	text	2	1955												
+93	Choice	46	text	2	1956												
+94	Choice	47	text	2	1957												
+95	Choice	48	text	2	1958												
+96	Choice	49	text	2	1959												
+97	Choice	50	text	2	1960												
+98	Choice	51	text	2	1961												
+99	Choice	52	text	2	1962												
+100	Choice	53	text	2	1963												
+101	Choice	54	text	2	1964												
+102	Choice	55	text	2	1965												
+103	Choice	56	text	2	1966												
+104	Choice	57	text	2	1967												
+105	Choice	58	text	2	1968												
+106	Choice	59	text	2	1969												
+107	Choice	60	text	2	1970												
+108	Choice	61	text	2	1971												
+109	Choice	62	text	2	1972												
+110	Choice	63	text	2	1973												
+111	Choice	64	text	2	1974												
+112	Choice	65	text	2	1975												
+113	Choice	66	text	2	1976												
+114	Choice	67	text	2	1977												
+115	Choice	68	text	2	1978												
+116	Choice	69	text	2	1979												
+117	Choice	70	text	2	1980												
+118	Choice	71	text	2	1981												
+119	Choice	72	text	2	1982												
+120	Choice	73	text	2	1983												
+121	Choice	74	text	2	1984												
+122	Choice	75	text	2	1985												
+123	Choice	76	text	2	1986												
+124	Choice	77	text	2	1987												
+125	Choice	78	text	2	1988												
+126	Choice	79	text	2	1989												
+127	Choice	80	text	2	1990												
+128	Choice	81	text	2	1991												
+129	Choice	82	text	2	1992												
+130	Choice	83	text	2	1993												
+131	Choice	84	text	2	1994												
+132	Choice	85	text	2	1995												
+133	Choice	86	text	2	1996												
+134	Choice	87	text	2	1997												
+135	Choice	88	text	2	1998												
+136	Choice	89	text	2	1999												
+137	Choice	91	text	2	Male												
+138	Choice	92	text	2	Female												
+139	Choice	93	text	2	Albania												
+140	Choice	94	text	2	Andorra												
+141	Choice	95	text	2	Armenia												
+142	Choice	96	text	2	Austria												
+143	Choice	97	text	2	Azerbaijan												
+144	Choice	98	text	2	Belarus												
+145	Choice	99	text	2	Belgium												
+146	Choice	100	text	2	Bosnia and Herzegovina												
+147	Choice	101	text	2	Bulgaria												
+148	Choice	102	text	2	Croatia												
+149	Choice	103	text	2	Cyprus												
+150	Choice	104	text	2	Czech Republic												
+151	Choice	105	text	2	Denmark												
+152	Choice	106	text	2	Estonia												
+153	Choice	107	text	2	Finland												
+154	Choice	108	text	2	France												
+155	Choice	109	text	2	Georgia												
+156	Choice	110	text	2	Germany												
+157	Choice	111	text	2	Greece												
+158	Choice	112	text	2	Hungary												
+159	Choice	113	text	2	Iceland												
+160	Choice	114	text	2	Ireland												
+161	Choice	115	text	2	Italy												
+162	Choice	116	text	2	Kazakhstan												
+163	Choice	117	text	2	Kosovo												
+164	Choice	118	text	2	Latvia												
+165	Choice	119	text	2	Liechtenstein												
+166	Choice	120	text	2	Lithuania												
+167	Choice	121	text	2	Luxembourg												
+168	Choice	122	text	2	Macedonia (FYROM)												
+169	Choice	123	text	2	Malta												
+170	Choice	124	text	2	Moldova												
+171	Choice	125	text	2	Monaco												
+172	Choice	126	text	2	Montenegro												
+173	Choice	127	text	2	Netherlands												
+174	Choice	128	text	2	Norway												
+175	Choice	129	text	2	Poland												
+176	Choice	130	text	2	Portugal												
+177	Choice	131	text	2	Romania												
+178	Choice	132	text	2	Russia												
+179	Choice	133	text	2	San Marino												
+180	Choice	134	text	2	Serbia												
+181	Choice	135	text	2	Slovakia												
+182	Choice	136	text	2	Slovenia												
+183	Choice	137	text	2	Spain												
+184	Choice	138	text	2	Sweden												
+185	Choice	139	text	2	Switzerland												
+186	Choice	140	text	2	Turkey												
+187	Choice	141	text	2	Ukraine												
+188	Choice	142	text	2	United Kingdom (UK)												
+189	Choice	143	text	2	Vatican City (Holy See)												
+190	Choice	151	text	2	Single												
+191	Choice	152	text	2	Married/living with a partner												
+192	Choice	153	text	2	Divorced												
+193	Choice	154	text	2	Widowed												
+194	Choice	155	text	2	Rural area (less than 2’000 inhabitants)												
+195	Choice	156	text	2	Semi-urban area (2’000-50’000 inhabitants)												
+196	Choice	157	text	2	Urban area (more than 50’000 inhabitants)												
+197	Choice	158	text	2	Capital city												
+198	Choice	159	text	2	I exercise regularly three or more times a week for many years												
+199	Choice	160	text	2	I exercise occasionally (1-2 per week) during my lifetime												
+200	Choice	161	text	2	I never exercise												
+201	Choice	162	text	2	I eat high fiber diet												
+202	Choice	163	text	2	I eat low fiber diet												
+203	Choice	164	text	2	My diet is high in fat												
+204	Choice	165	text	2	My diet is low in fat												
+205	Choice	166	text	2	I eat red and processed meat more than three times a week												
+206	Choice	167	text	2	I never eat red and processed meat												
+207	Choice	168	text	2	I smoke												
+208	Choice	169	text	2	I drink alcohol 3-4 times per week												
+209	Choice	170	text	2	I drink alcohol 1-2 times per week												
+210	Choice	171	text	2	I never drink alcohol												
+211	Choice	172	text	2	I have a normal weight												
+212	Choice	173	text	2	I am overweight												
+213	Choice	174	text	2	No												
+214	Choice	175	text	2	Employed												
+215	Choice	176	text	2	Unemployed												
+216	Choice	177	text	2	Retired												
+217	Choice	178	text	2	Unemployed due to a medical condition (i.e. handicapped)												
+218	Choice	179	text	2	Student/intern												
+219	Choice	180	text	2	I went for a routine examination												
+220	Choice	181	text	2	I had symptoms non-related to CRC												
+221	Choice	182	text	2	I had symptoms related to CRC												
+222	Choice	183	text	2	Because of peer pressure												
+223	Choice	184	text	2	I was invited to participate in CRC screening program												
+224	Choice	185	text	2	I wanted to be tested for CRC												
+225	Choice	186	text	2	I had an emergency hospitalization												
+226	Choice	187	text	2	Yes, I was aware of some or all of the symptoms												
+227	Choice	188	text	2	No, I was not aware												
+228	Choice	189	text	2	I am not sure												
+229	Choice	190	text	2	Diarrhea												
+230	Choice	191	text	2	Constipation												
+231	Choice	192	text	2	Alternating diarrhea and constipation												
+232	Choice	193	text	2	Change in bowel habit												
+233	Choice	194	text	2	Change in appearance of stool												
+234	Choice	195	text	2	Abdominal (stomach) pain												
+235	Choice	196	text	2	Felt lump in my stomach												
+236	Choice	197	text	2	Bloating												
+237	Choice	198	text	2	Nausea and/or vomiting												
+238	Choice	199	text	2	Constant urge to go to the toilet												
+239	Choice	200	text	2	Blood in the stool or dark stool												
+240	Choice	201	text	2	Fatigue/Tiredness/Anemia												
+241	Choice	202	text	2	Breathlessness												
+242	Choice	203	text	2	Fever												
+243	Choice	204	text	2	Night sweats												
+244	Choice	308	text	2	Less than a month												
+245	Choice	309	text	2	Between 1-3 months												
+246	Choice	310	text	2	Between 3-6 months												
+247	Choice	311	text	2	Between 6-12 months												
+248	Choice	312	text	2	1 year or more												
+249	Choice	313	text	2	I cannot remember												
+250	Choice	319	text	2	Yes												
+251	Choice	320	text	2	No												
+252	Choice	321	text	2	I don’t know what this is												
+253	Choice	322	text	2	Up to 2 weeks												
+254	Choice	323	text	2	Between 2 weeks to a month												
+255	Choice	324	text	2	Between 1-3 months												
+256	Choice	325	text	2	Between 3-6 months												
+257	Choice	326	text	2	Between 6-12 months												
+258	Choice	327	text	2	More than a year												
+259	Choice	328	text	2	I cannot remember												
+260	Choice	329	text	2	I did not have one												
+261	Choice	330	text	2	Yes												
+262	Choice	331	text	2	No												
+263	Choice	335	text	2	I was initially diagnosed with stage 1, 2 or 3 colorectal cancer, and it progressed to stage 4 (advanced or 2|I was first diagnosed with stage 4 colorectal cancer												
+264	Choice	336	text	2	I am not sure at which stage I was initially diagnosed but I have stage 4 colorectal cancer now												
+265	Choice	337	text	2	None of the above												
+266	Choice	338	text	2	I was very satisfied – the disease was established quickly												
+267	Choice	339	text	2	Acceptable – I had some consultations and had to wait some time for the examinations and establishing the diagnosis												
+268	Choice	340	text	2	Not very satisfying – a lot of consultations and a lot of waiting between examinations												
+269	Choice	341	text	2	Not satisfied at all – too many consultations and waiting too long												
+270	Choice	342	text	2	General practitioner												
+271	Choice	343	text	2	Gastroenterologist												
+272	Choice	344	text	2	Oncologist												
+273	Choice	345	text	2	Surgeon												
+274	Choice	346	text	2	Radiotherapist												
+275	Choice	347	text	2	Radiologist												
+276	Choice	348	text	2	Psychiatrist												
+277	Choice	349	text	2	Psychologist												
+278	Choice	350	text	2	Nurse												
+279	Choice	351	text	2	Dietician												
+280	Choice	352	text	2	Social worker												
+281	Choice	353	text	2	Yes												
+282	Choice	354	text	2	No												
+283	Choice	355	text	2	I don’t know												
+284	Choice	356	text	2	Yes												
+285	Choice	357	text	2	No												
+286	Choice	358	text	2	I have no immediate family												
+287	Choice	359	text	2	I was well informed on colorectal cancer												
+288	Choice	360	text	2	I knew something about colorectal cancer												
+289	Choice	361	text	2	I knew very little about colorectal cancer												
+290	Choice	362	text	2	I knew nothing about colorectal cancers												
+291	Choice	363	text	2	Yes												
+292	Choice	364	text	2	No												
+293	Choice	365	text	2	Yes												
+294	Choice	366	text	2	No												
+295	Choice	367	text	2	Internet												
+296	Choice	368	text	2	Health magazines												
+297	Choice	369	text	2	My general practitioner/family doctor												
+298	Choice	370	text	2	My pharmacist												
+299	Choice	371	text	2	Another health care professional												
+300	Choice	372	text	2	Patient organisation												
+301	Choice	373	text	2	My family and friends												
+302	Choice	374	text	2	Other colorectal cancer patients												
+303	Choice	620	text	2	Yes												
+304	Choice	621	text	2	No												
+305	Choice	622	text	2	I was advised by my physician to stop the treatment												
+306	Choice	623	text	2	The treatment was not working												
+307	Choice	624	text	2	The side effects of the treatment were too severe												
+308	Choice	625	text	2	Poor quality of life												
+309	Choice	626	text	2	Financial constraints												
+310	Choice	627	text	2	Yes												
+311	Choice	628	text	2	No												
+312	Choice	629	text	2	Public hospital												
+313	Choice	630	text	2	Private hospital												
+314	Choice	631	text	2	A mixture of both												
+315	Choice	632	text	2	Other, please specify												
+316	Choice	633	text	2	I am not sure												
+317	Choice	634	text	2	Poor 												
+318	Choice	635	text	2	Fair												
+319	Choice	636	text	2	Good												
+320	Choice	637	text	2	Very good												
+321	Choice	638	text	2	Excellent												
+322	Choice	639	text	2	The side effects were too severe												
+323	Choice	640	text	2	Poor quality of life												
+324	Choice	641	text	2	The treatment was not working												
+325	Choice	642	text	2	I was advised by my doctor to stop the treatment												
+326	Choice	643	text	2	Yes												
+327	Choice	644	text	2	No												
+328	Choice	645	text	2	I don’t know												
+329	Choice	646	text	2	I don’t know what this is. 												
+330	Choice	647	text	2	Yes – it determined that I was a candidate for cetuximab/panitumumab												
+331	Choice	648	text	2	Yes – it determined that I was not a candidate for cetuximab/panitumumab												
+332	Choice	649	text	2	No, I was not informed of the results												
+333	Choice	650	text	2	I don’t know												
+334	Choice	651	text	2	 Cetuximab												
+335	Choice	652	text	2	 Panitumumab												
+336	Choice	653	text	2	 Bevacizumab												
+337	Choice	654	text	2	 Aflibercept												
+338	Choice	655	text	2	 Regorafenib												
+339	Choice	656	text	2	 Trifluridine/tipiracil												
+340	Choice	657	text	2	 None/I don’t know												
+341	Choice	658	text	2	These treatments are not available in my country												
+342	Choice	659	text	2	These treatments are not covered by my health plan												
+343	Choice	660	text	2	Tests determined I was not a candidate for biologic treatment												
+344	Choice	661	text	2	I don’t know												
+345	Choice	662	text	2	Yes												
+346	Choice	663	text	2	No												
+347	Choice	664	text	2	I am not sure												
+348	Choice	665	text	2	Yes												
+349	Choice	666	text	2	No												
+350	Choice	667	text	2	I am not sure												
+351	Choice	668	text	2	Waiting for the treatment 												
+352	Choice	669	text	2	Undergoing treatment												
+353	Choice	670	text	2	Finished with the treatment and now have no evidence of cancer												
+354	Choice	671	text	2	Finished with the treatment but cancer is still present												
+355	Choice	672	text	2	I have not undergone treatment for colorectal cancer												
+356	Choice	673	text	2	Up to 2 weeks												
+357	Choice	674	text	2	Between 2 weeks and a month												
+358	Choice	675	text	2	Between 1-3 months												
+359	Choice	676	text	2	Between 3-6 months												
+360	Choice	677	text	2	Between 6-12 months												
+361	Choice	678	text	2	More than a year												
+362	Choice	679	text	2	I cannot remember												
+363	Choice	680	text	2	Yes, it was discussed by the multi-disciplinary team (MDT) and a doctor/nurse informed me of the outcome												
+364	Choice	681	text	2	Yes, it was discussed by the multi-disciplinary team (MDT) but I was not informed of the outcome												
+365	Choice	682	text	2	No, as far as I am aware, it was not discussed by the multi-disciplinary team (MDT)												
+366	Choice	683	text	2	I don’t know												
+367	Choice	684	text	2	No												
+368	Choice	685	text	2	Yes												
+369	Choice	686	text	2	I am not sure												
+370	Choice	687	text	2	Improved prognosis												
+371	Choice	688	text	2	Preservation of quality of life												
+372	Choice	689	text	2	Frequency of administration												
+373	Choice	690	text	2	Financial restraints												
+374	Choice	691	text	2	The treatment stopped working for me												
+375	Choice	692	text	2	Severity of adverse events (i.e. nausea, vomiting, rash, hair-loss, tiredness, etc.)												
+376	Choice	693	text	2	Frequency of administration												
+377	Choice	694	text	2	Financial restraints												
+378	Choice	695	text	2	Feeling tired of the treatment												
+379	Choice	696	text	2	Surgery												
+380	Choice	697	text	2	Chemotherapy												
+381	Choice	698	text	2	Radiotherapy												
+382	Choice	699	text	2	Personalized/targeted medicine (such as cetuximab, bevacizumab, panitumumab, aflibercept, regorafenib and trifluridine/tipuracil)												
+383	Choice	700	text	2	Other (such as immunotherapy or clinical trial)												
+384	Choice	701	text	2	I am not sure												
+385	Choice	702	text	2	I did not receive any treatment												
+386	Choice	703	text	2	5-FU												
+387	Choice	704	text	2	Capecitabine												
+388	Choice	705	text	2	Oxaliplatin												
+389	Choice	706	text	2	Irinotecan												
+390	Choice	707	text	2	FOLFOX (combination of 5-FU and oxaliplatin)												
+391	Choice	708	text	2	FOLFIRI (combination of 5-FU and irinotecan)												
+392	Choice	709	text	2	XELOX (combination of capecitabine and oxaliplatin)												
+393	Choice	710	text	2	FOLFOXIRI (combination of 5-FU, oxaliplatin and irinotecan)												
+394	Choice	711	text	2	I don’t know												
+395	Choice	712	text	2	Yes												
+396	Choice	713	text	2	No												
+397	Choice	1029	text	2	Strongly agree												
+398	Choice	1030	text	2	agree												
+399	Choice	1031	text	2	neither agree not disagree												
+400	Choice	1032	text	2	disagree												
+401	Choice	1033	text	2	strongly disagree												
+402	Choice	1034	text	2	Yes												
+403	Choice	1035	text	2	No												
+404	Choice	1036	text	2	I am not sure												
+405	Choice	1042	text	2	Yes												
+406	Choice	1043	text	2	No												
+407	Choice	1069	text	2	My oncologist												
+408	Choice	1070	text	2	My surgeon												
+409	Choice	1071	text	2	My nurse												
+410	Choice	1072	text	2	 Clinicians (very satisfied-somewhat satisfied-neither satisfied nor dissatisfied-somewhat satisfied-very dissatisfied)												
+411	Choice	1073	text	2	 Nurses (very satisfied-somewhat satisfied-neither satisfied nor dissatisfied-somewhat satisfied-very dissatisfied)												
+412	Choice	1074	text	2	 Psychologist (very satisfied-somewhat satisfied-neither satisfied nor dissatisfied-somewhat satisfied-very dissatisfied-NA)												
+413	Choice	1075	text	2	 Social worker (very satisfied-somewhat satisfied-neither satisfied nor dissatisfied-somewhat satisfied-very dissatisfied-NA)												
+414	Choice	1076	text	2	 Other (please name): (very satisfied-somewhat satisfied-neither satisfied nor dissatisfied-somewhat satisfied-very dissatisfied-NA)												
+415	Choice	1077	text	2	 Being considered a valued member of the team.												
+416	Choice	1078	text	2	 Sharing the decision making.												
+417	Choice	1079	text	2	 Being treating as an individual												
+418	Choice	1080	text	2	 Being spoke to in a language I can understand - a less technical approach												
+419	Choice	1081	text	2	 Recommendations about how to improve my emotional feelings												
+420	Choice	1082	text	2	 Helping me through my ups and downs												
+421	Choice	1083	text	2	 More empathy - I am not a number!												
+422	Choice	1084	text	2	 Disease information												
+423	Choice	1085	text	2	 Information about the treatment options												
+424	Choice	1086	text	2	 Information about the side effects of the treatment												
+425	Choice	1087	text	2	 Information about the clinical trials												
+426	Choice	1088	text	2	 Information about the physician/hospitals/health-centers in their country												
+427	Choice	1089	text	2	 Information about the patient support groups 												
+428	Choice	1090	text	2	Information about telephone helplines												
+429	Choice	1091	text	2	 Psychologist												
+430	Choice	1092	text	2	 Social worker												
+431	Choice	1093	text	2	 Patient support program (volunteers)												
+432	Choice	1094	text	2	 Talking to other patients (Buddy)												
+433	Choice	1095	text	2	 Telephone help-line												
+434	Choice	1096	text	2	 Internet forum (message board)												
+435	Choice	1097	text	2	 Day hospice to meet other patients												
+436	Choice	1098	text	2	 Application for my mobile/tablet to help me have all relevant data at one place												
+437	Choice	1105	text	2	Not at All												
+438	Choice	1106	text	2	A Little												
+439	Choice	1107	text	2	Quite a Bit												
+440	Choice	1108	text	2	Very Much												
+441	Choice	1109	text	2	Not at All												
+442	Choice	1110	text	2	A Little												
+443	Choice	1111	text	2	Quite a Bit												
+444	Choice	1112	text	2	Very Much												
+445	Choice	1113	text	2	1												
+446	Choice	1114	text	2	2												
+447	Choice	1115	text	2	3												
+448	Choice	1116	text	2	4												
+449	Choice	1117	text	2	5												
+450	Choice	1118	text	2	6												
+451	Choice	1151	text	2	1 - Very poor												
+452	Choice	1152	text	2	2												
+453	Choice	1153	text	2	3												
+454	Choice	1154	text	2	4												
+455	Choice	1155	text	2	5												
+456	Choice	1156	text	2	6												
+457	Choice	1157	text	2	7 - Excellent												
+458	Choice	1158	text	2	1 - Very poor												
+459	Choice	1159	text	2	2												
+460	Choice	1160	text	2	3												
+461	Choice	1161	text	2	4												
+462	Choice	1162	text	2	5												
+463	Choice	1163	text	2	6												
+464	Choice	1164	text	2	7 - Excellent												
+465	Choice	1183	text	2	Not at All												
+466	Choice	1184	text	2	A Little												
+467	Choice	1185	text	2	Quite a Bit												
+468	Choice	1186	text	2	Very Much												
+469	Choice	1187	text	2	Not at All												
+470	Choice	1188	text	2	A Little												
+471	Choice	1189	text	2	Quite a Bit												
+472	Choice	1190	text	2	Very Much												
+473	Choice	1191	text	2	Yes												
+474	Choice	1192	text	2	No												
+475	Choice	1193	text	2	Not at All												
+476	Choice	1194	text	2	A Little												
+477	Choice	1195	text	2	Quite a Bit												
+478	Choice	1196	text	2	Very Much												
+479	Choice	1197	text	2	Not at All												
+480	Choice	1198	text	2	A Little												
+481	Choice	1199	text	2	Quite a Bit												
+482	Choice	1200	text	2	Very Much												
+483	Choice	1201	text	2	Not at All												
+484	Choice	1202	text	2	A Little												
+485	Choice	1203	text	2	Quite a Bit												
+486	Choice	1204	text	2	Very Much												
+487	Choice	1207	text	2	I would like to receive the update on the survey, once published												
+488	Choice	1208	text	2	I would like to share my story 												
+489	Choice	1209	text	2	I would like to become a member of EuropaColon 												
+490	Choice	1210	text	2	I would like to become a member of the local organization												
+491	Choice	1211	text	2	I would like to receive the newsletters from EuropaColon												
+492	Choice	1212	text	2	None												
+493	Choice	1213	text	2	Primary education												
+494	Choice	1214	text	2	Secondary education												
+495	Choice	1215	text	2	College												
+496	Choice	1216	text	2	University education												
+497	Choice	1217	text	2	Post-university education												
+498	Choice	1218	text	2	I don’t know												
+499	Choice	1228	text	2	 My partner (husband/wife)?												
+500	Choice	1229	text	2	 My children												
+501	Choice	1230	text	2	 My parents												
+502	Choice	1231	text	2	 Other family members												
+503	Choice	1232	text	2	 My friends												
+504	Choice	1233	text	2	 Colleagues												
+505	Choice	1234	text	2	 Patient organisation												
+506	Choice	1235	text	2	 No one												
+507	Choice	1236	text	2	Yes												
+508	Choice	1237	text	2	No												
+509	Choice	1595	text	2	very satisfied												
+510	Choice	1596	text	2	somewhat satisfied												
+511	Choice	1597	text	2	neither satisfied nor dissatisfied												
+512	Choice	1598	text	2	somewhat disatisfied-												
+513	Choice	1599	text	2	very dissatisfied												
+514	Choice	1657	text	2	1												
+515	Choice	1658	text	2	2												
+516	Choice	1659	text	2	3												
+517	Choice	1660	text	2	4												
+518	Choice	1661	text	2	5												
+519	Choice	1662	text	2	1												
+520	Choice	1663	text	2	2												
+521	Choice	1664	text	2	3												
+522	Choice	1665	text	2	4												
+523	Choice	1666	text	2	5												
+524	Choice	1676	text	2	1												
+525	Choice	1677	text	2	2												
+526	Choice	1678	text	2	3												
+527	Choice	1679	text	2	4												
+528	Choice	1680	text	2	5												
+529	Choice	1681	text	2	6												
+530	Choice	1682	text	2	7												
+531	Choice	1683	text	2	8												
+532	Choice	1684	text	2	9												
+533	Choice	1685	text	2	10												
+534	Choice	1686	text	2	11												
+535	Choice	1687	text	2	12												
+536	Choice	1688	text	2	1997												
+537	Choice	1689	text	2	1998												
+538	Choice	1690	text	2	1999												
+539	Choice	1691	text	2	2000												
+540	Choice	1692	text	2	2001												
+541	Choice	1693	text	2	2002												
+542	Choice	1694	text	2	2003												
+543	Choice	1695	text	2	2004												
+544	Choice	1696	text	2	2005												
+545	Choice	1697	text	2	2006												
+546	Choice	1698	text	2	2007												
+547	Choice	1699	text	2	2008												
+548	Choice	1700	text	2	2009												
+549	Choice	1701	text	2	2010												
+550	Choice	1702	text	2	2011												
+551	Choice	1703	text	2	2012												
+552	Choice	1704	text	2	2013												
+553	Choice	1705	text	2	2014												
+554	Choice	1706	text	2	2015												
+555	Choice	1707	text	2	2016												
+556	Choice	1708	text	2	2017												
+557	Choice	1709	text	2	0												
+558	Choice	1710	text	2	1												
+559	Choice	1711	text	2	2												
+560	Choice	1712	text	2	3												
+561	Choice	1713	text	2	4												
+562	Choice	1714	text	2	5												
+563	Choice	1715	text	2	6												
+564	Choice	1716	text	2	7												
+565	Choice	1717	text	2	8												
+566	Choice	1718	text	2	9												
+567	Choice	1719	text	2	10												
+568	Choice	1720	text	2	11												
+569	Choice	1721	text	2	1												
+570	Choice	1722	text	2	2												
+571	Choice	1723	text	2	3												
+572	Choice	1724	text	2	4												
+573	Choice	1725	text	2	5												
+574	Choice	1726	text	2	6												
+575	Choice	1727	text	2	7												
+576	Choice	1728	text	2	8												
+577	Choice	1729	text	2	9												
+578	Choice	1730	text	2	10												
+579	Choice	1731	text	2	11												
+580	Choice	1732	text	2	12												
+581	Choice	1733	text	2	13												
+582	Choice	1734	text	2	14												
+583	Choice	1735	text	2	15												
+584	Choice	1736	text	2	16												
+585	Choice	1737	text	2	17												
+586	Choice	1738	text	2	18												
+587	Choice	1739	text	2	19												
+588	Choice	1740	text	2	20												
+589	Choice	1741	text	2	21												
+590	Choice	1742	text	2	22												
+591	Choice	1743	text	2	23												
+592	Choice	1744	text	2	24												
+593	Choice	1745	text	2	25												
+594	Choice	1746	text	2	26												
+595	Choice	1747	text	2	27												
+596	Choice	1748	text	2	28												
+597	Choice	1749	text	2	29												
+598	Choice	1750	text	2	30												
+599	Choice	1751	text	2	0												
+600	Choice	1752	text	2	1												
+601	Choice	1753	text	2	2												
+602	Choice	1754	text	2	3												
+603	Choice	1755	text	2	4												
+604	Choice	2250	text	2	 You lost your job												
+605	Choice	2251	text	2	 You were required to take time off work												
+606	Choice	2252	text	2	 You faced work-related stress												
+607	Choice	2253	text	2	 You faced discrimination at work based on your illness												
+608	Choice	2254	text	2	 Your income was negatively affected												
+609	Choice	2255	text	2	 You faced serious financial hardship												
+610	Choice	2256	text	2	 You were required to use your savings												
+611	Choice	2257	text	2	You had to borrow money												
+612	Choice	2258	text	2	 Bowel dysfunction (i.e. incontinence)												
+613	Choice	2259	text	2	 Sexual dysfunction (i.e. erectile dysfunction)												
+614	Choice	2260	text	2	 Emotional side effects (i.e. anxiety or depression)												
+615	Choice	2261	text	2	 Urology problems (i.e. incontinence or stoma formation)												
+616	Choice	2262	text	2	 Peripheral neuropathy (i.e. numbness in your fingertips)												
+617	Choice	2263	text	2	 Chemo brain (also known as mild cognitive impairment or cognitive dysfunction)												
+618	Choice	2264	text	2	 Other, please specify												
+619	Choice	2265	text	2	I am not sure												
+620	Choice	2266	text	2	I was invited to participate at the CRC screening program and that is how I was diagnosed												
+621	Choice	2267	text	2	I was invited to participate at the CRC screening program but decided not to do so and was diagnosed later, by a chance												
+622	Choice	2268	text	2	Although I am >50 years old I was not invited to participate at colorectal cancer screening program but would if I was invited												
+623	Choice	2269	text	2	Although I am >50 years old I was not invited to participate at colorectal cancer screening program but would not go anyway												
+624	Choice	2270	text	2	I am younger than 50 years												
+625	ComplexMatrix	94	commentText	2													
+626	ComplexMatrix	94	otherErrorText	2													
+627	ComplexMatrix	94	otherText	2													
+628	ComplexMatrix	94	title	2	2.#|tab|#While being diagnosed, did you receive clear explanations about:												
+629	ComplexMatrix	323	commentText	2													
+630	ComplexMatrix	323	otherErrorText	2													
+631	ComplexMatrix	323	otherText	2													
+632	ComplexMatrix	323	title	2	9.#|tab|#Who or what, do you feel, has helped you to cope with your treatment? Could you please assign the numbers 1-6 to each of the answers below, 1 being to most important and 6 being the least important.												
+633	ComplexMatrix	423	commentText	2													
+634	ComplexMatrix	423	otherErrorText	2													
+635	ComplexMatrix	423	otherText	2													
+636	ComplexMatrix	423	title	2	10.#|tab|#When were you initially diagnosed with colorectal cancer?												
+637	ComplexMatrix	426	commentText	2													
+638	ComplexMatrix	426	otherErrorText	2													
+639	ComplexMatrix	426	otherText	2													
+640	ComplexMatrix	426	title	2	12.#|tab|#If you were initially diagnosed with the disease that was localized in your intestine (colon or rectum), how long did it take from being diagnosed with colorectal cancer until being diagnosed with disease that has spread to another organ (i.e. liver, lungs, lymph nodes)?												
+641	Dropdown	21	commentText	2													
+642	Dropdown	21	optionsCaption	2													
+643	Dropdown	21	otherErrorText	2													
+644	Dropdown	21	otherText	2													
+645	Dropdown	21	title	2	2.#|tab|#What year you were born?#|tab|#												
+646	Dropdown	23	commentText	2													
+647	Dropdown	23	optionsCaption	2													
+648	Dropdown	23	otherErrorText	2													
+649	Dropdown	23	otherText	2													
+650	Dropdown	23	title	2	4.#|tab|#Where do you live?												
+651	Dropdown	324	commentText	2													
+652	Dropdown	324	optionsCaption	2													
+653	Dropdown	324	otherErrorText	2													
+654	Dropdown	324	otherText	2													
+655	Dropdown	324	title	2	Chose 1-6												
+656	Dropdown	424	commentText	2													
+657	Dropdown	424	optionsCaption	2													
+658	Dropdown	424	otherErrorText	2													
+659	Dropdown	424	otherText	2													
+660	Dropdown	424	title	2	Month												
+661	Dropdown	425	commentText	2													
+662	Dropdown	425	optionsCaption	2													
+663	Dropdown	425	otherErrorText	2													
+664	Dropdown	425	otherText	2													
+665	Dropdown	425	title	2	Year												
+666	Dropdown	427	commentText	2													
+667	Dropdown	427	optionsCaption	2													
+668	Dropdown	427	otherErrorText	2													
+669	Dropdown	427	otherText	2													
+670	Dropdown	427	title	2	Months												
+671	Dropdown	428	commentText	2													
+672	Dropdown	428	optionsCaption	2													
+673	Dropdown	428	otherErrorText	2													
+674	Dropdown	428	otherText	2													
+675	Dropdown	428	title	2	Years												
+676	Dropdown	429	commentText	2													
+677	Dropdown	429	optionsCaption	2													
+678	Dropdown	429	otherErrorText	2													
+679	Dropdown	429	otherText	2													
+680	Dropdown	429	title	2	Weeks												
+681	Html	363	html	2	I am writing to you on behalf of EuropaColon, a not-for-profit organization established in 2004, dedicated to saving lives from colorectal cancer. We are active with over 40 branches across the whole of Europe. With your help, we will try to improve conditions and treatments for other patients. As a patient who has experienced treatment and outcomes of metastatic colorectal cancer, I am asking you to complete the survey, based on your experience, to help others through their journey.<br><br>#|newline|#This is the first survey of its kind and size and it took us more than 3 years to develop it. We will take your answers to our Governments, Policy Makers, Politicians, Health Ministries, Industry, Media and others to ask for changes to be made so the treatment of metastatic colorectal cancer meet your needs.<br><br>#|newline|#We need 1000 patients from 10 countries to complete this survey, but together with our Members, Clinicians and Nurses, we hope to reach this goal in 6 months. <br><br>#|newline|#												
+682	Html	363	title	2													
+683	Html	367	html	2	The questions will take up to 20 minutes of your time to complete. There is no right or wrong answer as you are the expert on your own health. We can send our findings to you if you leave your email address at the end of the survey.<br><br>#|newline|#There are two parts to this survey – the first part has been developed by us, together with the help of 8 colorectal cancer patients in our Expert Patient Advisory Group (EPAG). The second half are the questions developed by the European Organization for Research and Treatment of Cancer (EORTC). Each of these two parts are equally important as they will help us to understand the unmet needs for patients like yourself.<br><br>#|newline|#Thank you for taking the time to complete the survey.<br><br>#|newline|#												
+684	Html	367	title	2													
+685	Html	376	html	2	Thank you for deciding to complete the survey on the unmet needs of patients living with metastatic colorectal cancer (mCRC). Take your time to answer all the questions. You can save the survey at any time and continue when you are ready. Alternatively, you can print the survey and complete it on paper. Once you are done, we would like to ask you to send it to the following address: <br><br>EuropaColon HQ Unit 5, <br>Deans Farm Stratford-sub-Castle Salisbury, <br>SP1 3YP <br>UK <br>												
+686	Html	376	title	2													
+687	Html	1379	html	2	Thank you for taking part in the survey. If you would like to receive information on the survey, once published (which we expect in March 2018) or to share your story with us or become a member of a patient organization, please fill in the form below. <br><br>Please leave us your details so we can contact you and mark all that applies: 												
+688	Html	1379	title	2													
+689	MatrixRow	1	text	2	The nature of the disease												
+690	MatrixRow	2	text	2	The origin of the disease												
+691	MatrixRow	3	text	2	The examinations to be performed												
+692	MatrixRow	4	text	2	The likely progression of the disease												
+693	MatrixRow	5	text	2	Stages of the disease progression												
+694	MatrixRow	6	text	2	Possible treatments												
+695	MatrixRow	7	text	2	Consequences and side effects of treatment												
+696	MatrixRow	54	text	2	You feel that you were given enough information to make informed choices about your treatment												
+697	MatrixRow	55	text	2	You were given enough emotional support throughout your treatment												
+698	MatrixRow	56	text	2	Your family members were given enough emotional support												
+699	MatrixRow	57	text	2	Your children have received adequate support and help												
+700	MatrixRow	60	text	2	1.#|tab|#Do you have any trouble doing strenuous activities, like carrying a heavy shopping bag or a suitcase?												
+701	MatrixRow	61	text	2	2.#|tab|#Do you have any trouble taking a long walk?												
+702	MatrixRow	62	text	2	3.#|tab|#Do you have any trouble taking a short walk outside of the house?												
+703	MatrixRow	63	text	2	4.#|tab|#Do you need to stay in bed or a chair during the day?												
+704	MatrixRow	64	text	2	5.#|tab|#Do you need help with eating, dressing, washing yourself or using the toilet?												
+705	MatrixRow	65	text	2	6.      Were you limited in doing either your work or other daily activities?												
+706	MatrixRow	66	text	2	7.      Were you limited in pursuing your hobbies or other leisure time activities?												
+707	MatrixRow	67	text	2	8.      Were you short of breath?												
+708	MatrixRow	68	text	2	9.      Have you had pain?												
+709	MatrixRow	69	text	2	10.      Did you need to rest?												
+710	MatrixRow	70	text	2	11.      Have you had trouble sleeping?												
+711	MatrixRow	71	text	2	12.      Have you felt weak?												
+712	MatrixRow	72	text	2	13.      Have you lacked appetite?												
+713	MatrixRow	73	text	2	14.      Have you felt nauseated?												
+714	MatrixRow	74	text	2	15.   Have you vomited?												
+715	MatrixRow	75	text	2	16.   Have you been constipated?												
+716	MatrixRow	76	text	2	17.   Have you had diarrhea?												
+717	MatrixRow	77	text	2	18.   Were you tired?												
+718	MatrixRow	78	text	2	19.   Did pain interfere with your daily activities?												
+719	MatrixRow	79	text	2	20.   Have you had difficulty in concentrating on things, like reading a newspaper or watching television?												
+720	MatrixRow	80	text	2	21.   Did you feel tense?												
+721	MatrixRow	81	text	2	22.   Did you worry?												
+722	MatrixRow	82	text	2	23.   Did you feel irritable?												
+723	MatrixRow	83	text	2	24.   Did you feel depressed?												
+724	MatrixRow	84	text	2	25.   Have you had difficulty remembering things?												
+725	MatrixRow	85	text	2	26.   Has your physical condition or medical treatment interfered with your family life?												
+726	MatrixRow	86	text	2	27.   Has your physical condition or medical treatment interfered with your social activities?												
+727	MatrixRow	87	text	2	28.   Has your physical condition or medical treatment caused you financial difficulties?												
+728	MatrixRow	88	text	2	 My friends and family												
+729	MatrixRow	89	text	2	 Patient support group												
+730	MatrixRow	90	text	2	 My clinician												
+731	MatrixRow	91	text	2	 Psychotherapist												
+732	MatrixRow	92	text	2	 My professional life												
+733	MatrixRow	129	text	2	56. To what extent were you interested in sex?												
+734	MatrixRow	130	text	2	57.  Did you have difficulty getting or maintaining an erection?												
+735	MatrixRow	131	text	2	56. To what extent were you interested in sex?												
+736	MatrixRow	132	text	2	57.  Did you have pain or discomfort during intercourse?												
+737	MatrixRow	133	text	2	31. Did you urinate frequently during the day?												
+738	MatrixRow	134	text	2	32. Did you urinate frequently during the night?												
+739	MatrixRow	135	text	2	33. Have you had any unintentional release (leakage) of urine?												
+740	MatrixRow	136	text	2	34. Did you have pain when you urinated?												
+741	MatrixRow	137	text	2	35. Did you have abdominal pain?												
+742	MatrixRow	138	text	2	36. Did you have pain in your buttocks/anal area/rectum?												
+743	MatrixRow	139	text	2	37. Did you have a bloated feeling in your abdomen?												
+744	MatrixRow	140	text	2	38. Have you had blood in your stools?												
+745	MatrixRow	141	text	2	39. Have you had mucus in your stools?												
+746	MatrixRow	142	text	2	40. Did you have a dry mouth?												
+747	MatrixRow	143	text	2	41. Have you lost hair as a result of your treatment?												
+748	MatrixRow	144	text	2	42. Have you had problems with your sense of taste?												
+749	MatrixRow	145	text	2	43. Were you worried about your health in the future?												
+750	MatrixRow	146	text	2	44. Have you worried about your weight?												
+751	MatrixRow	147	text	2	45. Have you felt physically less attractive as a result of your disease or treatment?												
+752	MatrixRow	148	text	2	46. Have you been feeling less feminine/masculine as a result of your disease or treatment?												
+753	MatrixRow	149	text	2	47. Have you been dissatisfied with your body?												
+754	MatrixRow	150	text	2	49. Have you had unintentional release of gas/flatulence from your stoma bag?												
+755	MatrixRow	151	text	2	50. Have you had leakage of stools from your stoma bag?												
+756	MatrixRow	152	text	2	51. Have you had sore skin around your stoma?												
+757	MatrixRow	153	text	2	52. Did frequent bag changes occur during the day?												
+758	MatrixRow	154	text	2	53. Did frequent bag changes occur during the night?												
+759	MatrixRow	155	text	2	54. Did you feel embarrassed because of your stoma?												
+760	MatrixRow	156	text	2	55. Did you have problems caring for your stoma?												
+761	MatrixRow	157	text	2	49.   Have you had unintentional release of gas/flatulence from your back passage?												
+762	MatrixRow	158	text	2	50.   Have you had leakage of stools from your back passage?												
+763	MatrixRow	159	text	2	51.   Have you had sore skin around your anal area?												
+764	MatrixRow	160	text	2	52.   Did frequent bowel movements occur during the day?												
+765	MatrixRow	161	text	2	53.   Did frequent bowel movements occur during the night?												
+766	MatrixRow	162	text	2	54.   Did you feel embarrassed because of your bowel movement?												
+767	MatrixRow	174	text	2	Clinicians 												
+768	MatrixRow	175	text	2	Nurses 												
+769	MatrixRow	176	text	2	Psychologist 												
+770	MatrixRow	177	text	2	Social worker 												
+771	MatrixRow	186	text	2	 												
+772	MatrixRow	187	text	2	 												
+773	MultipleText	26	title	2	11. How did you find out about the survey?												
+774	MultipleTextItem	357	title	2	Through my doctor (oncologists, gastroenterologists, surgeon, GP, etc.), (please name them)												
+775	MultipleTextItem	358	title	2	Through my nurse (please name them)												
+776	MultipleTextItem	359	title	2	Through local patient organization (please name which)												
+777	MultipleTextItem	360	title	2	Through the internet, social-media (name which)												
+778	MultipleTextItem	361	title	2	Other (please name)												
+779	Page	9	title	2	1.0. YOUR PROFILE												
+780	Page	10	title	2													
+781	Page	11	title	2	2.0. YOUR ILLNESS<br>2.1. DISCOVERY OF YOUR ILLNESS												
+782	Page	73	title	2													
+783	Page	92	title	2	2.2. YOUR DIAGNOSIS												
+784	Page	163	title	2	2.3. YOUR TREATMENT												
+785	Page	164	title	2													
+786	Page	165	title	2													
+787	Page	299	title	2	2.4. SUPPORT												
+788	Page	300	title	2													
+789	Page	320	title	2	3.0. QUALITY OF LIFE OF CANCER PATIENTS (EORTC QLQ-C30)												
+790	Page	334	title	2	4.0. QUALITY OF LIFE OF COLORECTAL CANCER PATIENTS (EORTC QLQ – C29) 												
+791	Page	348	title	2													
+792	Page	356	title	2													
+793	Page	365	title	2													
+794	Panel	333	title	2	For the following questions please circle the number between 1 and 7 that#|newline|#best applies to you#|newline|#												
+795	PlainMatrix	301	title	2	7.#|tab|#Please rate the following statements 												
+796	PlainMatrix	321	title	2	Since your diagnosis/treatment:												
+797	PlainMatrix	322	title	2	During the past week:												
+798	PlainMatrix	343	title	2	During the past 4 weeks												
+799	PlainMatrix	344	title	2	During the past 4 weeks												
+800	PlainMatrix	345	title	2	During the past week:												
+801	PlainMatrix	346	title	2	I have a STOMA bag												
+802	PlainMatrix	347	title	2	I don't have a STOMA bag												
+803	PlainMatrix	422	title	2	3.#|tab|#Please grade your degree of satisfaction of the emotional support you have received from your: 												
+804	Radiogroup	22	commentText	2													
+805	Radiogroup	22	otherErrorText	2													
+806	Radiogroup	22	otherText	2													
+807	Radiogroup	22	title	2	3.#|tab|#You are: 												
+808	Radiogroup	25	commentText	2													
+809	Radiogroup	25	otherErrorText	2													
+810	Radiogroup	25	otherText	2													
+811	Radiogroup	25	title	2	6. What is your marital status?												
+812	Radiogroup	27	commentText	2													
+813	Radiogroup	27	otherErrorText	2													
+814	Radiogroup	27	otherText	2													
+815	Radiogroup	27	title	2	5.#|tab|#The place where you live is a:												
+816	Radiogroup	29	commentText	2													
+817	Radiogroup	29	otherErrorText	2													
+818	Radiogroup	29	otherText	2	Yes (please name)												
+819	Radiogroup	29	title	2	9. Do you have other chronic disease? 												
+820	Radiogroup	30	commentText	2													
+821	Radiogroup	30	otherErrorText	2													
+822	Radiogroup	30	otherText	2	I have another situation (please name)												
+823	Radiogroup	30	title	2	8. Are you:												
+824	Radiogroup	33	commentText	2													
+825	Radiogroup	33	otherErrorText	2													
+826	Radiogroup	33	otherText	2													
+827	Radiogroup	33	title	2	1. Why did you consult your doctor (more than one answer is possible, please mark all that applies)?												
+828	Radiogroup	34	commentText	2													
+829	Radiogroup	34	otherErrorText	2													
+830	Radiogroup	34	otherText	2													
+831	Radiogroup	34	title	2	2. Prior to your initial diagnosis, did you know what the symptoms of CRC were?												
+832	Radiogroup	75	commentText	2													
+833	Radiogroup	75	otherErrorText	2													
+834	Radiogroup	75	otherText	2													
+835	Radiogroup	75	title	2	4. How long did you wait between observing the first symptoms and consulting your physician?												
+836	Radiogroup	78	commentText	2													
+837	Radiogroup	78	otherErrorText	2													
+838	Radiogroup	78	otherText	2													
+839	Radiogroup	78	title	2	7. When you were screened did you perform a test that aimed to detect small amount of blood in your stool i.e. fecal occult blood test (FOBT) (either guaiac or immunochemical)?												
+840	Radiogroup	79	commentText	2													
+841	Radiogroup	79	otherErrorText	2													
+842	Radiogroup	79	otherText	2													
+843	Radiogroup	79	title	2	8. How quickly did you have a colonoscopy (after the first consultation or positive screening test)?												
+844	Radiogroup	80	commentText	2													
+845	Radiogroup	80	otherErrorText	2													
+846	Radiogroup	80	otherText	2													
+847	Radiogroup	80	title	2	9. Before being diagnosed with colorectal cancer, were you misdiagnosed with another condition (such as irritable bowel syndrome, hemorrhoids, etc.)												
+848	Radiogroup	87	commentText	2													
+849	Radiogroup	87	otherErrorText	2													
+850	Radiogroup	87	otherText	2													
+851	Radiogroup	87	title	2	11.#|tab|#Which best describes your situation?												
+852	Radiogroup	88	commentText	2													
+853	Radiogroup	88	otherErrorText	2													
+854	Radiogroup	88	otherText	2													
+855	Radiogroup	88	title	2	13.#|tab|#In your case, how would you rate the process in which the diagnosis was established?												
+856	Radiogroup	90	commentText	2													
+857	Radiogroup	90	otherErrorText	2													
+858	Radiogroup	90	otherText	2													
+859	Radiogroup	90	title	2	15.#|tab|#Has anybody in your family ever had colorectal cancer?												
+860	Radiogroup	91	commentText	2													
+861	Radiogroup	91	otherErrorText	2													
+862	Radiogroup	91	otherText	2													
+863	Radiogroup	91	title	2	16.#|tab|#When diagnosed with colorectal cancer, did you advise your immediate family to go for colonoscopy?												
+864	Radiogroup	93	commentText	2													
+865	Radiogroup	93	otherErrorText	2													
+866	Radiogroup	93	otherText	2													
+867	Radiogroup	93	title	2	1.#|tab|#What was your understanding of the disease before the diagnosis?												
+868	Radiogroup	95	commentText	2													
+869	Radiogroup	95	otherErrorText	2													
+870	Radiogroup	95	otherText	2													
+871	Radiogroup	95	title	2	3.#|tab|#Following the announcement of the disease, did you seek further information?												
+872	Radiogroup	97	commentText	2													
+873	Radiogroup	97	otherErrorText	2													
+874	Radiogroup	97	otherText	2													
+875	Radiogroup	97	title	2													
+876	Radiogroup	166	commentText	2													
+877	Radiogroup	166	otherErrorText	2													
+878	Radiogroup	166	otherText	2													
+879	Radiogroup	166	title	2	17.#|tab|#Are you still undergoing treatment?												
+880	Radiogroup	167	commentText	2													
+881	Radiogroup	167	otherErrorText	2													
+882	Radiogroup	167	otherText	2	Other (please name)												
+883	Radiogroup	167	title	2	18. *If no, please explain why? 												
+884	Radiogroup	168	commentText	2													
+885	Radiogroup	168	otherErrorText	2													
+886	Radiogroup	168	otherText	2													
+887	Radiogroup	168	title	2	19. Were you offered the chance of enrolment on a clinical trial?												
+888	Radiogroup	169	commentText	2													
+889	Radiogroup	169	otherErrorText	2													
+890	Radiogroup	169	otherText	2													
+891	Radiogroup	169	title	2	20.#|tab|#In what type of hospital, you have been treated? Please choose one:												
+892	Radiogroup	170	commentText	2													
+893	Radiogroup	170	otherErrorText	2													
+894	Radiogroup	170	otherText	2													
+895	Radiogroup	170	title	2	21.#|tab|#In general, how would you rate the care received in your hospital?												
+896	Radiogroup	172	commentText	2													
+897	Radiogroup	172	otherErrorText	2													
+898	Radiogroup	172	otherText	2													
+899	Radiogroup	172	title	2	11. Did you take a molecular test for RAS testing (KRAS, NRAS)?												
+900	Radiogroup	173	commentText	2													
+901	Radiogroup	173	otherErrorText	2													
+902	Radiogroup	173	otherText	2													
+903	Radiogroup	173	title	2	12.#|tab|#*If yes, do you know the results of the test?												
+904	Radiogroup	175	commentText	2													
+905	Radiogroup	175	otherErrorText	2													
+906	Radiogroup	175	otherText	2													
+907	Radiogroup	175	title	2	14.#|tab|#*If none, do you know why?												
+908	Radiogroup	176	commentText	2													
+909	Radiogroup	176	otherErrorText	2													
+910	Radiogroup	176	otherText	2													
+911	Radiogroup	176	title	2	15.#|tab|#Were you given clear information about the side effects of the treatment?												
+912	Radiogroup	177	commentText	2													
+913	Radiogroup	177	otherErrorText	2													
+914	Radiogroup	177	otherText	2													
+915	Radiogroup	177	title	2	16.#|tab|#Was the treatment you received the same as explained by your health-care team?												
+916	Radiogroup	178	commentText	2													
+917	Radiogroup	178	otherErrorText	2													
+918	Radiogroup	178	otherText	2	None of the above (explain)												
+919	Radiogroup	178	title	2	1.#|tab|#Currently you are:												
+920	Radiogroup	179	commentText	2													
+921	Radiogroup	179	otherErrorText	2													
+922	Radiogroup	179	otherText	2													
+923	Radiogroup	179	title	2	2.#|tab|#How long did it take between being diagnosed with colorectal cancer and starting with a cancer treatment? 												
+924	Radiogroup	180	commentText	2													
+925	Radiogroup	180	otherErrorText	2													
+926	Radiogroup	180	otherText	2													
+927	Radiogroup	180	title	2	3.#|tab|#Was your treatment plan discussed by a multi-disciplinary team (MDT)?												
+928	Radiogroup	181	commentText	2													
+929	Radiogroup	181	otherErrorText	2													
+930	Radiogroup	181	otherText	2													
+931	Radiogroup	181	title	2	4.#|tab|#Overall, do you feel that your views were considered when your treatment plan was developed? 												
+932	Radiogroup	182	commentText	2													
+933	Radiogroup	182	otherErrorText	2													
+934	Radiogroup	182	otherText	2	Other (please name)												
+935	Radiogroup	182	title	2	5.#|tab|#When making decisions on treatment plan, what are the most important factors for you (rate with 1 being the most important and 5 being the least important)?												
+936	Radiogroup	183	commentText	2													
+937	Radiogroup	183	otherErrorText	2													
+938	Radiogroup	183	otherText	2	Other (please name)												
+939	Radiogroup	183	title	2	6.#|tab|#Why would you stop taking the treatment (rate with 1 being the most important and 5 being the least important)? 												
+940	Radiogroup	184	commentText	2													
+941	Radiogroup	184	otherErrorText	2													
+942	Radiogroup	184	otherText	2													
+943	Radiogroup	184	title	2	7.#|tab|#What treatment for colorectal cancer did you receive (more than one answer is possible, please mark all that apply)? 												
+944	Radiogroup	186	commentText	2													
+945	Radiogroup	186	otherErrorText	2													
+946	Radiogroup	186	otherText	2													
+947	Radiogroup	186	title	2	9.#|tab|#Did you complete your chemotherapy treatment?												
+948	Radiogroup	302	commentText	2													
+949	Radiogroup	302	otherErrorText	2													
+950	Radiogroup	302	otherText	2													
+951	Radiogroup	302	title	2	8.#|tab|#Have you been given enough information and support to manage the side effects of your treatment?												
+952	Radiogroup	304	commentText	2													
+953	Radiogroup	304	otherErrorText	2													
+954	Radiogroup	304	otherText	2													
+955	Radiogroup	304	title	2	10.#|tab|#Have you encountered difficulties (i.e. physical, financial or other) during examinations or treatment?												
+956	Radiogroup	308	commentText	2													
+957	Radiogroup	308	otherErrorText	2													
+958	Radiogroup	308	otherText	2	Other, please name												
+959	Radiogroup	308	title	2	2.#|tab|#In your case, who is the most important/most valuable point of contact for medical information?												
+960	Radiogroup	309	commentText	2													
+961	Radiogroup	309	otherErrorText	2													
+962	Radiogroup	309	otherText	2													
+963	Radiogroup	309	title	2	3.#|tab|#Please grade your degree of satisfaction of the emotional support you have received from your: 												
+964	Radiogroup	1377	commentText	2													
+965	Radiogroup	1377	otherErrorText	2													
+966	Radiogroup	1377	otherText	2													
+967	Radiogroup	1377	title	2	12. Are you experiencing any of the following ongoing medical side effects of your treatment (select all that applies)?												
+968	Radiogroup	1378	commentText	2													
+969	Radiogroup	1378	otherErrorText	2													
+970	Radiogroup	1378	otherText	2													
+971	Radiogroup	1378	title	2	5. What describes you best?												
+972	Radiogroup	1381	commentText	2													
+973	Radiogroup	1381	otherErrorText	2													
+974	Radiogroup	1381	otherText	2	Other, please name:												
+975	Radiogroup	1381	title	2	 												
+976	Rating	335	maxRateDescription	2													
+977	Rating	335	minRateDescription	2													
+978	Rating	335	title	2	29.#|tab|#How would you rate your overall health during the past week?												
+979	Rating	336	maxRateDescription	2													
+980	Rating	336	minRateDescription	2													
+981	Rating	336	title	2	30.#|tab|#How would you rate your overall quality of life during the past week?												
+982	Rating	342	maxRateDescription	2													
+983	Rating	342	minRateDescription	2													
+984	Rating	342	title	2	48.#|tab|#Do you have a stoma bag (colostomy/ileostomy) (please circle the correct answer)?												
+985	Rating	366	maxRateDescription	2													
+986	Rating	366	minRateDescription	2													
+987	Rating	366	title	2	To start the survey, please click Yes												
+988	Survey	2	completedHtml	2													
+989	Survey	2	completeText	2													
+990	Survey	2	pageNextText	2													
+991	Survey	2	pagePrevText	2													
+992	Survey	2	requiredText	2	*												
+993	Survey	2	title	2	SURVEY ON THE UNMET NEEDS FOR PATIENTS LIVING WITH METASTATIC COLORECTAL CANCER (MCRC)												
+994	Text	20	placeHolder	2													
+995	Text	20	title	2	1.#|tab|#Please fill in your initials:												
+996	Text	31	placeHolder	2													
+997	Text	31	title	2	12. Please give us the name of the hospital where you are being treated:												
+998	Text	352	placeHolder	2													
+999	Text	352	title	2	Name:												
+1000	Text	353	placeHolder	2													
+1001	Text	353	title	2	E-mail:
