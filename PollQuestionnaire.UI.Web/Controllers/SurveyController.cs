@@ -1,10 +1,7 @@
 ﻿using Newtonsoft.Json;
 using Questionnaire.Service;
-using Questionnaire.Service.Objects;
 using System;
-using System.Collections.Generic;
 using System.Globalization;
-using System.IO;
 using System.Linq;
 using System.Threading;
 using System.Web;
@@ -114,6 +111,26 @@ namespace PollQuestionnaire.UI.Web.Controllers
             }
 
             return JsonConvert.SerializeObject(sessionResult.OperationResult);
+        }
+
+        [HttpPost()]
+        public void SendEmail(string resumeLink, string email)
+        {
+            resumeLink = HttpUtility.HtmlDecode(resumeLink);
+            //var smtpClient = new System.Net.Mail.SmtpClient("smtp.patque.net");
+
+            //smtpClient.Credentials = new System.Net.NetworkCredential("info@patque.net", "mp$Z%vJ3!");
+            //smtpClient.UseDefaultCredentials = true;
+            //smtpClient.DeliveryMethod = System.Net.Mail.SmtpDeliveryMethod.Network;
+            //smtpClient.EnableSsl = false;
+            //var mail = new System.Net.Mail.MailMessage();
+
+            ////Setting From , To and CC
+            //mail.From = new System.Net.Mail.MailAddress("info@patque.net", "PatQue.net");
+            //mail.To.Add(new System.Net.Mail.MailAddress("ivan.cojbasic@gmail.com"));
+            ////mail.CC.Add(new System.Net.Mail.MailAddress("MyEmailID@gmail.com"));
+
+            //smtpClient.Send(mail);
         }
 
         private void SetCulture(string language)

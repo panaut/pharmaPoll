@@ -63,10 +63,11 @@
         <div id="surveyElement"></div>
     </div>
 </div>
+
 @section Scripts {
     @Scripts.Render("~/Scripts/dxSurvey/dxBroker.js")
     @Scripts.Render("~/bundles/survey")
-    @Scripts.Render("~/bundles/Spinner")    
+    @Scripts.Render("~/bundles/Spinner")
     <script>
         Survey.JsonObject.metaData.addProperty("survey", { name: "internalId:number" });
         Survey.JsonObject.metaData.addProperty("page", { name: "internalId:number" });
@@ -79,12 +80,14 @@
 
         $("document").ready(function () {
             $('.clickrow').on('click', function () {
-                var pagePQS = $(location).attr('href') + "/PatQueSurvey?surveyCode=";
                 var surveyId = $(this).attr('data-surveyId'); // the 4 char survey code
-                window.location.href = pagePQS + surveyId;
+
+                var patQueUrl = '@Url.Action("PatQueSurvey", "Survey", new { area="", surveyCode="__surveyCode__" })';
+                patQueUrl = patQueUrl.replace("__surveyCode__", surveyId);
+
+                window.location.href = patQueUrl;
             });
         });
-
 
         function loadSurvey() {
             // Get Survey UID from URL
@@ -130,6 +133,5 @@
                     }
                 });
         }
-
     </script>
 }

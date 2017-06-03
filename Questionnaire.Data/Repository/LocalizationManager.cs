@@ -45,8 +45,11 @@ namespace Questionnaire.Data
 
                 if (locStrDb == null)
                 {
-                    // This is a new entry, it should be added to database
-                    this.Insert(localization, doSave: false);
+                    if(!string.IsNullOrEmpty(localization.LocalizedValue))
+                    {
+                        // This is a new entry, it should be added to database
+                        this.Insert(localization, doSave: false);
+                    }
                 }
                 else
                 {
