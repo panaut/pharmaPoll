@@ -21,7 +21,24 @@
                         <h5 id="infoModalContent" style="text-align:left; font-size:large">YOUR NAME HERE</h5>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-primary" data-dismiss="modal" data-id="" data-isActive="">OK</button>
+                        <button type="button" class="btn btn-primary" data-dismiss="modal">OK</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="modal fade" id="confirmationModal" tabindex="-1" role="dialog" aria-labelledby="infoModal" aria-hidden="true">
+            <div class="modal-dialog" role="dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="confirmationModalTitle">TITLE</h5>
+                    </div>
+                    <div class="modal-body">
+                        <h5 id="confirmationModalContent" style="text-align:left; font-size:large">YOUR NAME HERE</h5>
+                    </div>
+                    <div class="modal-footer">
+                        <button id="cmBtnYes" type="button" class="btn btn-primary" data-dismiss="modal">Yes</button>
+                        <button id="cmBtnNo" type="button" class="btn btn-primary" data-dismiss="modal">No</button>
                     </div>
                 </div>
             </div>
@@ -42,7 +59,18 @@
         function showMessage(title, content) {
             $('#infoModalTitle').html(title);
             $('#infoModalContent').html(content);
-            $('#infoModal').modal('show'); }
+            $('#infoModal').modal('show');
+        }
+
+        function getConfirmation(title, content, yesAction, noAction) {
+            $('#confirmationModalTitle').html(title);
+            $('#confirmationModalContent').html(content);
+            $('#confirmationModal').modal('show');
+
+            $('#confirmationModal button#cmBtnYes').click(yesAction);
+            $('#confirmationModal button#cmBtnNo').click(noAction);
+        }
+
     </script>
 </body>
 </html>

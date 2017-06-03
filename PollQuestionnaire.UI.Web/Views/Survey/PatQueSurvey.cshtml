@@ -31,7 +31,8 @@
                             <td><a href="#" class="dloadTranslation" data-toggle="tooltip" title="www.europacolon.com"><img src="~/images/EuropaColon_Logo_2016_256x183.jpg" class="img-responsive" alt="Europa Colon Logo" style="width:80%"> </a></td>
                             <td>
                                 <h2 class="modal-title" id="ModalTitle">@ViewBag.surveyName</h2>
-                                <h3><a href="#" id="continueLater" onclick="saveResults(survey, true)" class="continLater" data-surveyId="@ViewBag.codeSurveyId" title="@LocalizedResources.patque_dialog_continueLaterTitle">@LocalizedResources.patque_dialog_continueLaterText</a></h3>
+                                <h3><a href="#" id="continueLater" onclick="saveResults(survey, true)" class="continLater" title="@LocalizedResources.patque_dialog_continueLaterTitle">@LocalizedResources.patque_dialog_continueLaterText</a></h3>
+                                <h3><a href="#" onclick="resetSurvey()">Reset survey</a></h3>
                             </td>
                             <td>
                                 <a href="#" class="dloadPdf" data-toggle="modal" data-language="@ViewBag.language" data-surveyId="@ViewBag.codeSurveyId" title="@LocalizedResources.patque_btnPrint_tooltip">
@@ -64,15 +65,15 @@
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
-                <h5 class="modal-title" id="infoModalTitle">@LocalizedResources.patque_dialog_resume_title</h5>
+                <h5 class="modal-title">@LocalizedResources.patque_dialog_resume_title</h5>
             </div>
             <div class="modal-body">
                 <div class="row">
-                    <h4 id="infoModalContent" style="text-align:justify;">
+                    <h4 style="text-align:justify;">
                         @LocalizedResources.patque_dialog_resume_text1
                     </h4>
-                    <h4 id="infoModalContent" style="text-align:justify;">
-                        @LocalizedResources.patque_dialog_resume_text1  
+                    <h4 style="text-align:justify;">
+                        @LocalizedResources.patque_dialog_resume_text1
                     </h4>
                 </div>
 
@@ -137,7 +138,6 @@
         document.cookie.json = true;
 
         survey.onValueChanged.add(function (sender, options) {
-            var someData = JSON.stringify(sender.data);
             localStorage.setItem('tempSurveyResults', JSON.stringify(sender.data));
             localStorage.setItem('lastPageVisited', sender.currentPageNo);
         });
@@ -160,9 +160,9 @@
                         if (!sessionCode || sessionCode == undefined || sessionCode == '' || sessionCode.length == 0) {
                             var dataAsString = localStorage.getItem('tempSurveyResults');
                             survey.data = JSON.parse(dataAsString);
-
                             var currentPageNum = localStorage.getItem('lastPageVisited');
                             survey.currentPageNo = currentPageNum;
+
                             $("#surveyElement").Survey({
                                 model: survey,
                                 onComplete: saveResults
@@ -199,6 +199,10 @@
                     success: function (data, textStatus, jqXHR) {
                         survey.data = JSON.parse(data.JsonResults);
                         survey.currentPageNo = data.LastPageVisited;
+                        
+                        localStorage.setItem('tempSurveyResults', data.JsonResults);
+                        localStorage.setItem('lastPageVisited', data.LastPageVisited);
+
                         $("#surveyElement").Survey({
                             model: survey,
                             onComplete: saveResults
@@ -220,18 +224,41 @@
         $("#surveyElement").Survey({
             model: survey,
             css: {
-                    matrix: { root: "table table-striped" },
-                    //navigationButton: "button btn-lg",
-                    text: "form-control input-lg col-xs-4",
-                    comment: "form-control input-lg" }
+                matrix: { root: "table table-striped" },
+                //navigationButton: "button btn-lg",
+                text: "form-control input-lg col-xs-4",
+                comment: "form-control input-lg" }
         });
 
-        function reRunSurvey() {
+        function resetSurvey() {
+            var results = localStorage.getItem('tempSurveyResults');
+
+            if (results)
+            {
+                getConfirmation(
+                    'Your data will be lost',
+                    'If you proceed all of your session data will be lost. Please consider saving your changes before reseting survey. Do you want to reset current progress?',
+                    doReset);
+            }
+        }
+
+        function doReset (sender)
+        {
+            sessionCode = '';
+
+            localStorage.removeItem('tempSurveyResults');
+            localStorage.removeItem('lastPageVisited');
+
             survey.clear();
             survey.render('survey');
         }
 
         function saveResults(survey, isIncomoplete) {
+            if (localStorage.getItem('tempSurveyResults') == null || localStorage.getItem('tempSurveyResults') == '')
+            {
+                return;
+            }
+
             spinStart();
 
             var lastVisitedPage = localStorage.getItem('lastPageVisited');
@@ -250,6 +277,10 @@
                     dataType: 'text',
                     success: function (data, textStatus, jqXHR) {
                         spinStop();
+
+                        // Update session code
+                        sessionCode = data;
+
                         if (isIncomoplete) {
                             var resumeLink = '';
                             if (!language || language == undefined || language == '' || language.length == 0) {
@@ -302,7 +333,7 @@
 
                         }
                     });
-                
+
                 // Delete email field contents
                 $('#emailAddress').val('');
 
