@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Questionnaire - @ViewBag.Title</title>
     @Styles.Render("~/Content/surveycss")
+    @Styles.Render("~/Content/PatQue")
     @Scripts.Render("~/bundles/modernizr")
 </head>
 <body>
@@ -29,7 +30,7 @@
 
         <hr />
         <footer>
-            <p>&copy; @DateTime.Now.Year - EuropaColon</p>
+            <p><a href="mailto:help@patque.net?subject=No Page available" target="_blank">Get help with Survey</a> | &copy; @DateTime.Now.Year - PatQue.net</p>
         </footer>
     </div>
     @Scripts.Render("~/bundles/jquery")

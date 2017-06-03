@@ -1,0 +1,17 @@
+﻿/* setting input text field to 60%*/
+input,
+select,
+textarea {
+    max-width: 600px;
+}
+.form-control[type="text"]{ width:60%; min-width:250px;}
+
+.table-responsive>.table>tbody>tr>td{
+    vertical-align: middle !important;
+    padding-top: 30px;
+}
+.vcenter {
+    display: inline-block;
+    vertical-align: middle;
+    float: none;
+}
