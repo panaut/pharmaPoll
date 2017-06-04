@@ -138,6 +138,12 @@
   <data name="patque_dialog_error_caption" xml:space="preserve">
     <value>Well... That wasn\'t that well...</value>
   </data>
+  <data name="patque_dialog_error_errorVerifyingPdfExistence" xml:space="preserve">
+    <value>Due to "temporary difficulties" we were unable to verify the very existence of the file you requested. Sorry about that, and give it a try in a few minutes...</value>
+  </data>
+  <data name="patque_dialog_error_pdfNotFound" xml:space="preserve">
+    <value>It's hard to believe but the file was here just a moment ago :-) Weeeell... not realy... The truth is - we don't have it... Sorry...</value>
+  </data>
   <data name="patque_dialog_error_saveSessionFailed" xml:space="preserve">
     <value>We are experiencing "temporary" dificulties :-) However data you submitted is stored in your browser. Please try to submit your data whenever you feel like it...</value>
   </data>
@@ -170,9 +176,6 @@
   </data>
   <data name="patque_dialog_resume_title" xml:space="preserve">
     <value>Your work is saved</value>
-  </data>
-  <data name="patque_dialog_sessionSavedMessage" xml:space="preserve">
-    <value>You will be able to resume this survey any time you like. To do so, just click this link:</value>
   </data>
   <data name="patque_dialog_supportedLanguagesCaption" xml:space="preserve">
     <value>Supported Languages</value>

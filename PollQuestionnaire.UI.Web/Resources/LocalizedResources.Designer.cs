@@ -124,6 +124,24 @@ namespace PollQuestionnaire.UI.Web.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Due to &quot;temporary difficulties&quot; we were unable to verify the very existence of the file you requested. Sorry about that, and give it a try in a few minutes....
+        /// </summary>
+        public static string patque_dialog_error_errorVerifyingPdfExistence {
+            get {
+                return ResourceManager.GetString("patque_dialog_error_errorVerifyingPdfExistence", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to It&apos;s hard to believe but the file was here just a moment ago :-) Weeeell... not realy... The truth is - we don&apos;t have it... Sorry....
+        /// </summary>
+        public static string patque_dialog_error_pdfNotFound {
+            get {
+                return ResourceManager.GetString("patque_dialog_error_pdfNotFound", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to We are experiencing &quot;temporary&quot; dificulties :-) However data you submitted is stored in your browser. Please try to submit your data whenever you feel like it....
         /// </summary>
         public static string patque_dialog_error_saveSessionFailed {
@@ -219,15 +237,6 @@ namespace PollQuestionnaire.UI.Web.Resources {
         public static string patque_dialog_resume_title {
             get {
                 return ResourceManager.GetString("patque_dialog_resume_title", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to You will be able to resume this survey any time you like. To do so, just click this link:.
-        /// </summary>
-        public static string patque_dialog_sessionSavedMessage {
-            get {
-                return ResourceManager.GetString("patque_dialog_sessionSavedMessage", resourceCulture);
             }
         }
         

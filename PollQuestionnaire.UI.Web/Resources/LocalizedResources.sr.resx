@@ -118,6 +118,69 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="patque_dialog_supportedLanguagesCaption" xml:space="preserve">
-    <value>Srpski</value>
+    <value>srpski</value>
+  </data>
+  <data name="patque_btnPrint_Text" xml:space="preserve">
+    <value>Štampana verzija</value>
+  </data>
+  <data name="patque_btnPrint_tooltip" xml:space="preserve">
+    <value>Štampajte PDF verziju ove ankete kako biste je ručno popunili i poslali nam</value>
+  </data>
+  <data name="patque_btnReset_text" xml:space="preserve">
+    <value>Započnite iznova</value>
+  </data>
+  <data name="patque_btnReset_tooltip" xml:space="preserve">
+    <value>Odbacite vrednosti koje ste dosad uneli i započnite anketu iznova</value>
+  </data>
+  <data name="patque_dialog_continueLaterText" xml:space="preserve">
+    <value>Nastavite kasnije</value>
+  </data>
+  <data name="patque_dialog_continueLaterTitle" xml:space="preserve">
+    <value>Sačuvajte trenutne izmene i nastavite popunjavanje neki drugi put</value>
+  </data>
+  <data name="patque_dialog_error_caption" xml:space="preserve">
+    <value>Došlo je do problema</value>
+  </data>
+  <data name="patque_dialog_error_saveSessionFailed" xml:space="preserve">
+    <value>Snimanje je bilo neuspešno ali ne brinite, vaše izmene su sačuvane u pregledaču. Pokušajte da sačuvate malo kasnije...</value>
+  </data>
+  <data name="patque_dialog_error_sessionNotFound" xml:space="preserve">
+    <value>Nažalost nismo našli podatke vaše sesije. Proverite kod koji ste uneli kroz hiperlink i eventualno pokušajte ponovo...</value>
+  </data>
+  <data name="patque_dialog_resume_title" xml:space="preserve">
+    <value>Vaše izmene su sačuvane</value>
+  </data>
+  <data name="patque_dialog_resetWarningTitle" xml:space="preserve">
+    <value>Podaci koje ste uneli će biti izbrisani</value>
+  </data>
+  <data name="patque_dialog_resume_text1" xml:space="preserve">
+    <value>Moćićete da nastavite popunjavanje kad vam god to bude odgovaralo. Jednostavno treba da kliknete na hiperlink koji vidite ispod.</value>
+  </data>
+  <data name="patque_dialog_error_surveyLoadFailed" xml:space="preserve">
+    <value>Nismo uspeli da nađemo anketu koju ste tražili. Jeste li sigurni da je kod koji ste uneli kroz hiperlink ispravan?</value>
+  </data>
+  <data name="patque_dialog_resume_text2" xml:space="preserve">
+    <value>Možete ga jednostavno pribeležiti, ili ukoliko želite da unesete svoju imejl adresu mi ćemo vam ga poslati.</value>
+  </data>
+  <data name="patque_dialog_thankYouCaption" xml:space="preserve">
+    <value>Hvala vam!</value>
+  </data>
+  <data name="patque_dialog_resume_btnSendEmail" xml:space="preserve">
+    <value>Pošalj</value>
+  </data>
+  <data name="patque_dialog_resume_emailWarning" xml:space="preserve">
+    <value>* Unestite ispravnu imejl adresu</value>
+  </data>
+  <data name="patque_dialog_resume_btnClose" xml:space="preserve">
+    <value>Zatvori</value>
+  </data>
+  <data name="patque_dialog_error_errorVerifyingPdfExistence" xml:space="preserve">
+    <value>Zbog "trenutnih poteškoća" nismo mogli čak ni da utvrdimo da li fajl koji ste tražili uopšte postoji kod nas na serveru. Pokušajte ponovo malo kasnije...</value>
+  </data>
+  <data name="patque_dialog_resetWarningText" xml:space="preserve">
+    <value>Izmene koje ste evenualno uneli će biti odbačene ukoliko nastavite. Ukoliko želite da ipak sačuvate podatke pre brisanja zatvorite ovu poruku i učinite to.</value>
+  </data>
+  <data name="patque_dialog_error_pdfNotFound" xml:space="preserve">
+    <value>Nažalost nemamo fajl za jezik koji ste tražili.</value>
   </data>
 </root>

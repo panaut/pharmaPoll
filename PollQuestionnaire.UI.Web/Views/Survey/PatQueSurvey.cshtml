@@ -209,13 +209,42 @@
             newUrl = newUrl + '&lang=' + $(this).attr('lang');
 
             window.location.href = newUrl;
-        });        
+        });
 
         function resetSurvey() {
             getConfirmation(
                 '@LocalizedResources.patque_dialog_resetWarningTitle',
                 '@LocalizedResources.patque_dialog_resetWarningText',
                 doReset);
+        }
+
+        function downloadPdf() {
+            $.ajax(
+                '@Url.Action("VerifySurveyPdf", "Survey", new { area="" })',
+                {
+                    method: "GET",
+                    async: true,
+                    data: { surveyCode: _codeSurveyId, lang: _language },
+                    dataType: 'text',
+                    success: function (data, textStatus, jqXHR) {
+                        if (data && data.toLowerCase() == 'true') {
+                            var dloadURL = '@Url.Action("DownloadPdf", "Survey", new { surveyCode = "__surveyCode__", area = "" })';
+                            dloadURL = dloadURL.replace('__surveyCode__', _codeSurveyId);
+                            dloadURL = dloadURL + '&lang=' + _language;
+
+                            window.location.href = dloadURL;
+                        } else {
+                            showMessage(
+                            '@LocalizedResources.patque_dialog_error_caption',
+                            '@LocalizedResources.patque_dialog_error_pdfNotFound');
+                        }
+                    },
+                    error: function (jqXHR, textStatus, errorThrown) {
+                        showMessage(
+                            '@LocalizedResources.patque_dialog_error_caption',
+                            '@LocalizedResources.patque_dialog_error_errorVerifyingPdfExistence');
+                    }
+                });
         }
 
         function doReset(sender) {

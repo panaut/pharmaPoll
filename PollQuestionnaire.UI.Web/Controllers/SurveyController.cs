@@ -138,15 +138,25 @@ namespace PollQuestionnaire.UI.Web.Controllers
         {
             string pdfDownloadPath = Server.MapPath("~/SurveyPdf");
 
+            if (string.IsNullOrEmpty(lang))
+            {
+                lang = "DEFAULT";
+            }
+
             var targetFileName = System.IO.Path.Combine(pdfDownloadPath, $"{surveyCode}.{lang}.pdf");
 
-            return System.IO.File.Exists(targetFileName));
+            return System.IO.File.Exists(targetFileName);
         }
 
         [HttpGet]
         public FileResult DownloadPdf(string surveyCode, string lang = default(string))
         {
             string pdfDownloadPath = Server.MapPath("~/SurveyPdf");
+
+            if (string.IsNullOrEmpty(lang))
+            {
+                lang = "DEFAULT";
+            }
 
             var targetFileName = System.IO.Path.Combine(pdfDownloadPath, $"{surveyCode}.{lang}.pdf");
 
