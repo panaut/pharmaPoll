@@ -21,17 +21,38 @@ textarea {
     float: none;
 }
 
-@media(max-width: 768px) {
+@media(max-width: 1000px) {
   .navbar-brand {
-    visibility:hidden;
+      max-width:80%;
+    font-size:1.5rem;    
+    margin-bottom:10px;
   }
 }
-h1{
-    color:#9d9d9d;
-     word-wrap: break-word;
-     -webkit-hyphens: auto;
-     -moz-hyphens: auto;
-     -ms-hyphens: auto;
-     -o-hyphens: auto;
-     hyphens: auto;
+@media(max-width: 450px) {
+  .navbar-brand {
+    font-size:1rem;
+    /*display:none;*/
+  }
+}
+@media(max-width: 300px) {
+     .truncate-ellipsis {
+    display: table;
+    table-layout: fixed;
+    width: 100%;
+    white-space: nowrap;
+}
+ 
+.truncate-ellipsis > * {
+    display: table-cell;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+}
+
+.row{    
+    margin:10px;
+}
+.navbar
+{
+ /*min-height:25px;*/ /*// or value of ur desire*/
 }
