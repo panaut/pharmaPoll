@@ -105,6 +105,11 @@ table td {
 /*.table thead > tr > th { border-top: inherit; }
 .table thead > tr > th, .table tbody > tr > th, .table tfoot > tr > th, .table thead > tr > td, .table tbody > tr > td, .table tfoot > tr > td { border: 1px solid #000; }*/
 
+/*active page link*/ 
+.svd_container .svd_content .svd_survey_designer .svd_editors .svd_pages_editor .nav-tabs li.active .svd_page_nav {   
+    background-color:#f3f3f4;
+}
+
 /* collapsing navbar earlier */
 
 @media  (max-width: 990px) {
