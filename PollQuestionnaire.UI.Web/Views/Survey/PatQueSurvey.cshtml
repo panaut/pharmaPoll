@@ -11,7 +11,7 @@
 
 <div id="surveyElement"></div>
 
-<div class="modal fade" id="resumeModal" data-dismiss="modal" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="infoModal" aria-hidden="true">
+<div class="modal fade" id="resumeModal" data-dismiss="modal" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="resumeModal" aria-hidden="true">
     <div class="modal-dialog" role="dialog">
         <div class="modal-content">
             <div class="modal-header">
@@ -27,35 +27,28 @@
                         @LocalizedResources.patque_dialog_resume_text2
                     </h4>
                 </div>
-
                 <div class="row"></div>
-
                 <div class="row" style="text-align:center">
                     <h5 id="resumeLink"></h5>
                 </div>
 
                 <div class="row"></div>
-
                 <div class="row">
                     <div class="input-group">
                         <span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
                         <input id="emailAddress" type="email" class="form-control" name="email" placeholder="Email" required>
                     </div>
                 </div>
-
                 <div id="incorrectEmailWarning" hidden class="row">
                     <h5 style="color: red; float: right">@LocalizedResources.patque_dialog_resume_emailWarning</h5>
                 </div>
             </div>
-
             <div class="modal-footer">
                 <button type="button" class="btn btn-primary" onclick="sendEmail()">@LocalizedResources.patque_dialog_resume_btnSendEmail</button>
                 <button type="button" class="btn btn-primary" data-dismiss="modal">@LocalizedResources.patque_dialog_resume_btnClose</button>
             </div>
         </div>
     </div>
-
-    <hr />
     <footer>
         <p>&copy; @DateTime.Now.Year - EuropaColon</p>
     </footer>
