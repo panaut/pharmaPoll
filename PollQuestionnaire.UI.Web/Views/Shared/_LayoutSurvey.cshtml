@@ -1,13 +1,59 @@
-﻿<!DOCTYPE html>
+﻿@using PollQuestionnaire.UI.Web.Resources;
+<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Questionnaire - @ViewBag.Title</title>
-    @Styles.Render("~/Content/surveycss")
-    @Scripts.Render("~/bundles/modernizr")
+    @*@Styles.Render("~/Content/surveycss")*@
+    @*@Styles.Render("~/Content/survey/css")*@
+    @Styles.Render("~/Content/css")
 </head>
 <body>
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <div class="navbar-brand">
+                    @ViewBag.surveyName
+                </div>
+                @*<a class="navbar-brand" href="#">WebSiteName</a>*@
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li id="continueLater"><a href="#" onclick="saveResults(survey, true)" title="@LocalizedResources.patque_dialog_continueLaterTitle">@LocalizedResources.patque_dialog_continueLaterText</a></li>
+                    <li><a href="#" onclick="resetSurvey()">Reset survey</a></li>
+                    <li><a href="#" class="dloadPdf" data-toggle="modal" title="@LocalizedResources.patque_btnPrint_tooltip">@LocalizedResources.patque_btnPrint_Text</a></li>
+                </ul>
+
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <select class="selectpicker">
+                            <optgroup label="Supported Languages">
+                                <option value="en">English</option>
+                                <option value="sr">Serbian</option>
+                                <option value="de">German (DE)</option>
+                                <option value="at">German (AT)</option>
+                                <option value="es">Spanish</option>
+                                <option value="nl">Dutch</option>
+                                <option value="gr">Greek</option>
+                                <option value="pt">Portuguese</option>
+                                <option value="pl">Polish</option>
+                                <option value="hu">Hungarian</option>
+                                <option value="tr">Turkish</option>
+                                <option value="it">Italian</option>
+                            </optgroup>
+                        </select>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
     <div class="container body-content">
         @RenderBody()
 
@@ -49,7 +95,7 @@
             <p>&copy; @DateTime.Now.Year - EuropaColon</p>
         </footer>
     </div>
-
+    @Scripts.Render("~/bundles/modernizr")
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
     @Scripts.Render("~/bundles/Spinner")
@@ -69,6 +115,10 @@
 
             $('#confirmationModal button#cmBtnYes').click(yesAction);
             $('#confirmationModal button#cmBtnNo').click(noAction);
+        }
+
+        function setLanguage(value) {
+            alert(value);
         }
 
     </script>

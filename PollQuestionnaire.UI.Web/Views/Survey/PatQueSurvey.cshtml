@@ -4,61 +4,12 @@
     ViewBag.Title = "PatQueSurvey";
     Layout = "~/Views/Shared/_LayoutSurvey.cshtml";
 }
-@*<link href="http://getbootstrap.com/dist/css/bootstrap.css" type="text/css" rel="stylesheet" />*@
-@Styles.Render("~/Content/survey/css")
 
 <div class="alert alert-warning hidden" id="alert">
     <strong>We don&#39;t have a survey for you!</strong>
 </div>
 
-<div class="modal fullscreen fade" id="surveyModal" tabindex="-1" role="dialog" aria-labelledby="SurveyModal" aria-hidden="true" data-backdrop="static" data-keyboard="false">
-    <div class="modal-dialog" role="dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <table class="table table-striped table-responsive" id="surveyTable" style="vertical-align:middle; text-align:center;">
-                    <thead>
-                        <tr>
-                            <th width="5"></th>
-                            <th valign="middle" width="100"></th>
-                            <th valign="middle"></th>
-                            <th class="vertical-center" width="25"></th>
-                            <th width="5"></th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr style="border:; border-color:darkgray">
-                            <td></td>
-                            <td><a href="#" class="dloadTranslation" data-toggle="tooltip" title="www.europacolon.com"><img src="~/images/EuropaColon_Logo_2016_256x183.jpg" class="img-responsive" alt="Europa Colon Logo" style="width:80%"> </a></td>
-                            <td>
-                                <h2 class="modal-title" id="ModalTitle">@ViewBag.surveyName</h2>
-                                <h3><a href="#" id="continueLater" onclick="saveResults(survey, true)" class="continLater" title="@LocalizedResources.patque_dialog_continueLaterTitle">@LocalizedResources.patque_dialog_continueLaterText</a></h3>
-                                <h3><a href="#" onclick="resetSurvey()">Reset survey</a></h3>
-                            </td>
-                            <td>
-                                <a href="#" class="dloadPdf" data-toggle="modal" data-language="@ViewBag.language" data-surveyId="@ViewBag.codeSurveyId" title="@LocalizedResources.patque_btnPrint_tooltip">
-                                    <div>
-                                        <h1><i class="glyphicon glyphicon-print"></i></h1>
-                                        <h3>@LocalizedResources.patque_btnPrint_Text</h3>
-                                    </div>
-                                </a>
-                            </td>
-                            <td></td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-            <div class="modal-body">
-                <div id="surveyElement" data-id="" data-surveyId="@ViewBag.codeSurveyId" data-surveyName="@ViewBag.surveyCulture">
-                </div>
-            </div>
-            <div class="modal-footer">
-                <p>
-                    &copy; @DateTime.Now.Year - EuropaColon
-                </p>
-            </div>
-        </div>
-    </div>
-</div>
+<div id="surveyElement"></div>
 
 <div class="modal fade" id="resumeModal" data-dismiss="modal" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="infoModal" aria-hidden="true">
     <div class="modal-dialog" role="dialog">
@@ -73,7 +24,7 @@
                         @LocalizedResources.patque_dialog_resume_text1
                     </h4>
                     <h4 style="text-align:justify;">
-                        @LocalizedResources.patque_dialog_resume_text1
+                        @LocalizedResources.patque_dialog_resume_text2
                     </h4>
                 </div>
 
@@ -113,12 +64,27 @@
 @section Scripts {
     @Scripts.Render("~/bundles/survey")
     <script>
-        $('document').ready(function () {
-            var completedCookie = getCookie('surveyCompleted')
-            if (completedCookie == 'true') {
-                $('#continueLater').attr('hidden', true);
-            }
-        });
+        var _codeSurveyId = '@ViewBag.codeSurveyId';
+
+        // Construct Survey Specific Cokie Name
+        var completedCookieName = _codeSurveyId + '-surveyCompleted';
+
+        // Survey specific Keys for Items in Local Storage
+        var sessionCodeKey = 'pq-' + _codeSurveyId + '-sessionCode';
+        var tempSurveyResultsKey = 'pq-' + _codeSurveyId + '-tempSurveyResults';
+        var lastPageVisitedKey = 'pq-' + _codeSurveyId + '-lastPageVisited';
+
+        var _language = '@ViewBag.language';
+        if (_language != '')
+            $('select.selectpicker').val(_language);
+
+        if ('@ViewBag.sessionCode' != '')
+            localStorage.setItem(sessionCodeKey, '@ViewBag.sessionCode');
+
+        var completedCookie = getCookie(completedCookieName)
+        if (completedCookie == 'true') {
+            $('#continueLater').addClass('hidden');
+        }
 
         Survey.JsonObject.metaData.addProperty("survey", { name: "internalId:number" });
         Survey.JsonObject.metaData.addProperty("page", { name: "internalId:number" });
@@ -127,40 +93,39 @@
         Survey.JsonObject.metaData.addProperty("multipletextitem", { name: "internalId:number" });
         Survey.JsonObject.metaData.addProperty("matrixdropdowncolumn", { name: "internalId:number" });
 
-        var survey = new Survey.Model({ cookieName: "surveyCompleted" });
-        var codeSurveyId = $('#surveyElement').attr('data-surveyId');
-
-        var sessionCode = '@ViewBag.sessionCode';
-        var language = '@ViewBag.language';
+        // Define a Survey Specific Cookie
+        var survey = new Survey.Model({ cookieName: completedCookieName });
 
         survey.showProgressBar = "bottom";
+
         //survey.cookie
         document.cookie.json = true;
 
         survey.onValueChanged.add(function (sender, options) {
-            localStorage.setItem('tempSurveyResults', JSON.stringify(sender.data));
-            localStorage.setItem('lastPageVisited', sender.currentPageNo);
+            localStorage.setItem(tempSurveyResultsKey, JSON.stringify(sender.data));
+            localStorage.setItem(lastPageVisitedKey, sender.currentPageNo);
         });
 
         // Ajax load
-        loadSurvey(codeSurveyId);
+        loadSurvey(_codeSurveyId, '@ViewBag.sessionCode');
 
-        function loadSurvey(surveyCode) {
+        function loadSurvey(srvCode, explicitSessionCode) {
             spinStart();
             $.ajax(
                 '@Url.Action("GetActiveSurvey", "Survey", new { area="" })',
                 {
                     method: "GET",
                     async: true,
-                    data: { surveyCode: surveyCode, lang: language },
+                    data: { surveyCode: srvCode, lang: _language },
                     dataType: 'json',
                     success: function (data, textStatus, jqXHR) {
                         survey.setJsonObject(data);
 
-                        if (!sessionCode || sessionCode == undefined || sessionCode == '' || sessionCode.length == 0) {
-                            var dataAsString = localStorage.getItem('tempSurveyResults');
+                        if (!explicitSessionCode || explicitSessionCode == undefined || explicitSessionCode == '' || explicitSessionCode.length == 0) {
+                            // A session is not requested explicitly - load local results if any
+                            var dataAsString = localStorage.getItem(tempSurveyResultsKey);
                             survey.data = JSON.parse(dataAsString);
-                            var currentPageNum = localStorage.getItem('lastPageVisited');
+                            var currentPageNum = localStorage.getItem(lastPageVisitedKey);
                             survey.currentPageNo = currentPageNum;
 
                             $("#surveyElement").Survey({
@@ -172,7 +137,8 @@
                             $('#surveyModal').modal('show');
                         }
                         else {
-                            loadOngoingSession(sessionCode);
+                            // The session is explicitly requested - let's load it
+                            loadOngoingSession(srvCode, explicitSessionCode);
                         }
                     },
                     error: function (jqXHR, textStatus, errorThrown) {
@@ -187,21 +153,23 @@
                 });
         };
 
-        function loadOngoingSession(code) {
+        function loadOngoingSession(srvCode, sesCode) {
             spinStart();
+
             $.ajax(
                 '@Url.Action("GetActiveSession", "Survey", new { area="" })',
                 {
                     method: "GET",
                     async: true,
-                    data: { surveyCode: codeSurveyId, sessionCode: code },
+                    data: { surveyCode: srvCode, sessionCode: sesCode },
                     dataType: 'json',
                     success: function (data, textStatus, jqXHR) {
                         survey.data = JSON.parse(data.JsonResults);
                         survey.currentPageNo = data.LastPageVisited;
-                        
-                        localStorage.setItem('tempSurveyResults', data.JsonResults);
-                        localStorage.setItem('lastPageVisited', data.LastPageVisited);
+
+                        localStorage.setItem(tempSurveyResultsKey, data.JsonResults);
+                        localStorage.setItem(lastPageVisitedKey, data.LastPageVisited);
+                        localStorage.setItem(sessionCodeKey, sesCode);
 
                         $("#surveyElement").Survey({
                             model: survey,
@@ -227,41 +195,55 @@
                 matrix: { root: "table table-striped" },
                 //navigationButton: "button btn-lg",
                 text: "form-control input-lg col-xs-4",
-                comment: "form-control input-lg" }
+                comment: "form-control input-lg"
+            }
+        });
+
+        $('select.selectpicker').change(function (sender) {
+            var newUrl = '@Url.Action("PatQueSurvey", "Survey", new { area="", surveyCode="__surveyCode__" })';
+            newUrl = newUrl.replace('__surveyCode__', _codeSurveyId);
+
+            var session = localStorage.getItem(sessionCodeKey);
+
+            newUrl = newUrl + '&lang=' + this.value;
+
+            window.location.href = newUrl;
         });
 
         function resetSurvey() {
-            var results = localStorage.getItem('tempSurveyResults');
-
-            if (results)
-            {
-                getConfirmation(
-                    'Your data will be lost',
-                    'If you proceed all of your session data will be lost. Please consider saving your changes before reseting survey. Do you want to reset current progress?',
-                    doReset);
-            }
+            getConfirmation(
+                'Your data will be lost',
+                'If you proceed all of your session data will be lost. Please consider saving your changes before reseting survey. Do you want to reset current progress?',
+                doReset);
         }
 
-        function doReset (sender)
-        {
-            sessionCode = '';
+        function doReset(sender) {
+            // Make sure that Save Survey link is visible
+            // Remove ContinueLater link
+            $('#continueLater').removeClass('hidden');
 
-            localStorage.removeItem('tempSurveyResults');
-            localStorage.removeItem('lastPageVisited');
+            localStorage.removeItem(tempSurveyResultsKey);
+            localStorage.removeItem(lastPageVisitedKey);
+            localStorage.removeItem(sessionCodeKey);
+
+            // Invalidate completion cookie, if any
+            invalidateCookie(completedCookieName);
 
             survey.clear();
             survey.render('survey');
         }
 
         function saveResults(survey, isIncomoplete) {
-            if (localStorage.getItem('tempSurveyResults') == null || localStorage.getItem('tempSurveyResults') == '')
-            {
+            if (localStorage.getItem(tempSurveyResultsKey) == null || localStorage.getItem(tempSurveyResultsKey) == '') {
                 return;
             }
 
             spinStart();
 
-            var lastVisitedPage = localStorage.getItem('lastPageVisited');
+            var surveyCode = survey.surveyId;
+            var sessionCode = localStorage.getItem(sessionCodeKey);
+
+            var lastVisitedPage = localStorage.getItem(lastPageVisitedKey);
             $.ajax(
                 '@Url.Action("SaveResults", "Survey", new { area="" })',
                 {
@@ -280,18 +262,19 @@
 
                         // Update session code
                         sessionCode = data;
+                        localStorage.setItem(sessionCodeKey, sessionCode);
 
                         if (isIncomoplete) {
                             var resumeLink = '';
-                            if (!language || language == undefined || language == '' || language.length == 0) {
+                            if (!_language || _language == undefined || _language == '' || _language.length == 0) {
                                 resumeLink = '@Url.Action("PatQueSurvey", "Survey", new { area="", surveyCode="__surveyCode__", sessionCode="__sessionCode__" })';
                             }
                             else {
                                 resumeLink = '@Url.Action("PatQueSurvey", "Survey", new { area="", surveyCode="__surveyCode__", sessionCode="__sessionCode__", lang="__language__" })';
-                                resumeLink = resumeLink.replace("__language__", language);
+                                resumeLink = resumeLink.replace("__language__", _language);
                             }
 
-                            resumeLink = resumeLink.replace("__surveyCode__", codeSurveyId);
+                            resumeLink = resumeLink.replace("__surveyCode__", surveyCode);
                             resumeLink = resumeLink.replace("__sessionCode__", data);
 
                             var entireLink = document.domain + '__resumeLink__';
@@ -300,7 +283,7 @@
                             showResumeModal(entireLink);
                         } else {
                             // Remove ContinueLater link
-                            $('#continueLater').attr('hidden', true);
+                            $('#continueLater').addClass('hidden');
                         }
                     },
                     error: function (jqXHR, textStatus, errorThrown) {
@@ -360,6 +343,10 @@
             var parts = value.split("; " + name + "=");
             if (parts.length == 2) return parts.pop().split(";").shift();
         }
+
+        var invalidateCookie = function (name) {
+            document.cookie = name + '=;expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+        };
     </script>
 }
 
