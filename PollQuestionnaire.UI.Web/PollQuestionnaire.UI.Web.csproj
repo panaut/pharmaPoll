@@ -334,6 +334,7 @@
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\style.css" />
+    <Content Include="Content\PatQue.css" />
     <Content Include="Content\surveyjs\fonts\icomoon.svg" />
     <Content Include="Content\surveyjs\mod.css" />
     <Content Include="Content\surveyjs\survey.css" />
@@ -511,6 +512,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="images\" />
     <Folder Include="Views\Home\UploadFiles\" />
   </ItemGroup>
   <ItemGroup>
