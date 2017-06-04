@@ -6,12 +6,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Questionnaire - @ViewBag.Title</title>
     @Styles.Render("~/Content/surveycss")
+    @Styles.Render("~/Content/css")
     @Styles.Render("~/Content/PatQue")
     @Scripts.Render("~/bundles/modernizr")
 </head>
 <body>
     <nav class="navbar navbar-inverse navbar-fixed-top">
-        <div class="container">
+        <div class="container-fluid">
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
                     <span class="icon-bar"></span>
@@ -22,33 +23,37 @@
                 <div class="navbar-brand">
                     @ViewBag.surveyName
                 </div>
+                <
                 @*<a class="navbar-brand" href="#">WebSiteName</a>*@
             </div>
-            <div class="navbar-collapse collapse">
+            <div class="navbar-collapse collapse in">
                 <ul class="nav navbar-nav">
                     <li id="continueLater"><a href="#" onclick="saveResults(survey, true)" title="@LocalizedResources.patque_dialog_continueLaterTitle">@LocalizedResources.patque_dialog_continueLaterText</a></li>
                     <li><a href="#" onclick="resetSurvey()">Reset survey</a></li>
                     <li><a href="#" class="dloadPdf" data-toggle="modal" title="@LocalizedResources.patque_btnPrint_tooltip">@LocalizedResources.patque_btnPrint_Text</a></li>
                 </ul>
 
+
                 <ul class="nav navbar-nav navbar-right">
-                    <li>
-                        <select class="selectpicker">
-                            <optgroup label="@LocalizedResources.patque_dialog_supportedLanguagesCaption">
-                                <option value="en">English</option>
-                                <option value="sr">Srpski</option>
-                                <option value="de">Deutsch (DE)</option>
-                                <option value="at">Deutsch (AT)</option>
-                                <option value="es">español</option>
-                                <option value="nl">Nederlands</option>
-                                <option value="gr">ελληνικά</option>
-                                <option value="pt">português</option>
-                                <option value="pl">polski</option>
-                                <option value="hu">magyar</option>
-                                <option value="tr">Türkçe</option>
-                                <option value="it">italiano</option>
-                            </optgroup>
-                        </select>
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                            @LocalizedResources.patque_dialog_supportedLanguagesCaption
+                            <span class="caret"></span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li class="language" lang="en"><a href="#">english</a></li>
+                            <li class="language" lang="sr"><a href="#">srpski</a></li>
+                            <li class="language" lang="de"><a href="#">deutsch(de)</a></li>
+                            <li class="language" lang="at"><a href="#">deutsch(at)</a></li>
+                            <li class="language" lang="es"><a href="#">español</a></li>
+                            <li class="language" lang="nl"><a href="#">nederlands</a></li>
+                            <li class="language" lang="gr"><a href="#">ελληνικά</a></li>
+                            <li class="language" lang="pt"><a href="#">português</a></li>
+                            <li class="language" lang="pl"><a href="#">polski</a></li>
+                            <li class="language" lang="hu"><a href="#">magyar</a></li>
+                            <li class="language" lang="tr"><a href="#">türkçe</a></li>
+                            <li class="language" lang="it"><a href="#">italiano</a></li>
+                        </ul>
                     </li>
                 </ul>
             </div>

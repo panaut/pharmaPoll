@@ -75,8 +75,6 @@
         var lastPageVisitedKey = 'pq-' + _codeSurveyId + '-lastPageVisited';
 
         var _language = '@ViewBag.language';
-        if (_language != '')
-            $('select.selectpicker').val(_language);
 
         if ('@ViewBag.sessionCode' != '')
             localStorage.setItem(sessionCodeKey, '@ViewBag.sessionCode');
@@ -198,17 +196,16 @@
                 comment: "form-control input-lg"
             }
         });
-
-        $('select.selectpicker').change(function (sender) {
+        $('.dropdown-menu li.language').on('click', function (sender) {
             var newUrl = '@Url.Action("PatQueSurvey", "Survey", new { area="", surveyCode="__surveyCode__" })';
             newUrl = newUrl.replace('__surveyCode__', _codeSurveyId);
 
             var session = localStorage.getItem(sessionCodeKey);
 
-            newUrl = newUrl + '&lang=' + this.value;
+            newUrl = newUrl + '&lang=' + $(this).attr('lang');
 
             window.location.href = newUrl;
-        });
+        });        
 
         function resetSurvey() {
             getConfirmation(
