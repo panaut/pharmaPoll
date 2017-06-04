@@ -16,7 +16,8 @@ namespace PollQuestionnaire.UI.Web
                         "~/Scripts/surveyjs/editor/surveyeditor.min.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/survey").Include(
-                        "~/Scripts/surveyjs/survey/survey.jquery.min.js"));
+                        "~/Scripts/surveyjs/survey/survey.jquery.min.js",
+                        "~/Scripts/surveyjs/survey/survey.AdditionalLocalizations.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/Spinner").Include(
                        "~/Scripts/Spinner/spin.js",

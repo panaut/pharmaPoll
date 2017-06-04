@@ -93,6 +93,10 @@
         Survey.JsonObject.metaData.addProperty("multipletextitem", { name: "internalId:number" });
         Survey.JsonObject.metaData.addProperty("matrixdropdowncolumn", { name: "internalId:number" });
 
+        Survey.surveyLocalization.locales['sr'] = customSurveyStringsSerbian;
+        Survey.surveyLocalization.locales['hu'] = customSurveyStringsHungarian;
+        Survey.surveyLocalization.locales['it'] = customSurveyStringsItalian;
+
         // Define a Survey Specific Cookie
         var survey = new Survey.Model({ cookieName: completedCookieName });
 
