@@ -133,6 +133,24 @@ namespace PollQuestionnaire.UI.Web.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to If you proceed all of your session data will be lost. Please consider saving your changes before reseting survey. Do you want to reset current progress?.
+        /// </summary>
+        public static string patque_dialog_resetWarningText {
+            get {
+                return ResourceManager.GetString("patque_dialog_resetWarningText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Your data will be lost.
+        /// </summary>
+        public static string patque_dialog_resetWarningTitle {
+            get {
+                return ResourceManager.GetString("patque_dialog_resetWarningTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Close.
         /// </summary>
         public static string patque_dialog_resume_btnClose {
@@ -192,6 +210,15 @@ namespace PollQuestionnaire.UI.Web.Resources {
         public static string patque_dialog_sessionSavedMessage {
             get {
                 return ResourceManager.GetString("patque_dialog_sessionSavedMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Supported Languages.
+        /// </summary>
+        public static string patque_dialog_supportedLanguagesCaption {
+            get {
+                return ResourceManager.GetString("patque_dialog_supportedLanguagesCaption", resourceCulture);
             }
         }
         

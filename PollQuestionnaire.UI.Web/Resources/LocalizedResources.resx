@@ -141,6 +141,12 @@
   <data name="patque_dialog_error_surveyLoadFailed" xml:space="preserve">
     <value>We were unable to load the survey. Have you checked the survey code?</value>
   </data>
+  <data name="patque_dialog_resetWarningText" xml:space="preserve">
+    <value>If you proceed all of your session data will be lost. Please consider saving your changes before reseting survey. Do you want to reset current progress?</value>
+  </data>
+  <data name="patque_dialog_resetWarningTitle" xml:space="preserve">
+    <value>Your data will be lost</value>
+  </data>
   <data name="patque_dialog_resume_btnClose" xml:space="preserve">
     <value>Close</value>
   </data>
@@ -161,6 +167,9 @@
   </data>
   <data name="patque_dialog_sessionSavedMessage" xml:space="preserve">
     <value>You will be able to resume this survey any time you like. To do so, just click this link:</value>
+  </data>
+  <data name="patque_dialog_supportedLanguagesCaption" xml:space="preserve">
+    <value>Supported Languages</value>
   </data>
   <data name="patque_dialog_thankYouCaption" xml:space="preserve">
     <value>Thank you!</value>
