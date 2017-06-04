@@ -29,7 +29,7 @@ namespace PollQuestionnaire.UI.Web.Controllers
                         string lang = default(string))
         {
             // Survey Code is mandatory parameter
-            if(string.IsNullOrEmpty(surveyCode))
+            if (string.IsNullOrEmpty(surveyCode))
             {
                 // Redirect to Index Page
                 var model = surveyService.Value.GetAllSurveyInfo().OperationResult;
@@ -113,7 +113,7 @@ namespace PollQuestionnaire.UI.Web.Controllers
             return JsonConvert.SerializeObject(sessionResult.OperationResult);
         }
 
-        [HttpPost()]
+        [HttpPost]
         public void SendEmail(string resumeLink, string email)
         {
             resumeLink = HttpUtility.HtmlDecode(resumeLink);
@@ -131,6 +131,33 @@ namespace PollQuestionnaire.UI.Web.Controllers
             ////mail.CC.Add(new System.Net.Mail.MailAddress("MyEmailID@gmail.com"));
 
             //smtpClient.Send(mail);
+        }
+
+        [HttpGet]
+        public bool VerifySurveyPdf(string surveyCode, string lang = default(string))
+        {
+            string pdfDownloadPath = Server.MapPath("~/SurveyPdf");
+
+            var targetFileName = System.IO.Path.Combine(pdfDownloadPath, $"{surveyCode}.{lang}.pdf");
+
+            return System.IO.File.Exists(targetFileName));
+        }
+
+        [HttpGet]
+        public FileResult DownloadPdf(string surveyCode, string lang = default(string))
+        {
+            string pdfDownloadPath = Server.MapPath("~/SurveyPdf");
+
+            var targetFileName = System.IO.Path.Combine(pdfDownloadPath, $"{surveyCode}.{lang}.pdf");
+
+            if (System.IO.File.Exists(targetFileName))
+            {
+                return File(targetFileName, "application/pdf", $"{surveyCode}.{lang}.pdf");
+            }
+            else
+            {
+                throw new System.IO.FileNotFoundException($"File was requested, but doesn't exist ({targetFileName})");
+            }
         }
 
         private void SetCulture(string language)

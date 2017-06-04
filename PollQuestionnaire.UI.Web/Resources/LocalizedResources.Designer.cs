@@ -79,6 +79,24 @@ namespace PollQuestionnaire.UI.Web.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Reset survey.
+        /// </summary>
+        public static string patque_btnReset_text {
+            get {
+                return ResourceManager.GetString("patque_btnReset_text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Delete current progress, and start survey again.
+        /// </summary>
+        public static string patque_btnReset_tooltip {
+            get {
+                return ResourceManager.GetString("patque_btnReset_tooltip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Continue survey later.
         /// </summary>
         public static string patque_dialog_continueLaterText {

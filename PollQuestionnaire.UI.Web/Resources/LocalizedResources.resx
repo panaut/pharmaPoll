@@ -123,6 +123,12 @@
   <data name="patque_btnPrint_tooltip" xml:space="preserve">
     <value>Print PDF version of this form</value>
   </data>
+  <data name="patque_btnReset_text" xml:space="preserve">
+    <value>Reset survey</value>
+  </data>
+  <data name="patque_btnReset_tooltip" xml:space="preserve">
+    <value>Delete current progress, and start survey again</value>
+  </data>
   <data name="patque_dialog_continueLaterText" xml:space="preserve">
     <value>Continue survey later</value>
   </data>

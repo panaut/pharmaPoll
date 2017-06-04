@@ -467,6 +467,7 @@
     <Content Include="Scripts\surveyjs\editor\surveyeditor.min.js" />
     <Content Include="Scripts\surveyjs\survey\survey.jquery.js" />
     <Content Include="Scripts\surveyjs\survey\survey.jquery.min.js" />
+    <Content Include="Scripts\surveyjs\survey\survey.AdditionalLocalizations.js" />
     <Content Include="Scripts\_references.js" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
