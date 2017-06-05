@@ -20,36 +20,67 @@ textarea {
     vertical-align: middle;
     float: none;
 }
-
+#comodo {
+        display:none;
+    }
 @media(max-width: 1000px) {
-  .navbar-brand {
-      max-width:80%;
-    font-size:1.5rem;    
-    margin-bottom:10px;
-  }
-}
-@media(max-width: 450px) {
-  .navbar-brand {
-    font-size:1rem;
-    /*display:none;*/
-  }
-}
-@media(max-width: 300px) {
-     .truncate-ellipsis {
-    display: table;
-    table-layout: fixed;
-    width: 100%;
-    white-space: nowrap;
-}
- 
-.truncate-ellipsis > * {
-    display: table-cell;
-    overflow: hidden;
-    text-overflow: ellipsis;
-}
+    .navbar-brand {
+        max-width: 80%;
+        font-size: 1.5rem;
+        margin-bottom: 10px;
+    }
+
+    
 }
 
-.row{    
-    margin:10px;
+@media(max-width: 450px) {
+    .navbar-brand {
+        font-size: 1rem;
+        /*display:none;*/
+    }    
+}
+
+@media(max-width: 300px) {
+    .truncate-ellipsis {
+        display: table;
+        table-layout: fixed;
+        width: 100%;
+        white-space: nowrap;
+    }
+
+        .truncate-ellipsis > * {
+            display: table-cell;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+}
+@media (min-width: 768px){ 
+  .navbar-nav, .navbar-brand {
+    float: none;
+    text-align: center;
+  }
+
+  .navbar-nav > li, .navbar-brand {
+    display: inline-block;
+    float: none;
+  }
+  .navbar-brand{
+      margin-top:8%;
+  }
+  .navbar-default{
+      padding-left:25%;
+  }
+  #comodo {
+        display:inline-block;
+    }
+}
+
+.row {
+    margin: 10px;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
 }
 

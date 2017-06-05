@@ -350,7 +350,9 @@
     <Content Include="Content\surveyjs\fonts\icomoon.ttf" />
     <Content Include="Content\surveyjs\fonts\icomoon.woff" />
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
-    <Content Include="images\europacolon_logo.png" />
+    <Content Include="images\comodo_secure_seal_100x85_transp.png" />
+    <Content Include="images\comodo_secure_seal_113x59_transp.png" />
+    <Content Include="images\comodo_secure_seal_76x26_transp.png" />
     <Content Include="Scripts\bootstrap-select.js" />
     <Content Include="Scripts\bootstrap-select.min.js" />
     <Content Include="Scripts\bootstrap.js" />
