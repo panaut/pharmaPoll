@@ -34,8 +34,8 @@ namespace PollQuestionnaire.UI.Web
                     uri.Port = 443;
                     Response.Redirect(uri.ToString());
                 }
-
-                
+                // uncomment this one and comment the upper one when using localhost https
+                //Response.Redirect(uri.ToString());
             }
         }
     }
