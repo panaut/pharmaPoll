@@ -273,6 +273,16 @@ namespace Questionnaire.Service
                 throw exc;
             }
 
+
+            // Only incomplete seessions are allowed to be updated
+            // If session is inactive (complete), raise custom exception
+            if (session.IsCompleted)
+            {
+                cmd.Status = OperationStatus.Failure;
+                var exc = new CustomException(new InvalidOperationException("Requested session is already completed"), errorCode: 0);
+                throw exc;
+            }
+
             try
             {
                 session.ClientIP = clientIp;

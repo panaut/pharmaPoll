@@ -1,6 +1,5 @@
 ﻿using Questionnaire.Serialization.Attributes;
 using System.ComponentModel.DataAnnotations.Schema;
-using System;
 
 namespace Questionnaire.Data.Model.QuestionDefinition
 {

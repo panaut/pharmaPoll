@@ -59,7 +59,16 @@
                 <td><a href="#" class="uploadTranslation" data-toggle="tooltip" data-target="#uploadLocalizationsModal" title="Upload translation file" data-id="@item.Id" data-surveyId="@item.Code"> <i class="glyphicon glyphicon-upload"></i></a></td>
                 <td><a href="#" class="editModalLink" data-target="#modal-fullscreen_edit" title="Edit Survey: @item.Title" data-id="@item.Id" data-surveyId="@item.Code"> <i id="glyphicon-pencil" class="glyphicon glyphicon-pencil"></i></a></td>
                 <td><a href="#" class="deleteSurveyModal" data-toggle="modal" data-target="#deleteModal" title="Delete Survey: @item.Title" data-id="@item.Id" data-isActive="@item.IsActive"> <i id="glyphicon-trash" class="glyphicon glyphicon-trash"></i></a></td>
-                <td><span class="badge" title="Number of responses">not active</span></td>
+
+                @if (item.CompletedSessionCount == item.TotalSessionCount)
+                {
+                    <td><span class="badge" title='@string.Format("{0} sessions, all completed", @item.TotalSessionCount) '>@item.TotalSessionCount</span></td>
+                }
+                else
+                {
+                    <td><span class="badge" title='@string.Format("{0} sessions in total, {1} completed", @item.TotalSessionCount, @item.CompletedSessionCount)'>@item.TotalSessionCount (@item.CompletedSessionCount)</span></td>
+                }
+
             </tr>
         }
     </tbody>

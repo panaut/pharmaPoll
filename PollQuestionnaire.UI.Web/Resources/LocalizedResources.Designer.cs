@@ -97,6 +97,33 @@ namespace PollQuestionnaire.UI.Web.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to No.
+        /// </summary>
+        public static string patque_dialog_btnNo_caption {
+            get {
+                return ResourceManager.GetString("patque_dialog_btnNo_caption", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to OK.
+        /// </summary>
+        public static string patque_dialog_btnOk_caption {
+            get {
+                return ResourceManager.GetString("patque_dialog_btnOk_caption", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Yes.
+        /// </summary>
+        public static string patque_dialog_btnYes_caption {
+            get {
+                return ResourceManager.GetString("patque_dialog_btnYes_caption", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Continue survey later.
         /// </summary>
         public static string patque_dialog_continueLaterText {
@@ -255,6 +282,15 @@ namespace PollQuestionnaire.UI.Web.Resources {
         public static string patque_dialog_thankYouCaption {
             get {
                 return ResourceManager.GetString("patque_dialog_thankYouCaption", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to We don&apos;t have any survey available for you at this moment....
+        /// </summary>
+        public static string patque_noSurvey {
+            get {
+                return ResourceManager.GetString("patque_noSurvey", resourceCulture);
             }
         }
     }

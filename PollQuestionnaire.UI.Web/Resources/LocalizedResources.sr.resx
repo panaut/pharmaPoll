@@ -183,4 +183,16 @@
   <data name="patque_dialog_error_pdfNotFound" xml:space="preserve">
     <value>Nažalost nemamo fajl za jezik koji ste tražili.</value>
   </data>
+  <data name="patque_dialog_btnNo_caption" xml:space="preserve">
+    <value>Ne</value>
+  </data>
+  <data name="patque_dialog_btnOk_caption" xml:space="preserve">
+    <value>U redu</value>
+  </data>
+  <data name="patque_dialog_btnYes_caption" xml:space="preserve">
+    <value>Da</value>
+  </data>
+  <data name="patque_noSurvey" xml:space="preserve">
+    <value>Trenutno nemamo ni jednu anketu za vas...</value>
+  </data>
 </root>
