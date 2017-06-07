@@ -124,6 +124,15 @@ namespace PollQuestionnaire.UI.Web.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Click the link to copy it to your clipboard.
+        /// </summary>
+        public static string patque_dialog_clickForClipboard {
+            get {
+                return ResourceManager.GetString("patque_dialog_clickForClipboard", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Continue survey later.
         /// </summary>
         public static string patque_dialog_continueLaterText {
@@ -255,6 +264,15 @@ namespace PollQuestionnaire.UI.Web.Resources {
         public static string patque_dialog_resume_text2 {
             get {
                 return ResourceManager.GetString("patque_dialog_resume_text2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Click the link to add it to your clipboard, or simply write it down..
+        /// </summary>
+        public static string patque_dialog_resume_text2_noEmail {
+            get {
+                return ResourceManager.GetString("patque_dialog_resume_text2_noEmail", resourceCulture);
             }
         }
         
