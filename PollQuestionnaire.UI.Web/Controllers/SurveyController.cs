@@ -22,6 +22,7 @@ namespace PollQuestionnaire.UI.Web.Controllers
             return View(model.ToList());
         }
 
+        [RequireHttps]
         [AllowAnonymous]
         public ActionResult PatQueSurvey(
                         string surveyCode,
