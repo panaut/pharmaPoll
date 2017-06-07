@@ -24,15 +24,15 @@
                         @LocalizedResources.patque_dialog_resume_text1
                     </h4>
                     <h4 style="text-align:justify;">
-                        @LocalizedResources.patque_dialog_resume_text2
+                        @LocalizedResources.patque_dialog_resume_text2_noEmail
                     </h4>
                 </div>
                 <div class="row"></div>
                 <div class="row" style="text-align:center">
-                    <h5 id="resumeLink"></h5>
+                    <a href="#" title="@LocalizedResources.patque_dialog_clickForClipboard"><h5 id="resumeLink" onclick="copyToClipboard(this)"></h5></a>
                 </div>
 
-                <div class="row"></div>
+                @*<div class="row"></div>
                 <div class="row">
                     <div class="input-group">
                         <span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
@@ -41,7 +41,7 @@
                 </div>
                 <div id="incorrectEmailWarning" hidden class="row">
                     <h5 style="color: red; float: right">@LocalizedResources.patque_dialog_resume_emailWarning</h5>
-                </div>
+                </div>*@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-primary" onclick="sendEmail()">@LocalizedResources.patque_dialog_resume_btnSendEmail</button>
@@ -109,7 +109,7 @@
             Survey.Survey.cssType = "bootstrap";
 
             // Create a new survey model and define a Survey Specific Cookie
-            _surveyModel = new Survey.Model({ cookieName: completedCookieName, showProgressBar: "bottom" });
+            _surveyModel = new Survey.Model({ cookieName: completedCookieName });
 
             _surveyModel.onValueChanged.add(function (sender, options) {
                 localStorage.setItem(tempSurveyResultsKey, JSON.stringify(sender.data));
@@ -360,6 +360,56 @@
             else {
                 return false
             }
+        }
+
+        function copyToClipboard(elem) {
+            // create hidden text element, if it doesn't already exist
+            var targetId = "_hiddenCopyText_";
+            var isInput = elem.tagName === "INPUT" || elem.tagName === "TEXTAREA";
+            var origSelectionStart, origSelectionEnd;
+            if (isInput) {
+                // can just use the original source element for the selection and copy
+                target = elem;
+                origSelectionStart = elem.selectionStart;
+                origSelectionEnd = elem.selectionEnd;
+            } else {
+                // must use a temporary form element for the selection and copy
+                target = document.getElementById(targetId);
+                if (!target) {
+                    var target = document.createElement("textarea");
+                    target.style.position = "absolute";
+                    target.style.left = "-9999px";
+                    target.style.top = "0";
+                    target.id = targetId;
+                    document.body.appendChild(target);
+                }
+                target.textContent = elem.textContent;
+            }
+            // select the content
+            var currentFocus = document.activeElement;
+            target.focus();
+            target.setSelectionRange(0, target.value.length);
+
+            // copy the selection
+            var succeed;
+            try {
+                succeed = document.execCommand("copy");
+            } catch (e) {
+                succeed = false;
+            }
+            // restore original focus
+            if (currentFocus && typeof currentFocus.focus === "function") {
+                currentFocus.focus();
+            }
+
+            if (isInput) {
+                // restore prior selection
+                elem.setSelectionRange(origSelectionStart, origSelectionEnd);
+            } else {
+                // clear temporary content
+                target.textContent = "";
+            }
+            return succeed;
         }
 
         function getCookie(name) {

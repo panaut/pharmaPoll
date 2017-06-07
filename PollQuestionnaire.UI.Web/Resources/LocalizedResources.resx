@@ -138,6 +138,9 @@
   <data name="patque_dialog_btnYes_caption" xml:space="preserve">
     <value>Yes</value>
   </data>
+  <data name="patque_dialog_clickForClipboard" xml:space="preserve">
+    <value>Click the link to copy it to your clipboard</value>
+  </data>
   <data name="patque_dialog_continueLaterText" xml:space="preserve">
     <value>Continue survey later</value>
   </data>
@@ -182,6 +185,9 @@
   </data>
   <data name="patque_dialog_resume_text2" xml:space="preserve">
     <value>You can simply write it down, or if you want us to email it to you, please leave your email address in the box under the link. Rest assured your email address will not be used in any other purposes.</value>
+  </data>
+  <data name="patque_dialog_resume_text2_noEmail" xml:space="preserve">
+    <value>Click the link to add it to your clipboard, or simply write it down.</value>
   </data>
   <data name="patque_dialog_resume_title" xml:space="preserve">
     <value>Your work is saved</value>

@@ -195,4 +195,10 @@
   <data name="patque_noSurvey" xml:space="preserve">
     <value>Trenutno nemamo ni jednu anketu za vas...</value>
   </data>
+  <data name="patque_dialog_clickForClipboard" xml:space="preserve">
+    <value>Kliknite na hiperlink kako biste ga dodali u ostavu za kopiranje</value>
+  </data>
+  <data name="patque_dialog_resume_text2_noEmail" xml:space="preserve">
+    <value>Kliknite na hiperlink ispod ovog teksta kako biste ga dodali u ostavu za kopiranje ili ga jednostavno negde pribeležite.</value>
+  </data>
 </root>
