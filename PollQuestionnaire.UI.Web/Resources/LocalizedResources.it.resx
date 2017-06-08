@@ -100,4 +100,85 @@
   <data name="patque_dialog_supportedLanguagesCaption" xml:space="preserve">
     <value>italiano</value>
   </data>
+  <data name="patque_dialog_resume_btnSendEmail" xml:space="preserve">
+    <value>Invia e-mail e Chiudi</value>
+  </data>
+  <data name="patque_btnReset_text" xml:space="preserve">
+    <value>Ripristina l'indagine</value>
+  </data>
+  <data name="patque_btnPrint_tooltip" xml:space="preserve">
+    <value>Stampa la versione PDF di questo modulo</value>
+  </data>
+  <data name="patque_btnPrint_Text" xml:space="preserve">
+    <value>Stampare</value>
+  </data>
+  <data name="patque_dialog_btnOk_caption" xml:space="preserve">
+    <value>ok</value>
+  </data>
+  <data name="patque_dialog_btnNo_caption" xml:space="preserve">
+    <value>No</value>
+  </data>
+  <data name="patque_dialog_error_pdfNotFound" xml:space="preserve">
+    <value>È difficile credere, ma il file è stato qui solo un momento fa :-) Weeeell ... non è vero ... la verità è - non ce l'abbiamo ... mi dispiace ...</value>
+  </data>
+  <data name="patque_dialog_resetWarningText" xml:space="preserve">
+    <value>Se si procede tutti i dati della sessione verranno persi. Si prega di considerare la possibilità di salvare le modifiche prima di ripristinare l'indagine. Vuoi ripristinare i progressi attuali?</value>
+  </data>
+  <data name="patque_dialog_error_errorVerifyingPdfExistence" xml:space="preserve">
+    <value>A causa di "difficoltà temporanee" non siamo riusciti a verificare l'esistenza stessa del file richiesto. Ci dispiace, e provarlo in pochi minuti ...</value>
+  </data>
+  <data name="patque_btnReset_tooltip" xml:space="preserve">
+    <value>Eliminare i progressi attuali e avviare nuovamente l'indagine</value>
+  </data>
+  <data name="patque_dialog_continueLaterText" xml:space="preserve">
+    <value>Continua l'inchiesta successivamente</value>
+  </data>
+  <data name="patque_dialog_resume_btnClose" xml:space="preserve">
+    <value>Vicino</value>
+  </data>
+  <data name="patque_dialog_resume_text2_noEmail" xml:space="preserve">
+    <value>Fai clic sul link per aggiungerlo al clipboard o semplicemente scrivalo.</value>
+  </data>
+  <data name="patque_dialog_resume_emailWarning" xml:space="preserve">
+    <value>* Inserisci un'e-mail valida</value>
+  </data>
+  <data name="patque_dialog_clickForClipboard" xml:space="preserve">
+    <value>Fai clic sul link per copiarlo negli appunti</value>
+  </data>
+  <data name="patque_dialog_resume_title" xml:space="preserve">
+    <value>Il tuo lavoro viene salvato</value>
+  </data>
+  <data name="patque_dialog_resetWarningTitle" xml:space="preserve">
+    <value>I tuoi dati verranno persi</value>
+  </data>
+  <data name="patque_dialog_resume_text1" xml:space="preserve">
+    <value>Sarai in grado di riprendere questo sondaggio in qualsiasi momento. Per fare questo, è necessario il collegamento riportato di seguito.</value>
+  </data>
+  <data name="patque_dialog_continueLaterTitle" xml:space="preserve">
+    <value>Puoi continuare a eseguire il polling in qualsiasi momento, ovunque</value>
+  </data>
+  <data name="patque_dialog_btnYes_caption" xml:space="preserve">
+    <value>sì</value>
+  </data>
+  <data name="patque_dialog_error_caption" xml:space="preserve">
+    <value>Beh ... non era così buono ...</value>
+  </data>
+  <data name="patque_dialog_error_surveyLoadFailed" xml:space="preserve">
+    <value>Non è stato possibile caricare l'indagine. Hai controllato il codice di rilevazione?</value>
+  </data>
+  <data name="patque_dialog_error_sessionNotFound" xml:space="preserve">
+    <value>Non siamo riusciti a trovare i dati della sessione. Verifica il codice della sessione e riprova ...</value>
+  </data>
+  <data name="patque_noSurvey" xml:space="preserve">
+    <value>Al momento non abbiamo nessuna delle indagini disponibili</value>
+  </data>
+  <data name="patque_dialog_error_saveSessionFailed" xml:space="preserve">
+    <value>Viviamo le sfide "temporanee" :-) I dati caricati dall'utente vengono memorizzati nel browser. Prova a caricare i dati non appena ti piace ...</value>
+  </data>
+  <data name="patque_dialog_thankYouCaption" xml:space="preserve">
+    <value>Grazie!</value>
+  </data>
+  <data name="patque_dialog_resume_text2" xml:space="preserve">
+    <value>Puoi solo salvarle o se volete che li invii, lasci la tua email nella casella sotto il link. Ti assicuriamo che il tuo indirizzo email non verrà utilizzato per altri scopi.</value>
+  </data>
 </root>

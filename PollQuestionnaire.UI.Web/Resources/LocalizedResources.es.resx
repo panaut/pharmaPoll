@@ -100,4 +100,85 @@
   <data name="patque_dialog_supportedLanguagesCaption" xml:space="preserve">
     <value>español</value>
   </data>
+  <data name="patque_dialog_resume_btnSendEmail" xml:space="preserve">
+    <value>Enviar correo electrónico y Cerrar</value>
+  </data>
+  <data name="patque_btnReset_text" xml:space="preserve">
+    <value>Restablecer encuesta</value>
+  </data>
+  <data name="patque_btnPrint_tooltip" xml:space="preserve">
+    <value>Imprimir la versión en PDF de este formulario</value>
+  </data>
+  <data name="patque_btnPrint_Text" xml:space="preserve">
+    <value>Impresión</value>
+  </data>
+  <data name="patque_dialog_btnNo_caption" xml:space="preserve">
+    <value>No</value>
+  </data>
+  <data name="patque_dialog_error_pdfNotFound" xml:space="preserve">
+    <value>Es difícil de creer, pero el archivo estaba aquí hace un momento :-) Weeeell ... no realmente ... La verdad es que no lo tenemos ... Lo siento ...</value>
+  </data>
+  <data name="patque_dialog_resetWarningText" xml:space="preserve">
+    <value>Si continúa, todos los datos de la sesión se perderán. Por favor considere guardar sus cambios antes de reseting survey. ¿Desea restablecer el progreso actual?</value>
+  </data>
+  <data name="patque_dialog_error_errorVerifyingPdfExistence" xml:space="preserve">
+    <value>Debido a "dificultades temporales" no pudimos verificar la existencia misma del archivo que solicitó. Lo siento por eso, y darle una oportunidad en pocos minutos ...</value>
+  </data>
+  <data name="patque_btnReset_tooltip" xml:space="preserve">
+    <value>Eliminar el progreso actual e iniciar de nuevo la encuesta</value>
+  </data>
+  <data name="patque_dialog_continueLaterText" xml:space="preserve">
+    <value>Continuar la encuesta más tarde</value>
+  </data>
+  <data name="patque_dialog_resume_btnClose" xml:space="preserve">
+    <value>Cerca</value>
+  </data>
+  <data name="patque_dialog_resume_text2_noEmail" xml:space="preserve">
+    <value>Haga clic en el vínculo para agregarlo al portapapeles, o simplemente anótelo.</value>
+  </data>
+  <data name="patque_dialog_resume_emailWarning" xml:space="preserve">
+    <value>* Por favor introduzca un correo electrónico válido</value>
+  </data>
+  <data name="patque_dialog_btnOk_caption" xml:space="preserve">
+    <value>DE ACUERDO</value>
+  </data>
+  <data name="patque_dialog_clickForClipboard" xml:space="preserve">
+    <value>Haz clic en el enlace para copiarlo en el portapapeles.</value>
+  </data>
+  <data name="patque_dialog_resume_title" xml:space="preserve">
+    <value>Tu trabajo se guarda</value>
+  </data>
+  <data name="patque_dialog_resetWarningTitle" xml:space="preserve">
+    <value>Sus datos se perderán</value>
+  </data>
+  <data name="patque_dialog_resume_text1" xml:space="preserve">
+    <value>Podrá reanudar esta encuesta en cualquier momento que desee. Para ello, necesitará el enlace que se cita a continuación.</value>
+  </data>
+  <data name="patque_dialog_resume_text2" xml:space="preserve">
+    <value>Puede simplemente anotarlo, o si desea que le enviemos por correo electrónico, por favor, deje su dirección de correo electrónico en el cuadro debajo del enlace. Tenga la seguridad de que su dirección de correo electrónico no se utilizará en ningún otro propósito.</value>
+  </data>
+  <data name="patque_dialog_continueLaterTitle" xml:space="preserve">
+    <value>Puede continuar la encuesta en cualquier momento y en cualquier lugar</value>
+  </data>
+  <data name="patque_dialog_btnYes_caption" xml:space="preserve">
+    <value>Sí</value>
+  </data>
+  <data name="patque_dialog_error_caption" xml:space="preserve">
+    <value>Bueno ... Eso no fue tan bueno ...</value>
+  </data>
+  <data name="patque_dialog_error_surveyLoadFailed" xml:space="preserve">
+    <value>No pudimos cargar la encuesta. ¿Ha comprobado el código de la encuesta?</value>
+  </data>
+  <data name="patque_dialog_error_sessionNotFound" xml:space="preserve">
+    <value>No hemos podido encontrar los datos de tu sesión. Comprueba el código de sesión y vuelve a intentarlo ...</value>
+  </data>
+  <data name="patque_noSurvey" xml:space="preserve">
+    <value>No tenemos ninguna encuesta disponible para usted en este momento ...</value>
+  </data>
+  <data name="patque_dialog_error_saveSessionFailed" xml:space="preserve">
+    <value>Estamos experimentando dificultades "temporales" :-) Sin embargo, los datos enviados se almacenan en su navegador. Por favor, intenta enviar tus datos cuando quieras ...</value>
+  </data>
+  <data name="patque_dialog_thankYouCaption" xml:space="preserve">
+    <value>¡Gracias!</value>
+  </data>
 </root>

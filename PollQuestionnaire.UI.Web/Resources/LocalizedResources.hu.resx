@@ -100,4 +100,85 @@
   <data name="patque_dialog_supportedLanguagesCaption" xml:space="preserve">
     <value>magyar</value>
   </data>
+  <data name="patque_dialog_resume_btnSendEmail" xml:space="preserve">
+    <value>E-mail küldése és bezárása</value>
+  </data>
+  <data name="patque_btnReset_text" xml:space="preserve">
+    <value>Nullázza fel a felmérést</value>
+  </data>
+  <data name="patque_btnPrint_tooltip" xml:space="preserve">
+    <value>Nyomtassa ki az űrlap PDF változatát</value>
+  </data>
+  <data name="patque_btnPrint_Text" xml:space="preserve">
+    <value>Nyomtatás</value>
+  </data>
+  <data name="patque_dialog_btnOk_caption" xml:space="preserve">
+    <value>rendben</value>
+  </data>
+  <data name="patque_dialog_btnNo_caption" xml:space="preserve">
+    <value>Nem</value>
+  </data>
+  <data name="patque_dialog_error_pdfNotFound" xml:space="preserve">
+    <value>Nehéz elhinni, de a fájl itt volt, csak egy pillanattal ezelőtt :-) Weeeell ... nem igazán ... Az igazság az, hogy - nincs ... Sajnálom ...</value>
+  </data>
+  <data name="patque_dialog_resetWarningText" xml:space="preserve">
+    <value>Ha folytatja az összes munkamenet adatát, elvész. Kérjük, fontolja meg a módosítások mentését a felmérés törlése előtt. Szeretné visszaállítani az aktuális előrehaladást?</value>
+  </data>
+  <data name="patque_dialog_error_errorVerifyingPdfExistence" xml:space="preserve">
+    <value>Az "átmeneti nehézségek" miatt nem tudtuk ellenőrizni a kért fájl meglétét. Sajnálom, és próbálkozzunk pár percen belül ...</value>
+  </data>
+  <data name="patque_dialog_continueLaterText" xml:space="preserve">
+    <value>Folytassa a felmérést később</value>
+  </data>
+  <data name="patque_dialog_resume_btnClose" xml:space="preserve">
+    <value>Bezárás</value>
+  </data>
+  <data name="patque_dialog_clickForClipboard" xml:space="preserve">
+    <value>A hivatkozásra kattintva másolhatja a vágólapra</value>
+  </data>
+  <data name="patque_dialog_resume_text2_noEmail" xml:space="preserve">
+    <value>A hivatkozásra kattintva hozzáadhatja a vágólaphoz, vagy egyszerűen csak írhatja le.</value>
+  </data>
+  <data name="patque_dialog_resume_emailWarning" xml:space="preserve">
+    <value>* Kérem, írjon be érvényes e-mailt</value>
+  </data>
+  <data name="patque_btnReset_tooltip" xml:space="preserve">
+    <value>Törölje az aktuális haladást, és indítsa újra a felmérést</value>
+  </data>
+  <data name="patque_dialog_resume_title" xml:space="preserve">
+    <value>A munkád mentésre kerül</value>
+  </data>
+  <data name="patque_dialog_resetWarningTitle" xml:space="preserve">
+    <value>Adatait elveszítik</value>
+  </data>
+  <data name="patque_dialog_resume_text1" xml:space="preserve">
+    <value>Bármikor bármikor újraindíthatja a szavazást. Ehhez az alábbi linkre van szüksége.</value>
+  </data>
+  <data name="patque_dialog_resume_text2" xml:space="preserve">
+    <value>Csak mentheti őket, vagy ha azt szeretné, hogy elküldjük őket, hagyjuk az e-mailt a link alatt található mezőbe. Biztosítjuk Önöket, hogy az e-mail címét más célra nem használják fel.</value>
+  </data>
+  <data name="patque_dialog_continueLaterTitle" xml:space="preserve">
+    <value>Folytathatja a lekérdezést bármikor, bárhol</value>
+  </data>
+  <data name="patque_dialog_btnYes_caption" xml:space="preserve">
+    <value>Igen</value>
+  </data>
+  <data name="patque_dialog_error_caption" xml:space="preserve">
+    <value>Nos ... nem volt olyan jó ...</value>
+  </data>
+  <data name="patque_dialog_error_surveyLoadFailed" xml:space="preserve">
+    <value>Nem tudtuk betölteni a felmérést. Ellenőrizte a felmérési kódot?</value>
+  </data>
+  <data name="patque_dialog_error_sessionNotFound" xml:space="preserve">
+    <value>Nem találtunk munkamenet-adatokat. Nézze meg a munkamenet kódját, és próbálkozzon újra ...</value>
+  </data>
+  <data name="patque_noSurvey" xml:space="preserve">
+    <value>Jelenleg nincsenek rendelkezésre álló felmérések</value>
+  </data>
+  <data name="patque_dialog_error_saveSessionFailed" xml:space="preserve">
+    <value>Tapasztaljuk az "átmeneti" kihívásokat :-) A felhasználó által feltöltött adatok a böngészőben vannak tárolva. Kérjük, próbálja meg feltölteni az adatokat, amint tetszik ...</value>
+  </data>
+  <data name="patque_dialog_thankYouCaption" xml:space="preserve">
+    <value>Köszönöm!</value>
+  </data>
 </root>

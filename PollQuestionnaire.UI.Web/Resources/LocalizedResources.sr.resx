@@ -166,7 +166,7 @@
     <value>Hvala vam!</value>
   </data>
   <data name="patque_dialog_resume_btnSendEmail" xml:space="preserve">
-    <value>Pošalj</value>
+    <value>Pošalji</value>
   </data>
   <data name="patque_dialog_resume_emailWarning" xml:space="preserve">
     <value>* Unestite ispravnu imejl adresu</value>

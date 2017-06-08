@@ -100,4 +100,85 @@
   <data name="patque_dialog_supportedLanguagesCaption" xml:space="preserve">
     <value>nederlands</value>
   </data>
+  <data name="patque_dialog_resume_title" xml:space="preserve">
+    <value>Uw werk is opgeslagen</value>
+  </data>
+  <data name="patque_dialog_resetWarningTitle" xml:space="preserve">
+    <value>Uw gegevens zullen verloren gaan</value>
+  </data>
+  <data name="patque_dialog_resume_text1" xml:space="preserve">
+    <value>U kunt deze enquête hervatten wanneer u dat wilt. Om dit te doen heb je de onderstaande link nodig.</value>
+  </data>
+  <data name="patque_dialog_resume_text2" xml:space="preserve">
+    <value>U kunt het gewoon opschrijven, of als u ons wilt mailen naar u, gelieve uw emailadres in het vak onder de link te laten. Zorg ervoor dat uw e-mailadres niet in andere doeleinden wordt gebruikt.</value>
+  </data>
+  <data name="patque_dialog_continueLaterTitle" xml:space="preserve">
+    <value>U kunt de enquête altijd op elk gewenst moment doorgaan</value>
+  </data>
+  <data name="patque_dialog_btnYes_caption" xml:space="preserve">
+    <value>Ja</value>
+  </data>
+  <data name="patque_dialog_error_caption" xml:space="preserve">
+    <value>Nou ... Dat was niet zo goed ...</value>
+  </data>
+  <data name="patque_dialog_error_surveyLoadFailed" xml:space="preserve">
+    <value>We kunnen de enquête niet laden. Heb je de enquêtecode gecontroleerd?</value>
+  </data>
+  <data name="patque_dialog_error_sessionNotFound" xml:space="preserve">
+    <value>We hebben uw sessiegegevens niet kunnen vinden. Controleer de sessiecode en probeer het opnieuw ...</value>
+  </data>
+  <data name="patque_noSurvey" xml:space="preserve">
+    <value>We hebben momenteel geen enquête beschikbaar voor u ...</value>
+  </data>
+  <data name="patque_dialog_error_saveSessionFailed" xml:space="preserve">
+    <value>We ervaren 'tijdelijke' dificulties :-) De gegevens die u hebt ingediend, worden in uw browser opgeslagen. Probeer alsjeblieft uw gegevens in te dienen wanneer u het voelt ...</value>
+  </data>
+  <data name="patque_dialog_thankYouCaption" xml:space="preserve">
+    <value>Dank je!</value>
+  </data>
+  <data name="patque_dialog_resume_btnSendEmail" xml:space="preserve">
+    <value>Stuur email en sluit</value>
+  </data>
+  <data name="patque_btnReset_text" xml:space="preserve">
+    <value>Herstel onderzoek</value>
+  </data>
+  <data name="patque_btnPrint_tooltip" xml:space="preserve">
+    <value>Print PDF-versie van dit formulier</value>
+  </data>
+  <data name="patque_btnPrint_Text" xml:space="preserve">
+    <value>Afdrukken</value>
+  </data>
+  <data name="patque_dialog_btnOk_caption" xml:space="preserve">
+    <value>OK</value>
+  </data>
+  <data name="patque_dialog_error_pdfNotFound" xml:space="preserve">
+    <value>Het is moeilijk te geloven maar het bestand was hier een moment geleden :-) Weeeell ... niet echt ... De waarheid is - we hebben het niet ... Sorry ...</value>
+  </data>
+  <data name="patque_dialog_resetWarningText" xml:space="preserve">
+    <value>Als u doorgaat, worden alle sessiegegevens verloren. Gelieve te overwegen uw wijzigingen op te slaan voordat u de enquête opnieuw kunt instellen. Wilt u de huidige vooruitgang herstellen?</value>
+  </data>
+  <data name="patque_dialog_error_errorVerifyingPdfExistence" xml:space="preserve">
+    <value>Vanwege "tijdelijke moeilijkheden" konden we het bestaan van het door u aangevraagde bestand niet verifiëren. Sorry, en probeer het binnen een paar minuten ...</value>
+  </data>
+  <data name="patque_btnReset_tooltip" xml:space="preserve">
+    <value>Verwijder de huidige vooruitgang en start opnieuw een enquête</value>
+  </data>
+  <data name="patque_dialog_continueLaterText" xml:space="preserve">
+    <value>Volg verder onderzoek</value>
+  </data>
+  <data name="patque_dialog_clickForClipboard" xml:space="preserve">
+    <value>Klik op de link om het naar je klembord te kopiëren</value>
+  </data>
+  <data name="patque_dialog_resume_text2_noEmail" xml:space="preserve">
+    <value>Klik op de link om het toe te voegen aan uw klembord, of schrijf het gewoon in.</value>
+  </data>
+  <data name="patque_dialog_btnNo_caption" xml:space="preserve">
+    <value>Nee</value>
+  </data>
+  <data name="patque_dialog_resume_btnClose" xml:space="preserve">
+    <value>Sluit</value>
+  </data>
+  <data name="patque_dialog_resume_emailWarning" xml:space="preserve">
+    <value>* Voer een geldig emailadres in</value>
+  </data>
 </root>

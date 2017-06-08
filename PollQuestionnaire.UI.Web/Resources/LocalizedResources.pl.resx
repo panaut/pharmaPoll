@@ -100,4 +100,85 @@
   <data name="patque_dialog_supportedLanguagesCaption" xml:space="preserve">
     <value>polski</value>
   </data>
+  <data name="patque_dialog_resume_btnSendEmail" xml:space="preserve">
+    <value>Wyślij e-mail i Zamknij</value>
+  </data>
+  <data name="patque_btnReset_text" xml:space="preserve">
+    <value>Zresetuj ankietę</value>
+  </data>
+  <data name="patque_btnPrint_tooltip" xml:space="preserve">
+    <value>Wydrukuj wersję tego formularza w formacie PDF</value>
+  </data>
+  <data name="patque_btnPrint_Text" xml:space="preserve">
+    <value>Wydrukować</value>
+  </data>
+  <data name="patque_dialog_btnOk_caption" xml:space="preserve">
+    <value>ok</value>
+  </data>
+  <data name="patque_dialog_btnNo_caption" xml:space="preserve">
+    <value>Nie</value>
+  </data>
+  <data name="patque_dialog_error_pdfNotFound" xml:space="preserve">
+    <value>Trudno uwierzyć, ale plik był tu tuż przed chwilą :-) Weeeell ... naprawdę nie ... Prawda jest taka, że nie mamy tego ... Przepraszam ...</value>
+  </data>
+  <data name="patque_dialog_resetWarningText" xml:space="preserve">
+    <value>Jeśli postępujesz, wszystkie dane sesji zostaną utracone. Przed przystąpieniem do resetingu należy rozważyć zapisanie zmian. Czy chcesz zresetować bieżący postęp?</value>
+  </data>
+  <data name="patque_dialog_error_errorVerifyingPdfExistence" xml:space="preserve">
+    <value>Z powodu "tymczasowych trudności" nie mogliśmy zweryfikować istnienia żądanego pliku. Przepraszam za to, i spróbować za kilka minut ...</value>
+  </data>
+  <data name="patque_btnReset_tooltip" xml:space="preserve">
+    <value>Usuń bieżące postępy i rozpocznij ankietę ponownie</value>
+  </data>
+  <data name="patque_dialog_continueLaterText" xml:space="preserve">
+    <value>Kontynuuj badanie później</value>
+  </data>
+  <data name="patque_dialog_resume_btnClose" xml:space="preserve">
+    <value>Blisko</value>
+  </data>
+  <data name="patque_dialog_clickForClipboard" xml:space="preserve">
+    <value>Kliknij link, aby skopiować go do schowka</value>
+  </data>
+  <data name="patque_dialog_resume_text2_noEmail" xml:space="preserve">
+    <value>Kliknij link, aby dodać go do schowka lub po prostu go spisz.</value>
+  </data>
+  <data name="patque_dialog_resume_emailWarning" xml:space="preserve">
+    <value>* Wprowadź prawidłowy adres e-mail</value>
+  </data>
+  <data name="patque_dialog_error_saveSessionFailed" xml:space="preserve">
+    <value>Doświadczamy "tymczasowych" wyzwań :-) Dane przesłane przez użytkownika są przechowywane w przeglądarce. Proszę spróbować przesłać dane tak szybko, jak tylko ...</value>
+  </data>
+  <data name="patque_dialog_resume_title" xml:space="preserve">
+    <value>Twoja praca jest zapisana</value>
+  </data>
+  <data name="patque_dialog_resume_text2" xml:space="preserve">
+    <value>Możesz je zapisać lub jeśli chcesz je wysłać, pozostaw swój adres e-mail w polu pod linkiem. Zapewniamy, że Twój adres e-mail nie będzie używany do jakiegokolwiek innego celu.</value>
+  </data>
+  <data name="patque_dialog_resume_text1" xml:space="preserve">
+    <value>W dowolnym momencie będziesz mógł wznowić tę ankietę. W tym celu potrzebny jest poniższy link.</value>
+  </data>
+  <data name="patque_dialog_error_surveyLoadFailed" xml:space="preserve">
+    <value>Nie mogliśmy załadować ankiety. Sprawdziłeś kod ankiety?</value>
+  </data>
+  <data name="patque_dialog_error_sessionNotFound" xml:space="preserve">
+    <value>Nie udało się znaleźć danych sesji. Sprawdź kod sesji i spróbuj ponownie ...</value>
+  </data>
+  <data name="patque_dialog_thankYouCaption" xml:space="preserve">
+    <value>Dziękuję Ci!</value>
+  </data>
+  <data name="patque_noSurvey" xml:space="preserve">
+    <value>W chwili obecnej nie mamy żadnych dostępnych badań</value>
+  </data>
+  <data name="patque_dialog_continueLaterTitle" xml:space="preserve">
+    <value>Możesz nadal ankietować dowolny czas i miejsce</value>
+  </data>
+  <data name="patque_dialog_resetWarningTitle" xml:space="preserve">
+    <value>Twoje dane zostaną utracone</value>
+  </data>
+  <data name="patque_dialog_btnYes_caption" xml:space="preserve">
+    <value>tak</value>
+  </data>
+  <data name="patque_dialog_error_caption" xml:space="preserve">
+    <value>Cóż ... nie było tak dobrze ...</value>
+  </data>
 </root>

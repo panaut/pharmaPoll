@@ -100,4 +100,85 @@
   <data name="patque_dialog_supportedLanguagesCaption" xml:space="preserve">
     <value>ελληνικά</value>
   </data>
+  <data name="patque_dialog_resume_btnSendEmail" xml:space="preserve">
+    <value>Αποστολή μηνύματος ηλεκτρονικού ταχυδρομείου και κλείσιμο</value>
+  </data>
+  <data name="patque_btnReset_text" xml:space="preserve">
+    <value>Επαναφορά της έρευνας</value>
+  </data>
+  <data name="patque_btnPrint_tooltip" xml:space="preserve">
+    <value>Εκτυπώστε την έκδοση PDF αυτής της φόρμας</value>
+  </data>
+  <data name="patque_dialog_btnOk_caption" xml:space="preserve">
+    <value>Εντάξει</value>
+  </data>
+  <data name="patque_dialog_btnNo_caption" xml:space="preserve">
+    <value>Οχι</value>
+  </data>
+  <data name="patque_dialog_error_pdfNotFound" xml:space="preserve">
+    <value>Είναι δύσκολο να πιστέψω, αλλά ο φάκελος ήταν εδώ πριν από λίγο :-) Weeeell ... όχι πραγματικά ... Η αλήθεια είναι - δεν το έχουμε ... Λυπούμαστε ...</value>
+  </data>
+  <data name="patque_dialog_resetWarningText" xml:space="preserve">
+    <value>Εάν προχωρήσετε σε όλες τις συνεδρίες σας, τα δεδομένα θα χαθούν. Σκεφθείτε να αποθηκεύσετε τις αλλαγές σας πριν από την επανεξέταση της έρευνας. Θέλετε να επαναφέρετε την τρέχουσα πρόοδο;</value>
+  </data>
+  <data name="patque_dialog_error_errorVerifyingPdfExistence" xml:space="preserve">
+    <value>Λόγω των "προσωρινών δυσκολιών" δεν μπορέσαμε να επαληθεύσουμε την ίδια την ύπαρξη του φακέλου που ζητήσατε. Συγγνώμη για αυτό και δοκιμάστε σε λίγα λεπτά ...</value>
+  </data>
+  <data name="patque_btnReset_tooltip" xml:space="preserve">
+    <value>Διαγράψτε την τρέχουσα πρόοδο και ξαναρχίστε την έρευνα</value>
+  </data>
+  <data name="patque_dialog_continueLaterText" xml:space="preserve">
+    <value>Συνεχίστε την έρευνα αργότερα</value>
+  </data>
+  <data name="patque_dialog_clickForClipboard" xml:space="preserve">
+    <value>Κάντε κλικ στο σύνδεσμο για να το αντιγράψετε στο πρόχειρο σας</value>
+  </data>
+  <data name="patque_dialog_resume_text2_noEmail" xml:space="preserve">
+    <value>Κάντε κλικ στο σύνδεσμο για να το προσθέσετε στο πρόχειρο σας ή απλά να το γράψετε.</value>
+  </data>
+  <data name="patque_btnPrint_Text" xml:space="preserve">
+    <value>Τυπώνω</value>
+  </data>
+  <data name="patque_dialog_resume_btnClose" xml:space="preserve">
+    <value>Κοντά</value>
+  </data>
+  <data name="patque_dialog_resume_emailWarning" xml:space="preserve">
+    <value>* Παρακαλούμε εισάγετε έγκυρο email</value>
+  </data>
+  <data name="patque_dialog_resume_title" xml:space="preserve">
+    <value>Η εργασία σας αποθηκεύεται</value>
+  </data>
+  <data name="patque_dialog_resetWarningTitle" xml:space="preserve">
+    <value>Τα δεδομένα σας θα χαθούν</value>
+  </data>
+  <data name="patque_dialog_resume_text1" xml:space="preserve">
+    <value>Θα μπορείτε να συνεχίσετε αυτή τη δημοσκόπηση ανά πάσα στιγμή. Για να γίνει αυτό, χρειάζεστε τον παρακάτω σύνδεσμο.</value>
+  </data>
+  <data name="patque_dialog_resume_text2" xml:space="preserve">
+    <value>Μπορείτε να τα αποθηκεύσετε ή αν θέλετε να τα στείλουμε, αφήστε το email σας στο πλαίσιο κάτω από το σύνδεσμο. Σας διαβεβαιώνουμε ότι η ηλεκτρονική σας διεύθυνση δεν θα χρησιμοποιηθεί για άλλους σκοπούς.</value>
+  </data>
+  <data name="patque_dialog_continueLaterTitle" xml:space="preserve">
+    <value>Μπορείτε να συνεχίσετε την ψηφοφορία οποτεδήποτε, οπουδήποτε</value>
+  </data>
+  <data name="patque_dialog_btnYes_caption" xml:space="preserve">
+    <value>Ναί</value>
+  </data>
+  <data name="patque_dialog_error_caption" xml:space="preserve">
+    <value>Λοιπόν ... δεν ήταν τόσο καλό ...</value>
+  </data>
+  <data name="patque_dialog_error_surveyLoadFailed" xml:space="preserve">
+    <value>Δεν ήταν δυνατή η φόρτωση της έρευνας. Ελέγξατε τον κώδικα έρευνας;</value>
+  </data>
+  <data name="patque_dialog_error_sessionNotFound" xml:space="preserve">
+    <value>Δεν ήταν δυνατή η εύρεση δεδομένων περιόδου λειτουργίας. Ελέγξτε τον κωδικό της συνεδρίας και δοκιμάστε ξανά ...</value>
+  </data>
+  <data name="patque_noSurvey" xml:space="preserve">
+    <value>Προς το παρόν δεν διαθέτουμε τις διαθέσιμες έρευνες</value>
+  </data>
+  <data name="patque_dialog_error_saveSessionFailed" xml:space="preserve">
+    <value>Αντιμετωπίζουμε "προσωρινές" προκλήσεις :-) Τα δεδομένα που ανεβάζει ο χρήστης αποθηκεύονται στο πρόγραμμα περιήγησης. Δοκιμάστε να μεταφορτώσετε τα δεδομένα μόλις θέλετε ...</value>
+  </data>
+  <data name="patque_dialog_thankYouCaption" xml:space="preserve">
+    <value>Ευχαριστώ!</value>
+  </data>
 </root>

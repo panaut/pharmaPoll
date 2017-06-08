@@ -100,4 +100,85 @@
   <data name="patque_dialog_supportedLanguagesCaption" xml:space="preserve">
     <value>português</value>
   </data>
+  <data name="patque_dialog_resume_btnSendEmail" xml:space="preserve">
+    <value>Enviar e-mail e Fechar</value>
+  </data>
+  <data name="patque_btnReset_text" xml:space="preserve">
+    <value>Repor a pesquisa</value>
+  </data>
+  <data name="patque_btnPrint_tooltip" xml:space="preserve">
+    <value>Imprimir versão em PDF deste formulário</value>
+  </data>
+  <data name="patque_btnPrint_Text" xml:space="preserve">
+    <value>Impressão</value>
+  </data>
+  <data name="patque_dialog_btnOk_caption" xml:space="preserve">
+    <value>Está bem</value>
+  </data>
+  <data name="patque_dialog_btnNo_caption" xml:space="preserve">
+    <value>Não</value>
+  </data>
+  <data name="patque_dialog_error_pdfNotFound" xml:space="preserve">
+    <value>É difícil de acreditar, mas o arquivo estava aqui há apenas um momento :-) Weeeell ... não é verdade ... A verdade é que ... não temos ... Desculpe ...</value>
+  </data>
+  <data name="patque_dialog_resetWarningText" xml:space="preserve">
+    <value>Se você proceder, todos os dados da sessão serão perdidos. Considere salvar suas alterações antes da pesquisa de resgate. Deseja redefinir o progresso atual?</value>
+  </data>
+  <data name="patque_dialog_error_errorVerifyingPdfExistence" xml:space="preserve">
+    <value>Devido a "dificuldades temporárias", não foi possível verificar a própria existência do arquivo solicitado. Desculpe por isso e tente em poucos minutos ...</value>
+  </data>
+  <data name="patque_btnReset_tooltip" xml:space="preserve">
+    <value>Exclua o progresso atual e inicie a pesquisa novamente</value>
+  </data>
+  <data name="patque_dialog_continueLaterText" xml:space="preserve">
+    <value>Continue a pesquisa mais tarde</value>
+  </data>
+  <data name="patque_dialog_resume_btnClose" xml:space="preserve">
+    <value>Fechar</value>
+  </data>
+  <data name="patque_dialog_clickForClipboard" xml:space="preserve">
+    <value>Clique no link para copiá-lo para a área de transferência</value>
+  </data>
+  <data name="patque_dialog_resume_text2_noEmail" xml:space="preserve">
+    <value>Clique no link para adicioná-lo à área de transferência, ou simplesmente anote-o.</value>
+  </data>
+  <data name="patque_dialog_resume_emailWarning" xml:space="preserve">
+    <value>* Por favor introduza um email válido</value>
+  </data>
+  <data name="patque_dialog_resume_title" xml:space="preserve">
+    <value>Seu trabalho é salvo</value>
+  </data>
+  <data name="patque_dialog_resetWarningTitle" xml:space="preserve">
+    <value>Seus dados serão perdidos</value>
+  </data>
+  <data name="patque_dialog_resume_text1" xml:space="preserve">
+    <value>Você poderá retomar esta pesquisa sempre que quiser. Para fazer isso, você precisará do link citado abaixo.</value>
+  </data>
+  <data name="patque_dialog_resume_text2" xml:space="preserve">
+    <value>Você pode simplesmente anotá-lo, ou se quiser que nós o enviemos por e-mail, deixe seu endereço de e-mail na caixa abaixo do link. Tenha certeza de que seu endereço de e-mail não será usado em nenhum outro propósito.</value>
+  </data>
+  <data name="patque_dialog_continueLaterTitle" xml:space="preserve">
+    <value>Você pode continuar a pesquisa a qualquer momento em qualquer lugar</value>
+  </data>
+  <data name="patque_dialog_btnYes_caption" xml:space="preserve">
+    <value>sim</value>
+  </data>
+  <data name="patque_dialog_error_caption" xml:space="preserve">
+    <value>Bem ... Isso não foi tão bom ...</value>
+  </data>
+  <data name="patque_dialog_error_surveyLoadFailed" xml:space="preserve">
+    <value>Não foi possível carregar a pesquisa. Você verificou o código da pesquisa?</value>
+  </data>
+  <data name="patque_dialog_error_sessionNotFound" xml:space="preserve">
+    <value>Não foi possível encontrar os dados da sessão. Verifique o código da sessão e tente novamente ...</value>
+  </data>
+  <data name="patque_noSurvey" xml:space="preserve">
+    <value>Não temos nenhuma pesquisa disponível para você neste momento ...</value>
+  </data>
+  <data name="patque_dialog_error_saveSessionFailed" xml:space="preserve">
+    <value>Estamos experimentando dificuldades "temporárias" :-) No entanto, os dados enviados são armazenados em seu navegador. Tente enviar seus dados sempre que você sentir vontade ...</value>
+  </data>
+  <data name="patque_dialog_thankYouCaption" xml:space="preserve">
+    <value>Obrigado!</value>
+  </data>
 </root>

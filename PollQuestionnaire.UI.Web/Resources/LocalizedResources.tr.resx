@@ -100,4 +100,85 @@
   <data name="patque_dialog_supportedLanguagesCaption" xml:space="preserve">
     <value>türkçe</value>
   </data>
+  <data name="patque_dialog_resume_btnSendEmail" xml:space="preserve">
+    <value>E-posta gönder ve Kapat</value>
+  </data>
+  <data name="patque_btnReset_text" xml:space="preserve">
+    <value>Anketi sıfırla</value>
+  </data>
+  <data name="patque_btnPrint_tooltip" xml:space="preserve">
+    <value>Bu formun PDF versiyonunu yazdır</value>
+  </data>
+  <data name="patque_btnPrint_Text" xml:space="preserve">
+    <value>baskı</value>
+  </data>
+  <data name="patque_dialog_btnOk_caption" xml:space="preserve">
+    <value>tamam</value>
+  </data>
+  <data name="patque_dialog_btnNo_caption" xml:space="preserve">
+    <value>Yok</value>
+  </data>
+  <data name="patque_dialog_error_pdfNotFound" xml:space="preserve">
+    <value>İnanmak zor ama dosya bir dakika önce buradaydı :-) Weeeell ... değil gerçek ... Gerçek şu ki - elimizde yok ... Üzgünüm ...</value>
+  </data>
+  <data name="patque_dialog_resetWarningText" xml:space="preserve">
+    <value>Devam ederseniz oturum verilerinizin tamamı kaybolacak. Anketi tekrar etkinleştirmeden önce lütfen değişiklikleri kaydetmeyi düşünün. Mevcut ilerlemeyi sıfırlamak istiyor musunuz?</value>
+  </data>
+  <data name="patque_dialog_error_errorVerifyingPdfExistence" xml:space="preserve">
+    <value>"Geçici zorluklar" nedeniyle, talep ettiğiniz dosyanın varlığını doğrulayamadık. Üzgünüm ve birkaç dakika içinde deneyin ...</value>
+  </data>
+  <data name="patque_btnReset_tooltip" xml:space="preserve">
+    <value>Mevcut ilerlemeyi sil ve tekrar araştırmaya başla</value>
+  </data>
+  <data name="patque_dialog_continueLaterText" xml:space="preserve">
+    <value>Daha sonra ankete devam et</value>
+  </data>
+  <data name="patque_dialog_resume_btnClose" xml:space="preserve">
+    <value>Kapat</value>
+  </data>
+  <data name="patque_dialog_clickForClipboard" xml:space="preserve">
+    <value>Panonuza</value>
+  </data>
+  <data name="patque_dialog_resume_text2_noEmail" xml:space="preserve">
+    <value>Panonuza eklemek için bağlantıyı tıklayın veya basitçe yazın.</value>
+  </data>
+  <data name="patque_dialog_resume_emailWarning" xml:space="preserve">
+    <value>* Lütfen geçerli e-posta adresini girin</value>
+  </data>
+  <data name="patque_dialog_resume_title" xml:space="preserve">
+    <value>Çalışmanız kaydedildi</value>
+  </data>
+  <data name="patque_dialog_resetWarningTitle" xml:space="preserve">
+    <value>Verileriniz kaybolacak</value>
+  </data>
+  <data name="patque_dialog_resume_text1" xml:space="preserve">
+    <value>Bu anketi istediğin zaman tekrar başlatabileceksin. Bunu yapmak için, aşağıda belirtilen bağlantıya ihtiyacınız olacaktır.</value>
+  </data>
+  <data name="patque_dialog_resume_text2" xml:space="preserve">
+    <value>Bunu basitçe yazabilir veya bize e-postayla göndermemizi isterseniz, lütfen bağlantı altındaki kutuya e-posta adresinizi bırakın. E-posta adresinizin başka hiçbir amaçla kullanılamayacağından emin olabilirsiniz.</value>
+  </data>
+  <data name="patque_dialog_continueLaterTitle" xml:space="preserve">
+    <value>Anketi istediğiniz herhangi bir yerden devam edebilirsiniz</value>
+  </data>
+  <data name="patque_dialog_btnYes_caption" xml:space="preserve">
+    <value>Evet</value>
+  </data>
+  <data name="patque_dialog_error_caption" xml:space="preserve">
+    <value>Şey ... Bu iyi değildi ...</value>
+  </data>
+  <data name="patque_dialog_error_surveyLoadFailed" xml:space="preserve">
+    <value>Anketi yükleyemedik. Anket kodunu kontrol ettiniz mi?</value>
+  </data>
+  <data name="patque_dialog_error_sessionNotFound" xml:space="preserve">
+    <value>Oturum verilerinizi bulamadık. Lütfen oturum kodunu kontrol edin ve tekrar deneyin ...</value>
+  </data>
+  <data name="patque_noSurvey" xml:space="preserve">
+    <value>Şu anda sizin için mevcut herhangi bir anketimiz yok ...</value>
+  </data>
+  <data name="patque_dialog_error_saveSessionFailed" xml:space="preserve">
+    <value>Ancak "geçici" zorluklarla karşılaşıyoruz :-) Ancak gönderdiğiniz veriler tarayıcınızda saklanmaktadır. Lütfen, istediğiniz gibi hissettiğinizde verilerinizi göndermeyi deneyin ...</value>
+  </data>
+  <data name="patque_dialog_thankYouCaption" xml:space="preserve">
+    <value>Teşekkür ederim!</value>
+  </data>
 </root>
