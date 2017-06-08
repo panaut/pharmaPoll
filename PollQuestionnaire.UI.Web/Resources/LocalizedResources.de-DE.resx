@@ -201,4 +201,7 @@
   <data name="patque_dialog_thankYouCaption" xml:space="preserve">
     <value>Vielen Dank!</value>
   </data>
+  <data name="helpEmailLink" xml:space="preserve">
+    <value>Holen Sie sich Hilfe bei Umfrage</value>
+  </data>
 </root>

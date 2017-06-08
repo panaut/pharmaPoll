@@ -201,4 +201,7 @@
   <data name="patque_noSurvey" xml:space="preserve">
     <value>We don't have any survey available for you at this moment...</value>
   </data>
+  <data name="helpEmailLink" xml:space="preserve">
+    <value>Get help with this Survey</value>
+  </data>
 </root>

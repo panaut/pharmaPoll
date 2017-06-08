@@ -181,4 +181,7 @@
   <data name="patque_dialog_resume_emailWarning" xml:space="preserve">
     <value>* Voer een geldig emailadres in</value>
   </data>
+  <data name="helpEmailLink" xml:space="preserve">
+    <value>Hulp krijgen bij het onderzoek</value>
+  </data>
 </root>
