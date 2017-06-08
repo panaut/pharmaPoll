@@ -181,4 +181,7 @@
   <data name="patque_dialog_resume_text2_noEmail" xml:space="preserve">
     <value>Click the link to add it to your clipboard, or simply write it down.</value>
   </data>
+  <data name="helpEmailLink" xml:space="preserve">
+    <value>Get help with this Survey</value>
+  </data>
 </root>

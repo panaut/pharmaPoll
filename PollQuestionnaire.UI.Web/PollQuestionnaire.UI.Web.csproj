@@ -511,10 +511,10 @@
     <Content Include="Views\Admin\Index.cshtml" />
     <Content Include="Views\Survey\PatQueSurvey.cshtml" />
     <Content Include="Views\Shared\_LayoutSurvey.cshtml" />
-    <Content Include="Views\Shared\_LayoutPartialSurvey.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="SurveyPdf\" />
     <Folder Include="Views\Home\UploadFiles\" />
   </ItemGroup>
   <ItemGroup>

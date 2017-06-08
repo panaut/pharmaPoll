@@ -181,4 +181,7 @@
   <data name="patque_dialog_resume_text2" xml:space="preserve">
     <value>Puoi solo salvarle o se volete che li invii, lasci la tua email nella casella sotto il link. Ti assicuriamo che il tuo indirizzo email non verrà utilizzato per altri scopi.</value>
   </data>
+  <data name="helpEmailLink" xml:space="preserve">
+    <value>Ottenere aiuto con l'indagine</value>
+  </data>
 </root>

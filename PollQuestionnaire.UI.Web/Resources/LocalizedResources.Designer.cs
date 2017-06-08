@@ -61,6 +61,15 @@ namespace PollQuestionnaire.UI.Web.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Get help with this Survey.
+        /// </summary>
+        public static string helpEmailLink {
+            get {
+                return ResourceManager.GetString("helpEmailLink", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Print.
         /// </summary>
         public static string patque_btnPrint_Text {

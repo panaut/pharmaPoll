@@ -181,4 +181,7 @@
   <data name="patque_dialog_error_caption" xml:space="preserve">
     <value>Cóż ... nie było tak dobrze ...</value>
   </data>
+  <data name="helpEmailLink" xml:space="preserve">
+    <value>Uzyskaj pomoc z ankietą</value>
+  </data>
 </root>
