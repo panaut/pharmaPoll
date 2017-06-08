@@ -54,6 +54,14 @@ namespace Questionnaire.Data.Model.QuestionDefinition
             return this.isRequired;
         }
 
+        [MaxLength(32)]
+        public string renderAs { get; set; } = "standard";
+
+        public bool ShouldSerializerenderAs()
+        {
+            return !this.renderAs.Equals("standard");
+        }
+
         [JsonProperty(ItemTypeNameHandling = TypeNameHandling.Objects)]
         [JsonConverter(typeof(ValidatorsConverter))]
         public virtual ICollection<SurveyValidator> validators { get; set; } = new List<SurveyValidator>();

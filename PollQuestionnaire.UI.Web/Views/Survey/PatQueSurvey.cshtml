@@ -33,15 +33,15 @@
                 </div>
 
                 @*<div class="row"></div>
-                <div class="row">
-                    <div class="input-group">
-                        <span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
-                        <input id="emailAddress" type="email" class="form-control" name="email" placeholder="Email" required>
+                    <div class="row">
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
+                            <input id="emailAddress" type="email" class="form-control" name="email" placeholder="Email" required>
+                        </div>
                     </div>
-                </div>
-                <div id="incorrectEmailWarning" hidden class="row">
-                    <h5 style="color: red; float: right">@LocalizedResources.patque_dialog_resume_emailWarning</h5>
-                </div>*@
+                    <div id="incorrectEmailWarning" hidden class="row">
+                        <h5 style="color: red; float: right">@LocalizedResources.patque_dialog_resume_emailWarning</h5>
+                    </div>*@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-primary" onclick="sendEmail()">@LocalizedResources.patque_dialog_resume_btnSendEmail</button>
@@ -50,12 +50,15 @@
         </div>
     </div>
     @*<footer>
-        <p>&copy; @DateTime.Now.Year - EuropaColon</p>
-    </footer>*@
+            <p>&copy; @DateTime.Now.Year - EuropaColon</p>
+        </footer>*@
 </div>
 
 @section Scripts {
     @Scripts.Render("~/bundles/survey")
+    @Scripts.Render("~/Scripts/sortablejs/sortable.js")
+    @Scripts.Render("~/Scripts/surveyjs/widgets/sortable.js")
+
     <script>
         var _codeSurveyId = '@ViewBag.codeSurveyId';
 
@@ -94,6 +97,14 @@
             Survey.JsonObject.metaData.addProperty("multipletextitem", { name: "internalId:number" });
             Survey.JsonObject.metaData.addProperty("matrixdropdowncolumn", { name: "internalId:number" });
 
+            Survey.JsonObject.metaData.addProperty("checkbox", {
+                name: "renderAs", default: "standard", choices: ["standard", "sortablejs"]
+            });
+
+            // Add SortableJs Widget
+            Survey.CustomWidgetCollection.Instance.addCustomWidget(widgetSortablejs);
+
+            // Add missing localization
             Survey.surveyLocalization.locales['sr'] = customSurveyStringsSerbian;
             Survey.surveyLocalization.locales['hu'] = customSurveyStringsHungarian;
             Survey.surveyLocalization.locales['it'] = customSurveyStringsItalian;
@@ -102,10 +113,10 @@
             Survey.surveyLocalization.locales['pt'] = customSurveyStringsPortuguese;
 
             Survey.defaultBootstrapCss = {
-                                matrix: { root: "table table-striped" },
-                                text: "form-control input-lg col-xs-4",
-                                comment: "form-control input-lg",
-                                navigationButton: "btn btn-primary"
+                matrix: { root: "table table-striped" },
+                text: "form-control input-lg col-xs-4",
+                comment: "form-control input-lg",
+                navigationButton: "btn btn-primary"
             };
 
             Survey.defaultBootstrapCss.navigationButton = "btn btn-primary";

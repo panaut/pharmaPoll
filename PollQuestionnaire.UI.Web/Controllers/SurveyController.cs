@@ -194,6 +194,9 @@ namespace PollQuestionnaire.UI.Web.Controllers
                 case "gr":
                     ci = new CultureInfo("el");
                     break;
+                case "nl":
+                    ci = new CultureInfo("nl");
+                    break;
                 case "pt":
                     ci = new CultureInfo("pt");
                     break;

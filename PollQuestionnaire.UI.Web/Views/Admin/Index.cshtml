@@ -148,7 +148,7 @@
                         <input type="file" name="img[]" class="file" id="FileUpload1">
                         <div class="input-group col-xs-12">
                             <span class="input-group-addon"><i class="glyphicon glyphicon-file"></i></span>
-                            <input type="text" class="form-control input-lg"  placeholder="Upload Pdf File" style="min-width:100%">
+                            <input type="text" class="form-control input-lg" placeholder="Upload Pdf File" style="min-width:100%">
                             <span class="input-group-btn">
                                 <button class="browse btn btn-primary input-lg" type="button"><i class="glyphicon glyphicon-search"></i> Browse</button>
                             </span>
@@ -194,7 +194,7 @@
                         <input type="file" name="csvFileLocation" class="file" id="csvFileLocation">
                         <div class="input-group col-xs-12">
                             <span class="input-group-addon"><i class="glyphicon glyphicon-file"></i></span>
-                            <input type="text" class="form-control input-lg" disabled placeholder="Upload CSV File" style="min-width:100%" >
+                            <input type="text" class="form-control input-lg" disabled placeholder="Upload CSV File" style="min-width:100%">
                             <span class="input-group-btn">
                                 <button class="browse btn btn-primary input-lg" type="button"><i class="glyphicon glyphicon-search"></i>Browse</button>
                             </span>
@@ -212,8 +212,9 @@
 @section Scripts
 {
     @Scripts.Render("~/bundles/surveyEditor")
+    @Scripts.Render("~/Scripts/sortablejs/sortable.js")
+    @Scripts.Render("~/Scripts/surveyjs/widgets/sortable.js")
     @Scripts.Render("~/Scripts/surveyjsEditorInit.js")
-    @*@Scripts.Render("~/bundles/bootstrap")*@
 
     <script>
         var _surveyId = 0;
@@ -509,7 +510,7 @@
 
                         showMessage('Success!', 'Survey succesfully saved');
 
-                       //window.location.reload();
+                        //window.location.reload();
                     },
                     error: function (jqXHR, textStatus, errorThrown) {
                         spinStop();

@@ -66,7 +66,7 @@ namespace Questionnaire.Service.Localization
         public static IEnumerable<T> Disassemble<T>(
             Dynamico<T> sourceObject,
             AggregatorDescriptor<T> descriptor,
-            bool ignoreMissingCields = true)
+            bool ignoreMissingFields = true)
             where T : class, new()
         {
             List<T> retVal = new List<T>();
@@ -88,27 +88,31 @@ namespace Questionnaire.Service.Localization
                 var additionalFieldName = additionalFieldNameFunc.Invoke(aggregatorValue);
 
                 object aggVal = null;
+                bool hasField = false;
 
-                if (ignoreMissingCields)
+                if (ignoreMissingFields)
                 {
-                    sourceObject.TryGetMember(additionalFieldName, out aggVal);
+                    hasField = sourceObject.TryGetMember(additionalFieldName, out aggVal);
                 }
                 else
                 {
                     aggVal = sourceObject.GetMember(additionalFieldName);
                 }
 
-                var aggregateByTransformedVal = additionalFieldNameInverseFunc.Invoke(aggregatorValue.ToString());
-                var aggregateMemberTransformedVal = additionalFieldValueInverseFunc.Invoke(aggVal);
+                if(!ignoreMissingFields || hasField)
+                {
+                    var aggregateByTransformedVal = additionalFieldNameInverseFunc.Invoke(aggregatorValue.ToString());
+                    var aggregateMemberTransformedVal = additionalFieldValueInverseFunc.Invoke(aggVal);
 
-                sourceObject.TrySetMember(aggregateBy, aggregateByTransformedVal);
-                sourceObject.TrySetMember(aggregateMember, aggregateMemberTransformedVal);
+                    sourceObject.TrySetMember(aggregateBy, aggregateByTransformedVal);
+                    sourceObject.TrySetMember(aggregateMember, aggregateMemberTransformedVal);
 
-                T aggregatedElement = null;
-                if (!sourceObject.TryConvert(out aggregatedElement))
-                    throw new CustomException(new Exception("Failed to disassemble dynamic object"));
+                    T aggregatedElement = null;
+                    if (!sourceObject.TryConvert(out aggregatedElement))
+                        throw new CustomException(new Exception("Failed to disassemble dynamic object"));
 
-                retVal.Add(aggregatedElement);
+                    retVal.Add(aggregatedElement);
+                }
             }
 
             return retVal;
