@@ -1,6 +1,6 @@
 ﻿var customSurveyStringsPortuguese = {
-    pagePrevText: "Back",
-    pageNextText: "Next",
+    pagePrevText: "costas",
+    pageNextText: "Próximo",
     completeText: "Submit questionário",
     otherItemText: "Não é um dos nossos (entrar)",
     progressText: "Página {0} de {1}",
@@ -34,7 +34,7 @@
 };
 var customSurveyStringsAustrian = {
     pagePrevText: "Zurück",
-    pageNextText: "Next",
+    pageNextText: "Folgeseite",
     completeText: "Submit Fragebogen",
     otherItemText: "Nicht einer unserer (Enter)",
     progressText: "Seite {0} von {1}",
@@ -172,7 +172,7 @@ var customSurveyStringsItalian = {
 
 var customSurveyStringsHungarian = {
     pagePrevText: "Előző",
-    pageNextText: "Next",
+    pageNextText: "következő",
     completeText: "Mentés",
     otherItemText: "Egyéb (kérjük, részletezze)",
     progressText: "oldal {0} / {1}",
