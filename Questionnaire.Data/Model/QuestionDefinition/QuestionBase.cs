@@ -59,7 +59,7 @@ namespace Questionnaire.Data.Model.QuestionDefinition
 
         public bool ShouldSerializerenderAs()
         {
-            return !this.renderAs.Equals("standard");
+            return !string.IsNullOrEmpty(this.renderAs) && !this.renderAs.Equals("standard");
         }
 
         [JsonProperty(ItemTypeNameHandling = TypeNameHandling.Objects)]
