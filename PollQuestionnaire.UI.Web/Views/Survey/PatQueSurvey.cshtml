@@ -32,7 +32,7 @@
                     <a href="#" title="@LocalizedResources.patque_dialog_clickForClipboard"><h5 id="resumeLink" onclick="copyToClipboard(this)"></h5></a>
                 </div>
 
-                <div class="row"></div>
+                @*<div class="row"></div>
                     <div class="row">
                         <div class="input-group">
                             <span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
@@ -41,7 +41,7 @@
                     </div>
                     <div id="incorrectEmailWarning" hidden class="row">
                         <h5 style="color: red; float: right">@LocalizedResources.patque_dialog_resume_emailWarning</h5>
-                    </div>
+                    </div>*@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-primary" onclick="sendEmail()">@LocalizedResources.patque_dialog_resume_btnSendEmail</button>
@@ -91,7 +91,6 @@
 
         function initializeSurvey() {
             Survey.JsonObject.metaData.addProperty("survey", { name: "internalId:number" });
-            Survey.JsonObject.metaData.addProperty("survey", { name: "surveyCode:string" });
             Survey.JsonObject.metaData.addProperty("page", { name: "internalId:number" });
             Survey.JsonObject.metaData.addProperty("panel", { name: "internalId:number" });
             Survey.JsonObject.metaData.addProperty("questionbase", { name: "internalId:number" });
@@ -280,7 +279,7 @@
 
             spinStart();
 
-            var surveyCode = survey.surveyCode;
+            var surveyCode = survey.surveyId;
             var sessionCode = localStorage.getItem(sessionCodeKey);
 
             var lastVisitedPage = localStorage.getItem(lastPageVisitedKey);
@@ -317,8 +316,7 @@
                             resumeLink = resumeLink.replace("__surveyCode__", surveyCode);
                             resumeLink = resumeLink.replace("__sessionCode__", data);
 
-                            var entireLink = window.location.origin + '__resumeLink__';
-                            //var entireLink = document.domain + '__resumeLink__';
+                            var entireLink = document.domain + '__resumeLink__';
                             entireLink = entireLink.replace("__resumeLink__", resumeLink);
 
                             showResumeModal(entireLink);

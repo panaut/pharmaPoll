@@ -76,5 +76,12 @@ namespace Questionnaire.Data.Model.QuestionDefinition
             base.Visit(visitor);
             visitor.Visit(this);
         }
+
+        //public QuestionCustomWidget customWidget { get; set; }
+
+        //public bool ShouldSerializecustomWidget()
+        //{
+        //    return this.customWidget != null;
+        //}
     }
 }
