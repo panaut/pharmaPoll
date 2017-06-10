@@ -118,6 +118,27 @@ namespace PollQuestionnaire.UI.Web.Controllers
         public void SendEmail(string resumeLink, string email)
         {
             resumeLink = HttpUtility.HtmlDecode(resumeLink);
+
+            var smtpClient = new System.Net.Mail.SmtpClient("smtp.patque.net", 587);
+
+            smtpClient.Credentials = new System.Net.NetworkCredential("info@patque.net", "LmMF*cK1");
+            //smtpClient.UseDefaultCredentials = true;
+            //smtpClient.DeliveryMethod = System.Net.Mail.SmtpDeliveryMethod.Network;
+            smtpClient.EnableSsl = false;
+            var mail = new System.Net.Mail.MailMessage();
+
+            //Setting From , To and CC
+            mail.From = new System.Net.Mail.MailAddress("info@patque.net", "PatQue.net");
+            mail.To.Add(new System.Net.Mail.MailAddress(email));
+            mail.IsBodyHtml = true;
+            mail.Subject = "patque.net - resume your survey";
+            mail.Body = $"To resume your survey at any time, just click the this link!<br /><a href =\"{resumeLink}\">{resumeLink}</a><br /><br />Your PatQue.net team";
+
+            smtpClient.Send(mail);
+
+
+
+
             //var smtpClient = new System.Net.Mail.SmtpClient("smtp.patque.net");
 
             //smtpClient.Credentials = new System.Net.NetworkCredential("info@patque.net", "mp$Z%vJ3!");
