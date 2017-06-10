@@ -18,25 +18,25 @@ namespace PollQuestionnaire.UI.Web
         // Redirect http requests to the https URL
         protected void Application_BeginRequest()
         {
-            if (!Context.Request.IsSecureConnection)
-            {
-                // This is an insecure connection, so redirect to the secure version
-                UriBuilder uri = new UriBuilder(Context.Request.Url);
-                uri.Scheme = "https";
-                if (uri.Port > 30000 && uri.Host.Equals("localhost"))
-                {
-                    // Development box - set uri.Port to 44300 by default
-                    // uncoment this to test localhost https
-                    uri.Port = 44311;
-                }
-                else
-                {
-                    uri.Port = 443;
-                    //Response.Redirect(uri.ToString());
-                }
-                // uncomment this one and comment the upper one when using localhost https
-                Response.Redirect(uri.ToString());
-            }
+            //if (!Context.Request.IsSecureConnection)
+            //{
+            //    // This is an insecure connection, so redirect to the secure version
+            //    UriBuilder uri = new UriBuilder(Context.Request.Url);
+            //    uri.Scheme = "https";
+            //    if (uri.Port > 30000 && uri.Host.Equals("localhost"))
+            //    {
+            //        // Development box - set uri.Port to 44300 by default
+            //        // uncoment this to test localhost https
+            //        uri.Port = 44382;
+            //    }
+            //    else
+            //    {
+            //        uri.Port = 443;
+            //        //Response.Redirect(uri.ToString());
+            //    }
+            //    // uncomment this one and comment the upper one when using localhost https
+            //    Response.Redirect(uri.ToString());
+            //}
         }
     }
 }
