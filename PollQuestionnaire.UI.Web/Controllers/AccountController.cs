@@ -77,7 +77,7 @@ namespace PollQuestionnaire.UI.Web.Controllers
         [AllowAnonymous]
         public ActionResult Login(string returnUrl)
         {
-            //SetANewRequestVerificationTokenManuallyInCookieAndOnTheForm();
+            SetANewRequestVerificationTokenManuallyInCookieAndOnTheForm();
             ViewBag.ReturnUrl = returnUrl;
             return View();
         }
