@@ -26,7 +26,8 @@
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
     <TargetFrameworkProfile />
-    <IISExpressSSLPort>44311</IISExpressSSLPort>
+    <IISExpressSSLPort>
+    </IISExpressSSLPort>
     <TypeScriptToolsVersion>1.8</TypeScriptToolsVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
@@ -349,9 +350,8 @@
     <Content Include="Content\surveyjs\fonts\icomoon.ttf" />
     <Content Include="Content\surveyjs\fonts\icomoon.woff" />
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
-    <Content Include="images\comodo_secure_seal_100x85_transp.png" />
-    <Content Include="images\comodo_secure_seal_113x59_transp.png" />
-    <Content Include="images\comodo_secure_seal_76x26_transp.png" />
+    <Content Include="images\EuropaColon_Logo_2016_150x107.jpg" />
+    <Content Include="images\EuropaColon_Logo_2016_200x142.jpg" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\dxSurvey\dxBroker.js" />
