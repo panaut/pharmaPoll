@@ -1,4 +1,5 @@
 ﻿using Newtonsoft.Json;
+using PollQuestionnaire.UI.Web.Resources;
 using Questionnaire.Service;
 using System;
 using System.Globalization;
@@ -54,6 +55,10 @@ namespace PollQuestionnaire.UI.Web.Controllers
                 ViewBag.surveyName = HttpUtility.HtmlEncode(surveyInfoResult.OperationResult.Title);
                 ViewBag.sessionCode = HttpUtility.HtmlEncode(sessionCode);
             }
+
+            ViewBag.localizedStrings = JsonConvert.SerializeObject(new {
+                sortableWidget_confirm = LocalizedResources.patque_js_sortableConfirm
+            });
 
             return View();
         }

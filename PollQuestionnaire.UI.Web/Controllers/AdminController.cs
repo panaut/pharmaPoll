@@ -1,4 +1,6 @@
-﻿using Questionnaire.Service;
+﻿using Newtonsoft.Json;
+using PollQuestionnaire.UI.Web.Resources;
+using Questionnaire.Service;
 using Questionnaire.Service.Infrastructure;
 using System;
 using System.IO;
@@ -17,6 +19,11 @@ namespace PollQuestionnaire.UI.Web.Controllers
         public ActionResult Index()
         {
             var model = surveyService.Value.GetAllSurveyInfo(onlyActive: false).OperationResult;
+
+            ViewBag.localizedStrings = JsonConvert.SerializeObject(new
+            {
+                sortableWidget_confirm = LocalizedResources.patque_js_sortableConfirm
+            });
 
             return View(model.ToList());
         }

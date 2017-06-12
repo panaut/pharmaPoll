@@ -40,6 +40,19 @@ textarea {
     }
 }
 
+.truncate-div {
+    display: table;
+    table-layout: fixed;
+    width: 100%;
+    white-space: nowrap;
+}
+
+.truncate-div > * {
+    display: table-cell;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
 @media(max-width: 300px) {
     .truncate-ellipsis {
         display: table;
@@ -91,9 +104,8 @@ img {
 .sortable-container {
     border: solid;
     border-width: 1px;
-    border-color:  lightgrey;
+    border-color: lightgrey;
     border-radius: 5px;
-    width: 100%;
     min-height: 50px;
     padding: 5pt 10pt 10pt 10pt;
 }

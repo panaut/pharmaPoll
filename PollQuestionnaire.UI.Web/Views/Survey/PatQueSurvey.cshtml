@@ -33,15 +33,15 @@
                 </div>
 
                 <div class="row"></div>
-                    <div class="row">
-                        <div class="input-group">
-                            <span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
-                            <input id="emailAddress" type="email" class="form-control" name="email" placeholder="Email" required>
-                        </div>
+                <div class="row">
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
+                        <input id="emailAddress" type="email" class="form-control" name="email" placeholder="Email" required>
                     </div>
-                    <div id="incorrectEmailWarning" hidden class="row">
-                        <h5 style="color: red; float: right">@LocalizedResources.patque_dialog_resume_emailWarning</h5>
-                    </div>
+                </div>
+                <div id="incorrectEmailWarning" hidden class="row">
+                    <h5 style="color: red; float: right">@LocalizedResources.patque_dialog_resume_emailWarning</h5>
+                </div>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-primary" onclick="sendEmail()">@LocalizedResources.patque_dialog_resume_btnSendEmail</button>
@@ -60,6 +60,8 @@
     @Scripts.Render("~/Scripts/surveyjs/widgets/sortable.js")
 
     <script>
+        var localizedStrings = @Html.Raw(ViewBag.localizedStrings);
+
         var _codeSurveyId = '@ViewBag.codeSurveyId';
 
         // Construct Survey Specific Cokie Name

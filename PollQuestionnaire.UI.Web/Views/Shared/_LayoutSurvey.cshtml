@@ -18,8 +18,8 @@ document.write(unescape("%3Cscript src='" + tlJsHost + "trustlogo/javascript/tru
 </head>
 @*<a href="https://ssl.comodo.com" id="comodoTL">Comodo SSL</a>*@
 <body>
-    <nav class="navbar navbar-inverse navbar-default navbar-static-top in">
-        <div class="container-fluid text-center">
+    <nav class="navbar navbar-inverse">
+        <div class="container-fluid">
             <div class="navbar-header">                
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
                     <span class="icon-bar"></span>
@@ -31,7 +31,7 @@ document.write(unescape("%3Cscript src='" + tlJsHost + "trustlogo/javascript/tru
                         @ViewBag.surveyName
                 </div>                
             </div>
-            <div class="navbar-collapse navbar-left collapse in">
+            <div class="navbar-collapse navbar-right collapse">
                 <ul class="nav navbar-nav">
                     <li id="continueLater"><a href="#" onclick="saveResults(survey, true)" title="@LocalizedResources.patque_dialog_continueLaterTitle">@LocalizedResources.patque_dialog_continueLaterText</a></li>
                     <li><a href="#" onclick="resetSurvey()" title="@LocalizedResources.patque_btnReset_tooltip">@LocalizedResources.patque_btnReset_text</a></li>
@@ -57,7 +57,7 @@ document.write(unescape("%3Cscript src='" + tlJsHost + "trustlogo/javascript/tru
                         </ul>
                     </li>
                     <li id="comodo"><script language="JavaScript" type="text/javascript">
-TrustLogo("/images/comodo_secure_seal_113x59_transp.png", "CL1", "none");
+TrustLogo("/images/comodo_secure_seal_113x59.png", "CL1", "none");
 </script></li>
                 </ul>
             </div>

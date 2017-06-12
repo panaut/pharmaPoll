@@ -184,4 +184,7 @@
   <data name="helpEmailLink" xml:space="preserve">
     <value>Obter ajuda com o inquérito</value>
   </data>
+  <data name="patque_js_sortableConfirm" xml:space="preserve">
+    <value>confirme</value>
+  </data>
 </root>

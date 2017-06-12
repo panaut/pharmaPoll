@@ -313,6 +313,15 @@ namespace PollQuestionnaire.UI.Web.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Confirm.
+        /// </summary>
+        public static string patque_js_sortableConfirm {
+            get {
+                return ResourceManager.GetString("patque_js_sortableConfirm", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to We don&apos;t have any survey available for you at this moment....
         /// </summary>
         public static string patque_noSurvey {

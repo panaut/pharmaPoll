@@ -184,4 +184,7 @@
   <data name="helpEmailLink" xml:space="preserve">
     <value>Kérjen segítséget a felméréshez</value>
   </data>
+  <data name="patque_js_sortableConfirm" xml:space="preserve">
+    <value>Jóváhagy</value>
+  </data>
 </root>
