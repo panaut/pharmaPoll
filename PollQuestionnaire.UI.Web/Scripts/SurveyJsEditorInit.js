@@ -10,10 +10,10 @@ Survey.JsonObject.metaData.addProperty("questionbase", { name: "internalId:numbe
 Survey.JsonObject.metaData.addProperty("surveyvalidator", { name: "internalId:number" });
 Survey.JsonObject.metaData.addProperty("multipletextitem", { name: "internalId:number" });
 Survey.JsonObject.metaData.addProperty("matrixdropdowncolumn", { name: "internalId:number" });
-Survey.JsonObject.metaData.addProperty("checkbox", { name: "renderAs", default: "standard", choices: ["standard", "sortablejs"] });
+//Survey.JsonObject.metaData.addProperty("checkbox", { name: "renderAs", default: "standard", choices: ["standard", "sortablejs"] });
 
 // Add SortableJs Widget
-Survey.CustomWidgetCollection.Instance.addCustomWidget(widgetSortablejs);
+//Survey.CustomWidgetCollection.Instance.addCustomWidget(widgetSortablejs);
 
 survey.onCanShowProperty.add(function (sender, options) {
     if (options.obj.getType() == "survey") {

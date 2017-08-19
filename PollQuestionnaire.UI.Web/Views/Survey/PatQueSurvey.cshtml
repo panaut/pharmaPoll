@@ -56,8 +56,8 @@
 
 @section Scripts {
     @Scripts.Render("~/bundles/survey")
-    @Scripts.Render("~/Scripts/sortablejs/sortable.js")
-    @Scripts.Render("~/Scripts/surveyjs/widgets/sortable.js")
+    @*@Scripts.Render("~/Scripts/sortablejs/sortable.js")
+    @Scripts.Render("~/Scripts/surveyjs/widgets/sortable.js")*@
 
     <script>
         var localizedStrings = @Html.Raw(ViewBag.localizedStrings);
@@ -100,12 +100,12 @@
             Survey.JsonObject.metaData.addProperty("multipletextitem", { name: "internalId:number" });
             Survey.JsonObject.metaData.addProperty("matrixdropdowncolumn", { name: "internalId:number" });
 
-            Survey.JsonObject.metaData.addProperty("checkbox", {
-                name: "renderAs", default: "standard", choices: ["standard", "sortablejs"]
-            });
+            //Survey.JsonObject.metaData.addProperty("checkbox", {
+            //    name: "renderAs", default: "standard", choices: ["standard", "sortablejs"]
+            //});
 
-            // Add SortableJs Widget
-            Survey.CustomWidgetCollection.Instance.addCustomWidget(widgetSortablejs);
+            //// Add SortableJs Widget
+            //Survey.CustomWidgetCollection.Instance.addCustomWidget(widgetSortablejs);
 
             // Add missing localization
             Survey.surveyLocalization.locales['sr'] = customSurveyStringsSerbian;
