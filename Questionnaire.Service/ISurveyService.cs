@@ -13,6 +13,7 @@ namespace Questionnaire.Service
 
         ServiceResponse<bool?> SetSurveyStatus(int surveyId, bool status);
 
+        ServiceResponse<string> GetSurveyStats(int surveyId, string culture = "DEFAULT", bool onlyActive = true);
         ServiceResponse<string> GetSurvey(int surveyId, string culture = "DEFAULT", bool onlyActive = true);
 
         ServiceResponse<string> GetSurvey(string surveyCode, string culture = "DEFAULT", bool onlyActive = true);

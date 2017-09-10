@@ -62,11 +62,23 @@
 
                 @if (item.CompletedSessionCount == item.TotalSessionCount)
                 {
-                    <td><span class="badge" title='@string.Format("{0} sessions, all completed", @item.TotalSessionCount) '>@item.TotalSessionCount</span></td>
+                    <td>
+                        <a href="#" class="statsModalLink" data-toggle="modal" data-target="#statsModal"
+                           title="Survey statistics" data-id="@item.Id" data-isActive="@item.IsActive">
+                            <span class="badge" title='@string.Format("{0} sessions, all completed", @item.TotalSessionCount) '>@item.TotalSessionCount</span>
+                        </a>
+                    </td>
                 }
                 else
                 {
-                    <td><span class="badge" title='@string.Format("{0} sessions in total, {1} completed", @item.TotalSessionCount, @item.CompletedSessionCount)'>@item.TotalSessionCount (@item.CompletedSessionCount)</span></td>
+                    <td>
+                        <a href="#" class="statsModalLink" data-toggle="modal" data-target="#statsModal"
+                           title="Survey statistics" data-id="@item.Id" data-isActive="@item.IsActive">
+                            <span class="badge" title='@string.Format("{0} sessions in total, {1} completed", @item.TotalSessionCount, @item.CompletedSessionCount)'>
+                                @item.TotalSessionCount (@item.CompletedSessionCount)
+                            </span>
+                        </a>
+                    </td>
                 }
 
             </tr>
@@ -132,6 +144,20 @@
     </div>
 </div>
 
+<div class="modal modal-backdrop-transparent fade" id="statsModal" tabindex="-1" role="dialog" aria-labelledby="statsModal" aria-hidden="true">
+    <div class="modal-dialog" role="dialog">
+        <div class="modal-content">
+            <div class="modal-body">
+                <h5 style="text-align:center; font-size:large">Here goes statistics!</h5>
+                <h5 id="test1" class="test1"></h5>
+            </div>
+            <div class="modal-footer">
+                <a href="#" class="statsSurvey" data-dismiss="modal" name="passedValue" data-id="" data-isActive="">Show full statistic</a>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
 
 <div class="modal modal-backdrop-transparent fade" id="uploadPdf" tabindex="-1" role="dialog" aria-labelledby="uploadModal" aria-hidden="true">
     <div class="modal-dialog" role="dialog">
@@ -318,8 +344,39 @@
                          spinStop();
                      }
                  });
+        });      
+        $(document).ready(function(){
+            $(".statsModalLink").hover(function() {
+                $('#statsModal').modal({
+                    show: true
+                });
+            });  
         });
+        $(document).on("click", ".statsModalLink", function () {
+            //spinStart();
 
+            var Id = $(this).data('id');
+            var surveyId = $(this).attr('data-surveyId');
+
+            //survey.text = ""
+            $.ajax(
+                 '@Url.Action("GetSurveyStats", "Admin", new { area="" })',
+                 {
+                     method: "GET",
+                     async: true,
+                     data: { surveyId: Id },
+                     dataType: 'json',
+                     success: function (data, textStatus, jqXHR) {
+                         $('#test1').val = data;
+                         spinStop();
+                     },
+                     error: function (jqXHR, textStatus, errorThrown) {
+                         $('#noSurveyAlert').css("display", "block");
+
+                         spinStop();
+                     }
+                 });
+        });
         $("document").ready(function () {
             $(function () {
                 $(".deleteSurveyModal").click(function () {
