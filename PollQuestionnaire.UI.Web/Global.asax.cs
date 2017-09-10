@@ -27,15 +27,15 @@ namespace PollQuestionnaire.UI.Web
                 {
                     // Development box - set uri.Port to 44300 by default
                     // uncoment this to test localhost https
-                    uri.Port = 44382;
+                    //uri.Port = 44382;
                 }
                 else
                 {
                     uri.Port = 443;
-                    //Response.Redirect(uri.ToString());
+                    Response.Redirect(uri.ToString());
                 }
                 // uncomment this one and comment the upper one when using localhost https
-                Response.Redirect(uri.ToString());
+                //Response.Redirect(uri.ToString());
             }
         }
     }
