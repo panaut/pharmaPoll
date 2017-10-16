@@ -54,6 +54,18 @@ namespace PollQuestionnaire.UI.Web.Controllers
         }
 
         [HttpGet()]
+        public string GetSurveyStats(int surveyId)
+        {
+            var result = surveyService.Value.GetSurveyStats(surveyId, onlyActive: false);
+
+            if (result.Status != OperationStatus.Success)
+            {
+                throw new InvalidOperationException("failed to update survey status");
+            }
+
+            return "test";//result.OperationResult;
+        }
+        [HttpGet()]
         public string GetSurvey(int surveyId)
         {
             var result = surveyService.Value.GetSurvey(surveyId, onlyActive: false);
@@ -96,7 +108,7 @@ namespace PollQuestionnaire.UI.Web.Controllers
         {
             var filePath = Path.Combine(Server.MapPath("~/Downloads"), fileName);
 
-            if(!System.IO.File.Exists(filePath))
+            if (!System.IO.File.Exists(filePath))
             {
                 throw new CustomException($"Localization file not found at location {filePath}.", new Exception());
             }

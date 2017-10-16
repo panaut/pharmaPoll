@@ -202,7 +202,92 @@ namespace Questionnaire.Service
             command.Execute(surveyId);
             return command.Result;
         }
+        public ServiceResponse<string> GetSurveyStats(int surveyId, string culture = "DEFAULT", bool onlyActive = true)
+        {
+            var command = new ServiceCommand<string>
+            {
+                Execution = (cmd, param) =>
+                {
+                    Survey survey = null;      // The survey object to be saved
 
+                    // Try to get survey with provided Id from database
+                    try
+                    {
+                        survey = this.surveyManager.Value.Find(surveyId);
+                    }
+                    catch (Exception ex)
+                    {
+                        cmd.Status = OperationStatus.Failure;
+                        var originalException = new ArgumentException($"Failed retrieve survey with id {surveyId}", ex);
+                        var exc = new CustomException(originalException);
+                        throw exc;
+                    }
+
+                    if (survey != null && onlyActive)
+                    {
+                        // Check whether the survey is active
+                        // If not, raise custom exception
+                        if (!survey.IsActive)
+                        {
+                            cmd.Status = OperationStatus.Failure;
+                            var exc = new CustomException(new InvalidOperationException("Requested survey is not active"));
+                            throw exc;
+                        }
+                    }
+
+                    string retStr = string.Empty;      // Result JSON
+
+                    if (survey != null)
+                    {
+                        // Sort Pages and Elements properly...
+                        survey.SortElementsWithinContainer();
+
+                        // Localize Survey
+                        ECulture desiredCulture;            // Desired culture enum value
+                        if (!Enum.TryParse(culture, out desiredCulture))
+                        {
+                            logger.Info("Culture {0} is not supported. Survey with ID: {1} will not be localized.", culture, surveyId);
+                            desiredCulture = ECulture.DEFAULT;
+                        }
+
+                        if (desiredCulture != ECulture.DEFAULT)
+                        {
+                            try
+                            {
+                                // this is a 'known' culture - set localization for proper localization of Survey misc elements
+                                survey.locale = culture;
+                                survey.Localize(desiredCulture);
+                            }
+                            catch (Exception ex)
+                            {
+                                cmd.Status = OperationStatus.Failure;
+                                var exc = new CustomException($"Failed to localize survey with ID: {surveyId} into culture {culture}.", ex);
+                                throw exc;
+                            }
+                        }
+
+                        // Try to serialize modified object into JSON string
+                        try
+                        {
+                            retStr = surveySerializer.Value.Serialize(survey);
+                        }
+                        catch (Exception ex)
+                        {
+                            cmd.Status = OperationStatus.Failure;
+                            var exc = new CustomException("Failed to Serialize survey object into JSON string", ex);
+                            throw exc;
+                        }
+
+                        cmd.Result.Status = OperationStatus.Success;
+                    }
+
+                    return retStr;
+                }
+            };
+
+            command.Execute(null);
+            return command.Result;
+        }
         public ServiceResponse<string> GetSurvey(int surveyId, string culture = "DEFAULT", bool onlyActive = true)
         {
             var command = new ServiceCommand<string>
