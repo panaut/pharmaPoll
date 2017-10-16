@@ -16,6 +16,7 @@ namespace Questionnaire.Service.Extensions
 
             return survey;
         }
+
         public static Survey GenerateTitle(this Survey survey)
         {
             if (string.IsNullOrEmpty(survey.title))

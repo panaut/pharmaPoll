@@ -58,6 +58,7 @@
     <Compile Include="Localization\Dynamico.cs" />
     <Compile Include="Objects\SurveyInfo.cs" />
     <Compile Include="Objects\VotingSessionInfo.cs" />
+    <Compile Include="SessionProcessing\SessionResultProcessor.cs" />
     <Compile Include="SurveyService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="VotingService.cs" />
