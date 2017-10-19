@@ -119,7 +119,7 @@
     <value>ОК</value>
   </data>
   <data name="patque_dialog_btnYes_caption" xml:space="preserve">
-    <value>да</value>
+    <value>Да</value>
   </data>
   <data name="patque_dialog_clickForClipboard" xml:space="preserve">
     <value>Нажмите ссылку, чтобы скопировать ее в буфер обмена</value>
