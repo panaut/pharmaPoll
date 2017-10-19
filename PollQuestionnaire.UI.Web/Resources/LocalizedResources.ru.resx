@@ -1,0 +1,190 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+		Microsoft ResX Schema
+
+		Version 1.3
+
+		The primary goals of this format is to allow a simple XML format 
+		that is mostly human readable. The generation and parsing of the 
+		various data types are done through the TypeConverter classes 
+		associated with the data types.
+
+		Example:
+
+		... ado.net/XML headers & schema ...
+		<resheader name="resmimetype">text/microsoft-resx</resheader>
+		<resheader name="version">1.3</resheader>
+		<resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+		<resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+		<data name="Name1">this is my long string</data>
+		<data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+		<data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+			[base64 mime encoded serialized .NET Framework object]
+		</data>
+		<data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+			[base64 mime encoded string representing a byte array form of the .NET Framework object]
+		</data>
+
+		There are any number of "resheader" rows that contain simple 
+		name/value pairs.
+
+		Each data row contains a name, and value. The row also contains a 
+		type or mimetype. Type corresponds to a .NET class that support 
+		text/value conversion through the TypeConverter architecture. 
+		Classes that don't support this are serialized and stored with the 
+		mimetype set.
+
+		The mimetype is used for serialized objects, and tells the 
+		ResXResourceReader how to depersist the object. This is currently not 
+		extensible. For a given mimetype the value must be set accordingly:
+
+		Note - application/x-microsoft.net.object.binary.base64 is the format 
+		that the ResXResourceWriter will generate, however the reader can 
+		read any of the formats listed below.
+
+		mimetype: application/x-microsoft.net.object.binary.base64
+		value   : The object must be serialized with 
+			: System.Serialization.Formatters.Binary.BinaryFormatter
+			: and then encoded with base64 encoding.
+
+		mimetype: application/x-microsoft.net.object.soap.base64
+		value   : The object must be serialized with 
+			: System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+			: and then encoded with base64 encoding.
+
+		mimetype: application/x-microsoft.net.object.bytearray.base64
+		value   : The object must be serialized into a byte array 
+			: using a System.ComponentModel.TypeConverter
+			: and then encoded with base64 encoding.
+	-->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>1.3</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.3500.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.3500.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="patque_dialog_supportedLanguagesCaption" xml:space="preserve">
+    <value>русский</value>
+  </data>
+  <data name="patque_btnPrint_Text" xml:space="preserve">
+    <value>Распечатать</value>
+  </data>
+  <data name="patque_btnPrint_tooltip" xml:space="preserve">
+    <value>Распечатать PDF-версию этой формы</value>
+  </data>
+  <data name="patque_btnReset_text" xml:space="preserve">
+    <value>Сбросить опрос</value>
+  </data>
+  <data name="patque_btnReset_tooltip" xml:space="preserve">
+    <value>Удалить текущий прогресс и снова начать опрос</value>
+  </data>
+  <data name="patque_dialog_btnNo_caption" xml:space="preserve">
+    <value>Нет</value>
+  </data>
+  <data name="patque_dialog_btnOk_caption" xml:space="preserve">
+    <value>ОК</value>
+  </data>
+  <data name="patque_dialog_btnYes_caption" xml:space="preserve">
+    <value>да</value>
+  </data>
+  <data name="patque_dialog_clickForClipboard" xml:space="preserve">
+    <value>Нажмите ссылку, чтобы скопировать ее в буфер обмена</value>
+  </data>
+  <data name="patque_dialog_continueLaterText" xml:space="preserve">
+    <value>Продолжить исследование позже</value>
+  </data>
+  <data name="patque_dialog_continueLaterTitle" xml:space="preserve">
+    <value>Вы можете продолжить опрос в любое время в любом месте</value>
+  </data>
+  <data name="patque_dialog_error_caption" xml:space="preserve">
+    <value>Ну ... Это было не так ...</value>
+  </data>
+  <data name="patque_dialog_error_errorVerifyingPdfExistence" xml:space="preserve">
+    <value>Из-за «временных трудностей» мы не смогли проверить само существование запрошенного файла. Извините, и попробуйте в течение нескольких минут ...</value>
+  </data>
+  <data name="patque_dialog_error_pdfNotFound" xml:space="preserve">
+    <value>Трудно поверить, но файл был здесь всего лишь минуту назад :-) Weeeell ... не реально ... Правда в том, что у нас его нет ... Извините ...</value>
+  </data>
+  <data name="patque_dialog_error_saveSessionFailed" xml:space="preserve">
+    <value>Мы испытываем «временные» характеристики :-) Однако данные, которые вы отправили, хранятся в вашем браузере. Пожалуйста, постарайтесь представить свои данные всякий раз, когда вам хочется ...</value>
+  </data>
+  <data name="patque_dialog_error_sessionNotFound" xml:space="preserve">
+    <value>Нам не удалось найти ваши данные сеанса. Проверьте код сеанса и повторите попытку ...</value>
+  </data>
+  <data name="patque_dialog_error_surveyLoadFailed" xml:space="preserve">
+    <value>Мы не смогли загрузить опрос. Вы проверили код опроса?</value>
+  </data>
+  <data name="patque_dialog_resetWarningText" xml:space="preserve">
+    <value>Если вы продолжите все ваши данные сеанса, будет потеряно. Пожалуйста, подумайте о сохранении изменений перед опросом реселлера. Вы хотите сбросить текущий прогресс?</value>
+  </data>
+  <data name="patque_dialog_resetWarningTitle" xml:space="preserve">
+    <value>Ваши данные будут потеряны</value>
+  </data>
+  <data name="patque_dialog_resume_btnClose" xml:space="preserve">
+    <value>Закрыть</value>
+  </data>
+  <data name="patque_dialog_resume_btnSendEmail" xml:space="preserve">
+    <value>Отправить письмо и закрыть</value>
+  </data>
+  <data name="patque_dialog_resume_emailWarning" xml:space="preserve">
+    <value>* Введите действительный адрес электронной почты</value>
+  </data>
+  <data name="patque_dialog_resume_text1" xml:space="preserve">
+    <value>Вы сможете возобновить этот опрос в любое удобное для вас время. Для этого вам понадобится ссылка, приведенная ниже.</value>
+  </data>
+  <data name="patque_dialog_resume_text2" xml:space="preserve">
+    <value>Вы можете просто записать его, или если вы хотите, чтобы мы отправили вам его по электронной почте, оставьте свой адрес электронной почты в поле по ссылке. Будьте уверены, что ваш адрес электронной почты не будет использоваться в каких-либо других целях.</value>
+  </data>
+  <data name="patque_dialog_resume_text2_noEmail" xml:space="preserve">
+    <value>Нажмите ссылку, чтобы добавить ее в буфер обмена, или просто запишите ее.</value>
+  </data>
+  <data name="patque_dialog_resume_title" xml:space="preserve">
+    <value>Ваша работа сохранена</value>
+  </data>
+  <data name="patque_dialog_thankYouCaption" xml:space="preserve">
+    <value>Спасибо!</value>
+  </data>
+  <data name="patque_noSurvey" xml:space="preserve">
+    <value>В настоящий момент у вас нет опроса, доступного для вас ...</value>
+  </data>
+  <data name="helpEmailLink" xml:space="preserve">
+    <value>Получите помощь в этом опросе</value>
+  </data>
+  <data name="patque_js_sortableConfirm" xml:space="preserve">
+    <value>подтвердить</value>
+  </data>
+</root>

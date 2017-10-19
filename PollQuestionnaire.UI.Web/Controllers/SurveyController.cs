@@ -56,7 +56,8 @@ namespace PollQuestionnaire.UI.Web.Controllers
                 ViewBag.sessionCode = HttpUtility.HtmlEncode(sessionCode);
             }
 
-            ViewBag.localizedStrings = JsonConvert.SerializeObject(new {
+            ViewBag.localizedStrings = JsonConvert.SerializeObject(new
+            {
                 sortableWidget_confirm = LocalizedResources.patque_js_sortableConfirm
             });
 
@@ -202,6 +203,9 @@ namespace PollQuestionnaire.UI.Web.Controllers
                 case "nl":
                     ci = new CultureInfo("nl");
                     break;
+                case "be":
+                    ci = new CultureInfo("nl-BE");
+                    break;
                 case "pt":
                     ci = new CultureInfo("pt");
                     break;
@@ -216,6 +220,9 @@ namespace PollQuestionnaire.UI.Web.Controllers
                     break;
                 case "it":
                     ci = new CultureInfo("it");
+                    break;
+                case "ru":
+                    ci = new CultureInfo("ru");
                     break;
                 default:
                     ci = CultureInfo.CurrentCulture;

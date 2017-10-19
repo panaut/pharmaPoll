@@ -246,7 +246,6 @@
     <Compile Include="App_Start\IdentityConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
-    <Compile Include="Class1.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -505,6 +504,7 @@
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>LocalizedResources.it.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="Resources\LocalizedResources.nl-BE.resx" />
     <EmbeddedResource Include="Resources\LocalizedResources.nl.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>LocalizedResources.nl.Designer.cs</LastGenOutput>
@@ -521,6 +521,7 @@
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>LocalizedResources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="Resources\LocalizedResources.ru.resx" />
     <EmbeddedResource Include="Resources\LocalizedResources.sr.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>LocalizedResources.sr.Designer.cs</LastGenOutput>
