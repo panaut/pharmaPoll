@@ -122,7 +122,7 @@
     <value>Да</value>
   </data>
   <data name="patque_dialog_clickForClipboard" xml:space="preserve">
-    <value>Нажмите ссылку, чтобы скопировать ее в буфер обмена</value>
+    <value>Нажмите ссылку, чтобы скопировать ее в планшете</value>
   </data>
   <data name="patque_dialog_continueLaterText" xml:space="preserve">
     <value>Продолжить исследование позже</value>
@@ -131,25 +131,25 @@
     <value>Вы можете продолжить опрос в любое время в любом месте</value>
   </data>
   <data name="patque_dialog_error_caption" xml:space="preserve">
-    <value>Ну ... Это было не так ...</value>
+    <value>Ну ... Это было не так хорошо</value>
   </data>
   <data name="patque_dialog_error_errorVerifyingPdfExistence" xml:space="preserve">
     <value>Из-за «временных трудностей» мы не смогли проверить само существование запрошенного файла. Извините, и попробуйте в течение нескольких минут ...</value>
   </data>
   <data name="patque_dialog_error_pdfNotFound" xml:space="preserve">
-    <value>Трудно поверить, но файл был здесь всего лишь минуту назад :-) Weeeell ... не реально ... Правда в том, что у нас его нет ... Извините ...</value>
+    <value>Трудно поверить, но файл был здесь всего лишь минуту назад :-) Но ... Правда в том, что у нас его нет ... Извините ...</value>
   </data>
   <data name="patque_dialog_error_saveSessionFailed" xml:space="preserve">
-    <value>Мы испытываем «временные» характеристики :-) Однако данные, которые вы отправили, хранятся в вашем браузере. Пожалуйста, постарайтесь представить свои данные всякий раз, когда вам хочется ...</value>
+    <value>Мы испытываем «временные» трудности:-) Однако данные, которые вы отправили, хранятся в вашем браузере. Пожалуйста, постарайтесь представить свои данные любое удобное для вас время.</value>
   </data>
   <data name="patque_dialog_error_sessionNotFound" xml:space="preserve">
-    <value>Нам не удалось найти ваши данные сеанса. Проверьте код сеанса и повторите попытку ...</value>
+    <value>Нам не удалось найти ваши данные. Проверьте код и повторите попытку ...</value>
   </data>
   <data name="patque_dialog_error_surveyLoadFailed" xml:space="preserve">
     <value>Мы не смогли загрузить опрос. Вы проверили код опроса?</value>
   </data>
   <data name="patque_dialog_resetWarningText" xml:space="preserve">
-    <value>Если вы продолжите все ваши данные сеанса, будет потеряно. Пожалуйста, подумайте о сохранении изменений перед опросом реселлера. Вы хотите сбросить текущий прогресс?</value>
+    <value>Если вы продолжите, все ваши данные будет потеряны. Пожалуйста, сохранените изменении перед опросом. Вы хотите сбросить текущий опрос?</value>
   </data>
   <data name="patque_dialog_resetWarningTitle" xml:space="preserve">
     <value>Ваши данные будут потеряны</value>
@@ -170,7 +170,7 @@
     <value>Вы можете просто записать его, или если вы хотите, чтобы мы отправили вам его по электронной почте, оставьте свой адрес электронной почты в поле по ссылке. Будьте уверены, что ваш адрес электронной почты не будет использоваться в каких-либо других целях.</value>
   </data>
   <data name="patque_dialog_resume_text2_noEmail" xml:space="preserve">
-    <value>Нажмите ссылку, чтобы добавить ее в буфер обмена, или просто запишите ее.</value>
+    <value>Нажмите ссылку, чтобы добавить ее в планшет, или просто запишите ее.</value>
   </data>
   <data name="patque_dialog_resume_title" xml:space="preserve">
     <value>Ваша работа сохранена</value>
@@ -179,7 +179,7 @@
     <value>Спасибо!</value>
   </data>
   <data name="patque_noSurvey" xml:space="preserve">
-    <value>В настоящий момент у вас нет опроса, доступного для вас ...</value>
+    <value>В настоящий момент у нас нет опроса, доступного для вас ...</value>
   </data>
   <data name="helpEmailLink" xml:space="preserve">
     <value>Получите помощь в этом опросе</value>

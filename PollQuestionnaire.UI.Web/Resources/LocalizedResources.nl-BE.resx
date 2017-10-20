@@ -98,7 +98,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.3500.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="patque_dialog_supportedLanguagesCaption" xml:space="preserve">
-    <value>nederlands (be)</value>
+    <value>dutch (be)</value>
   </data>
   <data name="patque_btnPrint_Text" xml:space="preserve">
     <value>Afdrukken</value>
