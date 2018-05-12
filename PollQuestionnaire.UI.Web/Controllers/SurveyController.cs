@@ -39,10 +39,10 @@ namespace PollQuestionnaire.UI.Web.Controllers
                     new SupportedLanguageModel("ru", new CultureInfo("ru"), "русский")
                 };
 
-            // An Example of how-to-add-survey-specific-language-title
-            this.supportedLanguages
-                .Single(lang => lang.Culture.Equals("sr"))
-                .AddSurveySpecificTitle("mcrc", "Srpsko / Crnogorski");
+            //// An Example of how-to-add-survey-specific-language-title
+            //this.supportedLanguages
+            //    .Single(lang => lang.Culture.Equals("sr"))
+            //    .AddSurveySpecificTitle("mcrc", "Srpsko / Crnogorski");
         }
 
         [Authorize]
