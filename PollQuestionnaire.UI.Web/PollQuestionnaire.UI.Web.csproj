@@ -325,6 +325,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>LocalizedResources.tr.resx</DependentUpon>
     </Compile>
+    <Compile Include="Resources\LocalizedResources.el-CY.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>LocalizedResources.el-CY.resx</DependentUpon>
+    </Compile>
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -374,6 +379,11 @@
     <Content Include="patque.crt" />
     <None Include="Properties\PublishProfiles\hostforlife.eu.pubxml" />
     <None Include="Properties\PublishProfiles\IISProfileHost.pubxml" />
+    <EmbeddedResource Include="Resources\LocalizedResources.el-CY.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>LocalizedResources.el-CY.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
     <None Include="Scripts\jquery-3.1.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.1.1.js" />
     <Content Include="Scripts\jquery-3.1.1.min.js" />

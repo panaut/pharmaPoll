@@ -31,6 +31,7 @@ namespace PollQuestionnaire.UI.Web.Controllers
                     new SupportedLanguageModel("nl", new CultureInfo("nl"), "nederlands(nl)"),
                     new SupportedLanguageModel("be", new CultureInfo("nl-BE"), "dutch(be)"),
                     new SupportedLanguageModel("gr", new CultureInfo("el"), "ελληνικά"),
+                    new SupportedLanguageModel("cy", new CultureInfo("el-CY"), "cypriot"),
                     new SupportedLanguageModel("pt", new CultureInfo("pt"), "português"),
                     new SupportedLanguageModel("pl", new CultureInfo("pl"), "polski"),
                     new SupportedLanguageModel("hu", new CultureInfo("hu"), "magyar"),
@@ -43,6 +44,10 @@ namespace PollQuestionnaire.UI.Web.Controllers
             //this.supportedLanguages
             //    .Single(lang => lang.Culture.Equals("sr"))
             //    .AddSurveySpecificTitle("mcrc", "Srpsko / Crnogorski");
+            this.supportedLanguages
+                .Single(lang => lang.Culture.Equals("be"))
+                .AddSurveySpecificTitle("OCGC", "flemish");
+            
         }
 
         [Authorize]
