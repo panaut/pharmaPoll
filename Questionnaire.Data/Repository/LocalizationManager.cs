@@ -45,7 +45,7 @@ namespace Questionnaire.Data
 
                 if (locStrDb == null)
                 {
-                    if(!string.IsNullOrEmpty(localization.LocalizedValue))
+                    if (!string.IsNullOrEmpty(localization.LocalizedValue))
                     {
                         // This is a new entry, it should be added to database
                         this.Insert(localization, doSave: false);
@@ -89,6 +89,13 @@ namespace Questionnaire.Data
             {
                 context.SaveChanges();
             }
+        }
+
+        public IEnumerable<ECulture> GetSupportedLanguages(int surveyId)
+        {
+            return context.LocalizedStrings
+                .Where(ls => ls.SurveyId == surveyId)
+                .GroupBy(ls => ls.Culture).Select(g => g.Key);
         }
 
         public void DeleteLocalizations(int surveyId)

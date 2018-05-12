@@ -30,5 +30,6 @@ namespace Questionnaire.Service
 
         ServiceResponse DeleteLocalizations(int surveyId);
 
+        ServiceResponse<IEnumerable<ECulture>> GetSupportedLanguages(int surveyId);
     }
 }

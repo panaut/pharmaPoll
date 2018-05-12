@@ -662,6 +662,21 @@ namespace Questionnaire.Service
             return command.Result;
         }
 
+        public ServiceResponse<IEnumerable<ECulture>> GetSupportedLanguages(int surveyId)
+        {
+            var command = new ServiceCommand<IEnumerable<ECulture>>
+            {
+                Execution = (cmd, parameter) =>
+                {
+                    //cmd.Result.Status = OperationStatus.Success;
+                    return this.localizationManager.Value.GetSupportedLanguages(surveyId);
+                }
+            };
+
+            command.Execute(null);
+            return command.Result;
+        }
+
         public ServiceResponse DeleteLocalizations(int surveyId)
         {
             var command = new ServiceCommand

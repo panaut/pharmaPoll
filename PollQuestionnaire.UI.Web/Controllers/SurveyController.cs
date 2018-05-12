@@ -1,7 +1,9 @@
 ﻿using Newtonsoft.Json;
+using PollQuestionnaire.UI.Web.Models;
 using PollQuestionnaire.UI.Web.Resources;
 using Questionnaire.Service;
 using System;
+using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
@@ -14,6 +16,34 @@ namespace PollQuestionnaire.UI.Web.Controllers
     {
         private Lazy<ISurveyService> surveyService = new Lazy<ISurveyService>(() => new SurveyService());
         private Lazy<IVotingService> votingService = new Lazy<IVotingService>(() => new VotingService());
+        private IEnumerable<SupportedLanguageModel> supportedLanguages;
+
+        public SurveyController()
+        {
+            this.supportedLanguages = new List<SupportedLanguageModel> {
+                    new SupportedLanguageModel("DEFAULT", new CultureInfo("en"), "english"),
+                    new SupportedLanguageModel("en", new CultureInfo("en"), "english"),
+                    new SupportedLanguageModel("ie", new CultureInfo("en-IE"), "english(ie)"),
+                    new SupportedLanguageModel("sr", new CultureInfo("sr"), "srpski"),
+                    new SupportedLanguageModel("de", new CultureInfo("de-DE"), "deutsch(de)"),
+                    new SupportedLanguageModel("at", new CultureInfo("at-AT"), "deutsch(at)"),
+                    new SupportedLanguageModel("es", new CultureInfo("es"), "español"),
+                    new SupportedLanguageModel("nl", new CultureInfo("nl"), "nederlands(nl)"),
+                    new SupportedLanguageModel("be", new CultureInfo("nl-BE"), "dutch(be)"),
+                    new SupportedLanguageModel("gr", new CultureInfo("el"), "ελληνικά"),
+                    new SupportedLanguageModel("pt", new CultureInfo("pt"), "português"),
+                    new SupportedLanguageModel("pl", new CultureInfo("pl"), "polski"),
+                    new SupportedLanguageModel("hu", new CultureInfo("hu"), "magyar"),
+                    new SupportedLanguageModel("tr", new CultureInfo("tr"), "türkçe"),
+                    new SupportedLanguageModel("it", new CultureInfo("it"), "italiano"),
+                    new SupportedLanguageModel("ru", new CultureInfo("ru"), "русский")
+                };
+
+            // An Example of how-to-add-survey-specific-language-title
+            this.supportedLanguages
+                .Single(lang => lang.Culture.Equals("sr"))
+                .AddSurveySpecificTitle("mcrc", "Srpsko / Crnogorski");
+        }
 
         [Authorize]
         // GET: SurveyDemo
@@ -56,12 +86,32 @@ namespace PollQuestionnaire.UI.Web.Controllers
                 ViewBag.sessionCode = HttpUtility.HtmlEncode(sessionCode);
             }
 
+            // Get Supported Languages for localization
+            var supportedCulturesOperation = this.surveyService.Value.GetSupportedLanguages(surveyInfoResult.OperationResult.Id);
+
+            if (supportedCulturesOperation.Status != OperationStatus.Success)
+            {
+                throw new Exception("Failed to get supported languages");
+            }
+
+            this.supportedLanguages.ToList().ForEach(lng => lng.SurveyCode = surveyInfoResult.OperationResult.Code);
+
+            IEnumerable<SupportedLanguageModel> langs = null;
+
+            if (supportedCulturesOperation.OperationResult != null && supportedCulturesOperation.OperationResult.Any())
+            {
+                langs = this.supportedLanguages;
+                var langsHS = new HashSet<string>(supportedCulturesOperation.OperationResult.Select(lng => lng.ToString()));
+                langs = langs.Where(lng => langsHS.Contains(lng.Culture, StringComparer.InvariantCultureIgnoreCase));
+            }
+
             ViewBag.localizedStrings = JsonConvert.SerializeObject(new
             {
                 sortableWidget_confirm = LocalizedResources.patque_js_sortableConfirm
             });
 
-            return View();
+
+            return View(langs);
         }
 
         [HttpPost]
@@ -180,54 +230,67 @@ namespace PollQuestionnaire.UI.Web.Controllers
         private void SetCulture(string language)
         {
             CultureInfo ci;
-            switch (language?.ToLower())
+
+            if (this.supportedLanguages.Any(lng => lng.Culture.Equals(language, StringComparison.InvariantCultureIgnoreCase)))
             {
-                case "en":
-                    ci = new CultureInfo("en");
-                    break;
-                case "sr":
-                    ci = new CultureInfo("sr");
-                    break;
-                case "at":
-                    ci = new CultureInfo("de-AT");
-                    break;
-                case "de":
-                    ci = new CultureInfo("de-DE");
-                    break;
-                case "es":
-                    ci = new CultureInfo("es");
-                    break;
-                case "gr":
-                    ci = new CultureInfo("el");
-                    break;
-                case "nl":
-                    ci = new CultureInfo("nl");
-                    break;
-                case "be":
-                    ci = new CultureInfo("nl-BE");
-                    break;
-                case "pt":
-                    ci = new CultureInfo("pt");
-                    break;
-                case "pl":
-                    ci = new CultureInfo("pl");
-                    break;
-                case "hu":
-                    ci = new CultureInfo("hu");
-                    break;
-                case "tr":
-                    ci = new CultureInfo("tr");
-                    break;
-                case "it":
-                    ci = new CultureInfo("it");
-                    break;
-                case "ru":
-                    ci = new CultureInfo("ru");
-                    break;
-                default:
-                    ci = CultureInfo.CurrentCulture;
-                    break;
+                ci = this.supportedLanguages.Single(lng => lng.Culture.Equals(language, StringComparison.InvariantCultureIgnoreCase)).CultureInfo;
             }
+            else
+            {
+                ci = CultureInfo.CurrentCulture;
+            }
+
+            //switch (language?.ToLower())
+            //{
+            //    case "en":
+            //        ci = new CultureInfo("en");
+            //        break;
+            //    case "sr":
+            //        ci = new CultureInfo("sr");
+            //        break;
+            //    case "at":
+            //        ci = new CultureInfo("de-AT");
+            //        break;
+            //    case "de":
+            //        ci = new CultureInfo("de-DE");
+            //        break;
+            //    case "es":
+            //        ci = new CultureInfo("es");
+            //        break;
+            //    case "gr":
+            //        ci = new CultureInfo("el");
+            //        break;
+            //    case "nl":
+            //        ci = new CultureInfo("nl");
+            //        break;
+            //    case "be":
+            //        ci = new CultureInfo("nl-BE");
+            //        break;
+            //    case "pt":
+            //        ci = new CultureInfo("pt");
+            //        break;
+            //    case "pl":
+            //        ci = new CultureInfo("pl");
+            //        break;
+            //    case "hu":
+            //        ci = new CultureInfo("hu");
+            //        break;
+            //    case "tr":
+            //        ci = new CultureInfo("tr");
+            //        break;
+            //    case "it":
+            //        ci = new CultureInfo("it");
+            //        break;
+            //    case "ru":
+            //        ci = new CultureInfo("ru");
+            //        break;
+            //    case "ie":
+            //        ci = new CultureInfo("en-ie");
+            //        break;
+            //    default:
+            //        ci = CultureInfo.CurrentCulture;
+            //        break;
+            //}
 
             Thread.CurrentThread.CurrentUICulture = ci;
         }

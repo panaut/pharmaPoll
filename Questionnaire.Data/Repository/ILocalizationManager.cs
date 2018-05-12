@@ -22,6 +22,8 @@ namespace Questionnaire.Data
 
         void DeleteLocalizations(int surveyId);
 
+        IEnumerable<ECulture> GetSupportedLanguages(int surveyId);
+
         void SaveChanges();
     }
 }
